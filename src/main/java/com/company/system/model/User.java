@@ -1,25 +1,67 @@
 package com.company.system.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author artist-code (Daniel Mora Cantillo)
  */
-public class User {
+
+@Entity
+@Table (name="Users")
+public class User implements Serializable{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idUser")
     private Long idUser;
+
+    @Column(unique = true, nullable = false, name = "idCardUser")
     private Long idCardUser;
+
+    @Column(length = 60, nullable = false, name = "names")
     private String names;
+
+    @Column(length = 60, nullable = false, name = "surNames")
     private String surNames;
+
+    @Column(length = 60, unique = true, nullable = false, name = "email")
     private String email;
-    private String passwordHash;
+
+    @Column(length = 64, nullable = false, name = "passwordHash")
+    private String passwordHash; 
+
+    @Column(name = "bornDate")
     private LocalDate bornDate;
+
+    @ManyToOne
+    @JoinColumn(name = "fkRole")
     private Role role;
+
+    @Column(nullable = false, name = "registrationDate")
     private LocalDate registrationDate;
+
+    @Column(nullable = false, name = "registrationName")
     private String registrationName;
+
+    @Column(name = "registrationUpdateDate")
     private LocalDate registrationUpdateDate;
+    
+    @Column(name = "registrationUpdateName")
     private String registrationUpdateName;
+
+    @Column(name = "idDeleted", nullable = false)
     private boolean deleted;
 
     public User() {

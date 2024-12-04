@@ -15,20 +15,29 @@ import javax.persistence.Table;
  * @author artist-code (Daniel Mora Cantillo)
  */
 @Entity
-@Table(name="roles")
+@Table(name="Roles")
 public class Role implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idRole")
     private Long id;
     
+    @Column(unique = true, nullable = false, name = "name")
     private String name;
+
+    @Column(nullable = false, name = "registrationDate")
     private LocalDate registrationDate;
+
+    @Column(nullable = false, name = "registrationName")
     private String registrationName;
+    
+    @Column(name = "registrationUpdateDate")
     private LocalDate registrationUpdateDate;
+    
+    @Column(name = "registrationUpdateName")
     private String registrationUpdateName;
     
-    @Column(name = "idDeleted")
+    @Column(name = "idDeleted", nullable = false)
     private boolean deleted;
     
     public Role() {
