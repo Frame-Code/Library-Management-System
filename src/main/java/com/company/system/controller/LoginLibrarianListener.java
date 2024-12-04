@@ -31,7 +31,23 @@ public class LoginLibrarianListener implements ActionListener, MouseListener {
         if (e.getSource() == frmLoginLibrarian.getBtnBack()) {
             frmLoginLibrarian.back();
         } else if (e.getSource() == frmLoginLibrarian.getBtnLogin()) {
-            System.out.println("Incio de sesion");
+
+            if (!frmLoginLibrarian.getTxtIdUser().getText().equals("")) {
+                if (frmLoginLibrarian.getPswUser().getPassword().length != 0) {
+                    try {
+                        Long idUser = Long.valueOf(frmLoginLibrarian.getTxtIdUser().getText());
+                        //Pasar a service
+                    } catch (NumberFormatException ex) {
+                        frmLoginLibrarian.errorFormatIdUser();
+                    }
+                } else {
+                    System.out.println("entro");
+                    frmLoginLibrarian.errorPasswordEmpty();
+                }
+            } else {
+                frmLoginLibrarian.errorEmpyFields();
+            }
+
         }
     }
 
