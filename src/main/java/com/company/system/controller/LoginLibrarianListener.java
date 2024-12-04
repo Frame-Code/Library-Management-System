@@ -41,7 +41,6 @@ public class LoginLibrarianListener implements ActionListener, MouseListener {
                         frmLoginLibrarian.errorFormatIdUser();
                     }
                 } else {
-                    System.out.println("entro");
                     frmLoginLibrarian.errorPasswordEmpty();
                 }
             } else {
