@@ -18,6 +18,7 @@ public class LoginLibrarian extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -239,7 +240,7 @@ public class LoginLibrarian extends javax.swing.JFrame {
     public JTextField getTxtIdUser() {
         return txtIdUser;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JPanel contentPane;
