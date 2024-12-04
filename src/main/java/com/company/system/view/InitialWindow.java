@@ -1,12 +1,12 @@
 package com.company.system.view;
 
+import com.company.system.controller.LoginLibrarianListener;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 
 /**
  *
@@ -195,44 +195,14 @@ public class InitialWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InitialWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InitialWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InitialWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InitialWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InitialWindow().setVisible(true);
-            }
-        });
-    }
-    
     public void openLoginLibrarian() {
         frmLoginLibrarian = new LoginLibrarian();
         frmLoginLibrarian.setVisible(true);
+        new LoginLibrarianListener(frmLoginLibrarian);
     }
     
     public void close() {
+        this.setVisible(false);
         this.dispose();
     }
     
@@ -251,7 +221,6 @@ public class InitialWindow extends javax.swing.JFrame {
     public JButton getBtnStudentLogin() {
         return btnStudentLogin;
     }
-    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private LoginLibrarian frmLoginLibrarian;

@@ -1,5 +1,6 @@
 package com.company.system.view;
 
+import com.company.system.controller.InitialWindowListener;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
@@ -14,11 +15,13 @@ import javax.swing.JTextField;
  */
 public class LoginLibrarian extends javax.swing.JFrame {
 
+    private InitialWindow frmInicial;
+
     public LoginLibrarian() {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -37,6 +40,7 @@ public class LoginLibrarian extends javax.swing.JFrame {
         pswUser = new javax.swing.JPasswordField();
         btnLogin = new RoundedButtonWithShadow("Iniciar sesion", 7, new Color(0, 0, 0, 100), 4);
         lblManagmentSystem = new javax.swing.JLabel();
+        btnBack = new RoundedButtonWithShadow("Iniciar sesion", 7, new Color(0, 0, 0, 100), 4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -158,6 +162,17 @@ public class LoginLibrarian extends javax.swing.JFrame {
         lblManagmentSystem.setForeground(new java.awt.Color(255, 255, 255));
         lblManagmentSystem.setText("Sistema de gestión de la biblioteca universitaria");
 
+        btnBack.setBackground(new java.awt.Color(56, 75, 147));
+        btnBack.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack.setText("<- atrás");
+        btnBack.setBorder(null);
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout contentPaneLayout = new javax.swing.GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
@@ -165,11 +180,13 @@ public class LoginLibrarian extends javax.swing.JFrame {
             .addGroup(contentPaneLayout.createSequentialGroup()
                 .addGroup(contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contentPaneLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(contentPaneLayout.createSequentialGroup()
                         .addGap(120, 120, 120)
-                        .addComponent(lblManagmentSystem)))
+                        .addComponent(lblManagmentSystem))
+                    .addGroup(contentPaneLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
@@ -179,7 +196,9 @@ public class LoginLibrarian extends javax.swing.JFrame {
                 .addComponent(lblManagmentSystem)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -196,41 +215,24 @@ public class LoginLibrarian extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginLibrarian.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginLibrarian.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginLibrarian.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginLibrarian.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginLibrarian().setVisible(true);
-            }
-        });
+    public void mouseEntered(JButton btn) {
+        btn.setBackground(new Color(26, 54, 148));
+    }
+
+    public void mouseExited(JButton btn) {
+        btn.setBackground(new Color(56, 75, 147));
     }
 
     public JButton getBtnLogin() {
         return btnLogin;
+    }
+
+    public JButton getBtnBack() {
+        return btnBack;
     }
 
     public JPasswordField getPswUser() {
@@ -241,7 +243,15 @@ public class LoginLibrarian extends javax.swing.JFrame {
         return txtIdUser;
     }
 
+    public void back() {
+        frmInicial = new InitialWindow();
+        frmInicial.setVisible(true);
+        new InitialWindowListener(frmInicial);
+        this.dispose();
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnLogin;
     private javax.swing.JPanel contentPane;
     private javax.swing.JLabel lblIconLibrarian;
