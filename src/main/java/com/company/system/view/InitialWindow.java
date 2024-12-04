@@ -6,6 +6,7 @@ import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  *
@@ -17,6 +18,7 @@ public class InitialWindow extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -224,7 +226,24 @@ public class InitialWindow extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    public void openLoginLibrarian() {
+        frmLoginLibrarian = new LoginLibrarian();
+        frmLoginLibrarian.setVisible(true);
+    }
+    
+    public void close() {
+        this.dispose();
+    }
+    
+    public void mouseEntered(JButton btn) {
+        btn.setBackground(new Color(26,54,148));
+    }
+    
+    public void mouseExited(JButton btn) {
+        btn.setBackground(new Color(56,75,147));
+    }
+    
     public JButton getBtnLibrarianLogin() {
         return btnLibrarianLogin;
     }
@@ -232,8 +251,10 @@ public class InitialWindow extends javax.swing.JFrame {
     public JButton getBtnStudentLogin() {
         return btnStudentLogin;
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private LoginLibrarian frmLoginLibrarian;
     private javax.swing.JButton btnLibrarianLogin;
     private javax.swing.JButton btnStudentLogin;
     private javax.swing.JPanel contentPane;
