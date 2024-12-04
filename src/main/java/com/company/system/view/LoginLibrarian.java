@@ -6,6 +6,7 @@ import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -14,8 +15,6 @@ import javax.swing.JTextField;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class LoginLibrarian extends javax.swing.JFrame {
-
-    private InitialWindow frmInicial;
 
     public LoginLibrarian() {
         initComponents();
@@ -167,11 +166,6 @@ public class LoginLibrarian extends javax.swing.JFrame {
         btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("<- atrás");
         btnBack.setBorder(null);
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout contentPaneLayout = new javax.swing.GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
@@ -215,16 +209,24 @@ public class LoginLibrarian extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBackActionPerformed
-
     public void mouseEntered(JButton btn) {
         btn.setBackground(new Color(26, 54, 148));
     }
 
     public void mouseExited(JButton btn) {
         btn.setBackground(new Color(56, 75, 147));
+    }
+
+    public void errorFormatIdUser() {
+        JOptionPane.showMessageDialog(this, "Error: Escribe correctamente el numero de cedula");
+    }
+
+    public void errorEmpyFields() {
+        JOptionPane.showMessageDialog(this, "Error: no pueden haber campos vacíos");
+    }
+
+    public void errorPasswordEmpty() {
+        JOptionPane.showMessageDialog(this, "Error: Escribe la contraseña");
     }
 
     public JButton getBtnLogin() {
@@ -251,6 +253,7 @@ public class LoginLibrarian extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private InitialWindow frmInicial;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnLogin;
     private javax.swing.JPanel contentPane;
