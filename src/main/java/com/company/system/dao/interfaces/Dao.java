@@ -10,4 +10,6 @@ public interface Dao <T>{
     T findById(Long id);
 
     boolean update(T object);
+
+    boolean deleteByID(Long id);
 }

@@ -15,6 +15,11 @@ import javax.swing.JTextField;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class LoginLibrarian extends javax.swing.JFrame {
+    public final String errorFormatId = "Error: Escribe correctamente el numero de cedula";
+    public final String errorEmptyFields = "Error: no pueden haber campos vacíos";
+    public final String errorPasswordEmpty = "Error: Escribe la contraseña";
+    public final String errorUserExists = "Error: Usuario no encontrado";
+    public final String errorIncorrectPassword = "Error: contraseña incorrecta";
 
     public LoginLibrarian() {
         initComponents();
@@ -209,25 +214,18 @@ public class LoginLibrarian extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void mouseEntered(JButton btn) {
-        btn.setBackground(new Color(26, 54, 148));
+    public void mouseEvent(JButton btn, Color color) {
+        btn.setBackground(color);
+    }
+    
+    public void errorMessage(String text) {
+        JOptionPane.showMessageDialog(this, text);
     }
 
-    public void mouseExited(JButton btn) {
-        btn.setBackground(new Color(56, 75, 147));
+    public void login() {
+        JOptionPane.showMessageDialog(this, "Login exitoso");
     }
 
-    public void errorFormatIdUser() {
-        JOptionPane.showMessageDialog(this, "Error: Escribe correctamente el numero de cedula");
-    }
-
-    public void errorEmpyFields() {
-        JOptionPane.showMessageDialog(this, "Error: no pueden haber campos vacíos");
-    }
-
-    public void errorPasswordEmpty() {
-        JOptionPane.showMessageDialog(this, "Error: Escribe la contraseña");
-    }
 
     public JButton getBtnLogin() {
         return btnLogin;

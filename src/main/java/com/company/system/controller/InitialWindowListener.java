@@ -1,6 +1,8 @@
 package com.company.system.controller;
 
 import com.company.system.view.InitialWindow;
+import com.company.system.view.components.Utils;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -39,18 +41,18 @@ public class InitialWindowListener implements ActionListener, MouseListener {
     @Override
     public void mouseEntered(MouseEvent e) {
         if (e.getSource() == frmInitial.getBtnStudentLogin()) {
-            frmInitial.mouseEntered(frmInitial.getBtnStudentLogin());
+            frmInitial.mouseEvent(frmInitial.getBtnStudentLogin(), Utils.btnEntered);
         } else if (e.getSource() == frmInitial.getBtnLibrarianLogin()) {
-            frmInitial.mouseEntered(frmInitial.getBtnLibrarianLogin());
+            frmInitial.mouseEvent(frmInitial.getBtnLibrarianLogin(), Utils.btnEntered);
         } 
     }
-
+    
     @Override
     public void mouseExited(MouseEvent e) {
         if (e.getSource() == frmInitial.getBtnStudentLogin()) {
-            frmInitial.mouseExited(frmInitial.getBtnStudentLogin());
+            frmInitial.mouseEvent(frmInitial.getBtnStudentLogin(), Utils.btnExited);
         } else if (e.getSource() == frmInitial.getBtnLibrarianLogin()) {
-            frmInitial.mouseExited(frmInitial.getBtnLibrarianLogin());
+            frmInitial.mouseEvent(frmInitial.getBtnLibrarianLogin(), Utils.btnExited);
         } 
     }
 

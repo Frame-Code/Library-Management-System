@@ -9,6 +9,10 @@ import javax.persistence.Persistence;
 import com.company.system.dao.interfaces.RoleDao;
 import com.company.system.model.Role;
 
+/**
+ *
+ * @author artist-code (Daniel Mora Cantillo)
+ */
 public class RoleDaoImpl implements RoleDao{
     private final EntityManagerFactory emf;
     
@@ -48,6 +52,12 @@ public class RoleDaoImpl implements RoleDao{
     public boolean update(Role object) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
+
+    @Override
+    public boolean deleteByID(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deleteByID'");
     }
 
 }

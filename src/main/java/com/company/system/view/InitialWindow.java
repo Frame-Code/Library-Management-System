@@ -206,13 +206,10 @@ public class InitialWindow extends javax.swing.JFrame {
         this.dispose();
     }
     
-    public void mouseEntered(JButton btn) {
-        btn.setBackground(new Color(26,54,148));
+    public void mouseEvent(JButton btn, Color color) {
+        btn.setBackground(color);
     }
     
-    public void mouseExited(JButton btn) {
-        btn.setBackground(new Color(56,75,147));
-    }
     
     public JButton getBtnLibrarianLogin() {
         return btnLibrarianLogin;

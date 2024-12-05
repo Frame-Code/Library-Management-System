@@ -10,6 +10,10 @@ import org.junit.jupiter.api.Test;
 
 import com.company.system.dao.impl.RoleDaoImpl;
 
+/**
+ *
+ * @author artist-code (Daniel Mora Cantillo)
+ */
 public class UserTest {
     @Test
     void createTableTest() {

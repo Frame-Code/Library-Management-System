@@ -1,6 +1,9 @@
 package com.company.system.controller;
 
+import com.company.system.service.UserService;
 import com.company.system.view.LoginLibrarian;
+import com.company.system.view.components.Utils;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -13,9 +16,11 @@ import java.awt.event.MouseListener;
 public class LoginLibrarianListener implements ActionListener, MouseListener {
 
     private final LoginLibrarian frmLoginLibrarian;
+    private final UserService userService;
 
     public LoginLibrarianListener(LoginLibrarian frmLoginLibrarian) {
         this.frmLoginLibrarian = frmLoginLibrarian;
+        this.userService = new UserService();
         addListeners();
     }
 
@@ -36,15 +41,28 @@ public class LoginLibrarianListener implements ActionListener, MouseListener {
                 if (frmLoginLibrarian.getPswUser().getPassword().length != 0) {
                     try {
                         Long idUser = Long.valueOf(frmLoginLibrarian.getTxtIdUser().getText());
-                        //Pasar a service
+                        if(userService.userExists(idUser)) {
+                            String plainPassword = "";
+                            for (char p : frmLoginLibrarian.getPswUser().getPassword()) {
+                                plainPassword += p;
+                            }
+
+                            if(userService.login(idUser, plainPassword) != null) {
+                                frmLoginLibrarian.login();
+                            } else {
+                                frmLoginLibrarian.errorMessage(frmLoginLibrarian.errorIncorrectPassword);
+                            }
+                        } else {
+                            frmLoginLibrarian.errorMessage(frmLoginLibrarian.errorUserExists);
+                        }
                     } catch (NumberFormatException ex) {
-                        frmLoginLibrarian.errorFormatIdUser();
+                        frmLoginLibrarian.errorMessage(frmLoginLibrarian.errorFormatId);
                     }
                 } else {
-                    frmLoginLibrarian.errorPasswordEmpty();
+                    frmLoginLibrarian.errorMessage(frmLoginLibrarian.errorPasswordEmpty);
                 }
             } else {
-                frmLoginLibrarian.errorEmpyFields();
+                frmLoginLibrarian.errorMessage(frmLoginLibrarian.errorEmptyFields);
             }
 
         }
@@ -53,18 +71,18 @@ public class LoginLibrarianListener implements ActionListener, MouseListener {
     @Override
     public void mouseEntered(MouseEvent e) {
         if (e.getSource() == frmLoginLibrarian.getBtnBack()) {
-            frmLoginLibrarian.mouseEntered(frmLoginLibrarian.getBtnBack());
+            frmLoginLibrarian.mouseEvent(frmLoginLibrarian.getBtnBack(), Utils.btnEntered);
         } else if (e.getSource() == frmLoginLibrarian.getBtnLogin()) {
-            frmLoginLibrarian.mouseEntered(frmLoginLibrarian.getBtnLogin());
+            frmLoginLibrarian.mouseEvent(frmLoginLibrarian.getBtnLogin(), Utils.btnEntered);
         }
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
         if (e.getSource() == frmLoginLibrarian.getBtnBack()) {
-            frmLoginLibrarian.mouseExited(frmLoginLibrarian.getBtnBack());
+            frmLoginLibrarian.mouseEvent(frmLoginLibrarian.getBtnBack(), Utils.btnExited);
         } else if (e.getSource() == frmLoginLibrarian.getBtnLogin()) {
-            frmLoginLibrarian.mouseExited(frmLoginLibrarian.getBtnLogin());
+            frmLoginLibrarian.mouseEvent(frmLoginLibrarian.getBtnLogin(), Utils.btnExited);
         }
     }
 
