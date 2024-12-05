@@ -17,7 +17,6 @@ import javax.swing.JTextField;
 public class LoginLibrarian extends javax.swing.JFrame {
     public final String errorFormatId = "Error: Escribe correctamente el numero de cedula";
     public final String errorEmptyFields = "Error: no pueden haber campos vacíos";
-    public final String errorPasswordEmpty = "Error: Escribe la contraseña";
     public final String errorUserExists = "Error: Usuario no encontrado";
     public final String errorIncorrectPassword = "Error: contraseña incorrecta";
 

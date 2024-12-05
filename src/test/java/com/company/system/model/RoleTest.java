@@ -18,22 +18,32 @@ public class RoleTest {
     void createTableTest() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("libraryPU");
         EntityManager em = emf.createEntityManager();
-        Role role = new Role("Administrador", 
+        Role role1 = new Role(Role.roleLibrarian, 
             LocalDate.now(), 
             "@artist-code", 
             null,
             null,
             false
-            );
+        );
+        Role role2 = new Role(Role.roleStudent, 
+            LocalDate.now(), 
+            "@artist-code", 
+            null,
+            null,
+            false
+        );
 
         try {
             em.getTransaction().begin();
-            em.persist(role);
+            em.persist(role1);
+            em.persist(role2);
             em.getTransaction().commit();
         } catch (Exception e) {
-            throw new RuntimeException("Error: no se puede crear el rol");
+            e.printStackTrace();
+            em.getTransaction().rollback();
         } finally {
             em.close();
+            emf.close();
         }
     }
 }

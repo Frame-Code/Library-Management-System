@@ -51,7 +51,6 @@ public class UserDaoImpl implements UserDao{
             return false;
         } finally {
             em.close();
-            emf.close();
         }
     }
 
@@ -71,7 +70,6 @@ public class UserDaoImpl implements UserDao{
             throw new IllegalArgumentException("Error: no se puede crear ");
         } finally {
             em.close();
-            emf.close();
         }
 
     }
@@ -100,7 +98,24 @@ public class UserDaoImpl implements UserDao{
             return user;
         } catch (NoResultException e) {
             return null;
+        } finally {
+            em.close();
         }
+    }
+
+    @Override
+    public User findByIdCard(Long idCard, String role) {
+        User user = findByIdCard(idCard);
+        if(user != null) {
+            if(user.getRole().getName().equals(role)) {
+                return user;
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+
     }
 
 }

@@ -17,6 +17,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Roles")
 public class Role implements Serializable {
+    public static final String roleLibrarian = "Bibliotecario";
+    public static final String roleStudent = "Estudiante";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idRole")

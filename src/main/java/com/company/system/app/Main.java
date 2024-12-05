@@ -8,6 +8,6 @@ public class Main {
     public static void main(String[] args) {
         InitialWindow frmInitial = new InitialWindow();
         frmInitial.setVisible(true);
-        InitialWindowListener frmInitialListener = new InitialWindowListener(frmInitial);
+        new InitialWindowListener(frmInitial);
     }
 }

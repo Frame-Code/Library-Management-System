@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import org.junit.jupiter.api.Test;
 
 import com.company.system.dao.impl.RoleDaoImpl;
+import com.company.system.service.EncryptationService;
 
 /**
  *
@@ -20,17 +21,29 @@ public class UserTest {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("libraryPU");
         EntityManager em = emf.createEntityManager();
 
-        Role role = new RoleDaoImpl().findById(1L);
-        System.out.println(role);
-        User usr = new User(654654654L, 
-            "Daniel Mora", 
+        User usr = new User(941239261L, 
+            "Daniel Isur", 
             "Mora Cantillo", 
             "morai@hotmail.com", 
-            "fdsfedsfdfdf", 
+            new EncryptationService().encryptPassword("MiContra"),
             LocalDate.now(), 
-            role, 
+            new RoleDaoImpl().findByName(Role.roleLibrarian), 
             LocalDate.now(), 
-            "User1", 
+            "@artist-code", 
+            null, 
+            null, 
+            false
+        );
+
+        User usr1 = new User(941239253L, 
+            "Genesis Sarai", 
+            "Mora Cantillo", 
+            "genesita-1995@hotmail.com", 
+            new EncryptationService().encryptPassword("MiContraseña"),
+            LocalDate.now(), 
+            new RoleDaoImpl().findByName(Role.roleStudent), 
+            LocalDate.now(), 
+            "@artist-code", 
             null, 
             null, 
             false
@@ -39,12 +52,15 @@ public class UserTest {
         try {
             em.getTransaction().begin();
             em.persist(usr);
+            em.persist(usr1);
             em.getTransaction().commit();
 
         } catch (Exception e) {
-            throw new RuntimeException("Error: no se puede crear el rol");
+            e.printStackTrace();
+            em.getTransaction().rollback();
         } finally {
             em.close();
+            emf.close();
         }
     }
 
