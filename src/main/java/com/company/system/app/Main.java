@@ -1,13 +1,14 @@
 package com.company.system.app;
 
-import com.company.system.controller.InitialWindowListener;
-import com.company.system.view.InitialWindow;
+import com.company.system.controller.InfoLibroWindowListener;
+import com.company.system.view.InfoLibroWindow;
+
 
 public class Main {
 
     public static void main(String[] args) {
-        InitialWindow frmInitial = new InitialWindow();
+        InfoLibroWindow frmInitial = new InfoLibroWindow();
         frmInitial.setVisible(true);
-        InitialWindowListener frmInitialListener = new InitialWindowListener(frmInitial);
+        InfoLibroWindowListener frmInitialListener = new InfoLibroWindowListener(frmInitial);
     }
 }
