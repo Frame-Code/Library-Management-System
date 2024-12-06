@@ -11,5 +11,6 @@ public class Main {
         frmInitial.setVisible(true);
         InfoLibroWindowListener frmInitialListener = new InfoLibroWindowListener(frmInitial);
         System.out.println("prueba");
+        System.out.println("TAL VEZ ESTA VEZ SI FUNCIONE");
     }
 }
