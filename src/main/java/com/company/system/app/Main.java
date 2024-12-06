@@ -10,5 +10,6 @@ public class Main {
         InfoLibroWindow frmInitial = new InfoLibroWindow();
         frmInitial.setVisible(true);
         InfoLibroWindowListener frmInitialListener = new InfoLibroWindowListener(frmInitial);
+        System.out.println("prueba");
     }
 }
