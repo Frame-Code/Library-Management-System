@@ -58,12 +58,15 @@ public class InitialWindowListener implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        System.out.println("Enseñanddole a ronald porque es estupido");
     }
     @Override
     public void mousePressed(MouseEvent e) {
+        System.out.println("Enseñanddole a ronald porque es estupido");
     }
     @Override
     public void mouseReleased(MouseEvent e) {
+        System.out.println("Enseñanddole a ronald porque es estupido");
     }
 
 }
