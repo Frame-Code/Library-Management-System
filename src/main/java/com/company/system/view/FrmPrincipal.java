@@ -65,6 +65,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Menu");
 
         jMenu3.setText("Categorias");
+	jMenu3.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16)); 
+	jMenu3.setForeground(java.awt.Color.BLUE); 
 
         jMenuItem1.setText("Horror");
         jMenu3.add(jMenuItem1);
