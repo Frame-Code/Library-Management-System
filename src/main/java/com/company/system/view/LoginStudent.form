@@ -52,7 +52,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButton1" min="-2" pref="94" max="-2" attributes="0"/>
+                      <Component id="btnAtrasLogin" min="-2" pref="94" max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="19" max="32767" attributes="0"/>
@@ -65,7 +65,7 @@
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton1" pref="35" max="32767" attributes="0"/>
+                  <Component id="btnAtrasLogin" pref="35" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -100,7 +100,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jTextField2" min="-2" pref="208" max="-2" attributes="0"/>
                                       <EmptySpace pref="211" max="32767" attributes="0"/>
-                                      <Component id="jButton2" min="-2" pref="119" max="-2" attributes="0"/>
+                                      <Component id="btnIniciarSesion" min="-2" pref="119" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -128,7 +128,7 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace pref="47" max="32767" attributes="0"/>
-                              <Component id="jButton2" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="btnIniciarSesion" min="-2" pref="34" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -237,7 +237,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="btnIniciarSesion">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="93" green="4b" red="38" type="rgb"/>
@@ -249,11 +249,12 @@
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
                 </Property>
+                <Property name="name" type="java.lang.String" value="btnIniciarSesion" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnAtrasLogin">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="93" green="4b" red="38" type="rgb"/>
