@@ -8,55 +8,50 @@ import java.awt.event.MouseListener;
 
 /**
  *
- * @author artist-code (Ariel Reyes )
+ * @author  Ariel Reyes
  */
 public class InfoLibroWindowListener implements ActionListener, MouseListener {
 
-    private final InfoLibroWindow frmInitial;
+    private final InfoLibroWindow frmLibrowindow;
 
-    public InfoLibroWindowListener(InfoLibroWindow frmInitial) {
-        this.frmInitial = frmInitial;
+    public InfoLibroWindowListener(InfoLibroWindow frmLibrowindow) {
+        this.frmLibrowindow = frmLibrowindow;
         addListeners();
     }
 
     private void addListeners() {
-        frmInitial.getbtnReservaLibro().addActionListener(this);
-        frmInitial.getbtnReservaLibro().addMouseListener(this);
-        frmInitial.getbtnNotificacion().addActionListener(this);
-        frmInitial.getbtnNotificacion().addMouseListener(this);
-        frmInitial.getbtnatras().addActionListener(this);
-        frmInitial.getbtnatras().addMouseListener(this);
+       
+        frmLibrowindow.getbtnNotificacion().addActionListener(this);
+        frmLibrowindow.getbtnNotificacion().addMouseListener(this);
+        frmLibrowindow.getbtnatras().addActionListener(this);
+        frmLibrowindow.getbtnatras().addMouseListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == frmInitial.getbtnReservaLibro()) {
+        if (e.getSource() == frmLibrowindow.getbtnNotificacion()) {
 
-        } else if (e.getSource() == frmInitial.getbtnReservaLibro()) {
-            frmInitial.openLoginLibrarian();
-            frmInitial.close();
+        } else if (e.getSource() == frmLibrowindow.getbtnNotificacion()) {
+            frmLibrowindow.openLoginLibrarian();
+            frmLibrowindow.close();
         }
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        if (e.getSource() == frmInitial.getbtnReservaLibro()) {
-            frmInitial.mouseEntered(frmInitial.getbtnReservaLibro());
-        } else if (e.getSource() == frmInitial.getbtnNotificacion()) {
-            frmInitial.mouseEntered(frmInitial.getbtnNotificacion());
-        } else if(e.getSource() == frmInitial.getbtnatras()) {
-            frmInitial.mouseEntered(frmInitial.getbtnatras());
+         if (e.getSource() == frmLibrowindow.getbtnNotificacion()) {
+            frmLibrowindow.mouseEntered(frmLibrowindow.getbtnNotificacion());
+        } else if(e.getSource() == frmLibrowindow.getbtnatras()) {
+            frmLibrowindow.mouseEntered(frmLibrowindow.getbtnatras());
         }
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        if (e.getSource() == frmInitial.getbtnReservaLibro()) {
-            frmInitial.mouseExited(frmInitial.getbtnReservaLibro());
-        } else if (e.getSource() == frmInitial.getbtnNotificacion()) {
-            frmInitial.mouseExited(frmInitial.getbtnNotificacion());
-        } else if(e.getSource() == frmInitial.getbtnatras()) {
-            frmInitial.mouseExited(frmInitial.getbtnatras());
+        if (e.getSource() == frmLibrowindow.getbtnNotificacion()) {
+            frmLibrowindow.mouseExited(frmLibrowindow.getbtnNotificacion());
+        } else if(e.getSource() == frmLibrowindow.getbtnatras()) {
+            frmLibrowindow.mouseExited(frmLibrowindow.getbtnatras());
         }
     }
 
