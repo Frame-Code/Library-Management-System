@@ -30,7 +30,11 @@ public class LoginStudentListener implements ActionListener, MouseListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == frmLogin.getBtnAtrasLogin()) {
             frmLogin.back();
-        
+        }else
+            if (e.getSource() == frmLogin.getBtnIniciarSesion()){
+            frmLogin.getTxtCorreo().setText("");
+            frmLogin.getTxtContrasena().setText("");
+            
         }
     }
 

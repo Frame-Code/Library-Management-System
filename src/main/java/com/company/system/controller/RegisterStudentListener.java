@@ -31,8 +31,18 @@ public class RegisterStudentListener implements ActionListener, MouseListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == frmRegisterStudent.getBtnAtrasRegistrar()){
             frmRegisterStudent.back();
+        }else
+            if(e.getSource() == frmRegisterStudent.getBtnRegistrar()){
+                frmRegisterStudent.getTxtNombres().setText("");
+                frmRegisterStudent.getTxtApellidos().setText("");
+                frmRegisterStudent.getTxtCedula().setText("");
+                frmRegisterStudent.getTxtCorreo().setText("");
+                frmRegisterStudent.getTxtNacimiento().setText("");
+                frmRegisterStudent.getPswContrasena().setText("");
+                frmRegisterStudent.getPswConfirmarContrasena().setText("");
         }
     }
+    
 
     @Override
     public void mouseClicked(MouseEvent e) {
