@@ -29,7 +29,7 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         buttonGroup4 = new javax.swing.ButtonGroup();
         contentPane = new BackgroundPanel("src/main/resources/images/Background_login.png");
         pnlBackground = new RoundedPanelWithShadow(30, new Color(0, 0, 0, 100), 2);
-        pnlWelcome = RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
+        pnlWelcome = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         lblSelectTypeAccount = new javax.swing.JLabel();
         lblWelcome = new javax.swing.JLabel();
         lblStudentIcon = new javax.swing.JLabel(new ImageIcon("/src/main/resources/images/Student_icon_Login.png"
@@ -251,11 +251,6 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         btnatras.setForeground(new java.awt.Color(255, 255, 255));
         btnatras.setText("ATRAS");
         btnatras.setBorder(null);
-        btnatras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnatrasActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout contentPaneLayout = new javax.swing.GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
@@ -307,10 +302,6 @@ public class InfoLibroWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnatrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnatrasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnatrasActionPerformed
 
     public void openLoginLibrarian() {
         

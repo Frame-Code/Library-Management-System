@@ -44,7 +44,9 @@ public class InfoLibroWindowListener implements ActionListener, MouseListener {
             frmInitial.mouseEntered(frmInitial.getbtnReservaLibro());
         } else if (e.getSource() == frmInitial.getbtnNotificacion()) {
             frmInitial.mouseEntered(frmInitial.getbtnNotificacion());
-        } 
+        } else if(e.getSource() == frmInitial.getbtnatras()) {
+            frmInitial.mouseEntered(frmInitial.getbtnatras());
+        }
     }
 
     @Override
@@ -53,7 +55,9 @@ public class InfoLibroWindowListener implements ActionListener, MouseListener {
             frmInitial.mouseExited(frmInitial.getbtnReservaLibro());
         } else if (e.getSource() == frmInitial.getbtnNotificacion()) {
             frmInitial.mouseExited(frmInitial.getbtnNotificacion());
-        } 
+        } else if(e.getSource() == frmInitial.getbtnatras()) {
+            frmInitial.mouseExited(frmInitial.getbtnatras());
+        }
     }
 
     @Override
