@@ -208,18 +208,17 @@ public class InitialWindow extends javax.swing.JFrame {
         new LoginLibrarianListener(frmLoginLibrarian);
     }
     
+    //Este metodo cierra esta ventana
     public void close() {
         this.setVisible(false);
         this.dispose();
     }
     
-    public void mouseEntered(JButton btn) {
-        btn.setBackground(new Color(26,54,148));
+    //Este metodo es usado para cambiar el color a los btn cuando el puntero este sobre el btn o salga del mismo
+    public void mouseEvent(JButton btn, Color color) {
+        btn.setBackground(color);
     }
     
-    public void mouseExited(JButton btn) {
-        btn.setBackground(new Color(56,75,147));
-    }
     
     public JButton getBtnLibrarianLogin() {
         return btnLibrarianLogin;
