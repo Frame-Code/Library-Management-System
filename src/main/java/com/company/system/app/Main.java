@@ -1,12 +1,12 @@
 package com.company.system.app;
 
-import com.company.system.view.Refactor;
-
+import com.company.system.controller.InitialWindowListener;
+import com.company.system.view.InitialWindow;
 
 public class Main {
-
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        new Refactor().setVisible(true);
+        InitialWindow frmInitial = new InitialWindow();
+        frmInitial.setVisible(true);
+        new InitialWindowListener(frmInitial);
     }
 }

@@ -1,7 +1,7 @@
 package com.company.system.view;
 
-//import com.company.system.controller.LoginLibrarianListener;
-//import com.company.system.controller.LoginStudentListener;
+import com.company.system.controller.LoginLibrarianListener;
+import com.company.system.controller.LoginStudentListener;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
@@ -197,15 +197,15 @@ public class InitialWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     public void openLoginStudent() {
-        /*frmLoginStudent = new LoginStudent();
+        frmLoginStudent = new LoginStudent();
         frmLoginStudent.setVisible(true);
-        new LoginStudentListener(frmLoginStudent);*/
+        new LoginStudentListener(frmLoginStudent);
     }
     
     public void openLoginLibrarian() {
-        /*frmLoginLibrarian = new LoginLibrarian();
+        frmLoginLibrarian = new LoginLibrarian();
         frmLoginLibrarian.setVisible(true);
-        new LoginLibrarianListener(frmLoginLibrarian);*/
+        new LoginLibrarianListener(frmLoginLibrarian);
     }
     
     //Este metodo cierra esta ventana
@@ -229,8 +229,8 @@ public class InitialWindow extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-//    private LoginStudent frmLoginStudent;
-//    private LoginLibrarian frmLoginLibrarian;
+    private LoginStudent frmLoginStudent;
+    private LoginLibrarian frmLoginLibrarian;
     private javax.swing.JButton btnLibrarianLogin;
     private javax.swing.JButton btnStudentLogin;
     private javax.swing.JPanel contentPane;
