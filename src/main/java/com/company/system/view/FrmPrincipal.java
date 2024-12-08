@@ -43,10 +43,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,35 +59,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 465, Short.MAX_VALUE)
+            .addGap(0, 486, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Menu");
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
 
         jMenu3.setText("Categorias");
-	jMenu3.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16)); 
-	jMenu3.setForeground(java.awt.Color.BLUE); 
+        jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
 
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jMenuItem1.setText("Horror");
         jMenu3.add(jMenuItem1);
 
+        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jMenuItem2.setText("Biografia ");
         jMenu3.add(jMenuItem2);
 
-        jMenuItem3.setText("Misterio");
-        jMenu3.add(jMenuItem3);
-
-        jMenuItem4.setText("Ciencia Ficcion");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem4);
-
-        jMenuItem5.setText("Cuento");
-        jMenu3.add(jMenuItem5);
-
+        jMenuItem6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jMenuItem6.setText("Comics");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,11 +85,29 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem6);
 
+        jMenuItem3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jMenuItem3.setText("Misterio");
+        jMenu3.add(jMenuItem3);
+
+        jMenuItem4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jMenuItem4.setText("Ciencia Ficcion");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem4);
+
+        jMenuItem5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jMenuItem5.setText("Cuento");
+        jMenu3.add(jMenuItem5);
+
         jMenu1.add(jMenu3);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -126,7 +133,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
