@@ -7,10 +7,8 @@ import com.company.system.view.InfoLibroWindow;
 public class Main {
 
     public static void main(String[] args) {
-        InfoLibroWindow frmInitial = new InfoLibroWindow();
-        frmInitial.setVisible(true);
-        InfoLibroWindowListener frmInitialListener = new InfoLibroWindowListener(frmInitial);
-        System.out.println("prueba");
-        System.out.println("TAL VEZ ESTA VEZ SI FUNCIONE");
+        InfoLibroWindow frmLibroWindow = new InfoLibroWindow();
+        frmLibroWindow.setVisible(true);
+        new InfoLibroWindowListener(frmLibroWindow);
     }
 }

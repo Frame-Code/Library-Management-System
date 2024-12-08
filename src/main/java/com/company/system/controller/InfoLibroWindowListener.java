@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
 
 /**
  *
- * @author  Ariel Reyes
+ * @author  Ariel Reyes Domo
  */
 public class InfoLibroWindowListener implements ActionListener, MouseListener {
 
@@ -20,38 +20,36 @@ public class InfoLibroWindowListener implements ActionListener, MouseListener {
     }
 
     private void addListeners() {
-       
-        frmLibrowindow.getbtnNotificacion().addActionListener(this);
-        frmLibrowindow.getbtnNotificacion().addMouseListener(this);
-        frmLibrowindow.getbtnatras().addActionListener(this);
-        frmLibrowindow.getbtnatras().addMouseListener(this);
+        frmLibrowindow.getBtnNotify().addActionListener(this);
+        frmLibrowindow.getBtnNotify().addMouseListener(this);
+        frmLibrowindow.getBtnBack().addActionListener(this);
+        frmLibrowindow.getBtnBack().addMouseListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == frmLibrowindow.getbtnNotificacion()) {
-
-        } else if (e.getSource() == frmLibrowindow.getbtnNotificacion()) {
-            frmLibrowindow.openLoginLibrarian();
+        if (e.getSource() == frmLibrowindow.getBtnNotify()) {
+            //-----//
+        } else if (e.getSource() == frmLibrowindow.getBtnBack()) {
             frmLibrowindow.close();
         }
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-         if (e.getSource() == frmLibrowindow.getbtnNotificacion()) {
-            frmLibrowindow.mouseEntered(frmLibrowindow.getbtnNotificacion());
-        } else if(e.getSource() == frmLibrowindow.getbtnatras()) {
-            frmLibrowindow.mouseEntered(frmLibrowindow.getbtnatras());
+         if (e.getSource() == frmLibrowindow.getBtnNotify()) {
+            frmLibrowindow.mouseEntered(frmLibrowindow.getBtnNotify());
+        } else if(e.getSource() == frmLibrowindow.getBtnBack()) {
+            frmLibrowindow.mouseEntered(frmLibrowindow.getBtnBack());
         }
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        if (e.getSource() == frmLibrowindow.getbtnNotificacion()) {
-            frmLibrowindow.mouseExited(frmLibrowindow.getbtnNotificacion());
-        } else if(e.getSource() == frmLibrowindow.getbtnatras()) {
-            frmLibrowindow.mouseExited(frmLibrowindow.getbtnatras());
+        if (e.getSource() == frmLibrowindow.getBtnNotify()) {
+            frmLibrowindow.mouseExited(frmLibrowindow.getBtnNotify());
+        } else if(e.getSource() == frmLibrowindow.getBtnBack()) {
+            frmLibrowindow.mouseExited(frmLibrowindow.getBtnBack());
         }
     }
 
