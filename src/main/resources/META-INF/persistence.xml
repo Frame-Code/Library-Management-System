@@ -6,7 +6,7 @@
     <class>com.company.system.model.User</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://82.197.82.14:3306/u677638702_Library?serverTimezone=UTC"/>
-      <property name="javax.persistence.jdbc.user" value="677638702_root"/>
+      <property name="javax.persistence.jdbc.user" value="u677638702_root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="MiContr@senia1"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
