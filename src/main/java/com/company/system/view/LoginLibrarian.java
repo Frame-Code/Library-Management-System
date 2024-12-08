@@ -15,6 +15,7 @@ import javax.swing.JTextField;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class LoginLibrarian extends javax.swing.JFrame {
+
     public final String errorFormatId = "Error: Escribe correctamente el numero de cedula";
     public final String errorEmptyFields = "Error: no pueden haber campos vacíos";
     public final String errorUserExists = "Error: Usuario no encontrado";
@@ -213,18 +214,28 @@ public class LoginLibrarian extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Este metodo es usado para cambiar el color a los btn cuando el puntero este sobre el btn o salga del mismo
     public void mouseEvent(JButton btn, Color color) {
         btn.setBackground(color);
     }
-    
+
+    //Este metodo es usado para imprimir por pantalla los errores que se presenten
     public void errorMessage(String text) {
         JOptionPane.showMessageDialog(this, text);
     }
 
+    //Este metodo abre...
     public void login() {
         JOptionPane.showMessageDialog(this, "Login exitoso");
     }
-
+    
+    //Este metodo cierra esta ventana y abre la ventana "InitialWindow"
+    public void back() {
+        frmInicial = new InitialWindow();
+        frmInicial.setVisible(true);
+        new InitialWindowListener(frmInicial);
+        this.dispose();
+    }
 
     public JButton getBtnLogin() {
         return btnLogin;
@@ -240,13 +251,6 @@ public class LoginLibrarian extends javax.swing.JFrame {
 
     public JTextField getTxtIdUser() {
         return txtIdUser;
-    }
-
-    public void back() {
-        frmInicial = new InitialWindow();
-        frmInicial.setVisible(true);
-        new InitialWindowListener(frmInicial);
-        this.dispose();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

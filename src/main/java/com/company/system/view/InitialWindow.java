@@ -194,18 +194,21 @@ public class InitialWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //Este metodo abre la ventana "LoginLibrarian" y le asigna su respectivo listener
     public void openLoginLibrarian() {
         frmLoginLibrarian = new LoginLibrarian();
         frmLoginLibrarian.setVisible(true);
         new LoginLibrarianListener(frmLoginLibrarian);
     }
     
+    //Este metodo cierra esta ventana
     public void close() {
         this.setVisible(false);
         this.dispose();
     }
     
+    //Este metodo es usado para cambiar el color a los btn cuando el puntero este sobre el btn o salga del mismo
     public void mouseEvent(JButton btn, Color color) {
         btn.setBackground(color);
     }

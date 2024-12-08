@@ -12,6 +12,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
+ * Esta clase es contiene todos los listeners necesarios para el funcionamiento
+ * de la ventana llamada "LoginLibrarian" dentro del paquete view
  *
  * @author artist-code (Daniel Mora Cantillo)
  */
@@ -26,6 +28,7 @@ public class LoginLibrarianListener implements ActionListener, MouseListener, Ke
         addListeners();
     }
 
+    //Agrega escuchadores de eventos a cada componente de la ventana que lo necestia 
     private void addListeners() {
         frmLoginLibrarian.getBtnBack().addActionListener(this);
         frmLoginLibrarian.getBtnBack().addMouseListener(this);
@@ -34,16 +37,26 @@ public class LoginLibrarianListener implements ActionListener, MouseListener, Ke
         frmLoginLibrarian.getBtnLogin().addKeyListener(this);
     }
 
+    /**
+     * Este metodo hace las verificaciones necesarias (dentro de lo que le
+     * conscierne a este paquete) Para generar un login exitoso, entre las
+     * comprobaciones estam: - Verificar que el valor ingresado por el campo
+     * cedula es numero - Llamar a la logica de negocio (userService) para que
+     * retorne si el usuario existe o no - Llamar a la logica de negocio
+     * (userService) para que retorne si la contraseña fue correcta En el caso
+     * de que algunas de estas comprobaciones salen erroneas, se pasa a la vista
+     * para que haga muestre aquello
+     */
     private void verifyLogin() {
         try {
             Long idUser = Long.valueOf(frmLoginLibrarian.getTxtIdUser().getText());
-            if(userService.librarianExists(idUser)) {
+            if (userService.librarianExists(idUser)) {
                 String plainPassword = "";
                 for (char p : frmLoginLibrarian.getPswUser().getPassword()) {
                     plainPassword += p;
                 }
 
-                if(userService.login(idUser, plainPassword) != null) {
+                if (userService.login(idUser, plainPassword) != null) {
                     frmLoginLibrarian.login();
                 } else {
                     frmLoginLibrarian.errorMessage(frmLoginLibrarian.errorIncorrectPassword);
@@ -56,15 +69,17 @@ public class LoginLibrarianListener implements ActionListener, MouseListener, Ke
         }
     }
 
+    //Este metodo verifica que los campos de login no esten vacios
     private void verifyFields() {
-        if (!frmLoginLibrarian.getTxtIdUser().getText().equals("") && 
-        frmLoginLibrarian.getPswUser().getPassword().length != 0) {
+        if (!frmLoginLibrarian.getTxtIdUser().getText().equals("")
+                && frmLoginLibrarian.getPswUser().getPassword().length != 0) {
             verifyLogin();
         } else {
             frmLoginLibrarian.errorMessage(frmLoginLibrarian.errorEmptyFields);
         }
     }
 
+    //Escuchador de eventos del click de los dos botones que tiene la ventana
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == frmLoginLibrarian.getBtnBack()) {
@@ -73,7 +88,8 @@ public class LoginLibrarianListener implements ActionListener, MouseListener, Ke
             verifyFields();
         }
     }
-
+    
+    //Escuchador de evento de los dos botones que tiene la ventana para cambiar color cuando el puntero esta sobre el bton
     @Override
     public void mouseEntered(MouseEvent e) {
         if (e.getSource() == frmLoginLibrarian.getBtnBack()) {
@@ -82,7 +98,8 @@ public class LoginLibrarianListener implements ActionListener, MouseListener, Ke
             frmLoginLibrarian.mouseEvent(frmLoginLibrarian.getBtnLogin(), Utils.btnEntered);
         }
     }
-
+    
+    //Escuchador de evento de los dos botones que tiene la ventana para cambiar color cuando el puntero sale del btn
     @Override
     public void mouseExited(MouseEvent e) {
         if (e.getSource() == frmLoginLibrarian.getBtnBack()) {
@@ -91,10 +108,11 @@ public class LoginLibrarianListener implements ActionListener, MouseListener, Ke
             frmLoginLibrarian.mouseEvent(frmLoginLibrarian.getBtnLogin(), Utils.btnExited);
         }
     }
-
+    
+    //Escuchador de evento en el caso que se presione la tecla Ok o Enter del teclado
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             verifyFields();
         }
     }
