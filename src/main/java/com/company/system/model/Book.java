@@ -27,7 +27,7 @@ public class Book {
     private Long idBook;
 
     @Column(unique = true, nullable = false, name = "isbn")
-    private Long isbn;
+    private String isbn;
     
     
     @Column(unique = true, nullable = false, name = "title")
@@ -72,7 +72,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(Long idBook, Long isbn, String title, String description, LocalDate yearPublished, Integer stock,
+    public Book(Long idBook, String isbn, String title, String description, LocalDate yearPublished, Integer stock,
             Publisher fkPublisher, List<Author> authors, LocalDate registrationDate, String registrationName,
             LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
         this.idBook = idBook;
@@ -90,7 +90,7 @@ public class Book {
         this.deleted = deleted;
     }
 
-    public Book(Long isbn, String title, String description, LocalDate yearPublished, Integer stock,
+    public Book(String isbn, String title, String description, LocalDate yearPublished, Integer stock,
             Publisher fkPublisher, List<Author> authors, LocalDate registrationDate, String registrationName,
             LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
         this.isbn = isbn;
@@ -111,11 +111,11 @@ public class Book {
         return idBook;
     }
 
-    public Long getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(Long isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
@@ -309,8 +309,4 @@ public class Book {
                 + registrationName + ", registrationUpdateDate=" + registrationUpdateDate + ", registrationUpdateName="
                 + registrationUpdateName + ", deleted=" + deleted + "]";
     }
-
-    
-    
-
 }

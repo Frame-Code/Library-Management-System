@@ -71,7 +71,7 @@ public class UserDaoImpl implements UserDao {
     public User findById(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(User.class, id);
+            return em.find(User.class, id); //Cambiar a query
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Error: no se puede crear ");
         } finally {

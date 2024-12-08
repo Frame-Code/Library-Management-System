@@ -7,6 +7,7 @@
     <class>com.company.system.model.Publisher</class>
     <class>com.company.system.model.Author</class>
     <class>com.company.system.model.Book</class>
+    <class>com.company.system.model.Category</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://82.197.82.14:3306/u677638702_Library?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="u677638702_root"/>
