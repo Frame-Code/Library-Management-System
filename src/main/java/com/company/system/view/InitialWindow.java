@@ -1,6 +1,7 @@
 package com.company.system.view;
 
 import com.company.system.controller.LoginLibrarianListener;
+import com.company.system.controller.LoginStudentListener;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
@@ -194,7 +195,13 @@ public class InitialWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void openLoginStudent() {
+        frmLoginStudent = new LoginStudent();
+        frmLoginStudent.setVisible(true);
+        new LoginStudentListener(frmLoginStudent);
+    }
+    
     public void openLoginLibrarian() {
         frmLoginLibrarian = new LoginLibrarian();
         frmLoginLibrarian.setVisible(true);
@@ -223,6 +230,7 @@ public class InitialWindow extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private LoginStudent frmLoginStudent;
     private LoginLibrarian frmLoginLibrarian;
     private javax.swing.JButton btnLibrarianLogin;
     private javax.swing.JButton btnStudentLogin;

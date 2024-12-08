@@ -13,54 +13,49 @@ import java.awt.event.MouseListener;
  * @author HP240
  */
 public class LoginStudentListener implements ActionListener, MouseListener{
-    private LoginStudent frmLogin;
+    private final LoginStudent frmLogin;
     
-    public void LoginStudentListener(LoginStudent frmLogin){
+    public LoginStudentListener(LoginStudent frmLogin){
         this.frmLogin = frmLogin;
         addListeners();
     }
     
-    public void addListeners(){
-        frmLogin.getBtnIniciarSesion().addActionListener(this);
-        frmLogin.getBtnIniciarSesion().addMouseListener(this);
-        frmLogin.getBtnAtrasLogin().addActionListener(this);
-        frmLogin.getBtnAtrasLogin().addMouseListener(this);
+    private void addListeners(){
+        frmLogin.getBtnLogin().addActionListener(this);
+        frmLogin.getBtnLogin().addMouseListener(this);
+        frmLogin.getBtnBack().addActionListener(this);
+        frmLogin.getBtnBack().addMouseListener(this);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == frmLogin.getBtnAtrasLogin()) {
+        if (e.getSource() == frmLogin.getBtnBack()) {
             frmLogin.back();
         }else
-            if (e.getSource() == frmLogin.getBtnIniciarSesion()){
-            frmLogin.getTxtCorreo().setText("");
-            frmLogin.getTxtContrasena().setText("");
+            if (e.getSource() == frmLogin.getBtnLogin()){
+            //frmLogin.getTxtCorreo().setText("");
+            //frmLogin.getTxtContrasena().setText("");
             
         }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

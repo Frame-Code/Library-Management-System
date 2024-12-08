@@ -29,7 +29,8 @@ public class InitialWindowListener implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == frmInitial.getBtnStudentLogin()) {
-
+            frmInitial.openLoginStudent();
+            frmInitial.close();
         } else if (e.getSource() == frmInitial.getBtnLibrarianLogin()) {
             frmInitial.openLoginLibrarian();
             frmInitial.close();
