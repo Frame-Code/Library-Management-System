@@ -21,6 +21,9 @@ public class RefactorListener implements ActionListener{
         frmRefactor.getBtnCategoria().addActionListener(this);
         frmRefactor.getSubOpcion1().addActionListener(this);
         frmRefactor.getSubOpcion2().addActionListener(this);
+        frmRefactor.getSubOpcion3().addActionListener(this);
+        frmRefactor.getSubOpcion4().addActionListener(this);
+        frmRefactor.getSubOpcion5().addActionListener(this);
     }
     
     @Override
@@ -29,9 +32,17 @@ public class RefactorListener implements ActionListener{
             frmRefactor.getMenuContextual().show(frmRefactor.getBtnCategoria(), frmRefactor.getBtnCategoria().getWidth(), 0);
             System.out.println("Se ejectu");
         } else if (e.getSource() == frmRefactor.getSubOpcion1()) {
-            frmRefactor.addToDesktopPane(new CategoryBooks());
+            frmRefactor.addToDesktopPane(new CategoryBooks("horror"));
+        } else if (e.getSource() == frmRefactor.getSubOpcion2()) {
+        frmRefactor.addToDesktopPane(new CategoryBooks("ciencia Ficcion"));
+        } else if (e.getSource() == frmRefactor.getSubOpcion3()) {
+        frmRefactor.addToDesktopPane(new CategoryBooks("Fantasia"));
+        } else if (e.getSource() == frmRefactor.getSubOpcion4()) {
+        frmRefactor.addToDesktopPane(new CategoryBooks("Romance"));
+        } else if (e.getSource() == frmRefactor.getSubOpcion5()) {
+        frmRefactor.addToDesktopPane(new CategoryBooks("Historia"));
         }
+  
     }
     
-
 }

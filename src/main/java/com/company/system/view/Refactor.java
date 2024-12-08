@@ -13,6 +13,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -22,6 +23,10 @@ public class Refactor extends javax.swing.JFrame {
     private JPopupMenu menuContextual;
     private JMenuItem subOpcion1;
     private JMenuItem subOpcion2;
+    private JMenuItem subOpcion3;
+    private JMenuItem subOpcion4;
+    private JMenuItem subOpcion5;
+    private JScrollPane scrollpane;
     
     public Refactor() {
         initComponents();
@@ -31,6 +36,7 @@ public class Refactor extends javax.swing.JFrame {
         cargar();
         new RefactorListener(this);
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -163,10 +169,16 @@ public class Refactor extends javax.swing.JFrame {
 
     public void cargar() {
         menuContextual = new JPopupMenu();
-        subOpcion1 = new JMenuItem(" horror");
-        subOpcion2 = new JMenuItem(" ciencia ficcion");
+        subOpcion1 = new JMenuItem("horror");
+        subOpcion2 = new JMenuItem("ciencia ficcion");
+        subOpcion3 = new JMenuItem("fantasia");
+        subOpcion4 = new JMenuItem("romance");
+        subOpcion5 = new JMenuItem("historia");
         menuContextual.add(subOpcion1);
         menuContextual.add(subOpcion2);
+        menuContextual.add(subOpcion3);
+        menuContextual.add(subOpcion4);
+        menuContextual.add(subOpcion5);
     }
 
     public JButton getBtnCategoria() {
@@ -188,6 +200,19 @@ public class Refactor extends javax.swing.JFrame {
     public JMenuItem getSubOpcion2() {
         return subOpcion2;
     }
+
+    public JMenuItem getSubOpcion3() {
+        return subOpcion3;
+    }
+
+    public JMenuItem getSubOpcion4() {
+        return subOpcion4;
+    }
+
+    public JMenuItem getSubOpcion5() {
+        return subOpcion5;
+    }
+    
     
     public void addToDesktopPane(JInternalFrame jInternal) {
         this.desktopPane.add(jInternal);
