@@ -101,11 +101,7 @@ public class User implements Serializable{
     public Long getIdUser() {
         return idUser;
     }
-
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
-    }
-
+    
     public Long getIdCardUser() {
         return idCardUser;
     }
