@@ -2,7 +2,7 @@ package com.company.system.view;
 
 //import com.company.system.controller.LoginLibrarianListener;
 //import com.company.system.controller.LoginStudentListener;
-import com.company.system.controller.RefactorListener;
+import com.company.system.controller.LibraryHomeListener;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
@@ -20,7 +20,7 @@ import javax.swing.JScrollPane;
  *
  * @author artist-code (Daniel Mora Cantillo)
  */
-public class Refactor extends javax.swing.JFrame {
+public class LibraryHome extends javax.swing.JFrame {
     private JPopupMenu menuContextual;
     private JMenuItem subOpcion1;
     private JMenuItem subOpcion2;
@@ -29,13 +29,13 @@ public class Refactor extends javax.swing.JFrame {
     private JMenuItem subOpcion5;
     private JScrollPane scrollpane;
     
-    public Refactor() {
+    public LibraryHome() {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         cargar();
-        new RefactorListener(this);
+        new LibraryHomeListener(this);
     }
     
 
@@ -51,12 +51,10 @@ public class Refactor extends javax.swing.JFrame {
         lblUser = new javax.swing.JLabel();
         lblBookIcon = new javax.swing.JLabel(new ImageIcon("/src/main/resources/images/Student_icon_Login.png"
         ));
-<<<<<<< HEAD
-        btnCategoria = new RoundedButtonWithShadow("Categorias", 7, new Color(0, 0, 0, 100), 4);
-        btnAutor = new RoundedButtonWithShadow("Categorias", 7, new Color(0, 0, 0, 100), 4);
-        btnEditorial = new RoundedButtonWithShadow("Categorias", 7, new Color(0, 0, 0, 100), 4);
+
+
         
-=======
+
         pnlCategory = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 0);
         lblCategory = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -73,7 +71,7 @@ public class Refactor extends javax.swing.JFrame {
         pnlShutdown = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 1);
         lblCategory4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
->>>>>>> a74813c2ddb715f794000fded722032e7d08ffe0
+
         desktopPane = new javax.swing.JDesktopPane();
         pnlWelcome1 = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         txtIdUser = new javax.swing.JTextField();
