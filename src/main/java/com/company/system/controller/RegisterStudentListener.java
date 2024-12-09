@@ -5,6 +5,7 @@
 package com.company.system.controller;
 
 import com.company.system.view.RegisterStudent;
+import com.company.system.view.components.Utils;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -22,14 +23,14 @@ public class RegisterStudentListener implements ActionListener, MouseListener{
         addListener();
     }
     public void addListener(){
-        frmRegisterStudent.getBtnAtrasRegistrar().addActionListener(this);
-        frmRegisterStudent.getBtnAtrasRegistrar().addMouseListener(this);
+        frmRegisterStudent.getBtnBackRegister().addActionListener(this);
+        frmRegisterStudent.getBtnBackRegister().addMouseListener(this);
         frmRegisterStudent.getBtnRegistrar().addActionListener(this);
         frmRegisterStudent.getBtnRegistrar().addMouseListener(this);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == frmRegisterStudent.getBtnAtrasRegistrar()){
+        if(e.getSource() == frmRegisterStudent.getBtnBackRegister()){
             frmRegisterStudent.back();
         }else
             if(e.getSource() == frmRegisterStudent.getBtnRegistrar()){
@@ -46,27 +47,32 @@ public class RegisterStudentListener implements ActionListener, MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (e.getSource() == frmRegisterStudent.getBtnBackRegister()) {
+            frmRegisterStudent.mouseEvent(frmRegisterStudent.getBtnBackRegister(), Utils.btnEntered);
+        } else if (e.getSource() == frmRegisterStudent.getBtnRegistrar()) {
+            frmRegisterStudent.mouseEvent(frmRegisterStudent.getBtnRegistrar(), Utils.btnEntered);
+        }
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (e.getSource() == frmRegisterStudent.getBtnBackRegister()) {
+            frmRegisterStudent.mouseEvent(frmRegisterStudent.getBtnBackRegister(), Utils.btnExited);
+        } else if (e.getSource() == frmRegisterStudent.getBtnRegistrar()) {
+            frmRegisterStudent.mouseEvent(frmRegisterStudent.getBtnRegistrar(), Utils.btnExited);
+        }
     }
     
 }
