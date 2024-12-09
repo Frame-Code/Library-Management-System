@@ -7,7 +7,11 @@ public interface Dao <T>{
 
     List<T> findAll();
 
+    List<T> findAllIncludeDeleted();
+
     T findById(Long id);
+    
+    T findByIdIncludeDeleted(Long id);
 
     boolean update(T object);
 

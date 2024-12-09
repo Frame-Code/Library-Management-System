@@ -1,9 +1,12 @@
 package com.company.system.dao.impl;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.company.system.dao.interfaces.UserDao;
 import com.company.system.model.Role;
 import com.company.system.model.User;
 import com.company.system.service.EncryptationService;
@@ -13,9 +16,15 @@ import com.company.system.service.EncryptationService;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class UserDaoImplTest {
+    UserDao userDao;
+    @BeforeEach
+    void setUp() {
+        this.userDao = new UserDaoImpl();
+    }
+
+
     @Test
     void testFindByIdCard() {
-        UserDaoImpl userDao = new UserDaoImpl();
         User user = userDao.findByIdCard(654654654L);
         System.out.println(user);
     }
@@ -39,6 +48,50 @@ public class UserDaoImplTest {
             false
         );
 
-        System.out.println(new UserDaoImpl().create(user));
+        System.out.println(userDao.create(user));
     }
+
+    @Test
+    void testFindById() {
+        System.out.println(userDao.findById(4L));
+    }
+
+
+    @Test
+    void testDeleteByID() {
+        System.out.println(userDao.deleteByID(4L));
+    }
+    
+    
+    @Test
+    void testDeleteByIdCard() {
+        System.out.println(userDao.deleteByIdCard(941239261L));
+    }
+
+
+    @Test
+    void testUpdate() {
+        User user = userDao.findById(5L);
+        user.setDeleted(false);
+        System.out.println(userDao.update(user));
+    }
+
+
+    @Test
+    void testFindAllIncludeDeleted() {
+        List<User> users = userDao.findAllIncludeDeleted();
+        users.forEach(user -> {
+            System.out.println(user);
+        });
+    }
+
+
+    @Test
+    void testFindAll() {
+        List<User> users = userDao.findAll();
+        users.forEach(user -> {
+            System.out.println(user);
+        });
+    }
+
 }
