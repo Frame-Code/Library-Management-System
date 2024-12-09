@@ -15,19 +15,20 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class CategoryBooks extends JInternalFrame {
+
     public CategoryBooks(String categoryName) {
         super(categoryName, true, true, true, true);
         initComponents();
         setTitle("Categoría: " + categoryName);
-        setSize(555, 430);
+        setSize(800, 597);
         setLayout(new BorderLayout());
 
-        // Crear el panel de botones
+        // Crear el panel de etiquetas (JLabels) en lugar de botones
         JPanel panel = new JPanel(new GridLayout(4, 4, 10, 10));
-        addButtons(categoryName, panel);
+        addLabels(categoryName, panel);
 
         // Configurar el tamaño preferido del panel para asegurarse de que la barra de desplazamiento aparezca si es necesario
-        panel.setPreferredSize(new Dimension(500, 800)); // Ajusta la altura según sea necesario
+        panel.setPreferredSize(new Dimension(600, 1000)); // Ajusta la altura según sea necesario
 
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -38,10 +39,12 @@ public class CategoryBooks extends JInternalFrame {
         setVisible(true);
     }
 
-    private void addButtons(String categoryName, JPanel panel) {
+    private void addLabels(String categoryName, JPanel panel) {
         for (int i = 1; i <= 16; i++) {
-            JButton button = new JButton(categoryName + " Libro " + i);
-            panel.add(button);
+            // Reemplazar JButton con buttonDesign (un JPanel que contiene JLabel)
+            buttonDesign label = new buttonDesign();
+            label.setText(categoryName + " Libro " + i); // Establecer el texto del JLabel dentro de buttonDesign
+            panel.add(label);
         }
     }
 

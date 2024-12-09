@@ -326,7 +326,8 @@ public class LibraryHome extends javax.swing.JFrame {
                     .addComponent(lblBookIcon)
                     .addContainerGap(380, Short.MAX_VALUE)))
         );
-
+	
+	desktopPane.setPreferredSize(new java.awt.Dimension(800, 600));
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
