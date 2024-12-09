@@ -14,7 +14,9 @@ import javax.swing.JButton;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class InitialWindow extends javax.swing.JFrame {
-
+    private LoginStudent frmLoginStudent;
+    private LoginLibrarian frmLoginLibrarian;
+    
     public InitialWindow() {
         initComponents();
         setResizable(false);
@@ -229,8 +231,6 @@ public class InitialWindow extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private LoginStudent frmLoginStudent;
-    private LoginLibrarian frmLoginLibrarian;
     private javax.swing.JButton btnLibrarianLogin;
     private javax.swing.JButton btnStudentLogin;
     private javax.swing.JPanel contentPane;

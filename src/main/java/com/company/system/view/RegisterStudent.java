@@ -6,6 +6,9 @@ package com.company.system.view;
 
 import com.company.system.controller.InitialWindowListener;
 import com.company.system.controller.LoginStudentListener;
+import com.company.system.view.components.BackgroundPanel;
+import com.company.system.view.components.RoundedButtonWithShadow;
+import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
@@ -36,9 +39,9 @@ public class RegisterStudent extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel1 = new BackgroundPanel("src/main/resources/images/Background_login.png");
+        jPanel2 = new RoundedPanelWithShadow(30, new Color(0, 0, 0, 100), 2);
+        jPanel3 = new RoundedPanelWithShadow(30, new Color(0, 0, 0, 100), 2);
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -53,7 +56,7 @@ public class RegisterStudent extends javax.swing.JFrame {
         pswContrasena = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
         pswConfirmarContrasena = new javax.swing.JPasswordField();
-        btnRegistrar = new javax.swing.JButton();
+        btnRegistrar = new RoundedButtonWithShadow("Registrar", 7, new Color(0, 0, 0, 100), 2);
         jLabel9 = new javax.swing.JLabel();
         txtDay = new javax.swing.JTextField();
         cbMonth = new javax.swing.JComboBox<>();
@@ -61,7 +64,7 @@ public class RegisterStudent extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        btnBackRegister = new javax.swing.JButton();
+        btnBackRegister = new RoundedButtonWithShadow("<- Regresa", 7, new Color(0, 0, 0, 100), 2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,12 +78,12 @@ public class RegisterStudent extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Registar");
+        jLabel1.setText("Registrarse");
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("cree una cuenta para ingresar al sistema");
+        jLabel2.setText("Cree una cuenta para ingresar al sistema!");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -115,7 +118,6 @@ public class RegisterStudent extends javax.swing.JFrame {
         jLabel4.setText("Apellidos_______________________");
 
         txtApellidos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        
 
         jLabel5.setForeground(new java.awt.Color(117, 117, 117));
         jLabel5.setText("Correo___________________________");
@@ -126,7 +128,6 @@ public class RegisterStudent extends javax.swing.JFrame {
         jLabel6.setText("Num/Cedula___________________");
 
         txtCedula.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        
 
         jLabel7.setForeground(new java.awt.Color(117, 117, 117));
         jLabel7.setText("Contraseña_____________________");
@@ -137,10 +138,9 @@ public class RegisterStudent extends javax.swing.JFrame {
         jLabel8.setText("Confirmar Contraseña__________");
 
         pswConfirmarContrasena.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        
 
         btnRegistrar.setBackground(new java.awt.Color(56, 75, 147));
-        btnRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrar.setText("Registrar");
         btnRegistrar.setBorder(null);
@@ -152,6 +152,7 @@ public class RegisterStudent extends javax.swing.JFrame {
 
         cbMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero ", "Marzo, ", "Abril ", "Mayo ", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre ", "Diciembre." }));
         cbMonth.setBorder(null);
+        cbMonth.setOpaque(false);
 
         txtYear.setToolTipText("");
         txtYear.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -173,10 +174,6 @@ public class RegisterStudent extends javax.swing.JFrame {
                 .addContainerGap(94, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(215, 215, 215)
-                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,17 +199,18 @@ public class RegisterStudent extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(pswContrasena, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtApellidos)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtCedula)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pswContrasena)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pswConfirmarContrasena))
                 .addGap(64, 64, 64))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(195, 195, 195)
+                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,11 +265,10 @@ public class RegisterStudent extends javax.swing.JFrame {
         );
 
         btnBackRegister.setBackground(new java.awt.Color(56, 75, 147));
-        btnBackRegister.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBackRegister.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnBackRegister.setForeground(new java.awt.Color(255, 255, 255));
-        btnBackRegister.setText("<- atras");
+        btnBackRegister.setText("<- Regresar");
         btnBackRegister.setBorder(null);
-        
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -280,10 +277,8 @@ public class RegisterStudent extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(btnBackRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBackRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -291,9 +286,9 @@ public class RegisterStudent extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBackRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -304,7 +299,7 @@ public class RegisterStudent extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

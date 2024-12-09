@@ -6,11 +6,11 @@ import com.company.system.view.RegisterStudent;
 
 public class Main {
     public static void main(String[] args) {
-        //InitialWindow frmInitial = new InitialWindow();
-        //frmInitial.setVisible(true);
-        //new InitialWindowListener(frmInitial);
+        InitialWindow frmInitial = new InitialWindow();
+        frmInitial.setVisible(true);
+        new InitialWindowListener(frmInitial);
 
-        RegisterStudent register = new RegisterStudent();
-        register.setVisible(true);
+        //RegisterStudent register = new RegisterStudent();
+        //register.setVisible(true);
     }
 }

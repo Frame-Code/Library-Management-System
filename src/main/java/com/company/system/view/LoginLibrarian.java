@@ -15,6 +15,7 @@ import javax.swing.JTextField;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class LoginLibrarian extends javax.swing.JFrame {
+    private InitialWindow frmInitial;
 
     public final String errorFormatId = "Error: Escribe correctamente el numero de cedula";
     public final String errorEmptyFields = "Error: no pueden haber campos vacíos";
@@ -169,7 +170,7 @@ public class LoginLibrarian extends javax.swing.JFrame {
         btnBack.setBackground(new java.awt.Color(56, 75, 147));
         btnBack.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         btnBack.setForeground(new java.awt.Color(255, 255, 255));
-        btnBack.setText("<- atrás");
+        btnBack.setText("<- Regresar");
         btnBack.setBorder(null);
 
         javax.swing.GroupLayout contentPaneLayout = new javax.swing.GroupLayout(contentPane);
@@ -231,9 +232,9 @@ public class LoginLibrarian extends javax.swing.JFrame {
     
     //Este metodo cierra esta ventana y abre la ventana "InitialWindow"
     public void back() {
-        frmInicial = new InitialWindow();
-        frmInicial.setVisible(true);
-        new InitialWindowListener(frmInicial);
+        frmInitial = new InitialWindow();
+        frmInitial.setVisible(true);
+        new InitialWindowListener(frmInitial);
         this.dispose();
     }
 
@@ -254,7 +255,6 @@ public class LoginLibrarian extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private InitialWindow frmInicial;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnLogin;
     private javax.swing.JPanel contentPane;
