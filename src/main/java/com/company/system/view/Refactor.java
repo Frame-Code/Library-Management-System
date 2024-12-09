@@ -49,9 +49,10 @@ public class Refactor extends javax.swing.JFrame {
         lblBookIcon = new javax.swing.JLabel(new ImageIcon("/src/main/resources/images/Student_icon_Login.png"
         ));
         btnCategoria = new RoundedButtonWithShadow("Categorias", 7, new Color(0, 0, 0, 100), 4);
-        btnAutor = new RoundedButtonWithShadow("Categorias", 7, new Color(0, 0, 0, 100), 4);
-        btnEditorial = new RoundedButtonWithShadow("Categorias", 7, new Color(0, 0, 0, 100), 4);
+        btnAutor = new javax.swing.JButton();
+        btnEditorial = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         desktopPane = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,7 +77,7 @@ public class Refactor extends javax.swing.JFrame {
             .addGroup(pnlWelcomeLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(lblWelcome)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         pnlWelcomeLayout.setVerticalGroup(
             pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,23 +87,18 @@ public class Refactor extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        btnCategoria.setBackground(new java.awt.Color(255, 255, 255));
+        btnCategoria.setBackground(new java.awt.Color(56, 75, 147));
         btnCategoria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCategoria.setText("Categorias");
         btnCategoria.setBorder(null);
-	
-	btnAutor.setBackground(new java.awt.Color(255, 255, 255));
-        btnAutor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAutor.setText("Autor");
-        btnAutor.setBorder(null);
-	
-	btnEditorial.setBackground(new java.awt.Color(255, 255, 255));
-        btnEditorial .setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        btnAutor.setText("Autor ");
+
         btnEditorial.setText("Editorial");
-        btnEditorial.setBorder(null);
 
+        jLabel1.setText("RONlad");
 
-
+        jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
@@ -115,8 +111,11 @@ public class Refactor extends javax.swing.JFrame {
             .addGroup(pnlBackgroundLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnEditorial, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                    .addComponent(btnAutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditorial, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -138,7 +137,9 @@ public class Refactor extends javax.swing.JFrame {
                     .addComponent(btnCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(26, 26, 26)
-                .addComponent(btnAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(29, 29, 29)
                 .addComponent(btnEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(130, Short.MAX_VALUE))
@@ -195,7 +196,7 @@ public class Refactor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void cargar() {
+    private void cargar() {
         menuContextual = new JPopupMenu();
         subOpcion1 = new JMenuItem("horror");
         subOpcion2 = new JMenuItem("ciencia ficcion");
@@ -282,6 +283,7 @@ public class Refactor extends javax.swing.JFrame {
     private javax.swing.JPanel contentPane;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblBookIcon;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JPanel pnlBackground;
