@@ -51,7 +51,7 @@ public class Refactor extends javax.swing.JFrame {
         btnCategoria = new RoundedButtonWithShadow("Categorias", 7, new Color(0, 0, 0, 100), 4);
         btnAutor = new RoundedButtonWithShadow("Categorias", 7, new Color(0, 0, 0, 100), 4);
         btnEditorial = new RoundedButtonWithShadow("Categorias", 7, new Color(0, 0, 0, 100), 4);
-        jLabel1 = new javax.swing.JLabel();
+        
         desktopPane = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
