@@ -7,4 +7,6 @@ import com.company.system.model.Category;
 
 public interface BookDao extends Dao<Book>{
     List<Book> findByCategory(Category category);
+
+    Book findByISBN(String isbn);
 }

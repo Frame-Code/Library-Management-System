@@ -43,7 +43,7 @@ public class CategoryBooks extends JInternalFrame {
         for (int i = 1; i <= 16; i++) {
             // Reemplazar JButton con buttonDesign (un JPanel que contiene JLabel)
             buttonDesign label = new buttonDesign();
-            label.setText(categoryName + " Libro " + i); // Establecer el texto del JLabel dentro de buttonDesign
+            label.getLblTitle().setText(categoryName + " Libro " + i); // Establecer el texto del JLabel dentro de buttonDesign
             panel.add(label);
         }
     }

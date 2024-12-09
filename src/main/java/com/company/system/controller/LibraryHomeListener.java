@@ -84,6 +84,7 @@ public class LibraryHomeListener implements ActionListener, MouseListener {
         } else if (e.getSource() == frmLibraryHome.getPnlAutor()) {
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlCategory());
             frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlAutor());
+            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlEditorial());
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlNotification());
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlShutdown());
         } else if (e.getSource() == frmLibraryHome.getPnlEditorial()) {

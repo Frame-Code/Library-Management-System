@@ -70,4 +70,21 @@ public class BookDaoImpl implements BookDao{
         }
     }
 
+    @Override
+    public Book findByISBN(String isbn) {
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT b FROM Book b WHERE b.isbn = :isbn AND b.deleted=0";
+        TypedQuery<Book> query = em.createQuery(jpql, Book.class);
+        query.setParameter("isbn", isbn);
+        Book book;
+        try {
+            book = query.getSingleResult();
+            return book;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
 }

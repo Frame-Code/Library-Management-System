@@ -4,12 +4,14 @@
  */
 package com.company.system.view;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 /**
  *
  * @author jandr
  */
 public class buttonDesign extends JPanel {
-
+    private JLabel lblTitle;
     private JLabel lblicon;
     private JLabel lblDescrip;
 
@@ -29,7 +31,7 @@ public class buttonDesign extends JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-
+        lblTitle = new JLabel();
         lblicon = new JLabel();
         lblDescrip = new JLabel();
 
@@ -62,7 +64,13 @@ public class buttonDesign extends JPanel {
 
     private void setupListeners() {
         // Agregar los listeners para las etiquetas
-        lblicon.addMouseListener(new LabelMouseListener(this));
-        lblDescrip.addMouseListener(new LabelMouseListener(this));
+        //lblicon.addMouseListener(new LabelMouseListener(this));
+        //lblDescrip.addMouseListener(new LabelMouseListener(this));
     }
+
+    public JLabel getLblTitle() {
+        return lblTitle;
+    }
+
+    
 }
