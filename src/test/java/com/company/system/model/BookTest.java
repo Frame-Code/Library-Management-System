@@ -8,23 +8,21 @@ import javax.persistence.Persistence;
 
 import org.junit.jupiter.api.Test;
 
-/**
- *
- * @author artist-code (Daniel Mora Cantillo)
- */
-public class CategoryTest {
+import com.company.system.dao.impl.CategoryDaoImpl;
+
+public class BookTest {
     @Test
     void createTableTest() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("libraryPU");
         EntityManager em = emf.createEntityManager();
-        Category category = new Category(Category.categoryAI, LocalDate.now(), 
-            "Admin", null, null, 
-            false
+        Book book = new Book("JPKL-4", "50 sombras de grey", "Un libro para aprender a coger de maneras peculiares", 
+            LocalDate.now(), 5, null, new CategoryDaoImpl().findByName(Category.categoryAI), 
+            null, LocalDate.now(), "Admin", null, null, false
         );
 
         try {
             em.getTransaction().begin();
-            em.persist(category);
+            em.persist(book);
             em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -33,6 +31,5 @@ public class CategoryTest {
             em.close();
             emf.close();
         }
-
     }
 }

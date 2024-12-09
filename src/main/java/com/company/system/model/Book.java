@@ -29,7 +29,6 @@ public class Book {
     @Column(unique = true, nullable = false, name = "isbn")
     private String isbn;
     
-    
     @Column(unique = true, nullable = false, name = "title")
     private String title;
     
@@ -44,7 +43,11 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "fkPublisher")
-    private Publisher fkPublisher;
+    private Publisher publisher;
+
+    @ManyToOne
+    @JoinColumn(name = "fkCategory")
+    private Category category;
 
     @ManyToMany
     @JoinTable(
@@ -73,15 +76,16 @@ public class Book {
     }
 
     public Book(Long idBook, String isbn, String title, String description, LocalDate yearPublished, Integer stock,
-            Publisher fkPublisher, List<Author> authors, LocalDate registrationDate, String registrationName,
-            LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
+            Publisher publisher, Category category, List<Author> authors, LocalDate registrationDate,
+            String registrationName, LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
         this.idBook = idBook;
         this.isbn = isbn;
         this.title = title;
         this.description = description;
         this.yearPublished = yearPublished;
         this.stock = stock;
-        this.fkPublisher = fkPublisher;
+        this.publisher = publisher;
+        this.category = category;
         this.authors = authors;
         this.registrationDate = registrationDate;
         this.registrationName = registrationName;
@@ -91,14 +95,15 @@ public class Book {
     }
 
     public Book(String isbn, String title, String description, LocalDate yearPublished, Integer stock,
-            Publisher fkPublisher, List<Author> authors, LocalDate registrationDate, String registrationName,
-            LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
+            Publisher publisher, Category category, List<Author> authors, LocalDate registrationDate,
+            String registrationName, LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
         this.isbn = isbn;
         this.title = title;
         this.description = description;
         this.yearPublished = yearPublished;
         this.stock = stock;
-        this.fkPublisher = fkPublisher;
+        this.publisher = publisher;
+        this.category = category;
         this.authors = authors;
         this.registrationDate = registrationDate;
         this.registrationName = registrationName;
@@ -151,12 +156,20 @@ public class Book {
         this.stock = stock;
     }
 
-    public Publisher getFkPublisher() {
-        return fkPublisher;
+    public Publisher getPublisher() {
+        return publisher;
     }
 
-    public void setFkPublisher(Publisher fkPublisher) {
-        this.fkPublisher = fkPublisher;
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public List<Author> getAuthors() {
@@ -217,7 +230,8 @@ public class Book {
         result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((yearPublished == null) ? 0 : yearPublished.hashCode());
         result = prime * result + ((stock == null) ? 0 : stock.hashCode());
-        result = prime * result + ((fkPublisher == null) ? 0 : fkPublisher.hashCode());
+        result = prime * result + ((publisher == null) ? 0 : publisher.hashCode());
+        result = prime * result + ((category == null) ? 0 : category.hashCode());
         result = prime * result + ((authors == null) ? 0 : authors.hashCode());
         result = prime * result + ((registrationDate == null) ? 0 : registrationDate.hashCode());
         result = prime * result + ((registrationName == null) ? 0 : registrationName.hashCode());
@@ -266,10 +280,15 @@ public class Book {
                 return false;
         } else if (!stock.equals(other.stock))
             return false;
-        if (fkPublisher == null) {
-            if (other.fkPublisher != null)
+        if (publisher == null) {
+            if (other.publisher != null)
                 return false;
-        } else if (!fkPublisher.equals(other.fkPublisher))
+        } else if (!publisher.equals(other.publisher))
+            return false;
+        if (category == null) {
+            if (other.category != null)
+                return false;
+        } else if (!category.equals(other.category))
             return false;
         if (authors == null) {
             if (other.authors != null)
@@ -304,9 +323,11 @@ public class Book {
     @Override
     public String toString() {
         return "Book [idBook=" + idBook + ", isbn=" + isbn + ", title=" + title + ", description=" + description
-                + ", yearPublished=" + yearPublished + ", stock=" + stock + ", fkPublisher=" + fkPublisher
-                + ", authors=" + authors + ", registrationDate=" + registrationDate + ", registrationName="
+                + ", yearPublished=" + yearPublished + ", stock=" + stock + ", publisher=" + publisher + ", category="
+                + category + ", authors=" + authors + ", registrationDate=" + registrationDate + ", registrationName="
                 + registrationName + ", registrationUpdateDate=" + registrationUpdateDate + ", registrationUpdateName="
                 + registrationUpdateName + ", deleted=" + deleted + "]";
     }
+    
+    
 }

@@ -14,4 +14,11 @@ public class CategoryDaoImplTest {
             System.out.println(category.getName());
         });
     }
+
+    @Test
+    void testFindByName() {
+        CategoryDaoImpl categoryDAO = new CategoryDaoImpl();
+        Category category = categoryDAO.findByName(Category.categoryMathematics);
+        System.out.println(category);
+    }
 }
