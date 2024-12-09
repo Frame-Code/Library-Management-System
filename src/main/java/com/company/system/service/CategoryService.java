@@ -20,6 +20,9 @@ public class CategoryService {
     public List<Category> getCategories() {
         return categoryDAO.findAll();
     }
-    
+
+    public Category getCategoryByName(String name) {
+        return categoryDAO.findByName(name);
+    }
 
 }

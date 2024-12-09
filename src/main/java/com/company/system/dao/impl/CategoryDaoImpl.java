@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import com.company.system.dao.interfaces.CategoryDAO;
+import com.company.system.model.Book;
 import com.company.system.model.Category;
 
 public class CategoryDaoImpl implements CategoryDAO{
@@ -62,6 +63,23 @@ public class CategoryDaoImpl implements CategoryDAO{
     public boolean deleteByID(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteByID'");
+    }
+
+    @Override
+    public Category findByName(String name) {
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT c FROM Category c WHERE c.name = :name AND c.deleted=0";
+        TypedQuery<Category> query = em.createQuery(jpql, Category.class);
+        query.setParameter("name", name);
+        Category category;
+        try {
+            category = query.getSingleResult();
+            return category;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
     }
 
 }
