@@ -15,7 +15,9 @@ import javax.swing.JTextField;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class LoginLibrarian extends javax.swing.JFrame {
-
+    
+    private InitialWindow frmLoginLibrarian;
+    private InitialWindow frmInicial;
     public final String errorFormatId = "Error: Escribe correctamente el numero de cedula";
     public final String errorEmptyFields = "Error: no pueden haber campos vacíos";
     public final String errorUserExists = "Error: Usuario no encontrado";
@@ -254,7 +256,6 @@ public class LoginLibrarian extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private InitialWindow frmInicial;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnLogin;
     private javax.swing.JPanel contentPane;

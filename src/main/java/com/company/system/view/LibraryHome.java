@@ -3,10 +3,13 @@ package com.company.system.view;
 //import com.company.system.controller.LoginLibrarianListener;
 //import com.company.system.controller.LoginStudentListener;
 import com.company.system.controller.LibraryHomeListener;
+import com.company.system.model.Category;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
@@ -22,19 +25,13 @@ import javax.swing.JScrollPane;
  */
 public class LibraryHome extends javax.swing.JFrame {
     private JPopupMenu menuContextual;
-    private JMenuItem subOpcion1;
-    private JMenuItem subOpcion2;
-    private JMenuItem subOpcion3;
-    private JMenuItem subOpcion4;
-    private JMenuItem subOpcion5;
-    private JScrollPane scrollpane;
+    private ArrayList<JMenuItem> menuItems;
     
     public LibraryHome() {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        cargar();
         new LibraryHomeListener(this);
     }
     
@@ -442,18 +439,16 @@ public class LibraryHome extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void cargar() {
+    public void uploadListMenu(List<Category> categories) {
         menuContextual = new JPopupMenu();
-        subOpcion1 = new JMenuItem("horror");
-        subOpcion2 = new JMenuItem("ciencia ficcion");
-        subOpcion3 = new JMenuItem("fantasia");
-        subOpcion4 = new JMenuItem("romance");
-        subOpcion5 = new JMenuItem("historia");
-        menuContextual.add(subOpcion1);
-        menuContextual.add(subOpcion2);
-        menuContextual.add(subOpcion3);
-        menuContextual.add(subOpcion4);
-        menuContextual.add(subOpcion5);
+        menuItems = new ArrayList<>();
+        categories.forEach(category -> {
+            menuItems.add(new JMenuItem(category.getName()));
+        });
+        
+        menuItems.forEach(menu -> {
+            menuContextual.add(menu);
+        });
     }
 
 
@@ -461,28 +456,12 @@ public class LibraryHome extends javax.swing.JFrame {
         return menuContextual;
     }
 
+    public ArrayList<JMenuItem> getMenuItems() {
+        return menuItems;
+    }
+
     public JDesktopPane getDesktopPane() {
         return desktopPane;
-    }
-
-    public JMenuItem getSubOpcion1() {
-        return subOpcion1;
-    }
-
-    public JMenuItem getSubOpcion2() {
-        return subOpcion2;
-    }
-
-    public JMenuItem getSubOpcion3() {
-        return subOpcion3;
-    }
-
-    public JMenuItem getSubOpcion4() {
-        return subOpcion4;
-    }
-
-    public JMenuItem getSubOpcion5() {
-        return subOpcion5;
     }
 
     public JPanel getPnlCategory() {
@@ -509,29 +488,17 @@ public class LibraryHome extends javax.swing.JFrame {
         return btnSearch;
     }
     
-    
-    
-    
-    
     public void addToDesktopPane(JInternalFrame jInternal) {
         this.desktopPane.add(jInternal);
         jInternal.setVisible(true);
     }
     
-    public void changeColorPanel(Color color, JPanel pnl) {
-        pnl.setBackground(color);
+    public void clearDesltopPane() {
+        this.desktopPane.removeAll();
     }
     
-    public void openLoginStudent() {
-        /*frmLoginStudent = new LoginStudent();
-        frmLoginStudent.setVisible(true);
-        new LoginStudentListener(frmLoginStudent);*/
-    }
-
-    public void openLoginLibrarian() {
-        /*frmLoginLibrarian = new LoginLibrarian();
-        frmLoginLibrarian.setVisible(true);
-        new LoginLibrarianListener(frmLoginLibrarian);*/
+    public void changeColorPanel(Color color, JPanel pnl) {
+        pnl.setBackground(color);
     }
 
     //Este metodo cierra esta ventana

@@ -1,5 +1,8 @@
 package com.company.system.controller;
 
+import com.company.system.model.Category;
+import com.company.system.service.BookService;
+import com.company.system.service.CategoryService;
 import com.company.system.view.CategoryBooks;
 import com.company.system.view.LibraryHome;
 import com.company.system.view.components.Utils;
@@ -16,19 +19,23 @@ import java.awt.event.MouseListener;
 public class LibraryHomeListener implements ActionListener, MouseListener {
 
     private final LibraryHome frmLibraryHome;
+    private final BookService bookService;
+    private final CategoryService categoryService;
 
     public LibraryHomeListener(LibraryHome frmLibraryHome) {
         this.frmLibraryHome = frmLibraryHome;
+        this.bookService = new BookService();
+        this.categoryService = new CategoryService();
         addListeners();
     }
 
     private void addListeners() {
         //frmRefactor.getBtnCategoria().addActionListener(this);
-        frmLibraryHome.getSubOpcion1().addActionListener(this);
+        /*frmLibraryHome.getSubOpcion1().addActionListener(this);
         frmLibraryHome.getSubOpcion2().addActionListener(this);
         frmLibraryHome.getSubOpcion3().addActionListener(this);
         frmLibraryHome.getSubOpcion4().addActionListener(this);
-        frmLibraryHome.getSubOpcion5().addActionListener(this);
+        frmLibraryHome.getSubOpcion5().addActionListener(this);*/
         frmLibraryHome.getPnlCategory().addMouseListener(this);
         frmLibraryHome.getPnlAutor().addMouseListener(this);
         frmLibraryHome.getPnlEditorial().addMouseListener(this);
@@ -37,29 +44,42 @@ public class LibraryHomeListener implements ActionListener, MouseListener {
         frmLibraryHome.getBtnSearch().addActionListener(this);
         frmLibraryHome.getBtnSearch().addMouseListener(this);
         
+        /*rmLibraryHome.getMenuItems().forEach(menu -> {
+            menu.addActionListener(this);
+        });*/
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        /*
+        
         if(e.getSource() == frmLibraryHome.getBtnSearch()) {
             //------
         } else if (e.getSource() == frmLibraryHome.getSubOpcion1()) {
+            frmLibraryHome.clearDesltopPane();
             frmLibraryHome.addToDesktopPane(new CategoryBooks("horror"));
         } else if (e.getSource() == frmLibraryHome.getSubOpcion2()) {
+            frmLibraryHome.clearDesltopPane();
             frmLibraryHome.addToDesktopPane(new CategoryBooks("ciencia Ficcion"));
         } else if (e.getSource() == frmLibraryHome.getSubOpcion3()) {
+            frmLibraryHome.clearDesltopPane();
             frmLibraryHome.addToDesktopPane(new CategoryBooks("Fantasia"));
         } else if (e.getSource() == frmLibraryHome.getSubOpcion4()) {
+            frmLibraryHome.clearDesltopPane();
             frmLibraryHome.addToDesktopPane(new CategoryBooks("Romance"));
         } else if (e.getSource() == frmLibraryHome.getSubOpcion5()) {
+            frmLibraryHome.clearDesltopPane();
             frmLibraryHome.addToDesktopPane(new CategoryBooks("Historia"));
-        }
+        }*/
 
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == frmLibraryHome.getPnlCategory()) {
+            frmLibraryHome.uploadListMenu(categoryService.getCategories());
             frmLibraryHome.getMenuContextual().show(frmLibraryHome.getPnlCategory(), frmLibraryHome.getPnlCategory().getWidth(), 0);
             frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlCategory());
         }
