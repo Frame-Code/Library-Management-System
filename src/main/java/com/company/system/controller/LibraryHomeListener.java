@@ -1,5 +1,6 @@
 package com.company.system.controller;
 
+import com.company.system.model.Book;
 import com.company.system.model.Category;
 import com.company.system.service.BookService;
 import com.company.system.service.CategoryService;
@@ -11,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
 /**
  *
@@ -29,13 +31,13 @@ public class LibraryHomeListener implements ActionListener, MouseListener {
         addListeners();
     }
 
+    private void addListenerMenu() {
+        frmLibraryHome.getMenuItems().forEach(menu -> {
+            menu.addActionListener(this);
+        });
+    }
+
     private void addListeners() {
-        //frmRefactor.getBtnCategoria().addActionListener(this);
-        /*frmLibraryHome.getSubOpcion1().addActionListener(this);
-        frmLibraryHome.getSubOpcion2().addActionListener(this);
-        frmLibraryHome.getSubOpcion3().addActionListener(this);
-        frmLibraryHome.getSubOpcion4().addActionListener(this);
-        frmLibraryHome.getSubOpcion5().addActionListener(this);*/
         frmLibraryHome.getPnlCategory().addMouseListener(this);
         frmLibraryHome.getPnlAutor().addMouseListener(this);
         frmLibraryHome.getPnlEditorial().addMouseListener(this);
@@ -43,16 +45,22 @@ public class LibraryHomeListener implements ActionListener, MouseListener {
         frmLibraryHome.getPnlShutdown().addMouseListener(this);
         frmLibraryHome.getBtnSearch().addActionListener(this);
         frmLibraryHome.getBtnSearch().addMouseListener(this);
-        
-        /*rmLibraryHome.getMenuItems().forEach(menu -> {
-            menu.addActionListener(this);
-        });*/
-        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+        frmLibraryHome.getMenuItems().forEach(menu -> {
+            if(e.getSource() == menu) {
+                frmLibraryHome.clearDesltopPane(); //Borrar desktop pane creado anteriormente
+                CategoryBooks categoryBooksInternalFrm = new CategoryBooks(menu.getText()); //menu.getText() es para acceder al nombre del menu seleccionado
+                
+                Category categorySelected = categoryService.getCategoryByName(menu.getText());
+                List<Book> booksByCategory = bookService.getBooksByCategory(categorySelected);
+                categoryBooksInternalFrm.addBooks(booksByCategory);
+                
+                frmLibraryHome.addToDesktopPane(categoryBooksInternalFrm); 
+            }
+        });
         /*
         
         if(e.getSource() == frmLibraryHome.getBtnSearch()) {
@@ -73,14 +81,15 @@ public class LibraryHomeListener implements ActionListener, MouseListener {
             frmLibraryHome.clearDesltopPane();
             frmLibraryHome.addToDesktopPane(new CategoryBooks("Historia"));
         }*/
-
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == frmLibraryHome.getPnlCategory()) {
             frmLibraryHome.uploadListMenu(categoryService.getCategories());
+            addListenerMenu();
             frmLibraryHome.getMenuContextual().show(frmLibraryHome.getPnlCategory(), frmLibraryHome.getPnlCategory().getWidth(), 0);
+            
             frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlCategory());
         }
     }
@@ -127,15 +136,14 @@ public class LibraryHomeListener implements ActionListener, MouseListener {
             frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlShutdown());
         } else if (e.getSource() == frmLibraryHome.getBtnSearch()) {
             frmLibraryHome.mouseEvent(frmLibraryHome.getBtnSearch(), Utils.btnEntered);
-        } 
+        }
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
         if (e.getSource() == frmLibraryHome.getBtnSearch()) {
             frmLibraryHome.mouseEvent(frmLibraryHome.getBtnSearch(), Utils.btnExited);
-        } 
+        }
     }
-    
 
 }

@@ -4,18 +4,22 @@
  */
 package com.company.system.view;
 
+import com.company.system.model.Book;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class CategoryBooks extends JInternalFrame {
-
+    private JPanel panel;
+    
+    
     public CategoryBooks(String categoryName) {
         super(categoryName, true, true, true, true);
         initComponents();
@@ -24,8 +28,8 @@ public class CategoryBooks extends JInternalFrame {
         setLayout(new BorderLayout());
 
         // Crear el panel de etiquetas (JLabels) en lugar de botones
-        JPanel panel = new JPanel(new GridLayout(4, 4, 10, 10));
-        addLabels(categoryName, panel);
+        panel = new JPanel(new GridLayout(4, 4, 10, 10));
+//        addLabels(categoryName, panel);
 
         // Configurar el tamaño preferido del panel para asegurarse de que la barra de desplazamiento aparezca si es necesario
         panel.setPreferredSize(new Dimension(500, 800)); // Ajusta la altura según sea necesario
@@ -46,6 +50,14 @@ public class CategoryBooks extends JInternalFrame {
             //label.setText(categoryName + " Libro " + i); // Establecer el texto del JLabel dentro de ButtonDesign
             panel.add(label);
         }
+    }
+    
+    public void addBooks(List<Book> books) {
+        books.forEach(book -> {
+            ButtonDesign label = new ButtonDesign();
+            label.getLblTitle().setText("Titulo: " + book.getTitle());
+            this.panel.add(label);
+        });
     }
 
     @SuppressWarnings("unchecked")
