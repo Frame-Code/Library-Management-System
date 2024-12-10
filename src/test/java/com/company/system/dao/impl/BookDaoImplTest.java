@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.company.system.dao.interfaces.BookDao;
+import com.company.system.model.Author;
 import com.company.system.model.Book;
 import com.company.system.model.Category;
 
@@ -81,5 +82,18 @@ public class BookDaoImplTest {
         Book book = bookDao.findById(5L);
         book.setRegistrationName("Admin");
         System.out.println(bookDao.update(book));
+    }
+
+    @Test
+    void testFindByAuthor() {
+        List<Book> books = bookDao.findByAuthor(new Author("Gabriel", "García Márquez", LocalDate.of(2024, 1, 15), "Admin", null, null, false));
+        books.forEach(book -> {
+            System.out.println(book);
+        });
+    }
+
+    @Test
+    void testFindByPublisher() {
+        
     }
 }

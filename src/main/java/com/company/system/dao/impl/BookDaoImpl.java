@@ -11,8 +11,10 @@ import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
 
 import com.company.system.dao.interfaces.BookDao;
+import com.company.system.model.Author;
 import com.company.system.model.Book;
 import com.company.system.model.Category;
+import com.company.system.model.Publisher;
 
 /**
  * @author artist-code (Daniel Mora Cantillo)
@@ -28,9 +30,53 @@ public class BookDaoImpl implements BookDao{
         return emf.createEntityManager();
     }
 
+    private List<Book> findList(String jpql) {
+        EntityManager em = getEntityManager();
+        TypedQuery<Book> query = em.createQuery(jpql, Book.class);
+        List<Book> books;
+        try {
+            books = query.getResultList();
+            return books;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    private Book findUnique(String jpql, String parameter, Long id) {
+        EntityManager em = getEntityManager();
+        TypedQuery<Book> query = em.createQuery(jpql, Book.class);
+        query.setParameter(parameter, id);
+        Book book;
+        try {
+            book = query.getSingleResult();
+            return book;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    private <T> List<Book> findListBySome(String jpql, String parameter, T objectToSet) {
+        EntityManager em = getEntityManager();
+        TypedQuery<Book> query = em.createQuery(jpql, Book.class);
+        query.setParameter(parameter, objectToSet);
+        List<Book> books;
+        try {
+            books = query.getResultList();
+            return books;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
     @Override
     public boolean create(Book object) {
-                EntityManager em = getEntityManager();
+        EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(object);
@@ -55,35 +101,15 @@ public class BookDaoImpl implements BookDao{
 
     @Override
     public List<Book> findAll() {
-        EntityManager em = getEntityManager();
         String jpql = "SELECT b FROM Book b WHERE b.deleted=0";
-        TypedQuery<Book> query = em.createQuery(jpql, Book.class);
-        List<Book> books;
-        try {
-            books = query.getResultList();
-            return books;
-        } catch (NoResultException e) {
-            return null;
-        } finally {
-            em.close();
-        }
+        return findList(jpql);
+
     }
 
     @Override
     public Book findById(Long id) {
-        EntityManager em = getEntityManager();
         String jpql = "SELECT b FROM Book b WHERE b.idBook = :id and b.deleted = 0";
-        TypedQuery<Book> query = em.createQuery(jpql, Book.class);
-        query.setParameter("id", id);
-        Book book;
-        try {
-            book = query.getSingleResult();
-            return book;
-        } catch (NoResultException e) {
-            return null;
-        } finally {
-            em.close();
-        }
+        return findUnique(jpql, "id", id);
     }
 
     @Override
@@ -120,19 +146,21 @@ public class BookDaoImpl implements BookDao{
 
     @Override
     public List<Book> findByCategory(Category category) {
-        EntityManager em = getEntityManager();
         String jpql = "SELECT b FROM Book b WHERE b.category = :cat AND b.deleted=0";
-        TypedQuery<Book> query = em.createQuery(jpql, Book.class);
-        query.setParameter("cat", category);
-        List<Book> books;
-        try {
-            books = query.getResultList();
-            return books;
-        } catch (NoResultException e) {
-            return null;
-        } finally {
-            em.close();
-        }
+        return findListBySome(jpql, "cat", category);
+
+    }
+
+    @Override
+    public List<Book> findByAuthor(Author author) {
+        String jpql = "SELECT b FROM Book b JOIN b.authors a WHERE a = :author AND b.deleted=0";
+        return findListBySome(jpql, "author", author);
+    }
+
+    @Override
+    public List<Book> findByPublisher(Publisher publisher) {
+        String jpql = "SELECT b FROM Book b WHERE b.publisher = :publisher AND b.deleted=0";
+        return findListBySome(jpql, "publisher", publisher);
     }
 
     @Override
@@ -154,35 +182,16 @@ public class BookDaoImpl implements BookDao{
 
     @Override
     public List<Book> findAllIncludeDeleted() {
-        EntityManager em = getEntityManager();
         String jpql = "SELECT b FROM Book b";
-        TypedQuery<Book> query = em.createQuery(jpql, Book.class);
-        List<Book> books;
-        try {
-            books = query.getResultList();
-            return books;
-        } catch (NoResultException e) {
-            return null;
-        } finally {
-            em.close();
-        }
+        return findList(jpql);
     }
 
     @Override
     public Book findByIdIncludeDeleted(Long id) {
-        EntityManager em = getEntityManager();
         String jpql = "SELECT b FROM Book b WHERE b.idBook = :id";
-        TypedQuery<Book> query = em.createQuery(jpql, Book.class);
-        query.setParameter("id", id);
-        Book book;
-        try {
-            book = query.getSingleResult();
-            return book;
-        } catch (NoResultException e) {
-            return null;
-        } finally {
-            em.close();
-        }
+        return findUnique(jpql, "id", id);
     }
+
+
 
 }
