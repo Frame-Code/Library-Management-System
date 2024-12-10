@@ -4,37 +4,28 @@
  */
 package com.company.system.view;
 
-<<<<<<< HEAD
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-=======
-import javax.swing.JLabel;
-import javax.swing.JPanel;
->>>>>>> 2969f9a36ad030732eff09219247d856a2169e6f
+
+
+
 /**
  *
  * @author jandr
  */
 public class buttonDesign extends JPanel {
-<<<<<<< HEAD
 
-=======
-    private JLabel lblTitle;
-    private JLabel lblicon;
->>>>>>> 2969f9a36ad030732eff09219247d856a2169e6f
     private JLabel lblDescrip;
 
     /**
@@ -46,11 +37,6 @@ public class buttonDesign extends JPanel {
     }
 
     private void initComponents() {
-<<<<<<< HEAD
-=======
-        lblTitle = new JLabel();
-        lblicon = new JLabel();
->>>>>>> 2969f9a36ad030732eff09219247d856a2169e6f
         lblDescrip = new JLabel();
         lblDescrip.setHorizontalAlignment(JLabel.CENTER);
         lblDescrip.setOpaque(true); // Necesario para ver el color de fondo
@@ -67,7 +53,6 @@ public class buttonDesign extends JPanel {
     }
 
     private void setupListeners() {
-<<<<<<< HEAD
         // Aquí puedes agregar los listeners para manejar eventos, como el clic
         lblDescrip.addMouseListener(new MouseAdapter() {
             @Override
@@ -108,16 +93,5 @@ public class buttonDesign extends JPanel {
         g2d.setColor(Color.BLACK);
         g2d.setStroke(new BasicStroke(2)); // Grosor del borde
         g2d.drawRoundRect(0, 0, getWidth(), getHeight(), 50, 50); // Radio 50 para bordes redondeados
-=======
-        // Agregar los listeners para las etiquetas
-        //lblicon.addMouseListener(new LabelMouseListener(this));
-        //lblDescrip.addMouseListener(new LabelMouseListener(this));
->>>>>>> 2969f9a36ad030732eff09219247d856a2169e6f
     }
-
-    public JLabel getLblTitle() {
-        return lblTitle;
-    }
-
-    
 }
