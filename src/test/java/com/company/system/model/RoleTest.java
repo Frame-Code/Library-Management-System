@@ -35,8 +35,8 @@ public class RoleTest {
 
         try {
             em.getTransaction().begin();
-            em.persist(role1);
-            em.persist(role2);
+            //em.persist(role1);
+            //em.persist(role2);
             em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

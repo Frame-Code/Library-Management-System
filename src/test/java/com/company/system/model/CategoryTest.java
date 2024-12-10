@@ -24,7 +24,7 @@ public class CategoryTest {
 
         try {
             em.getTransaction().begin();
-            em.persist(category);
+            //em.persist(category);
             em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

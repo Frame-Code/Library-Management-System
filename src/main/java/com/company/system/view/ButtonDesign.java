@@ -1,29 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.company.system.view;
 
 import com.company.system.view.components.RoundedPanelWithShadow;
-import java.awt.BasicStroke;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.RenderingHints;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-
-
 
 /**
  *
@@ -64,16 +50,13 @@ public class ButtonDesign extends RoundedPanelWithShadow {
         setPreferredSize(new Dimension(100, 100)); // Esto asegura que el panel sea cuadrado
         setBackground(Color.WHITE);
         setLayout(new BorderLayout());
-
         
         labelPanel.add(lblIcon);
         labelPanel.add(lblTitle);
         labelPanel.add(lblAuthors);
         labelPanel.add(lblPublihser);
         
-        
         add(labelPanel, BorderLayout.CENTER);
-        
         
         // Establecer borde circular cuando pintamos el panel
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Deja espacio para que se vea el borde circular
