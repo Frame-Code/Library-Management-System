@@ -16,4 +16,11 @@ public class BookDaoImplTest {
             System.out.println(book);
         });
     }
+
+    @Test
+    void testFindByISBN() {
+        BookDaoImpl bookDao = new BookDaoImpl();
+        Book book = bookDao.findByISBN("JPKL-1");
+        System.out.println(book);
+    }
 }
