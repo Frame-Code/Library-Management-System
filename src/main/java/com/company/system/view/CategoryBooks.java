@@ -28,7 +28,7 @@ public class CategoryBooks extends JInternalFrame {
         addLabels(categoryName, panel);
 
         // Configurar el tamaño preferido del panel para asegurarse de que la barra de desplazamiento aparezca si es necesario
-        panel.setPreferredSize(new Dimension(600, 1000)); // Ajusta la altura según sea necesario
+        panel.setPreferredSize(new Dimension(500, 800)); // Ajusta la altura según sea necesario
 
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
