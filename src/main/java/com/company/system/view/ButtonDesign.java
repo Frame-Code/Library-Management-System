@@ -4,6 +4,7 @@
  */
 package com.company.system.view;
 
+import com.company.system.controller.ButtonDesignListener;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
@@ -40,10 +41,13 @@ public class ButtonDesign extends RoundedPanelWithShadow {
     public ButtonDesign() {
         super(15, Color.black, 1);
         initComponents();
+
+        // Añadir el listener al botón
+        addMouseListener(new ButtonDesignListener(this));
     }
 
     private void initComponents() {
-        labelPanel = new JPanel(new GridLayout(0,1));
+        labelPanel = new JPanel(new GridLayout(0, 1));
         labelPanel.setOpaque(false);
         String imagePath = "/images/openBook.png";
         ImageIcon icon = new ImageIcon(ButtonDesign.class.getResource(imagePath));
@@ -55,26 +59,23 @@ public class ButtonDesign extends RoundedPanelWithShadow {
         lblTitle.setHorizontalAlignment(JLabel.CENTER);
         lblAuthors.setHorizontalAlignment(JLabel.CENTER);
         lblPublihser.setHorizontalAlignment(JLabel.CENTER);
-        lblIcon.setOpaque(false); 
-        lblTitle.setOpaque(false); 
-        lblAuthors.setOpaque(false); 
-        lblPublihser.setOpaque(false); 
-        
+        lblIcon.setOpaque(false);
+        lblTitle.setOpaque(false);
+        lblAuthors.setOpaque(false);
+        lblPublihser.setOpaque(false);
+
         // Establecer el tamaño del panel
         setPreferredSize(new Dimension(100, 100)); // Esto asegura que el panel sea cuadrado
         setBackground(Color.WHITE);
         setLayout(new BorderLayout());
 
-        
         labelPanel.add(lblIcon);
         labelPanel.add(lblTitle);
         labelPanel.add(lblAuthors);
         labelPanel.add(lblPublihser);
-        
-        
+
         add(labelPanel, BorderLayout.CENTER);
-        
-        
+
         // Establecer borde circular cuando pintamos el panel
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Deja espacio para que se vea el borde circular
     }
@@ -102,6 +103,4 @@ public class ButtonDesign extends RoundedPanelWithShadow {
     public void setLblPublihser(JLabel lblPublihser) {
         this.lblPublihser = lblPublihser;
     }
-
-
 }
