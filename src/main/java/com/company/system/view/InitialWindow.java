@@ -98,11 +98,11 @@ public class InitialWindow extends javax.swing.JFrame {
         btnStudentLogin.setText("Ingresar como estudiante");
         btnStudentLogin.setBorder(null);
 
-        lblStudentIcon.setIcon(new javax.swing.ImageIcon("/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/Student_login_icon.png")); // NOI18N
+        lblStudentIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Student_login_icon.png"))); // NOI18N
 
-        lblLibrarianIcon.setIcon(new javax.swing.ImageIcon("/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/Librarian_login_icon.png")); // NOI18N
+        lblLibrarianIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Librarian_login_icon.png"))); // NOI18N
 
-        lblBookIcon.setIcon(new javax.swing.ImageIcon("/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/Books_login_icon.png")); // NOI18N
+        lblBookIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Books_login_icon.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);

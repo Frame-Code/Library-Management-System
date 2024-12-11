@@ -269,7 +269,7 @@
             <Component class="javax.swing.JLabel" name="lblStudentIcon">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/Student_login_icon.png"/>
+                  <Image iconType="3" name="/images/Student_login_icon.png"/>
                 </Property>
               </Properties>
               <AuxValues>
@@ -279,7 +279,7 @@
             <Component class="javax.swing.JLabel" name="lblLibrarianIcon">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/Librarian_login_icon.png"/>
+                  <Image iconType="3" name="/images/Librarian_login_icon.png"/>
                 </Property>
               </Properties>
               <AuxValues>
@@ -289,7 +289,7 @@
             <Component class="javax.swing.JLabel" name="lblBookIcon">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/Books_login_icon.png"/>
+                  <Image iconType="3" name="/images/Books_login_icon.png"/>
                 </Property>
               </Properties>
               <AuxValues>

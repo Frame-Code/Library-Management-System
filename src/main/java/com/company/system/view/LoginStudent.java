@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.company.system.view;
 
 import com.company.system.controller.InitialWindowListener;
+import com.company.system.controller.RegisterStudentListener;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
@@ -17,17 +14,18 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author HP240
+ * @author Joel Pazmiño
  */
 public class LoginStudent extends javax.swing.JFrame {
+
     private InitialWindow frmInicial;
+    private RegisterStudent frmRegisterStudent;
+
     public final String errorFormatId = "Error: Escribe correctamente el numero de cedula";
     public final String errorEmptyFields = "Error: no pueden haber campos vacíos";
     public final String errorUserExists = "Error: Usuario no encontrado";
     public final String errorIncorrectPassword = "Error: contraseña incorrecta";
-    /**
-     * Creates new form LoginStudent
-     */
+
     public LoginStudent() {
         initComponents();
         setResizable(false);
@@ -35,6 +33,36 @@ public class LoginStudent extends javax.swing.JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
+    public void back() {
+        frmInicial = new InitialWindow();
+        frmInicial.setVisible(true);
+        new InitialWindowListener(frmInicial);
+        this.dispose();
+    }
+
+    public void openRegisterWindow() {
+        frmRegisterStudent = new RegisterStudent();
+        frmRegisterStudent.setVisible(true);
+        new RegisterStudentListener(frmRegisterStudent);
+    }
+
+    public void close() {
+        setVisible(false);
+        dispose();
+    }
+
+    public void mouseEvent(JButton btn, Color color) {
+        btn.setBackground(color);
+    }
+
+    public void errorMessage(String text) {
+        JOptionPane.showMessageDialog(this, text);
+    }
+
+    public void login() {
+        JOptionPane.showMessageDialog(this, "Login exitoso");
+    }
+    
     public JButton getBtnRegister() {
         return btnRegister;
     }
@@ -42,7 +70,7 @@ public class LoginStudent extends javax.swing.JFrame {
     public void setBtnRegister(JButton btnRegister) {
         this.btnRegister = btnRegister;
     }
-    
+
     public JButton getBtnBack() {
         return btnBack;
     }
@@ -66,25 +94,7 @@ public class LoginStudent extends javax.swing.JFrame {
     public void setTxtIdCard(JTextField txtIdCard) {
         this.txtIdCard = txtIdCard;
     }
-    public void mouseEvent(JButton btn, Color color) {
-        btn.setBackground(color);
-    }
 
-    public void errorMessage(String text) {
-        JOptionPane.showMessageDialog(this, text);
-    }
-
-    public void login() {
-        JOptionPane.showMessageDialog(this, "Login exitoso");
-    }
-    public void back() {
-        frmInicial = new InitialWindow();
-        frmInicial.setVisible(true);
-        new InitialWindowListener(frmInicial);
-        this.dispose();
-    }
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -170,7 +180,7 @@ public class LoginStudent extends javax.swing.JFrame {
         btnLogin.setBorder(null);
         btnLogin.setName("btnLogin"); // NOI18N
 
-        lblStudentIcon.setIcon(new javax.swing.ImageIcon("/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/Student_login_icon.png")); // NOI18N
+        lblStudentIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Student_login_icon.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

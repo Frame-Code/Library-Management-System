@@ -91,7 +91,7 @@ public class LoginLibrarian extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        lblIconLibrarian.setIcon(new javax.swing.ImageIcon("/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/Librarian_login_icon1.png")); // NOI18N
+        lblIconLibrarian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Librarian_login_icon1.png"))); // NOI18N
 
         txtIdUser.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 12)); // NOI18N
         txtIdUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());

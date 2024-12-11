@@ -1,10 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.company.system.view;
 
-import com.company.system.controller.InitialWindowListener;
 import com.company.system.controller.LoginStudentListener;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
@@ -18,7 +13,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author HP240
+ * @author Joel Pazmiño
  */
 public class RegisterStudent extends javax.swing.JFrame {
 
@@ -27,9 +22,7 @@ public class RegisterStudent extends javax.swing.JFrame {
     public final String errorUserExists = "Error: Usuario no encontrado";
     public final String errorIncorrectPassword = "Error: contraseña incorrecta";
     public final String successMessage = "Error: contraseña incorrecta";
-    /**
-     * Creates new form RegisterStudent
-     */
+    
     public RegisterStudent() {
         initComponents();
         setResizable(false);
@@ -261,10 +254,11 @@ public class RegisterStudent extends javax.swing.JFrame {
                     .addComponent(cmbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pswConfirmarContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12)
-                    .addComponent(txtYear))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtYear, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(pswConfirmarContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel12)))
                 .addGap(18, 18, 18)
                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -311,10 +305,6 @@ public class RegisterStudent extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    /**
-     * @param args the command line arguments
-     */
-
     public JButton getBtnBackRegister() {
         return btnBackRegister;
     }
@@ -331,7 +321,6 @@ public class RegisterStudent extends javax.swing.JFrame {
         this.cmbMonth = cmbMonth;
     }
 
-
     public void setTxtDay(JTextField txtDay) {
         this.txtDay = txtDay;
     }
@@ -343,7 +332,6 @@ public class RegisterStudent extends javax.swing.JFrame {
     public void setTxtYear(JTextField txtYear) {
         this.txtYear = txtYear;
     }
-    
     
     public JPasswordField getPswConfirmarContrasena() {
         return pswConfirmarContrasena;
@@ -396,9 +384,7 @@ public class RegisterStudent extends javax.swing.JFrame {
     public void mouseEvent(JButton btn, Color color) {
         btn.setBackground(color);
     }
-    /**
-     * @param args the command line arguments
-     */
+
     public JButton getBtnRegistrar() {
         return btnRegistrar;
     }
@@ -415,7 +401,11 @@ public class RegisterStudent extends javax.swing.JFrame {
         LoginStudent frmLoginStudent = new LoginStudent();
         frmLoginStudent.setVisible(true);
         new LoginStudentListener(frmLoginStudent);
-        this.dispose();
+    }
+     
+    public void close() {
+        setVisible(false);
+        dispose();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

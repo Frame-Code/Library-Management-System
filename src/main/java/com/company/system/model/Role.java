@@ -40,7 +40,7 @@ public class Role implements Serializable {
     @Column(name = "registrationUpdateName")
     private String registrationUpdateName;
     
-    @Column(name = "idDeleted", nullable = false)
+    @Column(name = "isDeleted", nullable = false)
     private boolean deleted;
     
     public Role() {

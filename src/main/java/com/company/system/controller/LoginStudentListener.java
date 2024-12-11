@@ -2,9 +2,7 @@
 package com.company.system.controller;
 
 import com.company.system.service.UserService;
-import com.company.system.view.InitialWindow;
 import com.company.system.view.LoginStudent;
-import com.company.system.view.RegisterStudent;
 import com.company.system.view.components.Utils;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,11 +13,10 @@ import java.awt.event.MouseListener;
 
 /**
  *
- * @author HP240
+ * @author Joel Pazmiño
  */
 public class LoginStudentListener implements ActionListener, MouseListener, KeyListener{
     private final LoginStudent frmLogin;
-    private RegisterStudent frmRegisterStudent;
     private final UserService userService;
     
     
@@ -42,12 +39,12 @@ public class LoginStudentListener implements ActionListener, MouseListener, KeyL
     private void verifyLogin() {
         try {
             Long idUser = Long.valueOf(frmLogin.getTxtIdCard().getText());
-            if (userService.librarianExists(idUser)) {
+            if (userService.studentExists(idUser)) {
                 String plainPassword = "";
                 for (char p : frmLogin.getPswUser().getPassword()) {
                     plainPassword += p;
                 }
-
+                
                 if (userService.login(idUser, plainPassword) != null) {
                     frmLogin.login();
                 } else {
@@ -76,10 +73,8 @@ public class LoginStudentListener implements ActionListener, MouseListener, KeyL
         }else if (e.getSource() == frmLogin.getBtnLogin()){
             verifyFields();
         }else if (e.getSource() == frmLogin.getBtnRegister()){
-            frmRegisterStudent = new RegisterStudent();
-            frmRegisterStudent.setVisible(true);
-            new RegisterStudentListener(frmRegisterStudent);
-            frmLogin.dispose();
+            frmLogin.openRegisterWindow();
+            frmLogin.close();
         }
     }
     
@@ -106,6 +101,13 @@ public class LoginStudentListener implements ActionListener, MouseListener, KeyL
     }
     
     @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            verifyFields();
+        }
+    }
+
+    @Override
     public void mouseClicked(MouseEvent e) {
     }
 
@@ -120,18 +122,9 @@ public class LoginStudentListener implements ActionListener, MouseListener, KeyL
     @Override
     public void keyTyped(KeyEvent e) {
     }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            verifyFields();
-        }
-    }
-
+    
     @Override
     public void keyReleased(KeyEvent e) {
     }
-
-    
     
 }

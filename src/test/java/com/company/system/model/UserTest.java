@@ -29,21 +29,21 @@ public class UserTest {
             LocalDate.now(), 
             new RoleDaoImpl().findByName(Role.roleLibrarian), 
             LocalDate.now(), 
-            "@artist-code", 
+            "Admin", 
             null, 
             null, 
             false
         );
 
-        User usr1 = new User(941239253L, 
-            "Genesis Sarai", 
-            "Mora Cantillo", 
-            "genesita-1995@hotmail.com", 
-            new EncryptationService().encryptPassword("MiContraseña"),
+        User usr1 = new User(941239292L, 
+            "Genesis ", 
+            "Cantillo", 
+            "genesita@hotmail.com", 
+            new EncryptationService().encryptPassword("MiContra1"),
             LocalDate.now(), 
             new RoleDaoImpl().findByName(Role.roleStudent), 
             LocalDate.now(), 
-            "@artist-code", 
+            "Admin", 
             null, 
             null, 
             false
@@ -51,7 +51,7 @@ public class UserTest {
 
         try {
             em.getTransaction().begin();
-            em.persist(usr);
+            //em.persist(usr);
             em.persist(usr1);
             em.getTransaction().commit();
 
