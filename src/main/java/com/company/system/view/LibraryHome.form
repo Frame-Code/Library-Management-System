@@ -129,7 +129,7 @@
                       <Component id="pnlEditorial" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="pnlNotification" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="107" max="32767" attributes="0"/>
+                      <EmptySpace pref="113" max="32767" attributes="0"/>
                       <Component id="pnlShutdown" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   </Group>
@@ -207,7 +207,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel3">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/Student_login_icon_mini.png"/>
+                      <Image iconType="3" name="/images/Student_login_icon_mini.png"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -288,9 +288,12 @@
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/All_categories(1).png"/>
+                      <Image iconType="3" name="/images/categoriesIcon.png"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JLabel()"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -352,9 +355,12 @@
                 <Component class="javax.swing.JLabel" name="jLabel5">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/4649486-200(1).png"/>
+                      <Image iconType="3" name="/images/authorIcon.png"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JLabel()"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -367,13 +373,6 @@
                   <Color id="Default Cursor"/>
                 </Property>
               </Properties>
-<<<<<<< HEAD
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditorialActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel1">
-=======
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 0)"/>
               </AuxValues>
@@ -421,14 +420,13 @@
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/1277216(3).png"/>
+                      <Image iconType="3" name="/images/publisherIcon.png"/>
                     </Property>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="pnlNotification">
->>>>>>> a74813c2ddb715f794000fded722032e7d08ffe0
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -484,7 +482,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel7">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/565422(1)(3).png"/>
+                      <Image iconType="3" name="/images/notifyIcon.png"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -546,7 +544,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/shutdown-31(2).png"/>
+                      <Image iconType="3" name="/images/shutdownIcon.png"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -629,9 +627,6 @@
                   </Border>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIdUserActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnSearch">
               <Properties>
@@ -649,9 +644,6 @@
                   <Border info="null"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchActionPerformed"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedButtonWithShadow(&quot;Iniciar sesion&quot;, 7, new Color(0, 0, 0, 100), 4)"/>
               </AuxValues>

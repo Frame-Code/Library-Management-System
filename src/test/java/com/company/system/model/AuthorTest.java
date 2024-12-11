@@ -26,7 +26,7 @@ public class AuthorTest {
 
         try {
             em.getTransaction().begin();
-            em.persist(author1);
+            //em.persist(author1);
             em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

@@ -51,8 +51,8 @@ public class UserTest {
 
         try {
             em.getTransaction().begin();
-            em.persist(usr);
-            em.persist(usr1);
+            //em.persist(usr);
+            //em.persist(usr1);
             em.getTransaction().commit();
 
         } catch (Exception e) {

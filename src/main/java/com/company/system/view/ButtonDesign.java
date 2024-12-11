@@ -75,7 +75,7 @@ public class ButtonDesign extends RoundedPanelWithShadow {
         labelPanel.add(lblPublihser);
 
         add(labelPanel, BorderLayout.CENTER);
-
+        
         // Establecer borde circular cuando pintamos el panel
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Deja espacio para que se vea el borde circular
     }

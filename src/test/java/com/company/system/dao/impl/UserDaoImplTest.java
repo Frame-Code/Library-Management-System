@@ -39,6 +39,6 @@ public class UserDaoImplTest {
             false
         );
 
-        System.out.println(new UserDaoImpl().create(user));
+        //System.out.println(new UserDaoImpl().create(user));
     }
 }

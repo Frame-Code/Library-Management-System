@@ -1,7 +1,5 @@
 package com.company.system.view;
 
-//import com.company.system.controller.LoginLibrarianListener;
-//import com.company.system.controller.LoginStudentListener;
 import com.company.system.controller.LibraryHomeListener;
 import com.company.system.model.Category;
 import com.company.system.view.components.BackgroundPanel;
@@ -47,10 +45,6 @@ public class LibraryHome extends javax.swing.JFrame {
         lblUser = new javax.swing.JLabel();
         lblBookIcon = new javax.swing.JLabel(new ImageIcon("/src/main/resources/images/Student_icon_Login.png"
         ));
-
-
-        
-
         pnlCategory = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 0);
         lblCategory = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -67,7 +61,6 @@ public class LibraryHome extends javax.swing.JFrame {
         pnlShutdown = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 1);
         lblCategory4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-
         desktopPane = new javax.swing.JDesktopPane();
         pnlWelcome1 = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         txtIdUser = new javax.swing.JTextField();
@@ -89,7 +82,7 @@ public class LibraryHome extends javax.swing.JFrame {
         lblWelcome.setForeground(new java.awt.Color(255, 255, 255));
         lblWelcome.setText("BIENVENIDO");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/Student_login_icon_mini.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Student_login_icon_mini.png"))); // NOI18N
 
         lblUser.setBackground(new java.awt.Color(255, 255, 255));
         lblUser.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
@@ -130,7 +123,7 @@ public class LibraryHome extends javax.swing.JFrame {
         lblCategory.setForeground(new java.awt.Color(0, 0, 0));
         lblCategory.setText("Categoria");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/All_categories(1).png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/categoriesIcon.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlCategoryLayout = new javax.swing.GroupLayout(pnlCategory);
         pnlCategory.setLayout(pnlCategoryLayout);
@@ -161,7 +154,7 @@ public class LibraryHome extends javax.swing.JFrame {
         lblAutor.setForeground(new java.awt.Color(0, 0, 0));
         lblAutor.setText("Autor");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/4649486-200(1).png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/authorIcon.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlAutorLayout = new javax.swing.GroupLayout(pnlAutor);
         pnlAutor.setLayout(pnlAutorLayout);
@@ -192,7 +185,7 @@ public class LibraryHome extends javax.swing.JFrame {
         lblCategory2.setForeground(new java.awt.Color(0, 0, 0));
         lblCategory2.setText("Editorial");
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/1277216(3).png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/publisherIcon.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlEditorialLayout = new javax.swing.GroupLayout(pnlEditorial);
         pnlEditorial.setLayout(pnlEditorialLayout);
@@ -223,7 +216,7 @@ public class LibraryHome extends javax.swing.JFrame {
         lblCategory3.setForeground(new java.awt.Color(0, 0, 0));
         lblCategory3.setText("Notificaciones");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/565422(1)(3).png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notifyIcon.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlNotificationLayout = new javax.swing.GroupLayout(pnlNotification);
         pnlNotification.setLayout(pnlNotificationLayout);
@@ -254,7 +247,7 @@ public class LibraryHome extends javax.swing.JFrame {
         lblCategory4.setForeground(new java.awt.Color(0, 0, 0));
         lblCategory4.setText("Salir");
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/shutdown-31(2).png")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shutdownIcon.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlShutdownLayout = new javax.swing.GroupLayout(pnlShutdown);
         pnlShutdown.setLayout(pnlShutdownLayout);
@@ -313,7 +306,7 @@ public class LibraryHome extends javax.swing.JFrame {
                 .addComponent(pnlEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(pnlNotification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                 .addComponent(pnlShutdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
             .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,8 +315,7 @@ public class LibraryHome extends javax.swing.JFrame {
                     .addComponent(lblBookIcon)
                     .addContainerGap(380, Short.MAX_VALUE)))
         );
-	
-	desktopPane.setPreferredSize(new java.awt.Dimension(800, 600));
+
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
@@ -340,22 +332,12 @@ public class LibraryHome extends javax.swing.JFrame {
 
         txtIdUser.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 12)); // NOI18N
         txtIdUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtIdUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdUserActionPerformed(evt);
-            }
-        });
 
         btnSearch.setBackground(new java.awt.Color(56, 75, 147));
         btnSearch.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(255, 255, 255));
         btnSearch.setText("Buscar");
         btnSearch.setBorder(null);
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
 
         lblCategory1.setBackground(new java.awt.Color(255, 255, 255));
         lblCategory1.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
@@ -430,14 +412,6 @@ public class LibraryHome extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtIdUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdUserActionPerformed
-
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSearchActionPerformed
-
     public void uploadListMenu(List<Category> categories) {
         menuContextual = new JPopupMenu();
         menuItems = new ArrayList<>();
@@ -450,7 +424,30 @@ public class LibraryHome extends javax.swing.JFrame {
         });
     }
 
+    public void addToDesktopPane(JInternalFrame jInternal) {
+        this.desktopPane.add(jInternal);
+        jInternal.setVisible(true);
+    }
+    
+    public void clearDesltopPane() {
+        this.desktopPane.removeAll();
+    }
+    
+    public void changeColorPanel(Color color, JPanel pnl) {
+        pnl.setBackground(color);
+    }
 
+    //Este metodo cierra esta ventana
+    public void close() {
+        this.setVisible(false);
+        this.dispose();
+    }
+
+    //Este metodo es usado para cambiar el color a los btn cuando el puntero este sobre el btn o salga del mismo
+    public void mouseEvent(JButton btn, Color color) {
+        btn.setBackground(color);
+    }
+    
     public JPopupMenu getMenuContextual() {
         return menuContextual;
     }
@@ -486,31 +483,6 @@ public class LibraryHome extends javax.swing.JFrame {
     public JButton getBtnSearch() {
         return btnSearch;
     }
-    
-    public void addToDesktopPane(JInternalFrame jInternal) {
-        this.desktopPane.add(jInternal);
-        jInternal.setVisible(true);
-    }
-    
-    public void clearDesltopPane() {
-        this.desktopPane.removeAll();
-    }
-    
-    public void changeColorPanel(Color color, JPanel pnl) {
-        pnl.setBackground(color);
-    }
-
-    //Este metodo cierra esta ventana
-    public void close() {
-        this.setVisible(false);
-        this.dispose();
-    }
-
-    //Este metodo es usado para cambiar el color a los btn cuando el puntero este sobre el btn o salga del mismo
-    public void mouseEvent(JButton btn, Color color) {
-        btn.setBackground(color);
-    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;

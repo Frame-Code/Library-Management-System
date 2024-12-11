@@ -24,7 +24,7 @@ public class PublisherTest {
 
         try {
             em.getTransaction().begin();
-            em.persist(publisher);
+            //em.persist(publisher);
             em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
