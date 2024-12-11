@@ -10,13 +10,13 @@ import javax.persistence.Persistence;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
 
-import com.company.system.dao.interfaces.CategoryDAO;
+import com.company.system.dao.interfaces.CategoryDao;
 import com.company.system.model.Category;
 
 /**
  * @author artist-code (Daniel Mora Cantillo)
  */
-public class CategoryDaoImpl implements CategoryDAO{
+public class CategoryDaoImpl implements CategoryDao{
     private EntityManagerFactory emf;
 
     

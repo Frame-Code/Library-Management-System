@@ -3,14 +3,14 @@ package com.company.system.dao.impl;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.company.system.dao.interfaces.CategoryDAO;
+import com.company.system.dao.interfaces.CategoryDao;
 import com.company.system.model.Category;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CategoryDaoImplTest {
-    CategoryDAO categoryDAO;
+    CategoryDao categoryDAO;
     @BeforeEach
     void setUp() {
         this.categoryDAO = new CategoryDaoImpl();
