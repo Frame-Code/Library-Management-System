@@ -165,7 +165,7 @@
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2)"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2)"/>
               </AuxValues>
 
               <Layout>
@@ -242,9 +242,6 @@
                   <Border info="null"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLibrarianLoginActionPerformed"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedButtonWithShadow(&quot;ESTUDIANTE&quot;, 7, new Color(0, 0, 0, 100), 4)"/>
               </AuxValues>
@@ -265,9 +262,6 @@
                   <Border info="null"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStudentLoginActionPerformed"/>
-              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedButtonWithShadow(&quot;ESTUDIANTE&quot;, 7, new Color(0, 0, 0, 100), 4)"/>
               </AuxValues>
@@ -275,7 +269,7 @@
             <Component class="javax.swing.JLabel" name="lblStudentIcon">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/Student_login_icon.png"/>
+                  <Image iconType="3" name="/images/Student_login_icon.png"/>
                 </Property>
               </Properties>
               <AuxValues>
@@ -285,7 +279,7 @@
             <Component class="javax.swing.JLabel" name="lblLibrarianIcon">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/Librarian_login_icon.png"/>
+                  <Image iconType="3" name="/images/Librarian_login_icon.png"/>
                 </Property>
               </Properties>
               <AuxValues>

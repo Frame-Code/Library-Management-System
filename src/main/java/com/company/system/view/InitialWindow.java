@@ -14,7 +14,8 @@ import javax.swing.JButton;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class InitialWindow extends javax.swing.JFrame {
-
+    private LoginStudent frmLoginStudent;
+    private LoginLibrarian frmLoginLibrarian;
     public InitialWindow() {
         initComponents();
         setResizable(false);
@@ -96,9 +97,9 @@ public class InitialWindow extends javax.swing.JFrame {
         btnStudentLogin.setText("Ingresar como estudiante");
         btnStudentLogin.setBorder(null);
 
-        lblStudentIcon.setIcon(new javax.swing.ImageIcon("/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/Student_login_icon.png")); // NOI18N
+        lblStudentIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Student_login_icon.png"))); // NOI18N
 
-        lblLibrarianIcon.setIcon(new javax.swing.ImageIcon("/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/Librarian_login_icon.png")); // NOI18N
+        lblLibrarianIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Librarian_login_icon.png"))); // NOI18N
 
         lblBookIcon.setIcon(new javax.swing.ImageIcon("/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/Books_login_icon.png")); // NOI18N
 
@@ -229,8 +230,6 @@ public class InitialWindow extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private LoginStudent frmLoginStudent;
-    private LoginLibrarian frmLoginLibrarian;
     private javax.swing.JButton btnLibrarianLogin;
     private javax.swing.JButton btnStudentLogin;
     private javax.swing.JPanel contentPane;
