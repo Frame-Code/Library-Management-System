@@ -88,8 +88,8 @@ public class RegisterStudentListener implements ActionListener, MouseListener, K
         } else {
             frmRegisterStudent.errorMessage("Ocurrió un error al registrar al estudiante.");
         }
-    } catch (NumberFormatException ex) {
-        frmRegisterStudent.errorMessage("Formato de número inválido.");
+    /*} catch (NumberFormatException ex) {
+        frmRegisterStudent.errorMessage("Formato de número inválido.");*/
     } catch (Exception ex) {
         frmRegisterStudent.errorMessage("Ocurrió un error inesperado: " + ex.getMessage());
     }

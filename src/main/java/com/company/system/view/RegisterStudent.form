@@ -102,10 +102,10 @@
                                   <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="cmbMonth" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtYear" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtDay" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="cmbMonth" max="32767" attributes="0"/>
+                                  <Component id="txtDay" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtYear" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
@@ -196,8 +196,8 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="pswConfirmarContrasena" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="txtYear" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtYear" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnRegistrar" min="-2" pref="36" max="-2" attributes="0"/>
