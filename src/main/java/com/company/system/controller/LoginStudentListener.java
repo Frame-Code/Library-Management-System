@@ -89,6 +89,8 @@ public class LoginStudentListener implements ActionListener, MouseListener, KeyL
             frmLogin.mouseEvent(frmLogin.getBtnBack(), Utils.btnEntered);
         } else if (e.getSource() == frmLogin.getBtnLogin()) {
             frmLogin.mouseEvent(frmLogin.getBtnLogin(), Utils.btnEntered);
+        } else if (e.getSource() == frmLogin.getBtnRegister()) {
+            frmLogin.mouseEvent(frmLogin.getBtnRegister(), Utils.btnEntered);
         }
     }
 
@@ -98,6 +100,8 @@ public class LoginStudentListener implements ActionListener, MouseListener, KeyL
             frmLogin.mouseEvent(frmLogin.getBtnBack(), Utils.btnExited);
         } else if (e.getSource() == frmLogin.getBtnLogin()) {
             frmLogin.mouseEvent(frmLogin.getBtnLogin(), Utils.btnExited);
+        } else if (e.getSource() == frmLogin.getBtnRegister()) {
+            frmLogin.mouseEvent(frmLogin.getBtnRegister(), Utils.btnExited);
         }
     }
     

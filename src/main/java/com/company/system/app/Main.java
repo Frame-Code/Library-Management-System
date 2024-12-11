@@ -2,7 +2,6 @@ package com.company.system.app;
 
 import com.company.system.controller.InitialWindowListener;
 import com.company.system.view.InitialWindow;
-import com.company.system.view.RegisterStudent;
 
 public class Main {
     public static void main(String[] args) {

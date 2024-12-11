@@ -11,6 +11,8 @@ import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -20,6 +22,11 @@ import javax.swing.JTextField;
  */
 public class RegisterStudent extends javax.swing.JFrame {
 
+    public final String errorFormatId = "Error: Escribe correctamente el numero de cedula";
+    public final String errorEmptyFields = "Error: no pueden haber campos vacíos";
+    public final String errorUserExists = "Error: Usuario no encontrado";
+    public final String errorIncorrectPassword = "Error: contraseña incorrecta";
+    public final String successMessage = "Error: contraseña incorrecta";
     /**
      * Creates new form RegisterStudent
      */
@@ -59,7 +66,7 @@ public class RegisterStudent extends javax.swing.JFrame {
         btnRegistrar = new RoundedButtonWithShadow("Registrar", 7, new Color(0, 0, 0, 100), 2);
         jLabel9 = new javax.swing.JLabel();
         txtDay = new javax.swing.JTextField();
-        cbMonth = new javax.swing.JComboBox<>();
+        cmbMonth = new javax.swing.JComboBox<>();
         txtYear = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -150,9 +157,8 @@ public class RegisterStudent extends javax.swing.JFrame {
 
         txtDay.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        cbMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero ", "Marzo, ", "Abril ", "Mayo ", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre ", "Diciembre." }));
-        cbMonth.setBorder(null);
-        cbMonth.setOpaque(false);
+        cmbMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero ", "Marzo ", "Abril ", "Mayo ", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre ", "Diciembre" }));
+        cmbMonth.setBorder(null);
 
         txtYear.setToolTipText("");
         txtYear.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -186,7 +192,7 @@ public class RegisterStudent extends javax.swing.JFrame {
                             .addComponent(jLabel12))
                         .addGap(26, 26, 26)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -252,7 +258,7 @@ public class RegisterStudent extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(cbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -313,13 +319,31 @@ public class RegisterStudent extends javax.swing.JFrame {
         return btnBackRegister;
     }
 
-    public JTextField getTxtNacimiento() {
+    public JTextField getTxtDay() {
         return txtDay;
     }
 
-    public void setTxtNacimiento(JTextField txtNacimiento) {
-        this.txtDay = txtNacimiento;
+    public JComboBox<String> getCmbMonth() {
+        return cmbMonth;
     }
+
+    public void setCmbMonth(JComboBox<String> cmbMonth) {
+        this.cmbMonth = cmbMonth;
+    }
+
+
+    public void setTxtDay(JTextField txtDay) {
+        this.txtDay = txtDay;
+    }
+
+    public JTextField getTxtYear() {
+        return txtYear;
+    }
+
+    public void setTxtYear(JTextField txtYear) {
+        this.txtYear = txtYear;
+    }
+    
     
     public JPasswordField getPswConfirmarContrasena() {
         return pswConfirmarContrasena;
@@ -328,7 +352,7 @@ public class RegisterStudent extends javax.swing.JFrame {
     public void setPswConfirmarContrasena(JPasswordField pswConfirmarContrasena) {
         this.pswConfirmarContrasena = pswConfirmarContrasena;
     }
-
+    
     public JPasswordField getPswContrasena() {
         return pswContrasena;
     }
@@ -378,6 +402,15 @@ public class RegisterStudent extends javax.swing.JFrame {
     public JButton getBtnRegistrar() {
         return btnRegistrar;
     }
+    
+    public void errorMessage(String text) {
+        JOptionPane.showMessageDialog(this, text);
+    }
+    
+    public void successMessage(String text) {
+        JOptionPane.showMessageDialog(this, text);
+    }
+    
      public void back() {
         LoginStudent frmLoginStudent = new LoginStudent();
         frmLoginStudent.setVisible(true);
@@ -388,7 +421,7 @@ public class RegisterStudent extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackRegister;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JComboBox<String> cbMonth;
+    private javax.swing.JComboBox<String> cmbMonth;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

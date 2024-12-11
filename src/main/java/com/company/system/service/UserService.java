@@ -61,8 +61,8 @@ public class UserService {
         return userDao.create(user);
     }
 
-    public boolean isAvailableEmail(String emil) {
-        User user = userDao.findByEmail(emil);
+    public boolean isAvailableEmail(String email) {
+        User user = userDao.findByEmail(email);
         return user == null;
     }
     
