@@ -7,11 +7,16 @@ import com.company.system.service.CategoryService;
 import com.company.system.view.CategoryBooks;
 import com.company.system.view.LibraryHome;
 import com.company.system.view.components.Utils;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
+import javax.swing.JInternalFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -44,28 +49,31 @@ public class LibraryHomeListener implements ActionListener, MouseListener {
         frmLibraryHome.getPnlShutdown().addMouseListener(this);
         frmLibraryHome.getBtnSearch().addActionListener(this);
         frmLibraryHome.getBtnSearch().addMouseListener(this);
+
+        // Agregar el MouseListener para el JLabel de Historial de Préstamos
+        frmLibraryHome.getLblHistorialDePrestamos().addMouseListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         frmLibraryHome.getMenuItems().forEach(menu -> {
             if (e.getSource() == menu) {
-                //Borrar cualquier JInternfalFrame creado anteriormente
+                // Borrar cualquier JInternalFrame creado anteriormente
                 frmLibraryHome.clearDesltopPane(); 
                 
-                //menu.getText() es para acceder al nombre del menu seleccionado
+                // menu.getText() es para acceder al nombre del menu seleccionado
                 CategoryBooks categoryBooksInternalFrm = new CategoryBooks(menu.getText()); 
 
-                //Obtener una instancia de la clase Categoria a traves de su nombre (nombre obtenido del submenu del menu contextual)
+                // Obtener una instancia de la clase Categoria a traves de su nombre
                 Category categorySelected = categoryService.getCategoryByName(menu.getText()); 
                 
-                //Obtener una lista de libros filtrada por categoria (usando la categoria que se acaba de obtener)
+                // Obtener una lista de libros filtrada por categoria
                 List<Book> booksByCategory = bookService.getBooksByCategory(categorySelected);
                 
-                //Agregando cada libro obtenido de la lista anterior y agregandolo al JInternalFrame
+                // Agregar cada libro obtenido de la lista anterior al JInternalFrame
                 categoryBooksInternalFrm.addBooks(booksByCategory);
                 
-                //Agregando el JInternalFrame al desktopPane de la ventana LibraryHome
+                // Agregar el JInternalFrame al desktopPane de la ventana LibraryHome
                 frmLibraryHome.addToDesktopPane(categoryBooksInternalFrm);
             }
         });
@@ -73,17 +81,53 @@ public class LibraryHomeListener implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if (e.getSource() == frmLibraryHome.getLblHistorialDePrestamos()) {
+            // Limpiar cualquier JInternalFrame creado anteriormente
+            frmLibraryHome.clearDesltopPane();
+
+            // Crear un nuevo JInternalFrame para mostrar el historial
+            JInternalFrame historialFrame = new JInternalFrame("Historial de Préstamos", true, true, true, true);
+            historialFrame.setLayout(new BorderLayout());
+
+            // Crear una tabla para mostrar el historial de préstamos
+            JTable table = new JTable();
+
+            // Datos de ejemplo para la tabla (puedes reemplazarlos con datos reales de tu servicio)
+            Object[][] data = {
+                {"2024-12-01", "Libro A", "Usuario 1"},
+                {"2024-12-02", "Libro B", "Usuario 2"},
+                {"2024-12-03", "Libro C", "Usuario 3"}
+            };
+
+            // Encabezados de la tabla
+            String[] columnNames = {"Fecha", "Libro", "Usuario"};
+
+            // Crear el modelo de tabla con los datos y los encabezados
+            table.setModel(new DefaultTableModel(data, columnNames));
+
+            // Agregar la tabla al internal frame
+            historialFrame.add(new JScrollPane(table), BorderLayout.CENTER);
+
+            // Configurar el tamaño y agregar el frame al desktop pane
+            historialFrame.setSize(643, 527);
+            frmLibraryHome.addToDesktopPane(historialFrame);
+
+            // Hacer visible el internal frame
+            historialFrame.setVisible(true);
+        }
+
+        // El resto de tus eventos mouseClicked para otros paneles
         if (e.getSource() == frmLibraryHome.getPnlCategory()) {
-            //Cargando submenus al menu contextual con las categorias obtenidas de la base de datos
+            // Cargando submenus al menu contextual con las categorias obtenidas de la base de datos
             frmLibraryHome.uploadListMenu(categoryService.getCategories());
             
-            //Agregando listeners a cada submenu del menu contextual
+            // Agregando listeners a cada submenu del menu contextual
             addListenerMenu();
             
-            //Mostrar el menu contextual
+            // Mostrar el menu contextual
             frmLibraryHome.getMenuContextual().show(frmLibraryHome.getPnlCategory(), frmLibraryHome.getPnlCategory().getWidth(), 0);
             
-            //Cambiando el color de la opcion seleccionada
+            // Cambiando el color de la opción seleccionada
             frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlCategory());
         }
     }
@@ -139,5 +183,4 @@ public class LibraryHomeListener implements ActionListener, MouseListener {
     @Override
     public void mouseReleased(MouseEvent e) {
     }
-
 }
