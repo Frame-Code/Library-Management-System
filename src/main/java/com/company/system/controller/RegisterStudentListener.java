@@ -30,18 +30,18 @@ public class RegisterStudentListener implements ActionListener, MouseListener, K
         frmRegisterStudent.getBtnBackRegister().addActionListener(this);
         frmRegisterStudent.getBtnBackRegister().addMouseListener(this);
         frmRegisterStudent.getBtnBackRegister().addKeyListener(this);
-        frmRegisterStudent.getBtnRegistrar().addActionListener(this);
-        frmRegisterStudent.getBtnRegistrar().addMouseListener(this);
+        frmRegisterStudent.getBtnRegister().addActionListener(this);
+        frmRegisterStudent.getBtnRegister().addMouseListener(this);
     }
 
     private void verifyFields() {
         try {
-            String names = frmRegisterStudent.getTxtNombres().getText();
-            String surNames = frmRegisterStudent.getTxtApellidos().getText();
-            String email = frmRegisterStudent.getTxtCorreo().getText();
-            Long idCard = Long.valueOf(frmRegisterStudent.getTxtCedula().getText());
-            String passwordPlain = new String(frmRegisterStudent.getPswContrasena().getPassword());
-            String confirmPassword = new String(frmRegisterStudent.getPswConfirmarContrasena().getPassword());
+            String names = frmRegisterStudent.getTxtNames().getText();
+            String surNames = frmRegisterStudent.getTxtSurnames().getText();
+            String email = frmRegisterStudent.getTxtEmail().getText();
+            Long idCard = Long.valueOf(frmRegisterStudent.getTxtId().getText());
+            String passwordPlain = new String(frmRegisterStudent.getPswPassword().getPassword());
+            String confirmPassword = new String(frmRegisterStudent.getPswConfirmPassword().getPassword());
             LocalDate birthDate = LocalDate.of(
                     Integer.parseInt(frmRegisterStudent.getTxtYear().getText()),
                     Integer.parseInt(frmRegisterStudent.getCmbMonth().getSelectedItem().toString()),
@@ -88,7 +88,7 @@ public class RegisterStudentListener implements ActionListener, MouseListener, K
         if (e.getSource() == frmRegisterStudent.getBtnBackRegister()) {
             frmRegisterStudent.back();
             frmRegisterStudent.close();
-        } else if (e.getSource() == frmRegisterStudent.getBtnRegistrar()) {
+        } else if (e.getSource() == frmRegisterStudent.getBtnRegister()) {
             verifyFields();
         }
     }
@@ -97,8 +97,8 @@ public class RegisterStudentListener implements ActionListener, MouseListener, K
     public void mouseEntered(MouseEvent e) {
         if (e.getSource() == frmRegisterStudent.getBtnBackRegister()) {
             frmRegisterStudent.mouseEvent(frmRegisterStudent.getBtnBackRegister(), Utils.btnEntered);
-        } else if (e.getSource() == frmRegisterStudent.getBtnRegistrar()) {
-            frmRegisterStudent.mouseEvent(frmRegisterStudent.getBtnRegistrar(), Utils.btnEntered);
+        } else if (e.getSource() == frmRegisterStudent.getBtnRegister()) {
+            frmRegisterStudent.mouseEvent(frmRegisterStudent.getBtnRegister(), Utils.btnEntered);
         }
     }
 
@@ -106,8 +106,8 @@ public class RegisterStudentListener implements ActionListener, MouseListener, K
     public void mouseExited(MouseEvent e) {
         if (e.getSource() == frmRegisterStudent.getBtnBackRegister()) {
             frmRegisterStudent.mouseEvent(frmRegisterStudent.getBtnBackRegister(), Utils.btnExited);
-        } else if (e.getSource() == frmRegisterStudent.getBtnRegistrar()) {
-            frmRegisterStudent.mouseEvent(frmRegisterStudent.getBtnRegistrar(), Utils.btnExited);
+        } else if (e.getSource() == frmRegisterStudent.getBtnRegister()) {
+            frmRegisterStudent.mouseEvent(frmRegisterStudent.getBtnRegister(), Utils.btnExited);
         }
     }
 
