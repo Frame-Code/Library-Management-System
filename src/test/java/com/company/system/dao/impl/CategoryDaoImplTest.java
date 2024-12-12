@@ -66,4 +66,5 @@ public class CategoryDaoImplTest {
         category.setDeleted(false);
         System.out.println(categoryDAO.update(category));
     }
+
 }

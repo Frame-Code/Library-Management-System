@@ -80,9 +80,10 @@ public class PublisherDaoImpl implements PublisherDao{
         EntityManager em = getEntityManager();
         String jpql = "SELECT p FROM Publisher p WHERE p.name=:name AND p.deleted=0";
         TypedQuery<Publisher> query = em.createQuery(jpql, Publisher.class);
+        query.setParameter("name", name);
         Publisher publisher;
         try {
-            publisher = query.getResultList();
+            publisher = query.getSingleResult();
             return publisher;
         } catch (NoResultException e) {
             return null;

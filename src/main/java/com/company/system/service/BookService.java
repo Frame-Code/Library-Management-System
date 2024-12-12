@@ -6,6 +6,7 @@ import com.company.system.dao.impl.BookDaoImpl;
 import com.company.system.dao.interfaces.BookDao;
 import com.company.system.model.Book;
 import com.company.system.model.Category;
+import com.company.system.model.Publisher;
 
 public class BookService {
     private BookDao bookDao;
@@ -18,7 +19,12 @@ public class BookService {
         return bookDao.findByCategory(category);
     }
 
+    public List<Book> getBooksByPublisher(Publisher publisher) {
+        return bookDao.findByPublisher(publisher);
+    }
+
     public Book getBookByISBN(String isbn) {
         return bookDao.findByISBN(isbn);
     }
+
 }
