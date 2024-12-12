@@ -21,7 +21,7 @@ public class ButtonDesignListener extends MouseAdapter {
         this.buttonDesign = buttonDesign;
 
         // Asegurarse de que el fondo es visible
-        buttonDesign.setOpaque(true);
+        buttonDesign.setOpaque(false);
     }
 
     @Override
