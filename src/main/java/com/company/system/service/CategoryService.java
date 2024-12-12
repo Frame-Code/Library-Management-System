@@ -7,11 +7,11 @@ package com.company.system.service;
 import java.util.List;
 
 import com.company.system.dao.impl.CategoryDaoImpl;
-import com.company.system.dao.interfaces.CategoryDAO;
+import com.company.system.dao.interfaces.CategoryDao;
 import com.company.system.model.Category;
 
 public class CategoryService {
-    private CategoryDAO categoryDAO;
+    private CategoryDao categoryDAO;
 
     public CategoryService() {
         categoryDAO = new CategoryDaoImpl();

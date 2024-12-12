@@ -32,6 +32,7 @@ public class UserDaoImpl implements UserDao {
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+    
 
     //Este metodo crea un nuevo registro en la base de datos a la tabla User
     @Override
@@ -61,19 +62,34 @@ public class UserDaoImpl implements UserDao {
 
     //Este metodo trae todos los registros de la base de datos de la tabla User
     @Override
-    public List<User> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+    public List<User> findAll() {        
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT u FROM User u WHERE u.deleted=0";
+        TypedQuery<User> query = em.createQuery(jpql, User.class);
+        List<User> users;
+        try {
+            users = query.getResultList();
+            return users;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
     }
 
     //Este metodo trae un User de la base de datos en base a su id
     @Override
     public User findById(Long id) {
         EntityManager em = getEntityManager();
+        String jpql = "SELECT u FROM User u WHERE u.idUser = :id AND u.deleted=0";
+        TypedQuery<User> query = em.createQuery(jpql, User.class);
+        query.setParameter("id", id);
+        User user;
         try {
-            return em.find(User.class, id); //Cambiar a query
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Error: no se puede crear ");
+            user = query.getSingleResult();
+            return user;
+        } catch (NoResultException e) {
+            return null;
         } finally {
             em.close();
         }
@@ -82,14 +98,34 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean update(User object) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.merge(object);
+            em.getTransaction().commit();
+            return true;
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            return false;
+        } catch (EntityExistsException e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            return false;
+        } catch (TransactionRequiredException e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            return false;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public boolean deleteByID(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteByID'");
+        User user = findById(id); 
+        user.setDeleted(true);
+        return update(user);
     }
 
     @Override
@@ -122,6 +158,46 @@ public class UserDaoImpl implements UserDao {
             return null;
         }
 
+    }
+
+    @Override
+    public boolean deleteByIdCard(Long idCardUser) {
+        User user = findByIdCard(idCardUser); 
+        user.setDeleted(true);
+        return update(user);
+    }
+
+    @Override
+    public List<User> findAllIncludeDeleted() {
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT u FROM User u";
+        TypedQuery<User> query = em.createQuery(jpql, User.class);
+        List<User> users;
+        try {
+            users = query.getResultList();
+            return users;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public User findByIdIncludeDeleted(Long id) {
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT u FROM User u WHERE u.idUser = :id";
+        TypedQuery<User> query = em.createQuery(jpql, User.class);
+        query.setParameter("id", id);
+        User user;
+        try {
+            user = query.getSingleResult();
+            return user;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
     }
 
 }
