@@ -36,20 +36,21 @@ public class RegisterStudentListener implements ActionListener, MouseListener, K
 
     private void verifyFields() {
         try {
+            // Obtener valores del formulario
             String names = frmRegisterStudent.getTxtNames().getText();
             String surNames = frmRegisterStudent.getTxtSurnames().getText();
             String email = frmRegisterStudent.getTxtEmail().getText();
-            Long idCard = Long.valueOf(frmRegisterStudent.getTxtId().getText());
+            String idCardText = frmRegisterStudent.getTxtId().getText();
             String passwordPlain = new String(frmRegisterStudent.getPswPassword().getPassword());
             String confirmPassword = new String(frmRegisterStudent.getPswConfirmPassword().getPassword());
-            LocalDate birthDate = LocalDate.of(
-                    Integer.parseInt(frmRegisterStudent.getTxtYear().getText()),
-                    Integer.parseInt(frmRegisterStudent.getCmbMonth().getSelectedItem().toString()),
-                    Integer.parseInt(frmRegisterStudent.getTxtDay().getText())
-            );
+            String yearText = frmRegisterStudent.getTxtYear().getText();
+            String monthText = frmRegisterStudent.getCmbMonth().getSelectedItem().toString();
+            String dayText = frmRegisterStudent.getTxtDay().getText();
 
             // Validación de campos vacíos
-            if (names.isEmpty() || surNames.isEmpty() || email.isEmpty() || passwordPlain.isEmpty() || confirmPassword.isEmpty()) {
+            if (names.isEmpty() || surNames.isEmpty() || email.isEmpty() || idCardText.isEmpty() ||
+                passwordPlain.isEmpty() || confirmPassword.isEmpty() || 
+                yearText.isEmpty() || monthText.isEmpty() || dayText.isEmpty()) {
                 frmRegisterStudent.errorMessage(frmRegisterStudent.errorEmptyFields);
                 return;
             }
@@ -60,28 +61,40 @@ public class RegisterStudentListener implements ActionListener, MouseListener, K
                 return;
             }
 
-            // Verificar disponibilidad del correo e identificación
-            if (!userService.isAvailableEmail(email)) {
-                frmRegisterStudent.errorMessage("El correo ya está en uso.");
-                return;
-            }
-            if (!userService.isAvailableIdCard(idCard)) {
-                frmRegisterStudent.errorMessage("La identificación ya está en uso.");
-                return;
+            // Validar y convertir datos numéricos
+            try {
+                Long idCard = Long.valueOf(idCardText);
+                int year = Integer.parseInt(yearText);
+                int month = Integer.parseInt(monthText);
+                int day = Integer.parseInt(dayText);
+                LocalDate birthDate = LocalDate.of(year, month, day);
+
+                // Verificar disponibilidad del correo e identificación
+                if (!userService.isAvailableEmail(email)) {
+                    frmRegisterStudent.errorMessage("El correo ya está en uso.");
+                    return;
+                }
+                if (!userService.isAvailableIdCard(idCard)) {
+                    frmRegisterStudent.errorMessage("La identificación ya está en uso.");
+                    return;
+                }
+
+                // Registro del estudiante
+                boolean registered = userService.RegisterStudent(names, surNames, email, idCard, birthDate, passwordPlain);
+                if (registered) {
+                    frmRegisterStudent.successMessage("Estudiante registrado exitosamente.");
+                } else {
+                    frmRegisterStudent.errorMessage("Ocurrió un error al registrar al estudiante.");
+                }
+            } catch (NumberFormatException ex) {
+                frmRegisterStudent.errorMessage("Por favor ingresa valores numéricos válidos para la identificación y la fecha.");
             }
 
-            // Registro del estudiante
-            boolean registered = userService.RegisterStudent(names, surNames, email, idCard, birthDate, passwordPlain);
-            if (registered) {
-                frmRegisterStudent.successMessage("Estudiante registrado exitosamente.");
-            } else {
-                frmRegisterStudent.errorMessage("Ocurrió un error al registrar al estudiante.");
-            }
-            
         } catch (Exception ex) {
             frmRegisterStudent.errorMessage("Ocurrió un error inesperado: " + ex.getMessage());
         }
     }
+        
 
     @Override
     public void actionPerformed(ActionEvent e) {
