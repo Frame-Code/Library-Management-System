@@ -15,6 +15,9 @@ public class LibrarianWindow extends javax.swing.JFrame {
      */
     public LibrarianWindow() {
         initComponents();
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     /**
