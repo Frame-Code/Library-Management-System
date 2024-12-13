@@ -16,15 +16,21 @@ import javax.persistence.TypedQuery;
 import com.company.system.dao.interfaces.LoanDao;
 import com.company.system.model.Loan;
 import com.company.system.model.User;
+import javax.persistence.NoResultException;
+import javax.persistence.RollbackException;
 
-public class LoanDaoImpl implements LoanDao{
+/**
+ * @author artist-code (Daniel Mora Cantillo)
+ */
+public class LoanDaoImpl implements LoanDao {
+
     private final EntityManagerFactory emf;
 
     public LoanDaoImpl() {
         this.emf = Persistence.createEntityManagerFactory("libraryPU");
     }
 
-    public EntityManager getEntityManager() {
+    private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
@@ -47,38 +53,91 @@ public class LoanDaoImpl implements LoanDao{
 
     @Override
     public List<Loan> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT l FROM Loan l WHERE l.deleted=0";
+        TypedQuery<Loan> query = em.createQuery(jpql, Loan.class);
+        List<Loan> loans;
+        try {
+            loans = query.getResultList();
+            return loans;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public List<Loan> findAllIncludeDeleted() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAllIncludeDeleted'");
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT l FROM Loan l";
+        TypedQuery<Loan> query = em.createQuery(jpql, Loan.class);
+        List<Loan> loans;
+        try {
+            loans = query.getResultList();
+            return loans;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public Loan findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT l FROM Loan l WHERE l.idLoan = :id AND l.deleted = 0";
+        TypedQuery<Loan> query = em.createQuery(jpql, Loan.class);
+        query.setParameter("id", id);
+        Loan loan;
+        try {
+            loan = query.getSingleResult();
+            return loan;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public Loan findByIdIncludeDeleted(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByIdIncludeDeleted'");
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT l FROM Loan l WHERE l.idLoan = :id";
+        TypedQuery<Loan> query = em.createQuery(jpql, Loan.class);
+        query.setParameter("id", id);
+        Loan loan;
+        try {
+            loan = query.getSingleResult();
+            return loan;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public boolean update(Loan object) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.merge(object);
+            em.getTransaction().commit();
+            return true;
+        } catch (IllegalStateException | TransactionRequiredException | IllegalArgumentException | RollbackException e) {
+            em.getTransaction().rollback();
+            return false;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public boolean deleteByID(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteByID'");
+        Loan loan = findById(id);
+        loan.setDeleted(true);
+        return update(loan);
     }
 
     @Override

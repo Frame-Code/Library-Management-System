@@ -9,10 +9,16 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import com.company.system.dao.interfaces.PublisherDao;
-import com.company.system.model.Category;
 import com.company.system.model.Publisher;
+import javax.persistence.EntityExistsException;
+import javax.persistence.RollbackException;
+import javax.persistence.TransactionRequiredException;
 
-public class PublisherDaoImpl implements PublisherDao{
+/**
+ * @author artist-code (Daniel Mora Cantillo)
+ */
+public class PublisherDaoImpl implements PublisherDao {
+
     private final EntityManagerFactory emf;
 
     public PublisherDaoImpl() {
@@ -25,8 +31,19 @@ public class PublisherDaoImpl implements PublisherDao{
 
     @Override
     public boolean create(Publisher object) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(object);
+            em.getTransaction().commit();
+            return true;
+        } catch (IllegalStateException | EntityExistsException | TransactionRequiredException e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            return false;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
@@ -47,32 +64,76 @@ public class PublisherDaoImpl implements PublisherDao{
 
     @Override
     public List<Publisher> findAllIncludeDeleted() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAllIncludeDeleted'");
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT p FROM Publisher p";
+        TypedQuery<Publisher> query = em.createQuery(jpql, Publisher.class);
+        List<Publisher> publishers;
+        try {
+            publishers = query.getResultList();
+            return publishers;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public Publisher findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT p FROM Publisher p WHERE p.idPublisher = :id AND p.deleted = 0";
+        TypedQuery<Publisher> query = em.createQuery(jpql, Publisher.class);
+        query.setParameter("id", id);
+        Publisher publisher;
+        try {
+            publisher = query.getSingleResult();
+            return publisher;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public Publisher findByIdIncludeDeleted(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByIdIncludeDeleted'");
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT p FROM Publisher p WHERE p.idPublisher = :id";
+        TypedQuery<Publisher> query = em.createQuery(jpql, Publisher.class);
+        query.setParameter("id", id);
+        Publisher publisher;
+        try {
+            publisher = query.getSingleResult();
+            return publisher;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+
     }
 
     @Override
     public boolean update(Publisher object) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.merge(object);
+            em.getTransaction().commit();
+            return true;
+        } catch (IllegalStateException | TransactionRequiredException | IllegalArgumentException | RollbackException e) {
+            em.getTransaction().rollback();
+            return false;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public boolean deleteByID(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteByID'");
+        Publisher publisher = findById(id);
+        publisher.setDeleted(true);
+        return update(publisher);
     }
 
     @Override
