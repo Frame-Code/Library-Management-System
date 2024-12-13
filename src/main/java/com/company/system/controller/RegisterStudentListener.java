@@ -65,7 +65,7 @@ public class RegisterStudentListener implements ActionListener, MouseListener, K
             try {
                 Long idCard = Long.valueOf(idCardText);
                 int year = Integer.parseInt(yearText);
-                int month = Integer.parseInt(monthText);
+                int month = convertNumber(monthText);
                 int day = Integer.parseInt(dayText);
                 LocalDate birthDate = LocalDate.of(year, month, day);
 
@@ -94,7 +94,51 @@ public class RegisterStudentListener implements ActionListener, MouseListener, K
             frmRegisterStudent.errorMessage("Ocurrió un error inesperado: " + ex.getMessage());
         }
     }
-        
+     public int convertNumber(String mes) {
+    int numberMonth;
+    switch (mes.toLowerCase()) {
+        case "enero":
+            numberMonth = 1;
+            break;
+        case "febrero":
+            numberMonth = 2;
+            break;
+        case "marzo":
+            numberMonth = 3;
+            break;
+        case "abril":
+            numberMonth = 4;
+            break;
+        case "mayo":
+            numberMonth = 5;
+            break;
+        case "junio":
+            numberMonth = 6;
+            break;
+        case "julio":
+            numberMonth = 7;
+            break;
+        case "agosto":
+            numberMonth = 8;
+            break;
+        case "septiembre":
+            numberMonth = 9;
+            break;
+        case "octubre":
+            numberMonth = 10;
+            break;
+        case "noviembre":
+            numberMonth = 11;
+            break;
+        case "diciembre":
+            numberMonth = 12;
+            break;
+        default:
+            throw new IllegalArgumentException("Mes inválido: " + mes);
+    }
+    return numberMonth;
+}
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
