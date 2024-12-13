@@ -24,7 +24,7 @@ public class LoginLibrarian extends javax.swing.JFrame {
 
     public LoginLibrarian() {
         initComponents();
-        setResizable(false);
+        setResizable(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }

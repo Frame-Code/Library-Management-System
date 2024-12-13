@@ -25,7 +25,7 @@ public class RegisterStudent extends javax.swing.JFrame {
     
     public RegisterStudent() {
         initComponents();
-        setResizable(false);
+        setResizable(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }

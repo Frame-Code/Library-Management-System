@@ -19,7 +19,7 @@ public class InitialWindow extends javax.swing.JFrame {
     
     public InitialWindow() {
         initComponents();
-        setResizable(false);
+        setResizable(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }

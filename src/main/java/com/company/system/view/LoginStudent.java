@@ -28,7 +28,7 @@ public class LoginStudent extends javax.swing.JFrame {
 
     public LoginStudent() {
         initComponents();
-        setResizable(false);
+        setResizable(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
