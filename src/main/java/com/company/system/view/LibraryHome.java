@@ -6,6 +6,7 @@ import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.Color;
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -62,6 +63,7 @@ public class LibraryHome extends javax.swing.JFrame {
         pnlShutdown = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 1);
         lblCategory4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        lblSolicitar = new javax.swing.JLabel();
         desktopPane = new javax.swing.JDesktopPane();
         pnlWelcome1 = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         txtIdUser = new javax.swing.JTextField();
@@ -270,6 +272,14 @@ public class LibraryHome extends javax.swing.JFrame {
                     .addComponent(lblCategory4))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
+	
+	pnlNotification.setBackground(new java.awt.Color(255, 255, 255));
+        pnlNotification.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        lblSolicitar.setBackground(new java.awt.Color(255, 255, 255));
+        lblSolicitar.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
+        lblSolicitar.setForeground(new java.awt.Color(0, 0, 0));
+        lblSolicitar.setText("Solicitar prorroga");
 
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
@@ -286,6 +296,10 @@ public class LibraryHome extends javax.swing.JFrame {
                     .addComponent(pnlShutdown, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlEditorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(lblSolicitar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlBackgroundLayout.createSequentialGroup()
                     .addGap(34, 34, 34)
@@ -305,9 +319,11 @@ public class LibraryHome extends javax.swing.JFrame {
                 .addComponent(pnlEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(pnlAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addGap(31, 31, 31)
                 .addComponent(pnlNotification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
+                .addComponent(lblSolicitar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(pnlShutdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
             .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,9 +450,14 @@ public class LibraryHome extends javax.swing.JFrame {
         this.desktopPane.removeAll();
     }
     
-    public void changeColorPanel(Color color, JPanel pnl) {
-        pnl.setBackground(color);
+    public void changeColorPanel(Color color, Component component) {
+    if (component instanceof JPanel) {
+        ((JPanel) component).setBackground(color);
+    } else if (component instanceof JLabel) {
+        ((JLabel) component).setOpaque(true);
+        ((JLabel) component).setBackground(color);
     }
+}
 
     //Este metodo cierra esta ventana
     public void close() {
@@ -488,6 +509,10 @@ public class LibraryHome extends javax.swing.JFrame {
     public JLabel getLblHistorialDePrestamos() {
         return lblHistorialDePrestamos;
     }
+
+    public JLabel getLblSolicitar() {
+        return lblSolicitar;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -508,6 +533,7 @@ public class LibraryHome extends javax.swing.JFrame {
     private javax.swing.JLabel lblCategory3;
     private javax.swing.JLabel lblCategory4;
     private javax.swing.JLabel lblHistorialDePrestamos;
+    private javax.swing.JLabel lblSolicitar;
     private javax.swing.JLabel lblUser;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JPanel pnlAutor;
