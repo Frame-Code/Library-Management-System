@@ -56,6 +56,12 @@ public class CategoryBooks extends JInternalFrame {
         books.forEach(book -> {
             ButtonDesign label = new ButtonDesign();
             label.getLblTitle().setText("Titulo: " + book.getTitle());
+            String authorsString = "Autores: ";
+            book.getAuthors().forEach(author -> {
+                authorsString.concat(author.getNames() + author.getSurNames());
+            });
+            label.getLblAuthors().setText(authorsString);
+            label.getLblPublihser().setText("Editorial: " + book.getPublisher().getName());
             this.panel.add(label);
         });
     }
