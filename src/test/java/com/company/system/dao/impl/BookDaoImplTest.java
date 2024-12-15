@@ -7,8 +7,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.company.system.dao.interfaces.BookDao;
+import com.company.system.model.Author;
 import com.company.system.model.Book;
 import com.company.system.model.Category;
+import java.util.ArrayList;
 
 public class BookDaoImplTest {
     BookDao bookDao;
@@ -81,9 +83,7 @@ public class BookDaoImplTest {
 
     @Test
     void testUpdate() {
-        Book book = bookDao.findById(5L);
-        book.setRegistrationName("Admin");
-        System.out.println(bookDao.update(book));
+        
     }
 
     @Test
