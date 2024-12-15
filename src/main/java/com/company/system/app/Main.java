@@ -4,6 +4,8 @@ import com.company.system.controller.InitialWindowListener;
 import com.company.system.view.InitialWindow;
 import com.company.system.view.LibraryHome;
 
+import com.company.system.controller.InfoLibroWindowListener;
+import com.company.system.view.InfoLibroWindow;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,5 +14,8 @@ public class Main {
         //new InitialWindowListener(frmInitial);
         LibraryHome frm = new LibraryHome();
         frm.setVisible(true);
+        InfoLibroWindow frmLibroWindow = new InfoLibroWindow();
+        frmLibroWindow.setVisible(true);
+        new InfoLibroWindowListener(frmLibroWindow);
     }
 }
