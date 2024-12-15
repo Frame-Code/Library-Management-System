@@ -8,6 +8,7 @@ import com.company.system.model.Author;
 import com.company.system.model.Book;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.List;
 import javax.swing.JInternalFrame;
@@ -44,6 +45,7 @@ public class CategoryBooks extends JInternalFrame {
         books.forEach(book -> {
             ButtonDesign label = new ButtonDesign();
             label.getLblTitle().setText("Titulo: " + book.getTitle());
+            label.getLblTitle().setFont(new Font("DejaVu Sans Condensed", 1, 14));
             String authorsString = "Autores: ";
             for (Author author : book.getAuthors()) {
                 authorsString += author.getSurNames() + ", ";

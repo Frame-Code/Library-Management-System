@@ -28,7 +28,7 @@ public class LibraryHome extends javax.swing.JFrame {
     
     public LibraryHome() {
         initComponents();
-        setResizable(false);
+        setResizable(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         new LibraryHomeListener(this);

@@ -11,6 +11,8 @@ import com.company.system.view.LibraryHome;
 import com.company.system.view.components.Utils;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
@@ -21,12 +23,13 @@ import javax.swing.JPopupMenu;
  *
  * Created by Frame-Code, September 2024
  */
-public class LibraryHomeListener implements ActionListener, MouseListener {
+public class LibraryHomeListener implements ActionListener, MouseListener, ComponentListener {
 
     private final LibraryHome frmLibraryHome;
     private final BookService bookService;
     private final CategoryService categoryService;
     private final PublisherService publisherService;
+    private CategoryBooks categoryBooksInternalFrm;
 
     public LibraryHomeListener(LibraryHome frmLibraryHome) {
         this.frmLibraryHome = frmLibraryHome;
@@ -66,7 +69,8 @@ public class LibraryHomeListener implements ActionListener, MouseListener {
                 frmLibraryHome.clearDesltopPane();
 
                 // menu.getText() es para acceder al nombre del menu seleccionado
-                CategoryBooks categoryBooksInternalFrm = new CategoryBooks(menu.getText());
+                categoryBooksInternalFrm = new CategoryBooks(menu.getText());
+                categoryBooksInternalFrm.setSize(frmLibraryHome.getDesktopPane().getSize());
 
                 // Obtener una instancia de la clase Categoria a traves de su nombre
                 Category categorySelected = categoryService.getCategoryByName(menu.getText());
@@ -165,10 +169,27 @@ public class LibraryHomeListener implements ActionListener, MouseListener {
     }
 
     @Override
+    public void componentResized(ComponentEvent e) {
+        categoryBooksInternalFrm.setSize(frmLibraryHome.getDesktopPane().getSize());
+    }
+
+    @Override
     public void mousePressed(MouseEvent e) {
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void componentMoved(ComponentEvent e) {
+    }
+
+    @Override
+    public void componentShown(ComponentEvent e) {
+    }
+
+    @Override
+    public void componentHidden(ComponentEvent e) {
     }
 }
