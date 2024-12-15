@@ -52,6 +52,9 @@ public class CategoryBooks extends JInternalFrame {
             }
             label.getLblAuthors().setText(authorsString);
             label.getLblPublihser().setText("Editorial: " + book.getPublisher().getName());
+            label.getLblIsbn().setText("Codigo: " + book.getIsbn());
+            label.setIsbnBook(book.getIsbn());
+            label.getLblIsbn().setFont(new Font("Dialog", 0, 10));
             this.panel.add(label);
         });
     }

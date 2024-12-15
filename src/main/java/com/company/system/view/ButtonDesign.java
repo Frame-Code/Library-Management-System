@@ -1,30 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package com.company.system.view;
 
 import com.company.system.controller.ButtonDesignListener;
+import com.company.system.controller.InfoLibroWindowListener;
+import com.company.system.model.Book;
 import com.company.system.view.components.RoundedPanelWithShadow;
-import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.RenderingHints;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-
-
 
 /**
  *
@@ -34,6 +22,8 @@ public class ButtonDesign extends RoundedPanelWithShadow {
 
     private JLabel lblIcon;
     private JLabel lblTitle;
+    private JLabel lblIsbn;
+    private String isbnBook;
     private JLabel lblAuthors;
     private JLabel lblPublihser;
     private JPanel labelPanel;
@@ -53,14 +43,18 @@ public class ButtonDesign extends RoundedPanelWithShadow {
         ImageIcon icon = new ImageIcon(ButtonDesign.class.getResource(imagePath));
         lblIcon = new JLabel(icon);
         lblTitle = new JLabel("Title: ");
+        lblIsbn = new JLabel("Codigo: ");
+        isbnBook = "";
         lblAuthors = new JLabel("Autores: ");
         lblPublihser = new JLabel("Editorial: ");
         lblIcon.setHorizontalAlignment(JLabel.CENTER);
         lblTitle.setHorizontalAlignment(JLabel.CENTER);
+        lblIsbn.setHorizontalAlignment(JLabel.CENTER);
         lblAuthors.setHorizontalAlignment(JLabel.CENTER);
         lblPublihser.setHorizontalAlignment(JLabel.CENTER);
         lblIcon.setOpaque(false);
         lblTitle.setOpaque(false);
+        lblIsbn.setOpaque(false);
         lblAuthors.setOpaque(false);
         lblPublihser.setOpaque(false);
 
@@ -73,6 +67,7 @@ public class ButtonDesign extends RoundedPanelWithShadow {
         labelPanel.add(lblTitle);
         labelPanel.add(lblAuthors);
         labelPanel.add(lblPublihser);
+        labelPanel.add(lblIsbn);
 
         add(labelPanel, BorderLayout.CENTER);
         
@@ -102,5 +97,27 @@ public class ButtonDesign extends RoundedPanelWithShadow {
 
     public void setLblPublihser(JLabel lblPublihser) {
         this.lblPublihser = lblPublihser;
+    }
+
+    public JLabel getLblIsbn() {
+        return lblIsbn;
+    }
+
+    public void setLblIsbn(JLabel lblIsbn) {
+        this.lblIsbn = lblIsbn;
+    }
+
+    public String getIsbnBook() {
+        return isbnBook;
+    }
+
+    public void setIsbnBook(String isbnBook) {
+        this.isbnBook = isbnBook;
+    }
+
+    public void openInfoBook(Book book) {
+        InfoLibroWindow frmLibroWindow = new InfoLibroWindow(book);
+        frmLibroWindow.setVisible(true);
+        new InfoLibroWindowListener(frmLibroWindow);
     }
 }

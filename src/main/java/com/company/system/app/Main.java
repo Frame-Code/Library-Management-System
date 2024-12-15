@@ -14,8 +14,5 @@ public class Main {
         //new InitialWindowListener(frmInitial);
         LibraryHome frm = new LibraryHome();
         frm.setVisible(true);
-        InfoLibroWindow frmLibroWindow = new InfoLibroWindow();
-        frmLibroWindow.setVisible(true);
-        new InfoLibroWindowListener(frmLibroWindow);
     }
 }

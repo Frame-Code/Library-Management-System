@@ -1,5 +1,7 @@
 package com.company.system.view;
 
+import com.company.system.model.Author;
+import com.company.system.model.Book;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
@@ -9,8 +11,11 @@ import javax.swing.JButton;
 
 
 public class InfoLibroWindow extends javax.swing.JFrame {
-//CONFIGURACIONES BASICAS PARA LA VENTANA EN LA APLICAION DE GESTION BIBLIOTECARIA
-    public InfoLibroWindow() {
+    private Book book;
+
+    //CONFIGURACIONES BASICAS PARA LA VENTANA EN LA APLICAION DE GESTION BIBLIOTECARIA
+    public InfoLibroWindow(Book book) {
+        this.book = book;
         initComponents();
         setResizable(true);
         setLocationRelativeTo(null);
@@ -74,21 +79,20 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         lblBookName.setBackground(new java.awt.Color(255, 255, 255));
         lblBookName.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
         lblBookName.setForeground(new java.awt.Color(255, 255, 255));
-        lblBookName.setText("LIBRO \"X\"");
+        lblBookName.setText(book.getTitle());
 
         javax.swing.GroupLayout pnlWelcomeLayout = new javax.swing.GroupLayout(pnlWelcome);
         pnlWelcome.setLayout(pnlWelcomeLayout);
         pnlWelcomeLayout.setHorizontalGroup(
             pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlWelcomeLayout.createSequentialGroup()
-                .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlWelcomeLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(lblSelectTypeAccount))
-                    .addGroup(pnlWelcomeLayout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(lblBookName)))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addComponent(lblSelectTypeAccount)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(lblBookName, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnlWelcomeLayout.setVerticalGroup(
             pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,9 +107,18 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Autor:");
 
-        textfielAuthor.setEnabled(false);
+        textfielAuthor.setEditable(false);
+        textfielAuthor.setForeground(new java.awt.Color(0, 0, 0));
+        String authors = "";
+        for(Author author : book.getAuthors()) {
+            authors += author.getSurNames() + ", ";
+        }
 
-        textfieldDate.setEnabled(false);
+        textfielAuthor.setText(authors);
+
+        textfieldDate.setEditable(false);
+        textfieldDate.setForeground(new java.awt.Color(0, 0, 0));
+        textfieldDate.setText(book.getYearPublished().toString());
 
         jLabel9.setText("IMAGEN DEL LIBRO xd");
 
@@ -115,21 +128,29 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("ISBN:");
 
-        textfielISBN.setEnabled(false);
+        textfielISBN.setEditable(false);
+        textfielISBN.setForeground(new java.awt.Color(0, 0, 0));
+        textfielISBN.setSelectionColor(new java.awt.Color(0, 0, 0));
+        textfielISBN.setText(book.getIsbn());
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Fecha publicacion");
 
-        textfielCategory.setEnabled(false);
+        textfielCategory.setEditable(false);
+        textfielCategory.setForeground(new java.awt.Color(0, 0, 0));
+        textfielCategory.setText(book.getCategory().getName());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Descripcion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
+        txtAreaDescription.setEditable(false);
         txtAreaDescription.setColumns(20);
+        txtAreaDescription.setForeground(new java.awt.Color(0, 0, 0));
+        txtAreaDescription.setLineWrap(true);
         txtAreaDescription.setRows(5);
-        txtAreaDescription.setEnabled(false);
         jScrollPane1.setViewportView(txtAreaDescription);
+        txtAreaDescription.setText(book.getDescription());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -150,11 +171,15 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Editorial:");
 
-        textfieldPublisher.setEnabled(false);
+        textfieldPublisher.setEditable(false);
+        textfieldPublisher.setForeground(new java.awt.Color(0, 0, 0));
+        textfieldPublisher.setText(book.getPublisher().getName());
 
         lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/last-day-of-the-funny-mustache.jpg"))); // NOI18N
 
-        textfieldfStock.setEnabled(false);
+        textfieldfStock.setEditable(false);
+        textfieldfStock.setForeground(new java.awt.Color(0, 0, 0));
+        textfieldfStock.setText(String.valueOf(book.getStock()));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Categoría:");
@@ -316,9 +341,7 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(contentPane, javax.swing.GroupLayout.PREFERRED_SIZE, 495, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(contentPane, javax.swing.GroupLayout.PREFERRED_SIZE, 495, Short.MAX_VALUE)
         );
 
         pack();
