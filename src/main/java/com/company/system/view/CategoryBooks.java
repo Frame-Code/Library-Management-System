@@ -4,21 +4,18 @@
  */
 package com.company.system.view;
 
+import com.company.system.model.Author;
 import com.company.system.model.Book;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class CategoryBooks extends JInternalFrame {
     private JPanel panel;
-    
     
     public CategoryBooks(String categoryName) {
         super(categoryName, true, true, true, true);
@@ -42,24 +39,15 @@ public class CategoryBooks extends JInternalFrame {
 
         setVisible(true);
     }
-
-    private void addLabels(String categoryName, JPanel panel) {
-        for (int i = 1; i <= 16; i++) {
-            // Reemplazar JButton con ButtonDesign (un JPanel que contiene JLabel)
-            ButtonDesign label = new ButtonDesign();
-            //label.setText(categoryName + " Libro " + i); // Establecer el texto del JLabel dentro de ButtonDesign
-            panel.add(label);
-        }
-    }
     
     public void addBooks(List<Book> books) {
         books.forEach(book -> {
             ButtonDesign label = new ButtonDesign();
             label.getLblTitle().setText("Titulo: " + book.getTitle());
             String authorsString = "Autores: ";
-            book.getAuthors().forEach(author -> {
-                authorsString.concat(author.getNames() + author.getSurNames());
-            });
+            for (Author author : book.getAuthors()) {
+                authorsString += author.getSurNames() + ", ";
+            }
             label.getLblAuthors().setText(authorsString);
             label.getLblPublihser().setText("Editorial: " + book.getPublisher().getName());
             this.panel.add(label);

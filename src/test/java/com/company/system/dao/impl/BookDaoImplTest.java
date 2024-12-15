@@ -81,7 +81,9 @@ public class BookDaoImplTest {
 
     @Test
     void testUpdate() {
-
+        Book book = bookDao.findById(5L);
+        book.setRegistrationName("Admin");
+        System.out.println(bookDao.update(book));
     }
 
     @Test
