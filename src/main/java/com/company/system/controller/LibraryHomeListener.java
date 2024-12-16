@@ -21,7 +21,7 @@ import javax.swing.JPopupMenu;
 
 /**
  *
- * Created by Frame-Code, September 2024
+ * @author Ronald Seminario Santana
  */
 public class LibraryHomeListener implements ActionListener, MouseListener, ComponentListener {
 
@@ -69,7 +69,7 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
                 frmLibraryHome.clearDesltopPane();
 
                 // menu.getText() es para acceder al nombre del menu seleccionado
-                categoryBooksInternalFrm = new CategoryBooks(menu.getText());
+                categoryBooksInternalFrm = new CategoryBooks(menu.getText(), bookService);
                 categoryBooksInternalFrm.setSize(frmLibraryHome.getDesktopPane().getSize());
 
                 // Obtener una instancia de la clase Categoria a traves de su nombre

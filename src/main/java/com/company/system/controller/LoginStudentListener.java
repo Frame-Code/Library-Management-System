@@ -19,10 +19,9 @@ public class LoginStudentListener implements ActionListener, MouseListener, KeyL
     private final LoginStudent frmLogin;
     private final UserService userService;
     
-    
-    public LoginStudentListener(LoginStudent frmLogin){
+    public LoginStudentListener(LoginStudent frmLogin, UserService userService){
         this.frmLogin = frmLogin;
-        this.userService = new UserService();
+        this.userService = userService;
         addListeners();
     }
     
@@ -69,11 +68,11 @@ public class LoginStudentListener implements ActionListener, MouseListener, KeyL
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == frmLogin.getBtnBack()) {
-            frmLogin.back();
+            frmLogin.back(userService);
         }else if (e.getSource() == frmLogin.getBtnLogin()){
             verifyFields();
         }else if (e.getSource() == frmLogin.getBtnRegister()){
-            frmLogin.openRegisterWindow();
+            frmLogin.openRegisterWindow(userService);
             frmLogin.close();
         }
     }

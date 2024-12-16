@@ -1,6 +1,7 @@
 package com.company.system.view;
 
 import com.company.system.controller.LoginStudentListener;
+import com.company.system.service.UserService;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
@@ -489,10 +490,10 @@ public class RegisterStudent extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, text);
     }
     
-     public void back() {
+     public void back(UserService userService) {
         LoginStudent frmLoginStudent = new LoginStudent();
         frmLoginStudent.setVisible(true);
-        new LoginStudentListener(frmLoginStudent);
+        new LoginStudentListener(frmLoginStudent, userService);
     }
      
     public void close() {

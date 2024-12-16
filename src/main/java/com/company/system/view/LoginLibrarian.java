@@ -1,6 +1,7 @@
 package com.company.system.view;
 
 import com.company.system.controller.InitialWindowListener;
+import com.company.system.service.UserService;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
@@ -15,8 +16,6 @@ import javax.swing.JTextField;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class LoginLibrarian extends javax.swing.JFrame {
-    
-    private InitialWindow frmLoginLibrarian;
     private InitialWindow frmInitial;
     public final String errorFormatId = "Error: Escribe correctamente el numero de cedula";
     public final String errorEmptyFields = "Error: no pueden haber campos vacíos";
@@ -232,10 +231,10 @@ public class LoginLibrarian extends javax.swing.JFrame {
     }
     
     //Este metodo cierra esta ventana y abre la ventana "InitialWindow"
-    public void back() {
+    public void back(UserService userService) {
         frmInitial = new InitialWindow();
         frmInitial.setVisible(true);
-        new InitialWindowListener(frmInitial);
+        new InitialWindowListener(frmInitial, userService);
         this.dispose();
     }
 

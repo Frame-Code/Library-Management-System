@@ -2,6 +2,7 @@ package com.company.system.view;
 
 import com.company.system.controller.LoginLibrarianListener;
 import com.company.system.controller.LoginStudentListener;
+import com.company.system.service.UserService;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
@@ -16,6 +17,7 @@ import javax.swing.JButton;
 public class InitialWindow extends javax.swing.JFrame {
     private LoginStudent frmLoginStudent;
     private LoginLibrarian frmLoginLibrarian;
+
     public InitialWindow() {
         initComponents();
         setResizable(true);
@@ -197,16 +199,16 @@ public class InitialWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    public void openLoginStudent() {
+    public void openLoginStudent(UserService userService) {
         frmLoginStudent = new LoginStudent();
         frmLoginStudent.setVisible(true);
-        new LoginStudentListener(frmLoginStudent);
+        new LoginStudentListener(frmLoginStudent, userService);
     }
     
-    public void openLoginLibrarian() {
+    public void openLoginLibrarian(UserService userService) {
         frmLoginLibrarian = new LoginLibrarian();
         frmLoginLibrarian.setVisible(true);
-        new LoginLibrarianListener(frmLoginLibrarian);
+        new LoginLibrarianListener(frmLoginLibrarian, userService);
     }
     
     //Este metodo cierra esta ventana
@@ -219,7 +221,6 @@ public class InitialWindow extends javax.swing.JFrame {
     public void mouseEvent(JButton btn, Color color) {
         btn.setBackground(color);
     }
-    
     
     public JButton getBtnLibrarianLogin() {
         return btnLibrarianLogin;

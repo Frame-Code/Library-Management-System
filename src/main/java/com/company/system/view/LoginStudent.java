@@ -1,7 +1,9 @@
 package com.company.system.view;
 
 import com.company.system.controller.InitialWindowListener;
+import com.company.system.controller.LibraryHomeListener;
 import com.company.system.controller.RegisterStudentListener;
+import com.company.system.service.UserService;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
@@ -17,9 +19,9 @@ import javax.swing.JTextField;
  * @author Joel Pazmiño
  */
 public class LoginStudent extends javax.swing.JFrame {
-
     private InitialWindow frmInicial;
     private RegisterStudent frmRegisterStudent;
+    private LibraryHome frmLibraryHome;
 
     public final String errorFormatId = "Error: Escribe correctamente el numero de cedula";
     public final String errorEmptyFields = "Error: no pueden haber campos vacíos";
@@ -33,17 +35,25 @@ public class LoginStudent extends javax.swing.JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    public void back() {
+    public void back(UserService userService) {
         frmInicial = new InitialWindow();
         frmInicial.setVisible(true);
-        new InitialWindowListener(frmInicial);
+        new InitialWindowListener(frmInicial, userService);
         this.dispose();
     }
 
-    public void openRegisterWindow() {
+    public void openRegisterWindow(UserService userService) {
         frmRegisterStudent = new RegisterStudent();
         frmRegisterStudent.setVisible(true);
-        new RegisterStudentListener(frmRegisterStudent);
+        new RegisterStudentListener(frmRegisterStudent, userService);
+    }
+
+    public void openLibraryHome() { {
+        frmLibraryHome = new LibraryHome();
+        frmLibraryHome.setVisible(true);
+        new LibraryHomeListener(frmLibraryHome);
+    }
+
     }
 
     public void close() {

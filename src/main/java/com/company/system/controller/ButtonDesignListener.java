@@ -6,7 +6,6 @@ import com.company.system.view.ButtonDesign;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  *
@@ -17,8 +16,8 @@ public class ButtonDesignListener extends MouseAdapter {
 
     private final ButtonDesign buttonDesign;
 
-    public ButtonDesignListener(ButtonDesign buttonDesign) {
-        this.bookService = new BookService();
+    public ButtonDesignListener(ButtonDesign buttonDesign, BookService bookService) {
+        this.bookService = bookService;
         this.buttonDesign = buttonDesign;
 
         // Asegurarse de que el fondo es visible

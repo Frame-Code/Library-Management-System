@@ -1,11 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package com.company.system.view;
 
 import com.company.system.model.Author;
 import com.company.system.model.Book;
+import com.company.system.service.BookService;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -17,9 +16,11 @@ import javax.swing.JScrollPane;
 
 public class CategoryBooks extends JInternalFrame {
     private JPanel panel;
-    
-    public CategoryBooks(String categoryName) {
+    private final BookService bookService;
+
+    public CategoryBooks(String categoryName, BookService bookService) {
         super(categoryName, true, true, true, true);
+        this.bookService = bookService;
         initComponents();
         setTitle("Categoría: " + categoryName);
         setSize(800, 597);
@@ -43,7 +44,7 @@ public class CategoryBooks extends JInternalFrame {
     
     public void addBooks(List<Book> books) {
         books.forEach(book -> {
-            ButtonDesign label = new ButtonDesign();
+            ButtonDesign label = new ButtonDesign(bookService);
             label.getLblTitle().setText("Titulo: " + book.getTitle());
             label.getLblTitle().setFont(new Font("DejaVu Sans Condensed", 1, 14));
             String authorsString = "Autores: ";

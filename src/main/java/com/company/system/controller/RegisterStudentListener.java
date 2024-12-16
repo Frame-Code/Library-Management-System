@@ -20,9 +20,9 @@ public class RegisterStudentListener implements ActionListener, MouseListener, K
     private final RegisterStudent frmRegisterStudent;
     private final UserService userService;
 
-    public RegisterStudentListener(RegisterStudent frmRegisterStudent) {
+    public RegisterStudentListener(RegisterStudent frmRegisterStudent, UserService userService) {
         this.frmRegisterStudent = frmRegisterStudent;
-        this.userService = new UserService();
+        this.userService = userService;
         addListener();
     }
 
@@ -118,7 +118,7 @@ public class RegisterStudentListener implements ActionListener, MouseListener, K
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == frmRegisterStudent.getBtnBackRegister()) {
-            frmRegisterStudent.back();
+            frmRegisterStudent.back(userService);
             frmRegisterStudent.close();
         } else if (e.getSource() == frmRegisterStudent.getBtnRegister()) {
             verifyFields();

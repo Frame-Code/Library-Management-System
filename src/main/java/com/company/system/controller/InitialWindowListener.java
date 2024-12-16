@@ -1,5 +1,6 @@
 package com.company.system.controller;
 
+import com.company.system.service.UserService;
 import com.company.system.view.InitialWindow;
 import com.company.system.view.components.Utils;
 
@@ -14,11 +15,12 @@ import java.awt.event.MouseListener;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class InitialWindowListener implements ActionListener, MouseListener {
-
+    private final UserService userService;
     private final InitialWindow frmInitial;
 
-    public InitialWindowListener(InitialWindow frmInitial) {
+    public InitialWindowListener(InitialWindow frmInitial, UserService userService) {
         this.frmInitial = frmInitial;
+        this.userService = userService;
         addListeners();
     }
     
@@ -34,10 +36,10 @@ public class InitialWindowListener implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == frmInitial.getBtnStudentLogin()) {
-            frmInitial.openLoginStudent();
+            frmInitial.openLoginStudent(userService);
             frmInitial.close();
         } else if (e.getSource() == frmInitial.getBtnLibrarianLogin()) {
-            frmInitial.openLoginLibrarian();
+            frmInitial.openLoginLibrarian(userService);
             frmInitial.close();
         }
     }

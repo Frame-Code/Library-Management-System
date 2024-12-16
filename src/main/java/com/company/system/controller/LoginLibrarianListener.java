@@ -22,9 +22,9 @@ public class LoginLibrarianListener implements ActionListener, MouseListener, Ke
     private final LoginLibrarian frmLoginLibrarian;
     private final UserService userService;
 
-    public LoginLibrarianListener(LoginLibrarian frmLoginLibrarian) {
+    public LoginLibrarianListener(LoginLibrarian frmLoginLibrarian, UserService userService) {
         this.frmLoginLibrarian = frmLoginLibrarian;
-        this.userService = new UserService();
+        this.userService = userService;
         addListeners();
     }
 
@@ -83,7 +83,7 @@ public class LoginLibrarianListener implements ActionListener, MouseListener, Ke
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == frmLoginLibrarian.getBtnBack()) {
-            frmLoginLibrarian.back();
+            frmLoginLibrarian.back(userService);
         } else if (e.getSource() == frmLoginLibrarian.getBtnLogin()) {
             verifyFields();
         }

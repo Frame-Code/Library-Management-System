@@ -4,6 +4,7 @@ package com.company.system.view;
 import com.company.system.controller.ButtonDesignListener;
 import com.company.system.controller.InfoLibroWindowListener;
 import com.company.system.model.Book;
+import com.company.system.service.BookService;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -28,12 +29,12 @@ public class ButtonDesign extends RoundedPanelWithShadow {
     private JLabel lblPublihser;
     private JPanel labelPanel;
 
-    public ButtonDesign() {
+    public ButtonDesign(BookService bookService) {
         super(15, Color.black, 1);
         initComponents();
 
         // Añadir el listener al botón
-        addMouseListener(new ButtonDesignListener(this));
+        addMouseListener(new ButtonDesignListener(this, bookService));
     }
 
     private void initComponents() {
