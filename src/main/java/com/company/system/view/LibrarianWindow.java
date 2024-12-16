@@ -40,6 +40,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         lblUser = new javax.swing.JLabel();
         jlabeladm = new javax.swing.JLabel();
+        lblWelcome1 = new javax.swing.JLabel();
         lblBookIcon = new javax.swing.JLabel(new ImageIcon("/src/main/resources/images/Student_icon_Login.png"
         ));
         pnlCategory = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 0);
@@ -91,40 +92,54 @@ public class LibrarianWindow extends javax.swing.JFrame {
         lblUser.setBackground(new java.awt.Color(255, 255, 255));
         lblUser.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         lblUser.setForeground(new java.awt.Color(255, 255, 255));
-        lblUser.setText("Library Manager");
+        lblUser.setText("User");
 
         jlabeladm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pngwing.com.png"))); // NOI18N
+
+        lblWelcome1.setBackground(new java.awt.Color(255, 255, 255));
+        lblWelcome1.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 18)); // NOI18N
+        lblWelcome1.setForeground(new java.awt.Color(255, 255, 255));
+        lblWelcome1.setText("Administrar biblioteca");
 
         javax.swing.GroupLayout pnlWelcomeLayout = new javax.swing.GroupLayout(pnlWelcome);
         pnlWelcome.setLayout(pnlWelcomeLayout);
         pnlWelcomeLayout.setHorizontalGroup(
             pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlWelcomeLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jlabeladm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblWelcome)
-                .addGap(37, 37, 37))
-            .addGroup(pnlWelcomeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createSequentialGroup()
+                                .addComponent(lblWelcome1)
+                                .addGap(156, 156, 156))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createSequentialGroup()
+                                .addComponent(jlabeladm, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblWelcome)
+                                    .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(128, 128, 128))))))
         );
         pnlWelcomeLayout.setVerticalGroup(
             pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlWelcomeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jlabeladm, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlWelcomeLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(22, 22, 22)
-                        .addComponent(lblWelcome)))
-                .addGap(18, 18, 18)
-                .addComponent(lblUser)
-                .addContainerGap(12, Short.MAX_VALUE))
+                        .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(lblWelcome1))
+                        .addGap(11, 11, 11)
+                        .addComponent(lblWelcome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblUser)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pnlCategory.setBackground(new java.awt.Color(255, 255, 255));
@@ -162,7 +177,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
             pnlAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAutorLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jlsistemimge, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlsistemimge)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
@@ -335,12 +350,14 @@ public class LibrarianWindow extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pnlWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(pnlBackgroundLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jlnotifactionpng, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(pnlEditorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(pnlEditorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                .addComponent(pnlWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
             .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlBackgroundLayout.createSequentialGroup()
@@ -455,7 +472,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
             .addGroup(contentPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120)
+                .addGap(18, 18, 18)
                 .addGroup(contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlWelcome1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(desktopPane))
@@ -553,6 +570,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblUser;
     private javax.swing.JLabel lblUsers;
     private javax.swing.JLabel lblWelcome;
+    private javax.swing.JLabel lblWelcome1;
     private javax.swing.JLabel lblbook;
     private javax.swing.JPanel pnlAutor;
     private javax.swing.JPanel pnlBackground;

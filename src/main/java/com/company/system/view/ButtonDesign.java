@@ -1,7 +1,7 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+ 
 package com.company.system.view;
 
 import com.company.system.controller.ButtonDesignListener;
@@ -29,7 +29,7 @@ import javax.swing.JPanel;
 /**
  *
  * @author jandr
- */
+ 
 public class ButtonDesign extends RoundedPanelWithShadow {
 
     private JLabel lblIcon;
@@ -103,4 +103,4 @@ public class ButtonDesign extends RoundedPanelWithShadow {
     public void setLblPublihser(JLabel lblPublihser) {
         this.lblPublihser = lblPublihser;
     }
-}
+}*/
