@@ -373,7 +373,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
                 .addGroup(pnlBackgroundLayout.createSequentialGroup()
                     .addGap(34, 34, 34)
                     .addComponent(lblBookIcon)
-                    .addContainerGap(401, Short.MAX_VALUE)))
+                    .addContainerGap(537, Short.MAX_VALUE)))
         );
         pnlBackgroundLayout.setVerticalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,13 +411,12 @@ public class LibrarianWindow extends javax.swing.JFrame {
 
         desktopPane.setBackground(new java.awt.Color(255, 255, 255));
         desktopPane.setForeground(new java.awt.Color(255, 255, 255));
-        desktopPane.setOpaque(false);
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 725, Short.MAX_VALUE)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -430,16 +429,17 @@ public class LibrarianWindow extends javax.swing.JFrame {
         lblWelcome1.setBackground(new java.awt.Color(255, 255, 255));
         lblWelcome1.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 18)); // NOI18N
         lblWelcome1.setForeground(new java.awt.Color(0, 0, 0));
+        lblWelcome1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblWelcome1.setText("Administrar biblioteca");
 
         javax.swing.GroupLayout pnlWelcome1Layout = new javax.swing.GroupLayout(pnlWelcome1);
         pnlWelcome1.setLayout(pnlWelcome1Layout);
         pnlWelcome1Layout.setHorizontalGroup(
             pnlWelcome1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcome1Layout.createSequentialGroup()
-                .addContainerGap(300, Short.MAX_VALUE)
-                .addComponent(lblWelcome1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(170, 170, 170))
+            .addGroup(pnlWelcome1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblWelcome1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnlWelcome1Layout.setVerticalGroup(
             pnlWelcome1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
