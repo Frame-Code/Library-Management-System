@@ -37,21 +37,21 @@ public class LoginStudent extends javax.swing.JFrame {
 
     public void back(UserService userService) {
         frmInicial = new InitialWindow();
-        frmInicial.setVisible(true);
         new InitialWindowListener(frmInicial, userService);
+        frmInicial.setVisible(true);
         this.dispose();
     }
 
     public void openRegisterWindow(UserService userService) {
         frmRegisterStudent = new RegisterStudent();
-        frmRegisterStudent.setVisible(true);
         new RegisterStudentListener(frmRegisterStudent, userService);
+        frmRegisterStudent.setVisible(true);
     }
 
     public void openLibraryHome() { {
         frmLibraryHome = new LibraryHome();
-        frmLibraryHome.setVisible(true);
         new LibraryHomeListener(frmLibraryHome);
+        frmLibraryHome.setVisible(true);
     }
 
     }

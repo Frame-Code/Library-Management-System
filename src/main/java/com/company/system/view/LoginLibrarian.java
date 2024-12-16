@@ -233,8 +233,8 @@ public class LoginLibrarian extends javax.swing.JFrame {
     //Este metodo cierra esta ventana y abre la ventana "InitialWindow"
     public void back(UserService userService) {
         frmInitial = new InitialWindow();
-        frmInitial.setVisible(true);
         new InitialWindowListener(frmInitial, userService);
+        frmInitial.setVisible(true);
         this.dispose();
     }
 

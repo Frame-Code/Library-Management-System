@@ -201,14 +201,14 @@ public class InitialWindow extends javax.swing.JFrame {
     
     public void openLoginStudent(UserService userService) {
         frmLoginStudent = new LoginStudent();
-        frmLoginStudent.setVisible(true);
         new LoginStudentListener(frmLoginStudent, userService);
+        frmLoginStudent.setVisible(true);
     }
     
     public void openLoginLibrarian(UserService userService) {
         frmLoginLibrarian = new LoginLibrarian();
-        frmLoginLibrarian.setVisible(true);
         new LoginLibrarianListener(frmLoginLibrarian, userService);
+        frmLoginLibrarian.setVisible(true);
     }
     
     //Este metodo cierra esta ventana

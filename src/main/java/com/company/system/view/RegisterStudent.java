@@ -492,8 +492,8 @@ public class RegisterStudent extends javax.swing.JFrame {
     
      public void back(UserService userService) {
         LoginStudent frmLoginStudent = new LoginStudent();
-        frmLoginStudent.setVisible(true);
         new LoginStudentListener(frmLoginStudent, userService);
+        frmLoginStudent.setVisible(true);
     }
      
     public void close() {
