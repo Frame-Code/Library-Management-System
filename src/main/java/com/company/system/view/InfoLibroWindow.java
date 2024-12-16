@@ -175,7 +175,7 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         textfieldPublisher.setForeground(new java.awt.Color(0, 0, 0));
         textfieldPublisher.setText(book.getPublisher().getName());
 
-        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/last-day-of-the-funny-mustache.jpg"))); // NOI18N
+        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PortraitBook.png"))); // NOI18N
 
         textfieldfStock.setEditable(false);
         textfieldfStock.setForeground(new java.awt.Color(0, 0, 0));
