@@ -202,8 +202,19 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findByEmail(String email) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByEmail'");
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT u FROM User u WHERE u.email = :email AND u.deleted = 0";
+        TypedQuery<User> query = em.createQuery(jpql, User.class);
+        query.setParameter("email", email);
+        User user;
+        try {
+            user = query.getSingleResult();
+            return user;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
     }
 
 }

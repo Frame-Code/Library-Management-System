@@ -50,6 +50,10 @@ public class UserService {
         }
     }
 
+    public User getLoggedUser(Long idCard) {
+        return userDao.findByIdCard(idCard);
+    }
+
     public boolean RegisterStudent(String names, String surNames, String email, Long idCardUser, 
     LocalDate bornDate, String passwordPlain) {
         String passwordHash = encrypte.encryptPassword(passwordPlain);

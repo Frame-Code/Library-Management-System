@@ -3,6 +3,7 @@ package com.company.system.view;
 import com.company.system.controller.InitialWindowListener;
 import com.company.system.controller.LibraryHomeListener;
 import com.company.system.controller.RegisterStudentListener;
+import com.company.system.model.User;
 import com.company.system.service.UserService;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
@@ -48,9 +49,9 @@ public class LoginStudent extends javax.swing.JFrame {
         frmRegisterStudent.setVisible(true);
     }
 
-    public void openLibraryHome() { {
-        frmLibraryHome = new LibraryHome();
-        new LibraryHomeListener(frmLibraryHome);
+    public void openLibraryHome(User user, UserService userService) { {
+        frmLibraryHome = new LibraryHome(user);
+        new LibraryHomeListener(frmLibraryHome, userService);
         frmLibraryHome.setVisible(true);
     }
 
@@ -67,10 +68,6 @@ public class LoginStudent extends javax.swing.JFrame {
 
     public void errorMessage(String text) {
         JOptionPane.showMessageDialog(this, text);
-    }
-
-    public void login() {
-        JOptionPane.showMessageDialog(this, "Login exitoso");
     }
     
     public JButton getBtnRegister() {

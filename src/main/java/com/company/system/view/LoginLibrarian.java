@@ -98,11 +98,11 @@ public class LoginLibrarian extends javax.swing.JFrame {
 
         lblId.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 12)); // NOI18N
         lblId.setForeground(new java.awt.Color(117, 117, 117));
-        lblId.setText("Escribe tu numero de cédula________________________");
+        lblId.setText("Escribe tu numero de cédula: ");
 
         lblPassword.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 12)); // NOI18N
         lblPassword.setForeground(new java.awt.Color(117, 117, 117));
-        lblPassword.setText("Escribe tu contraseña________________________________");
+        lblPassword.setText("Escribe tu contraseña: ");
 
         pswUser.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 12)); // NOI18N
         pswUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());

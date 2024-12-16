@@ -45,7 +45,8 @@ public class LoginStudentListener implements ActionListener, MouseListener, KeyL
                 }
                 
                 if (userService.login(idUser, plainPassword) != null) {
-                    frmLogin.login();
+                    frmLogin.openLibraryHome(userService.getLoggedUser(idUser), userService);
+                    frmLogin.close();
                 } else {
                     frmLogin.errorMessage(frmLogin.errorIncorrectPassword);
                 }

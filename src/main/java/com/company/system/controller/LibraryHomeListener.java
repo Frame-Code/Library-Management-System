@@ -1,6 +1,7 @@
 package com.company.system.controller;
 
 import com.company.system.service.PublisherService;
+import com.company.system.service.UserService;
 import com.company.system.model.Book;
 import com.company.system.model.Category;
 import com.company.system.model.Publisher;
@@ -29,10 +30,12 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
     private final BookService bookService;
     private final CategoryService categoryService;
     private final PublisherService publisherService;
+    private final UserService userService;
     private CategoryBooks categoryBooksInternalFrm;
 
-    public LibraryHomeListener(LibraryHome frmLibraryHome) {
+    public LibraryHomeListener(LibraryHome frmLibraryHome, UserService userService) {
         this.frmLibraryHome = frmLibraryHome;
+        this.userService = userService;
         this.bookService = new BookService();
         this.categoryService = new CategoryService();
         this.publisherService = new PublisherService();
@@ -105,18 +108,16 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
 
             // Cambiar el color del panel seleccionado
             frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlEditorial());
-        }
-
-        // Otros casos existentes
-        if (e.getSource() == frmLibraryHome.getPnlCategory()) {
+        } else if (e.getSource() == frmLibraryHome.getPnlCategory()) {
             frmLibraryHome.uploadListMenu(categoryService.getCategories());
             addListenerMenu();
             frmLibraryHome.getMenuContextual().show(frmLibraryHome.getPnlCategory(), frmLibraryHome.getPnlCategory().getWidth(), 0);
             frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlCategory());
-        }
-
-        if (e.getSource() == frmLibraryHome.getLblSolicitar()) {
+        } else if (e.getSource() == frmLibraryHome.getLblSolicitar()) {
             frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getLblSolicitar());
+        } else if(e.getSource() == frmLibraryHome.getPnlShutdown()) {
+            frmLibraryHome.openLoginStudent(userService);
+            frmLibraryHome.close();
         }
     }
 

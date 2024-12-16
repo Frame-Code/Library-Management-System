@@ -1,7 +1,10 @@
 package com.company.system.view;
 
 import com.company.system.controller.LibraryHomeListener;
+import com.company.system.controller.LoginStudentListener;
 import com.company.system.model.Category;
+import com.company.system.model.User;
+import com.company.system.service.UserService;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
@@ -23,15 +26,19 @@ import javax.swing.JPopupMenu;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class LibraryHome extends javax.swing.JFrame {
+    private User user;
     private JPopupMenu menuContextual;
     private ArrayList<JMenuItem> menuItems;
     
-    public LibraryHome() {
+    public LibraryHome(User user) {
+        //this.user = user;
+        this.user = new User();
+        this.user.setNames("ejemplo");
+        this.user.setSurNames("ejemplo1");
         initComponents();
         setResizable(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        new LibraryHomeListener(this);
     }
     
 
@@ -90,7 +97,7 @@ public class LibraryHome extends javax.swing.JFrame {
         lblUser.setBackground(new java.awt.Color(255, 255, 255));
         lblUser.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         lblUser.setForeground(new java.awt.Color(255, 255, 255));
-        lblUser.setText("User");
+        lblUser.setText(user.getNames() + " " + user.getSurNames());
 
         javax.swing.GroupLayout pnlWelcomeLayout = new javax.swing.GroupLayout(pnlWelcome);
         pnlWelcome.setLayout(pnlWelcomeLayout);
@@ -451,13 +458,20 @@ public class LibraryHome extends javax.swing.JFrame {
     }
     
     public void changeColorPanel(Color color, Component component) {
-    if (component instanceof JPanel) {
-        ((JPanel) component).setBackground(color);
-    } else if (component instanceof JLabel) {
-        ((JLabel) component).setOpaque(true);
-        ((JLabel) component).setBackground(color);
+        if (component instanceof JPanel) {
+            ((JPanel) component).setBackground(color);
+        } else if (component instanceof JLabel) {
+            ((JLabel) component).setOpaque(true);
+            ((JLabel) component).setBackground(color);
+        }
     }
-}
+
+    public void openLoginStudent(UserService userService) {
+        LoginStudent loginStudent = new LoginStudent();
+        new LoginStudentListener(loginStudent, userService);
+        loginStudent.setVisible(true);
+    }
+
 
     //Este metodo cierra esta ventana
     public void close() {
