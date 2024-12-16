@@ -410,7 +410,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
         );
 
         desktopPane.setBackground(new java.awt.Color(255, 255, 255));
-        desktopPane.setForeground(new java.awt.Color(255, 255, 255));
+        desktopPane.setOpaque(false);
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
