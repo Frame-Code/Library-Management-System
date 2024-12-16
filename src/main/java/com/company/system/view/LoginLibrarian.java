@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 public class LoginLibrarian extends javax.swing.JFrame {
     
     private InitialWindow frmLoginLibrarian;
-    private InitialWindow frmInicial;
+    private InitialWindow frmInitial;
     public final String errorFormatId = "Error: Escribe correctamente el numero de cedula";
     public final String errorEmptyFields = "Error: no pueden haber campos vacíos";
     public final String errorUserExists = "Error: Usuario no encontrado";
@@ -25,7 +25,7 @@ public class LoginLibrarian extends javax.swing.JFrame {
 
     public LoginLibrarian() {
         initComponents();
-        setResizable(false);
+        setResizable(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -92,7 +92,7 @@ public class LoginLibrarian extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        lblIconLibrarian.setIcon(new javax.swing.ImageIcon("/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/Librarian_login_icon1.png")); // NOI18N
+        lblIconLibrarian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Librarian_login_icon1.png"))); // NOI18N
 
         txtIdUser.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 12)); // NOI18N
         txtIdUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -171,7 +171,7 @@ public class LoginLibrarian extends javax.swing.JFrame {
         btnBack.setBackground(new java.awt.Color(56, 75, 147));
         btnBack.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         btnBack.setForeground(new java.awt.Color(255, 255, 255));
-        btnBack.setText("<- atrás");
+        btnBack.setText("<- Regresar");
         btnBack.setBorder(null);
 
         javax.swing.GroupLayout contentPaneLayout = new javax.swing.GroupLayout(contentPane);
@@ -233,9 +233,9 @@ public class LoginLibrarian extends javax.swing.JFrame {
     
     //Este metodo cierra esta ventana y abre la ventana "InitialWindow"
     public void back() {
-        frmInicial = new InitialWindow();
-        frmInicial.setVisible(true);
-        new InitialWindowListener(frmInicial);
+        frmInitial = new InitialWindow();
+        frmInitial.setVisible(true);
+        new InitialWindowListener(frmInitial);
         this.dispose();
     }
 

@@ -232,7 +232,7 @@
             <Component class="javax.swing.JLabel" name="lblIconLibrarian">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/home/artist-code/Documents/Library/Library-Managment-System/src/main/resources/images/Librarian_login_icon1.png"/>
+                  <Image iconType="3" name="/images/Librarian_login_icon1.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -329,7 +329,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&lt;- atr&#xe1;s"/>
+            <Property name="text" type="java.lang.String" value="&lt;- Regresar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>

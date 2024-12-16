@@ -200,4 +200,10 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    @Override
+    public User findByEmail(String email) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByEmail'");
+    }
+
 }
