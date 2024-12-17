@@ -13,7 +13,7 @@ public class PublisherService {
         this.publisherDao = new PublisherDaoImpl();
     }
 
-    public List<Publisher> getPublisher() {
+    public List<Publisher> getPublishers() {
         return publisherDao.findAll();
     }
 

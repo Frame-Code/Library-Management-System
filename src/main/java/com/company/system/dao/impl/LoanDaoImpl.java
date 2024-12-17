@@ -2,26 +2,31 @@ package com.company.system.dao.impl;
 
 import java.util.List;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.NoResultException;
+import javax.persistence.LockTimeoutException;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
+import javax.persistence.PessimisticLockException;
+import javax.persistence.QueryTimeoutException;
+import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
 
-import com.company.system.dao.interfaces.PublisherDao;
-import com.company.system.model.Publisher;
-import javax.persistence.EntityExistsException;
+import com.company.system.dao.interfaces.LoanDao;
+import com.company.system.model.Loan;
+import com.company.system.model.User;
+import javax.persistence.NoResultException;
 import javax.persistence.RollbackException;
-import javax.persistence.TransactionRequiredException;
 
 /**
  * @author artist-code (Daniel Mora Cantillo)
  */
-public class PublisherDaoImpl implements PublisherDao {
+public class LoanDaoImpl implements LoanDao {
 
     private final EntityManagerFactory emf;
 
-    public PublisherDaoImpl() {
+    public LoanDaoImpl() {
         this.emf = Persistence.createEntityManagerFactory("libraryPU");
     }
 
@@ -30,7 +35,7 @@ public class PublisherDaoImpl implements PublisherDao {
     }
 
     @Override
-    public boolean create(Publisher object) {
+    public boolean create(Loan object) {
         EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
@@ -47,14 +52,14 @@ public class PublisherDaoImpl implements PublisherDao {
     }
 
     @Override
-    public List<Publisher> findAll() {
+    public List<Loan> findAll() {
         EntityManager em = getEntityManager();
-        String jpql = "SELECT p FROM Publisher p WHERE p.deleted=0";
-        TypedQuery<Publisher> query = em.createQuery(jpql, Publisher.class);
-        List<Publisher> publishers;
+        String jpql = "SELECT l FROM Loan l WHERE l.deleted=0";
+        TypedQuery<Loan> query = em.createQuery(jpql, Loan.class);
+        List<Loan> loans;
         try {
-            publishers = query.getResultList();
-            return publishers;
+            loans = query.getResultList();
+            return loans;
         } catch (NoResultException e) {
             return null;
         } finally {
@@ -63,14 +68,14 @@ public class PublisherDaoImpl implements PublisherDao {
     }
 
     @Override
-    public List<Publisher> findAllIncludeDeleted() {
+    public List<Loan> findAllIncludeDeleted() {
         EntityManager em = getEntityManager();
-        String jpql = "SELECT p FROM Publisher p";
-        TypedQuery<Publisher> query = em.createQuery(jpql, Publisher.class);
-        List<Publisher> publishers;
+        String jpql = "SELECT l FROM Loan l";
+        TypedQuery<Loan> query = em.createQuery(jpql, Loan.class);
+        List<Loan> loans;
         try {
-            publishers = query.getResultList();
-            return publishers;
+            loans = query.getResultList();
+            return loans;
         } catch (NoResultException e) {
             return null;
         } finally {
@@ -79,15 +84,15 @@ public class PublisherDaoImpl implements PublisherDao {
     }
 
     @Override
-    public Publisher findById(Long id) {
+    public Loan findById(Long id) {
         EntityManager em = getEntityManager();
-        String jpql = "SELECT p FROM Publisher p WHERE p.idPublisher = :id AND p.deleted = 0";
-        TypedQuery<Publisher> query = em.createQuery(jpql, Publisher.class);
+        String jpql = "SELECT l FROM Loan l WHERE l.idLoan = :id AND l.deleted = 0";
+        TypedQuery<Loan> query = em.createQuery(jpql, Loan.class);
         query.setParameter("id", id);
-        Publisher publisher;
+        Loan loan;
         try {
-            publisher = query.getSingleResult();
-            return publisher;
+            loan = query.getSingleResult();
+            return loan;
         } catch (NoResultException e) {
             return null;
         } finally {
@@ -96,25 +101,24 @@ public class PublisherDaoImpl implements PublisherDao {
     }
 
     @Override
-    public Publisher findByIdIncludeDeleted(Long id) {
+    public Loan findByIdIncludeDeleted(Long id) {
         EntityManager em = getEntityManager();
-        String jpql = "SELECT p FROM Publisher p WHERE p.idPublisher = :id";
-        TypedQuery<Publisher> query = em.createQuery(jpql, Publisher.class);
+        String jpql = "SELECT l FROM Loan l WHERE l.idLoan = :id";
+        TypedQuery<Loan> query = em.createQuery(jpql, Loan.class);
         query.setParameter("id", id);
-        Publisher publisher;
+        Loan loan;
         try {
-            publisher = query.getSingleResult();
-            return publisher;
+            loan = query.getSingleResult();
+            return loan;
         } catch (NoResultException e) {
             return null;
         } finally {
             em.close();
         }
-
     }
 
     @Override
-    public boolean update(Publisher object) {
+    public boolean update(Loan object) {
         EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
@@ -131,22 +135,22 @@ public class PublisherDaoImpl implements PublisherDao {
 
     @Override
     public boolean deleteByID(Long id) {
-        Publisher publisher = findById(id);
-        publisher.setDeleted(true);
-        return update(publisher);
+        Loan loan = findById(id);
+        loan.setDeleted(true);
+        return update(loan);
     }
 
     @Override
-    public Publisher findByName(String name) {
+    public List<Loan> findByUser(User user) throws QueryTimeoutException, TransactionRequiredException, PessimisticLockException, LockTimeoutException {
         EntityManager em = getEntityManager();
-        String jpql = "SELECT p FROM Publisher p WHERE p.name=:name AND p.deleted=0";
-        TypedQuery<Publisher> query = em.createQuery(jpql, Publisher.class);
-        query.setParameter("name", name);
-        Publisher publisher;
+        String jpal = "SELECT l FROM Loan l WHERE l.user = :user AND l.deleted=0";
+        TypedQuery<Loan> query = em.createQuery(jpal, Loan.class);
+        query.setParameter("user", user);
+        List<Loan> loans;
         try {
-            publisher = query.getSingleResult();
-            return publisher;
-        } catch (NoResultException e) {
+            loans = query.getResultList();
+            return loans;
+        } catch (IllegalStateException | PersistenceException e) {
             return null;
         } finally {
             em.close();
