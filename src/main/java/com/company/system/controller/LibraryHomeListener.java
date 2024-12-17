@@ -94,7 +94,7 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == frmLibraryHome.getPnlEditorial()) {
             // Obtener la lista de editoriales desde el servicio
-            List<Publisher> publishers = publisherService.getPublisher();
+            List<Publisher> publishers = publisherService.getPublishers();
 
             // Crear un menu contextual con los nombres de las editoriales
             JPopupMenu popupMenu = new JPopupMenu();

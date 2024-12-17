@@ -20,7 +20,7 @@ public class Fine implements Serializable{
     private Long idFine;
 
     @ManyToOne
-    @JoinColumn(name = "fkUser")
+    @JoinColumn(name = "fkUser", nullable = false)
     private User user;
 
     @Column(nullable = false, name = "deadline")

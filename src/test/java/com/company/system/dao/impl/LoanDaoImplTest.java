@@ -20,9 +20,10 @@ public class LoanDaoImplTest {
     @Test
     void testCreate() {
         Loan loan = new Loan(new UserDaoImpl().findByIdCard(9412392679L), 
-        new BookDaoImpl().findById(4L), LocalDate.now(), "Admin",
+        new BookDaoImpl().findById(4L), LocalDate.of(2024, 12, 30), false,
+        LocalDate.now(), "Admin",
          null, null, false);
-       // System.out.println(loanDao.create(loan));
+        //System.out.println(loanDao.create(loan));
     }
 
     @Test

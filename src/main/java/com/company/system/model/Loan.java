@@ -18,6 +18,7 @@ import javax.persistence.Table;
 public class Loan implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idLoan")
     private Long idLoan;
 
     @ManyToOne
@@ -28,6 +29,12 @@ public class Loan implements Serializable{
     @JoinColumn(name = "fkBook")
     private Book book;
 
+    @Column(nullable = false, name = "devolutionDate")
+    private LocalDate devolutionDate;
+
+    @Column(nullable = false, name = "isReturned")
+    private boolean returned;
+    
     @Column(nullable = false, name = "registrationDate")
     private LocalDate registrationDate;
 
@@ -45,12 +52,15 @@ public class Loan implements Serializable{
 
     public Loan() {
     }
-
-    public Loan(Long idLoan, User user, Book book, LocalDate registrationDate, String registrationName,
-            LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
+    
+    public Loan(Long idLoan, User user, Book book, LocalDate devolutionDate, boolean returned,
+            LocalDate registrationDate, String registrationName, LocalDate registrationUpdateDate,
+            String registrationUpdateName, boolean deleted) {
         this.idLoan = idLoan;
         this.user = user;
         this.book = book;
+        this.devolutionDate = devolutionDate;
+        this.returned = returned;
         this.registrationDate = registrationDate;
         this.registrationName = registrationName;
         this.registrationUpdateDate = registrationUpdateDate;
@@ -58,10 +68,12 @@ public class Loan implements Serializable{
         this.deleted = deleted;
     }
 
-    public Loan(User user, Book book, LocalDate registrationDate, String registrationName,
-            LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
+    public Loan(User user, Book book, LocalDate devolutionDate, boolean returned, LocalDate registrationDate,
+            String registrationName, LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
         this.user = user;
         this.book = book;
+        this.devolutionDate = devolutionDate;
+        this.returned = returned;
         this.registrationDate = registrationDate;
         this.registrationName = registrationName;
         this.registrationUpdateDate = registrationUpdateDate;
@@ -87,6 +99,22 @@ public class Loan implements Serializable{
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public LocalDate getDevolutionDate() {
+        return devolutionDate;
+    }
+
+    public void setDevolutionDate(LocalDate devolutionDate) {
+        this.devolutionDate = devolutionDate;
+    }
+
+    public boolean isReturned() {
+        return returned;
+    }
+
+    public void setReturned(boolean returned) {
+        this.returned = returned;
     }
 
     public LocalDate getRegistrationDate() {
@@ -136,6 +164,8 @@ public class Loan implements Serializable{
         result = prime * result + ((idLoan == null) ? 0 : idLoan.hashCode());
         result = prime * result + ((user == null) ? 0 : user.hashCode());
         result = prime * result + ((book == null) ? 0 : book.hashCode());
+        result = prime * result + ((devolutionDate == null) ? 0 : devolutionDate.hashCode());
+        result = prime * result + (returned ? 1231 : 1237);
         result = prime * result + ((registrationDate == null) ? 0 : registrationDate.hashCode());
         result = prime * result + ((registrationName == null) ? 0 : registrationName.hashCode());
         result = prime * result + ((registrationUpdateDate == null) ? 0 : registrationUpdateDate.hashCode());
@@ -168,6 +198,13 @@ public class Loan implements Serializable{
                 return false;
         } else if (!book.equals(other.book))
             return false;
+        if (devolutionDate == null) {
+            if (other.devolutionDate != null)
+                return false;
+        } else if (!devolutionDate.equals(other.devolutionDate))
+            return false;
+        if (returned != other.returned)
+            return false;
         if (registrationDate == null) {
             if (other.registrationDate != null)
                 return false;
@@ -195,8 +232,10 @@ public class Loan implements Serializable{
 
     @Override
     public String toString() {
-        return "Loan [idLoan=" + idLoan + ", user=" + user + ", book=" + book + ", registrationDate=" + registrationDate
-                + ", registrationName=" + registrationName + ", registrationUpdateDate=" + registrationUpdateDate
-                + ", registrationUpdateName=" + registrationUpdateName + ", deleted=" + deleted + "]";
+        return "Loan [idLoan=" + idLoan + ", user=" + user + ", book=" + book + ", devolutionDate=" + devolutionDate
+                + ", returned=" + returned + ", registrationDate=" + registrationDate + ", registrationName="
+                + registrationName + ", registrationUpdateDate=" + registrationUpdateDate + ", registrationUpdateName="
+                + registrationUpdateName + ", deleted=" + deleted + "]";
     }
+    
 }
