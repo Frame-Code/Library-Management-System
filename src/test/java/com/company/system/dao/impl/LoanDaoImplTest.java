@@ -8,7 +8,10 @@ import org.junit.jupiter.api.Test;
 
 import com.company.system.dao.interfaces.LoanDao;
 import com.company.system.model.Loan;
-
+/**
+ *
+ * @author artist-code (Daniel Mora Cantillo)
+ */
 public class LoanDaoImplTest {
     private LoanDao loanDao;
 
@@ -19,13 +22,29 @@ public class LoanDaoImplTest {
 
     @Test
     void testCreate() {
-        Loan loan = new Loan(new UserDaoImpl().findByIdCard(9412392679L), 
-        new BookDaoImpl().findById(4L), LocalDate.of(2024, 12, 30), false,
-        LocalDate.now(), "Admin",
+        Loan loan = new Loan(new UserDaoImpl().findById(6L), 
+        new BookDaoImpl().findById(13L), LocalDate.of(2024, 11, 15), true,
+        LocalDate.of(2024, 11, 15), "Admin",
          null, null, false);
-        //System.out.println(loanDao.create(loan));
-    }
 
+        //System.out.println(loanDao.create(loan));
+        
+        /*
+        Loan loan1 = new Loan(new UserDaoImpl().findById(6L), 
+        new BookDaoImpl().findById(3L), LocalDate.of(2024, 12, 15), true,
+        LocalDate.of(2024, 12, 15), "Admin",
+         null, null, false);
+
+        Loan loan2 = new Loan(new UserDaoImpl().findById(23L), 
+        new BookDaoImpl().findById(9L), LocalDate.of(2024, 11, 15), true,
+        LocalDate.of(2024, 11, 15), "Admin",
+         null, null, false);
+
+        */
+
+        
+        }
+        
     @Test
     void testFindByUser() {
         List<Loan> loans = loanDao.findByUser(new UserDaoImpl().findByIdCard(941239292L));

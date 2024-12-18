@@ -1,6 +1,7 @@
 package com.company.system.dao.impl;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,38 +27,50 @@ public class FineDaoImplTest {
 
     @Test
     void testDeleteByID() {
-        //Fine fine = fineDao.findById(21L);
-        System.out.println(fineDao.deleteByID(21L));
+        System.out.println(fineDao.deleteByID(1L));
 
     }
 
     @Test
     void testFindAll() {
-
+        List<Fine> fines = fineDao.findAll();
+        fines.forEach(fine -> {
+            System.out.println(fine);
+        });
     }
 
     @Test
     void testFindAllIncludeDeleted() {
-
+        List<Fine> fines = fineDao.findAllIncludeDeleted();
+        fines.forEach(fine -> {
+            System.out.println(fine);
+        });
     }
 
     @Test
     void testFindById() {
-
+        System.out.println(fineDao.findById(2L));
+        System.out.println(fineDao.findById(1L));
     }
 
     @Test
     void testFindByIdIncludeDeleted() {
-
+        System.out.println(fineDao.findByIdIncludeDeleted(2L));
+        System.out.println(fineDao.findByIdIncludeDeleted(1L));
     }
 
     @Test
     void testFindByUser() {
-
+        List<Fine> fines = fineDao.findByUser(new UserDaoImpl().findById(21L));
+        fines.forEach(fine -> {
+            System.out.println(fine);
+        });
     }
 
     @Test
     void testUpdate() {
-
+        Fine fine = fineDao.findByIdIncludeDeleted(1L);
+        fine.setDeleted(false);
+        System.out.println(fineDao.update(fine));
     }
 }

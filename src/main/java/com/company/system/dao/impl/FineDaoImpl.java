@@ -97,7 +97,7 @@ public class FineDaoImpl implements FineDao {
     @Override
     public Fine findByIdIncludeDeleted(Long id) {
         EntityManager em = getEntityManager();
-        String jpql = "SELECT f FROM Fine f WHERE f.idLoan = :id";
+        String jpql = "SELECT f FROM Fine f WHERE f.idFine = :id";
         TypedQuery<Fine> query = em.createQuery(jpql, Fine.class);
         query.setParameter("id", id);
         Fine fine;
