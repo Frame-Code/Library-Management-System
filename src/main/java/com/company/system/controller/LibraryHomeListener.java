@@ -92,10 +92,10 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
                     categoryBooksInternalFrm = new CategoryBooks(menu.getText(), bookService);
                     categoryBooksInternalFrm.setSize(frmLibraryHome.getDesktopPane().getSize());
 
-                    // Obtener una instancia de la clase Categoria a traves de su nombre
+                    // Obtener una instancia de la clase Categoria a través de su nombre
                     Category categorySelected = categoryService.getCategoryByName(menu.getText());
 
-                    // Obtener una lista de libros filtrada por categoria
+                    // Obtener una lista de libros filtrada por categoría
                     List<Book> booksByCategory = bookService.getBooksByCategory(categorySelected);
 
                     // Agregar cada libro obtenido de la lista anterior al JInternalFrame
@@ -120,6 +120,29 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
             JPopupMenu popupMenu = new JPopupMenu();
             publishers.forEach(publisher -> {
                 JMenuItem menuItem = new JMenuItem(publisher.getName());
+                menuItem.addActionListener(ev -> {
+                    String selectedPublisherName = menuItem.getText();
+
+                    // Llamar al método en PublisherService con el nombre seleccionado
+                    Publisher selectedPublisher = publisherService.getPublisherByName(selectedPublisherName);
+
+                    // Obtener la lista de libros de esta editorial
+                    List<Book> booksByPublisher = bookService.getBooksByPublisher(selectedPublisher);
+
+                    // Crear un nuevo CategoryBooks Internal Frame con los libros obtenidos
+                    frmLibraryHome.clearDesltopPane();
+                    categoryBooksInternalFrm = new CategoryBooks("Editorial: " + selectedPublisher.getName(), bookService);
+                    categoryBooksInternalFrm.setSize(frmLibraryHome.getDesktopPane().getSize());
+
+                    // Agregar cada libro al JInternalFrame
+                    categoryBooksInternalFrm.addBooks(booksByPublisher);
+
+                    // Agregar el JInternalFrame al desktopPane de la ventana LibraryHome
+                    frmLibraryHome.addToDesktopPane(categoryBooksInternalFrm);
+
+                    // Mostrar los detalles de la editorial seleccionada
+                    System.out.println("Editorial seleccionada: " + selectedPublisher.getName());
+                });
                 popupMenu.add(menuItem);
             });
 
@@ -182,17 +205,38 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
 
     @Override
     public void mouseExited(MouseEvent e) {
-        if (e.getSource() == frmLibraryHome.getBtnSearch()) {
+        if (e.getSource() == frmLibraryHome.getPnlCategory()) {
+            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlCategory());
+        } else if (e.getSource() == frmLibraryHome.getPnlAutor()) {
+            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlAutor());
+        } else if (e.getSource() == frmLibraryHome.getPnlEditorial()) {
+            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlEditorial());
+        } else if (e.getSource() == frmLibraryHome.getPnlNotification()) {
+            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlNotification());
+        } else if (e.getSource() == frmLibraryHome.getPnlShutdown()) {
+            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlShutdown());
+        } else if (e.getSource() == frmLibraryHome.getBtnSearch()) {
             frmLibraryHome.mouseEvent(frmLibraryHome.getBtnSearch(), Utils.btnExited);
-        } else if (e.getSource() == frmLibraryHome.getLblSolicitar()) {
-            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getLblSolicitar());
         }
     }
 
     @Override
-    public void componentResized(ComponentEvent e) {
-        categoryBooksInternalFrm.setSize(frmLibraryHome.getDesktopPane().getSize());
-    }
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    @Override
+    public void componentResized(ComponentEvent e) {}
+
+    @Override
+    public void componentMoved(ComponentEvent e) {}
+
+    @Override
+    public void componentShown(ComponentEvent e) {}
+
+    @Override
+    public void componentHidden(ComponentEvent e) {}
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -202,30 +246,9 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-    }
+    public void keyTyped(KeyEvent e) {}
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void componentMoved(ComponentEvent e) {
-    }
-
-    @Override
-    public void componentShown(ComponentEvent e) {
-    }
-
-    @Override
-    public void componentHidden(ComponentEvent e) {
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-    }
+    public void keyReleased(KeyEvent e) {}
 }
+

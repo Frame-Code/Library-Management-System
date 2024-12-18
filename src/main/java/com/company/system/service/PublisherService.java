@@ -16,6 +16,9 @@ public class PublisherService {
     public List<Publisher> getPublishers() {
         return publisherDao.findAll();
     }
-
+    public Publisher getPublisherByName(String name) {
+    return publisherDao.findByName(name);
+    }
+    
     
 }
