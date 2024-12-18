@@ -17,6 +17,7 @@ import javax.persistence.Table;
 public class Fine implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idFine")
     private Long idFine;
 
     @ManyToOne

@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao {
     //Contructor que crea un EntityManagerFactory a partir de la unidad de persistencia definidado con el nombre 
     //"libraryPU"
     public UserDaoImpl() {
-        emf = Persistence.createEntityManagerFactory("libraryPU");
+        emf = Persistence.createEntityManagerFactory(namePersistenceUnit);
     }
 
     private EntityManager getEntityManager() {

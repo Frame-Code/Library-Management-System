@@ -21,7 +21,7 @@ public class CategoryDaoImpl implements CategoryDao{
 
     
    public CategoryDaoImpl() {
-    this.emf = Persistence.createEntityManagerFactory("libraryPU");
+    this.emf = Persistence.createEntityManagerFactory(namePersistenceUnit);
    }    
 
    private EntityManager getEntityManager() {

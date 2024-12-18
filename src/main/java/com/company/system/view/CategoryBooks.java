@@ -68,7 +68,6 @@ public class CategoryBooks extends JInternalFrame {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

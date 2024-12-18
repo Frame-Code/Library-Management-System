@@ -1,6 +1,5 @@
 package com.company.system.view;
 
-import com.company.system.controller.LibraryHomeListener;
 import com.company.system.controller.LoginStudentListener;
 import com.company.system.model.Category;
 import com.company.system.model.User;
@@ -33,17 +32,15 @@ public class LibraryHome extends javax.swing.JFrame {
     
     public LibraryHome(User user) {
         //this.user = user;
-        this.user = new User();
-        this.user.setNames("ejemplo");
-        this.user.setSurNames("ejemplo1");
+        this.user = new User(); //Eliminar esta linea
+        this.user.setNames("ejemplo");  //Eliminar esta linea
+        this.user.setSurNames("ejemplo1"); //eliminar esta linea
         initComponents();
         setResizable(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     
-
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 

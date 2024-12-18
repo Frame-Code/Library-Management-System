@@ -27,7 +27,7 @@ public class LoanDaoImpl implements LoanDao {
     private final EntityManagerFactory emf;
 
     public LoanDaoImpl() {
-        this.emf = Persistence.createEntityManagerFactory("libraryPU");
+        this.emf = Persistence.createEntityManagerFactory(namePersistenceUnit);
     }
 
     private EntityManager getEntityManager() {

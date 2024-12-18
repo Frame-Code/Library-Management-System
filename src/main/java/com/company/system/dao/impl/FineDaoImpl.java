@@ -14,14 +14,13 @@ import javax.persistence.TypedQuery;
 
 import com.company.system.dao.interfaces.FineDao;
 import com.company.system.model.Fine;
-import com.company.system.model.Loan;
 import com.company.system.model.User;
 
 public class FineDaoImpl implements FineDao {
     private EntityManagerFactory emf;
 
     public FineDaoImpl() {
-        this.emf = Persistence.createEntityManagerFactory("libraryPU");
+        this.emf = Persistence.createEntityManagerFactory(namePersistenceUnit);
     }
 
     private EntityManager getEntityManager() {

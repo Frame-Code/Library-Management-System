@@ -22,7 +22,7 @@ public class PublisherDaoImpl implements PublisherDao {
     private final EntityManagerFactory emf;
 
     public PublisherDaoImpl() {
-        this.emf = Persistence.createEntityManagerFactory("libraryPU");
+        this.emf = Persistence.createEntityManagerFactory(namePersistenceUnit);
     }
 
     private EntityManager getEntityManager() {

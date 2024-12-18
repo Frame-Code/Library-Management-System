@@ -24,7 +24,7 @@ public class BookDaoImpl implements BookDao {
     private final EntityManagerFactory emf;
 
     public BookDaoImpl() {
-        this.emf = Persistence.createEntityManagerFactory("libraryPU");
+        this.emf = Persistence.createEntityManagerFactory(namePersistenceUnit);
     }
 
     private EntityManager getEntityManager() {
