@@ -20,13 +20,14 @@ import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JTextField;
 
 /**
  *
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class LibraryHome extends javax.swing.JFrame {
-    private User user;
+    private final User user;
     private JPopupMenu menuContextual;
     private ArrayList<JMenuItem> menuItems;
     
@@ -73,7 +74,7 @@ public class LibraryHome extends javax.swing.JFrame {
         lblSolicitar = new javax.swing.JLabel();
         desktopPane = new javax.swing.JDesktopPane();
         pnlWelcome1 = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
-        txtIdUser = new javax.swing.JTextField();
+        txtPatternToSearch = new javax.swing.JTextField();
         btnSearch = new RoundedButtonWithShadow("Iniciar sesion", 7, new Color(0, 0, 0, 100), 4);
         lblCategory1 = new javax.swing.JLabel();
 
@@ -97,7 +98,7 @@ public class LibraryHome extends javax.swing.JFrame {
         lblUser.setBackground(new java.awt.Color(255, 255, 255));
         lblUser.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         lblUser.setForeground(new java.awt.Color(255, 255, 255));
-        lblUser.setText(user.getNames() + " " + user.getSurNames());
+        lblUser.setText("User");
 
         javax.swing.GroupLayout pnlWelcomeLayout = new javax.swing.GroupLayout(pnlWelcome);
         pnlWelcome.setLayout(pnlWelcomeLayout);
@@ -110,7 +111,7 @@ public class LibraryHome extends javax.swing.JFrame {
                 .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblWelcome)
                     .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlWelcomeLayout.setVerticalGroup(
             pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,9 +280,6 @@ public class LibraryHome extends javax.swing.JFrame {
                     .addComponent(lblCategory4))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
-	
-	pnlNotification.setBackground(new java.awt.Color(255, 255, 255));
-        pnlNotification.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblSolicitar.setBackground(new java.awt.Color(255, 255, 255));
         lblSolicitar.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
@@ -354,8 +352,8 @@ public class LibraryHome extends javax.swing.JFrame {
         pnlWelcome1.setBackground(new java.awt.Color(255, 255, 255));
         pnlWelcome1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        txtIdUser.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 12)); // NOI18N
-        txtIdUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtPatternToSearch.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 12)); // NOI18N
+        txtPatternToSearch.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btnSearch.setBackground(new java.awt.Color(56, 75, 147));
         btnSearch.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
@@ -366,7 +364,7 @@ public class LibraryHome extends javax.swing.JFrame {
         lblCategory1.setBackground(new java.awt.Color(255, 255, 255));
         lblCategory1.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         lblCategory1.setForeground(new java.awt.Color(0, 0, 0));
-        lblCategory1.setText("Buscar libro por nombre:");
+        lblCategory1.setText("Buscar libro por titulo:");
 
         javax.swing.GroupLayout pnlWelcome1Layout = new javax.swing.GroupLayout(pnlWelcome1);
         pnlWelcome1.setLayout(pnlWelcome1Layout);
@@ -379,7 +377,7 @@ public class LibraryHome extends javax.swing.JFrame {
                         .addComponent(lblCategory1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlWelcome1Layout.createSequentialGroup()
-                        .addComponent(txtIdUser, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPatternToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32))))
@@ -391,7 +389,7 @@ public class LibraryHome extends javax.swing.JFrame {
                 .addComponent(lblCategory1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlWelcome1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIdUser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPatternToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -527,6 +525,10 @@ public class LibraryHome extends javax.swing.JFrame {
     public JLabel getLblSolicitar() {
         return lblSolicitar;
     }
+
+    public JTextField getTxtPatternToSearch() {
+        return txtPatternToSearch;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -558,6 +560,6 @@ public class LibraryHome extends javax.swing.JFrame {
     private javax.swing.JPanel pnlShutdown;
     private javax.swing.JPanel pnlWelcome;
     private javax.swing.JPanel pnlWelcome1;
-    private javax.swing.JTextField txtIdUser;
+    private javax.swing.JTextField txtPatternToSearch;
     // End of variables declaration//GEN-END:variables
 }

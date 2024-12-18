@@ -175,7 +175,7 @@
                               <Component id="lblWelcome" min="-2" max="-2" attributes="0"/>
                               <Component id="lblUser" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="41" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -612,7 +612,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="txtIdUser" min="-2" pref="449" max="-2" attributes="0"/>
+                              <Component id="txtPatternToSearch" min="-2" pref="449" max="-2" attributes="0"/>
                               <EmptySpace pref="37" max="32767" attributes="0"/>
                               <Component id="btnSearch" min="-2" pref="113" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -628,7 +628,7 @@
                       <Component id="lblCategory1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtIdUser" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="txtPatternToSearch" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="btnSearch" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -637,7 +637,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="txtIdUser">
+            <Component class="javax.swing.JTextField" name="txtPatternToSearch">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="DejaVu Sans Condensed" size="12" style="0"/>
@@ -680,7 +680,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Buscar libro por nombre:"/>
+                <Property name="text" type="java.lang.String" value="Buscar libro por titulo:"/>
               </Properties>
             </Component>
           </SubComponents>

@@ -14,9 +14,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
+import java.util.function.Consumer;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
@@ -24,7 +27,7 @@ import javax.swing.JPopupMenu;
  *
  * @author Ronald Seminario Santana
  */
-public class LibraryHomeListener implements ActionListener, MouseListener, ComponentListener {
+public class LibraryHomeListener implements ActionListener, MouseListener, ComponentListener, KeyListener {
 
     private final LibraryHome frmLibraryHome;
     private final BookService bookService;
@@ -48,6 +51,15 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
         });
     }
 
+    private void searchBook() {
+        List<Book> books = bookService.searchBook(frmLibraryHome.getTxtPatternToSearch().getText());
+        frmLibraryHome.clearDesltopPane();
+        categoryBooksInternalFrm = new CategoryBooks("Busqueda", bookService);
+        categoryBooksInternalFrm.setSize(frmLibraryHome.getDesktopPane().getSize());
+        categoryBooksInternalFrm.addBooks(books);
+        frmLibraryHome.addToDesktopPane(categoryBooksInternalFrm);
+    }
+
     private void addListeners() {
         frmLibraryHome.getPnlCategory().addMouseListener(this);
         frmLibraryHome.getPnlAutor().addMouseListener(this);
@@ -55,39 +67,48 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
         frmLibraryHome.getPnlNotification().addMouseListener(this);
         frmLibraryHome.getPnlShutdown().addMouseListener(this);
         frmLibraryHome.getBtnSearch().addActionListener(this);
-        frmLibraryHome.getBtnSearch().addMouseListener(this);
 
         // Agregar el MouseListener para el JLabel de Historial de Préstamos
         frmLibraryHome.getLblHistorialDePrestamos().addMouseListener(this);
 
         // Agregar MouseListener al JLabel lblSolicitar
         frmLibraryHome.getLblSolicitar().addMouseListener(this);
+
+        frmLibraryHome.getBtnSearch().addMouseListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        frmLibraryHome.getMenuItems().forEach(menu -> {
-            if (e.getSource() == menu) {
-                // Borrar cualquier JInternalFrame creado anteriormente
-                frmLibraryHome.clearDesltopPane();
+        if (e.getSource() == frmLibraryHome.getBtnSearch()) {
+            searchBook();
+        }
 
-                // menu.getText() es para acceder al nombre del menu seleccionado
-                categoryBooksInternalFrm = new CategoryBooks(menu.getText(), bookService);
-                categoryBooksInternalFrm.setSize(frmLibraryHome.getDesktopPane().getSize());
+        try {
+            frmLibraryHome.getMenuItems().forEach((JMenuItem menu) -> {
+                if (e.getSource() == menu) {
+                    // Borrar cualquier JInternalFrame creado anteriormente
+                    frmLibraryHome.clearDesltopPane();
 
-                // Obtener una instancia de la clase Categoria a traves de su nombre
-                Category categorySelected = categoryService.getCategoryByName(menu.getText());
+                    // menu.getText() es para acceder al nombre del menu seleccionado
+                    categoryBooksInternalFrm = new CategoryBooks(menu.getText(), bookService);
+                    categoryBooksInternalFrm.setSize(frmLibraryHome.getDesktopPane().getSize());
 
-                // Obtener una lista de libros filtrada por categoria
-                List<Book> booksByCategory = bookService.getBooksByCategory(categorySelected);
+                    // Obtener una instancia de la clase Categoria a traves de su nombre
+                    Category categorySelected = categoryService.getCategoryByName(menu.getText());
 
-                // Agregar cada libro obtenido de la lista anterior al JInternalFrame
-                categoryBooksInternalFrm.addBooks(booksByCategory);
+                    // Obtener una lista de libros filtrada por categoria
+                    List<Book> booksByCategory = bookService.getBooksByCategory(categorySelected);
 
-                // Agregar el JInternalFrame al desktopPane de la ventana LibraryHome
-                frmLibraryHome.addToDesktopPane(categoryBooksInternalFrm);
-            }
-        });
+                    // Agregar cada libro obtenido de la lista anterior al JInternalFrame
+                    categoryBooksInternalFrm.addBooks(booksByCategory);
+
+                    // Agregar el JInternalFrame al desktopPane de la ventana LibraryHome
+                    frmLibraryHome.addToDesktopPane(categoryBooksInternalFrm);
+                }
+            });
+        } catch (NullPointerException e1) {
+        }
+
     }
 
     @Override
@@ -115,7 +136,7 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
             frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlCategory());
         } else if (e.getSource() == frmLibraryHome.getLblSolicitar()) {
             frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getLblSolicitar());
-        } else if(e.getSource() == frmLibraryHome.getPnlShutdown()) {
+        } else if (e.getSource() == frmLibraryHome.getPnlShutdown()) {
             frmLibraryHome.openLoginStudent(userService);
             frmLibraryHome.close();
         }
@@ -175,6 +196,13 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
     }
 
     @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            searchBook();
+        }
+    }
+
+    @Override
     public void mousePressed(MouseEvent e) {
     }
 
@@ -192,5 +220,13 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
 
     @Override
     public void componentHidden(ComponentEvent e) {
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
     }
 }

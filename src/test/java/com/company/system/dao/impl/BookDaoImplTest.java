@@ -82,8 +82,11 @@ public class BookDaoImplTest {
     }
 
     @Test
-    void testUpdate() {
-        
+    void tesfindByPattern() {
+        List<Book> books = bookDao.findByPattern("i");
+        books.forEach(book -> {
+            System.out.println(book);
+        });
     }
 
     @Test

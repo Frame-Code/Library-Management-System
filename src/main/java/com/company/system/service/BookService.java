@@ -26,5 +26,9 @@ public class BookService {
     public Book getBookByISBN(String isbn) {
         return bookDao.findByISBN(isbn);
     }
+    
+    public List<Book> searchBook(String pattern) {
+        return bookDao.findByPattern(pattern);
+    }
 
 }

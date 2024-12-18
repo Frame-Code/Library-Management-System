@@ -19,12 +19,13 @@ import com.company.system.model.Publisher;
 /**
  * @author artist-code (Daniel Mora Cantillo)
  */
-public class BookDaoImpl implements BookDao{
+public class BookDaoImpl implements BookDao {
+
     private final EntityManagerFactory emf;
 
     public BookDaoImpl() {
         this.emf = Persistence.createEntityManagerFactory("libraryPU");
-    } 
+    }
 
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
@@ -139,7 +140,7 @@ public class BookDaoImpl implements BookDao{
 
     @Override
     public boolean deleteByID(Long id) {
-        Book book = findById(id); 
+        Book book = findById(id);
         book.setDeleted(true);
         return update(book);
     }
@@ -192,6 +193,21 @@ public class BookDaoImpl implements BookDao{
         return findUnique(jpql, "id", id);
     }
 
-
+    @Override
+    public List<Book> findByPattern(String pattern) {
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT b FROM Book b WHERE LOWER(b.title) LIKE :pattern AND b.deleted=0";
+        TypedQuery<Book> query = em.createQuery(jpql, Book.class);
+        query.setParameter("pattern", "%" + pattern + "%");
+        List<Book> books;
+        try {
+            books = query.getResultList();
+            return books;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
 
 }

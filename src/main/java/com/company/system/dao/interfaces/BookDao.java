@@ -13,6 +13,8 @@ public interface BookDao extends Dao<Book>{
     List<Book> findByAuthor(Author author);
 
     List<Book> findByPublisher(Publisher publisher);
+    
+    List<Book> findByPattern(String pattern);
 
     Book findByISBN(String isbn);
 }

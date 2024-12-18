@@ -1,4 +1,3 @@
-
 package com.company.system.view;
 
 import com.company.system.model.Author;
@@ -11,10 +10,12 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.List;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class CategoryBooks extends JInternalFrame {
+
     private JPanel panel;
     private final BookService bookService;
 
@@ -41,23 +42,30 @@ public class CategoryBooks extends JInternalFrame {
 
         setVisible(true);
     }
-    
+
     public void addBooks(List<Book> books) {
-        books.forEach(book -> {
-            ButtonDesign label = new ButtonDesign(bookService);
-            label.getLblTitle().setText("Titulo: " + book.getTitle());
-            label.getLblTitle().setFont(new Font("DejaVu Sans Condensed", 1, 14));
-            String authorsString = "Autores: ";
-            for (Author author : book.getAuthors()) {
-                authorsString += author.getSurNames() + ", ";
-            }
-            label.getLblAuthors().setText(authorsString);
-            label.getLblPublihser().setText("Editorial: " + book.getPublisher().getName());
-            label.getLblIsbn().setText("Codigo: " + book.getIsbn());
-            label.setIsbnBook(book.getIsbn());
-            label.getLblIsbn().setFont(new Font("Dialog", 0, 10));
-            this.panel.add(label);
-        });
+        if (books.isEmpty()) {
+            JLabel label = new JLabel("Error: No existen libros con tal busqueda o filtro");
+            label.setBounds(50, 50, 150, 30);
+            label.setFont(new Font("DejaVu Sans Condensed", 1, 14));
+            add(label);
+        } else {
+            books.forEach(book -> {
+                ButtonDesign label = new ButtonDesign(bookService);
+                label.getLblTitle().setText("Titulo: " + book.getTitle());
+                label.getLblTitle().setFont(new Font("DejaVu Sans Condensed", 1, 14));
+                String authorsString = "Autores: ";
+                for (Author author : book.getAuthors()) {
+                    authorsString += author.getSurNames() + ", ";
+                }
+                label.getLblAuthors().setText(authorsString);
+                label.getLblPublihser().setText("Editorial: " + book.getPublisher().getName());
+                label.getLblIsbn().setText("Codigo: " + book.getIsbn());
+                label.setIsbnBook(book.getIsbn());
+                label.getLblIsbn().setFont(new Font("Dialog", 0, 10));
+                this.panel.add(label);
+            });
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -65,12 +73,12 @@ public class CategoryBooks extends JInternalFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 394, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 274, Short.MAX_VALUE)
         );
 
         pack();
