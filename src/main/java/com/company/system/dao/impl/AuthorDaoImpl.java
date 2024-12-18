@@ -2,10 +2,13 @@ package com.company.system.dao.impl;
 
 import java.util.List;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
+import javax.persistence.RollbackException;
+import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
 
 import com.company.system.dao.interfaces.AuthorDao;
@@ -15,35 +18,68 @@ import com.company.system.model.Author;
  *
  * @author Daniel Mora Cantillo
  */
-public class AuthorDaoImpl implements AuthorDao{
+public class AuthorDaoImpl implements AuthorDao {
     private EntityManagerFactory emf;
 
     public AuthorDaoImpl() {
-        this.emf = Persistence.createEntityManagerFactory("libraryPu");
+        this.emf = Persistence.createEntityManagerFactory(namePersistenceUnit);
     }
-    
+
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-    
-    
+
     @Override
-    public boolean create(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean create(Author object) {
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(object);
+            em.getTransaction().commit();
+            return true;
+        } catch (IllegalStateException | EntityExistsException | TransactionRequiredException e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            return false;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
-    public List findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Author> findAll() {
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT a FROM Author a WHERE a.deleted=0";
+        TypedQuery<Author> query = em.createQuery(jpql, Author.class);
+        List<Author> authors;
+        try {
+            authors = query.getResultList();
+            return authors;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
-    public List findAllIncludeDeleted() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Author> findAllIncludeDeleted() {
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT a FROM Author a";
+        TypedQuery<Author> query = em.createQuery(jpql, Author.class);
+        List<Author> authors;
+        try {
+            authors = query.getResultList();
+            return authors;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
-    public Object findById(Long id) {
+    public Author findById(Long id) {
         EntityManager em = getEntityManager();
         String jpql = "SELECT a FROM Author a WHERE a.idAuthor = :id and a.deleted = 0";
         TypedQuery<Author> query = em.createQuery(jpql, Author.class);
@@ -60,18 +96,44 @@ public class AuthorDaoImpl implements AuthorDao{
     }
 
     @Override
-    public Object findByIdIncludeDeleted(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Author findByIdIncludeDeleted(Long id) {
+        EntityManager em = getEntityManager();
+        Author author;
+        try {
+            em.getTransaction().begin();;
+            author = em.find(Author.class, id);
+            em.getTransaction().commit();
+            return author;
+        } catch (IllegalStateException | IllegalArgumentException | RollbackException e) {
+            em.getTransaction().rollback();
+            return null;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
-    public boolean update(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean update(Author object) {
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.merge(object);
+            em.getTransaction().commit();
+            return true;
+        } catch (IllegalStateException | TransactionRequiredException | IllegalArgumentException
+                | RollbackException e) {
+            em.getTransaction().rollback();
+            return false;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public boolean deleteByID(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Author author = findById(id);
+        author.setDeleted(true);
+        return update(author);
     }
 
 }

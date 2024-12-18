@@ -1,6 +1,5 @@
 package com.company.system.service;
 
-import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,11 +12,11 @@ import com.company.system.model.User;
 public class UserServiceTest {
     @Test
     void testLogin() {
-        /*UserService userService = new UserService();
+        UserService userService = new UserService();
         User user = userService.login(941239261L, "MiContra");
         User user1 = userService.login(941239253L, "MiContraseña");
-        System.out.println(user);
-        System.out.println(user1);*/
+        /*System.out.println(user);
+        System.out.println(user1)*/
     }
 
     @Test

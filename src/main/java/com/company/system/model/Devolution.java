@@ -17,6 +17,7 @@ import javax.persistence.Table;
 public class Devolution implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idDevolution")
     private Long idDovolution;
 
     @ManyToOne

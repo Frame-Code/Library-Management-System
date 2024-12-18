@@ -16,4 +16,6 @@ public interface Dao <T>{
     boolean update(T object);
 
     boolean deleteByID(Long id);
+
+    String namePersistenceUnit = "libraryPU";
 }

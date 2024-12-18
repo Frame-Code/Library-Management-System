@@ -19,7 +19,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
-import java.util.function.Consumer;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
