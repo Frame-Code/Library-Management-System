@@ -17,6 +17,7 @@ import com.company.system.model.User;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class LoanService {
+
     private final LoanDao loanDao;
     private final FineDao fineDao;
 
@@ -28,24 +29,47 @@ public class LoanService {
     public List<Loan> getLoansByUser(User user) {
         return loanDao.findByUser(user);
     }
+    
+    //Este metodo verifica que el usuario si tiene multas, estas sean menores que 4 y su fecha de finalizacion haya pasado
+    public boolean checkFinesToRequestExtension(User user) {
+        LinkedList<Fine> fines = new LinkedList<>(fineDao.findByUser(user));
+        
+        if(fines.isEmpty()) {
+            return true;
+        } else {
+            return fines.size() <= 3 && fines.getLast().getDeadline().isBefore(LocalDate.now());
+        }
+    }
+    
+    //Este metodo verifica que el usuario tiene prestamos hechos y si el ultimo prestamo hecho aun no ha sido devuelto
+    public boolean isEntitledToRequestExtension(User user) {
+        LinkedList<Loan> loans = new LinkedList<>(getLoansByUser(user));
+        return !loans.isEmpty() && !loans.getLast().isReturned();
+    }
 
     public boolean requestExtension(User user, LocalDate newDevolutionDate) {
-
+        /* Primero es necesario realizar estas verificaciones:
+        1. Que el usuario tiene prestamos hechos y ademas que el ultimo no se haya devuelto (isEntitledToRequestExtension)
+            deshabilitando el boton "Solicitar Prorroga" en caso que no sea asi
+        
+        2. Que si el usuario tiene multas que estas sean menores que 4 y que la ultima multa ya haya pasado (checkFinesToRequestExtension)
+            mostrando un mensaje por pantalla que le informe esto al usuario
+            
+        
+        Nota: esta funcion da por sentado que ambas verificiones fueron hechas
+        */
+        
         Loan lastLoan = new LinkedList<>(getLoansByUser(user)).getLast();
-        LinkedList<Fine> fines = new LinkedList<>(fineDao.findByUser(user));
 
-        if(lastLoan.isReturned() == false &&
-        LocalDate.now().isBefore(lastLoan.getDevolutionDate()) &&
-        lastLoan.getRegistrationUpdateDate() != null &&
-        fines.size() <= 3 &&
-        fines.getLast().getDeadline().isBefore(LocalDate.now())) {
-            lastLoan.setDevolutionDate(newDevolutionDate);    
+        if (LocalDate.now().isBefore(lastLoan.getDevolutionDate()) && lastLoan.getRegistrationUpdateDate() == null ) {
+            lastLoan.setDevolutionDate(newDevolutionDate);
+            lastLoan.setRegistrationUpdateDate(LocalDate.now());
+            lastLoan.setRegistrationUpdateName(user.getNames() + " " + user.getSurNames() + ", role: " + user.getRole().getName());
             return loanDao.update(lastLoan);
         } else {
             return false;
         }
 
     }
-
 
 }

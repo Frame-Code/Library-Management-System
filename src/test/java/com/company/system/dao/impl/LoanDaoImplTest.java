@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import com.company.system.dao.interfaces.LoanDao;
 import com.company.system.model.Loan;
+
 /**
  *
  * @author artist-code (Daniel Mora Cantillo)
@@ -90,8 +91,8 @@ public class LoanDaoImplTest {
 
     @Test
     void testUpdate() {
-        Loan loan = loanDao.findByIdIncludeDeleted(1L)   ;
-        loan.setDeleted(false);
+        Loan loan = loanDao.findByIdIncludeDeleted(3L);
+        loan.setDevolutionDate(LocalDate.of(2024, 12, 25));
         System.out.println(loanDao.update(loan));
     }
 }

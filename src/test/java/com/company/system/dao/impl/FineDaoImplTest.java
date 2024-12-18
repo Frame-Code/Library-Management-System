@@ -70,7 +70,7 @@ public class FineDaoImplTest {
     @Test
     void testUpdate() {
         Fine fine = fineDao.findByIdIncludeDeleted(1L);
-        fine.setDeleted(false);
+        fine.setDeadline(LocalDate.of(2024, 11, 25));
         System.out.println(fineDao.update(fine));
     }
 }
