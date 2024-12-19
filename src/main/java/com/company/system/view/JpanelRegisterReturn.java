@@ -4,6 +4,11 @@
  */
 package com.company.system.view;
 
+import com.company.system.view.components.BackgroundPanel;
+import com.company.system.view.components.RoundedPanelWithShadow;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author ariel

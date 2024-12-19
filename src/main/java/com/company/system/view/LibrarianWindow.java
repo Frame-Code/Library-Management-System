@@ -1,9 +1,14 @@
 package com.company.system.view;
 
+import com.company.system.controller.LibrarianWindowListener;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedPanelWithShadow;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -14,11 +19,10 @@ public class LibrarianWindow extends javax.swing.JFrame {
     public LibrarianWindow() {
         initComponents();
         setResizable(true);
-        setSize(1080,720);
+        setSize(1080, 720);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -37,28 +41,29 @@ public class LibrarianWindow extends javax.swing.JFrame {
         ));
         pnlRegisterLoan = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
         jlbookimage = new javax.swing.JLabel();
-        lblbook = new javax.swing.JLabel();
+        lblRegisterFine = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        pnlManageBooks = new RoundedPanelWithShadow(0,new Color (0,0,0,0),0);
-        lblbook2 = new javax.swing.JLabel();
+        pnlManageBooks = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
+        lblManageBooks = new javax.swing.JLabel();
         jlusersimage1 = new javax.swing.JLabel();
-        pnlGenerateReports = new RoundedPanelWithShadow(0,new Color (0,0,0,0),0);
-        lblbook3 = new javax.swing.JLabel();
+        pnlGenerateReports = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
+        lblManageReports = new javax.swing.JLabel();
         jlreportimage = new javax.swing.JLabel();
-        pnlNotification = new RoundedPanelWithShadow(0,new Color (0,0,0,0),0);
-        lblbook5 = new javax.swing.JLabel();
+        pnlNotifications = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
+        lblNotifications = new javax.swing.JLabel();
         jlreportimage2 = new javax.swing.JLabel();
         pnlShutdown = new RoundedPanelWithShadow(25,new Color (0,0,0,100),2);
-        lblbook6 = new javax.swing.JLabel();
+        lblShutdown = new javax.swing.JLabel();
         jlreportimage3 = new javax.swing.JLabel();
         pnlRegisterDevolution = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
         jlbookimage1 = new javax.swing.JLabel();
-        lblbook4 = new javax.swing.JLabel();
-        pnlManageFines = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
+        lblRegisterDevolution = new javax.swing.JLabel();
+        pnlManageFine = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
         jlbookimage2 = new javax.swing.JLabel();
-        lblbook7 = new javax.swing.JLabel();
+        lblManageFine = new javax.swing.JLabel();
         pnlWelcome1 = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         lblWelcome1 = new javax.swing.JLabel();
+        pnlPrincipal = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 0);
 
         jMenu1.setText("jMenu1");
 
@@ -124,12 +129,12 @@ public class LibrarianWindow extends javax.swing.JFrame {
 
         jlbookimage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/LoanIcon.png"))); // NOI18N
 
-        lblbook.setBackground(new java.awt.Color(255, 255, 255));
-        lblbook.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblbook.setForeground(new java.awt.Color(0, 0, 0));
-        lblbook.setText("Registrar préstamo");
-        lblbook.setToolTipText("");
-        lblbook.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblRegisterFine.setBackground(new java.awt.Color(255, 255, 255));
+        lblRegisterFine.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
+        lblRegisterFine.setForeground(new java.awt.Color(0, 0, 0));
+        lblRegisterFine.setText("Registrar préstamo");
+        lblRegisterFine.setToolTipText("");
+        lblRegisterFine.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout pnlRegisterLoanLayout = new javax.swing.GroupLayout(pnlRegisterLoan);
         pnlRegisterLoan.setLayout(pnlRegisterLoanLayout);
@@ -137,9 +142,9 @@ public class LibrarianWindow extends javax.swing.JFrame {
             pnlRegisterLoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlRegisterLoanLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jlbookimage, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblbook, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlbookimage, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblRegisterFine, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         pnlRegisterLoanLayout.setVerticalGroup(
@@ -147,8 +152,8 @@ public class LibrarianWindow extends javax.swing.JFrame {
             .addGroup(pnlRegisterLoanLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlRegisterLoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblbook, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbookimage, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlbookimage, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRegisterFine))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -158,12 +163,12 @@ public class LibrarianWindow extends javax.swing.JFrame {
         pnlManageBooks.setBackground(new java.awt.Color(255, 255, 255));
         pnlManageBooks.setPreferredSize(new java.awt.Dimension(287, 52));
 
-        lblbook2.setBackground(new java.awt.Color(255, 255, 255));
-        lblbook2.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblbook2.setForeground(new java.awt.Color(0, 0, 0));
-        lblbook2.setText("Administrar libros");
-        lblbook2.setToolTipText("");
-        lblbook2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblManageBooks.setBackground(new java.awt.Color(255, 255, 255));
+        lblManageBooks.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
+        lblManageBooks.setForeground(new java.awt.Color(0, 0, 0));
+        lblManageBooks.setText("Administrar libros");
+        lblManageBooks.setToolTipText("");
+        lblManageBooks.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jlusersimage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/manageBookIcon.png"))); // NOI18N
 
@@ -175,29 +180,29 @@ public class LibrarianWindow extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jlusersimage1)
                 .addGap(18, 18, 18)
-                .addComponent(lblbook2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblManageBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlManageBooksLayout.setVerticalGroup(
             pnlManageBooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlManageBooksLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(pnlManageBooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlusersimage1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnlManageBooksLayout.createSequentialGroup()
-                        .addComponent(lblbook2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(9, Short.MAX_VALUE))))
+                .addComponent(jlusersimage1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+            .addGroup(pnlManageBooksLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(lblManageBooks)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pnlGenerateReports.setBackground(new java.awt.Color(255, 255, 255));
         pnlGenerateReports.setPreferredSize(new java.awt.Dimension(287, 52));
 
-        lblbook3.setBackground(new java.awt.Color(255, 255, 255));
-        lblbook3.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblbook3.setForeground(new java.awt.Color(0, 0, 0));
-        lblbook3.setText("Generación de reportes");
-        lblbook3.setToolTipText("");
-        lblbook3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblManageReports.setBackground(new java.awt.Color(255, 255, 255));
+        lblManageReports.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
+        lblManageReports.setForeground(new java.awt.Color(0, 0, 0));
+        lblManageReports.setText("Generación de reportes");
+        lblManageReports.setToolTipText("");
+        lblManageReports.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jlreportimage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reportIcon.png"))); // NOI18N
 
@@ -209,61 +214,65 @@ public class LibrarianWindow extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(jlreportimage)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblbook3, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblManageReports, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlGenerateReportsLayout.setVerticalGroup(
             pnlGenerateReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGenerateReportsLayout.createSequentialGroup()
                 .addContainerGap(11, Short.MAX_VALUE)
-                .addGroup(pnlGenerateReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlreportimage)
-                    .addComponent(lblbook3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jlreportimage)
                 .addGap(11, 11, 11))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGenerateReportsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblManageReports)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnlNotification.setBackground(new java.awt.Color(255, 255, 255));
-        pnlNotification.setPreferredSize(new java.awt.Dimension(287, 52));
+        pnlNotifications.setBackground(new java.awt.Color(255, 255, 255));
+        pnlNotifications.setPreferredSize(new java.awt.Dimension(287, 52));
 
-        lblbook5.setBackground(new java.awt.Color(255, 255, 255));
-        lblbook5.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblbook5.setForeground(new java.awt.Color(0, 0, 0));
-        lblbook5.setText("Notificaciones");
-        lblbook5.setToolTipText("");
-        lblbook5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblNotifications.setBackground(new java.awt.Color(255, 255, 255));
+        lblNotifications.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
+        lblNotifications.setForeground(new java.awt.Color(0, 0, 0));
+        lblNotifications.setText("Notificaciones");
+        lblNotifications.setToolTipText("");
+        lblNotifications.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jlreportimage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notifyIcon.png"))); // NOI18N
 
-        javax.swing.GroupLayout pnlNotificationLayout = new javax.swing.GroupLayout(pnlNotification);
-        pnlNotification.setLayout(pnlNotificationLayout);
-        pnlNotificationLayout.setHorizontalGroup(
-            pnlNotificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNotificationLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlNotificationsLayout = new javax.swing.GroupLayout(pnlNotifications);
+        pnlNotifications.setLayout(pnlNotificationsLayout);
+        pnlNotificationsLayout.setHorizontalGroup(
+            pnlNotificationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlNotificationsLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jlreportimage2)
                 .addGap(18, 18, 18)
-                .addComponent(lblbook5, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNotifications, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        pnlNotificationLayout.setVerticalGroup(
-            pnlNotificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNotificationLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(pnlNotificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblbook5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlreportimage2))
-                .addGap(11, 11, 11))
+        pnlNotificationsLayout.setVerticalGroup(
+            pnlNotificationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNotificationsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlreportimage2)
+                .addGap(14, 14, 14))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNotificationsLayout.createSequentialGroup()
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addComponent(lblNotifications)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pnlShutdown.setBackground(new java.awt.Color(255, 255, 255));
         pnlShutdown.setPreferredSize(new java.awt.Dimension(287, 52));
 
-        lblbook6.setBackground(new java.awt.Color(255, 255, 255));
-        lblbook6.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblbook6.setForeground(new java.awt.Color(0, 0, 0));
-        lblbook6.setText("Salir");
-        lblbook6.setToolTipText("");
-        lblbook6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblShutdown.setBackground(new java.awt.Color(255, 255, 255));
+        lblShutdown.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
+        lblShutdown.setForeground(new java.awt.Color(0, 0, 0));
+        lblShutdown.setText("Salir");
+        lblShutdown.setToolTipText("");
+        lblShutdown.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jlreportimage3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shutdownIcon.png"))); // NOI18N
 
@@ -275,16 +284,16 @@ public class LibrarianWindow extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jlreportimage3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblbook6, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblShutdown, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlShutdownLayout.setVerticalGroup(
             pnlShutdownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlShutdownLayout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(pnlShutdownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblbook6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlreportimage3, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jlreportimage3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblShutdown, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(14, 14, 14))
         );
 
@@ -293,12 +302,12 @@ public class LibrarianWindow extends javax.swing.JFrame {
 
         jlbookimage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/devolutionIcon.png"))); // NOI18N
 
-        lblbook4.setBackground(new java.awt.Color(255, 255, 255));
-        lblbook4.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblbook4.setForeground(new java.awt.Color(0, 0, 0));
-        lblbook4.setText("Registrar devolución");
-        lblbook4.setToolTipText("");
-        lblbook4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblRegisterDevolution.setBackground(new java.awt.Color(255, 255, 255));
+        lblRegisterDevolution.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
+        lblRegisterDevolution.setForeground(new java.awt.Color(0, 0, 0));
+        lblRegisterDevolution.setText("Registrar devolución");
+        lblRegisterDevolution.setToolTipText("");
+        lblRegisterDevolution.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout pnlRegisterDevolutionLayout = new javax.swing.GroupLayout(pnlRegisterDevolution);
         pnlRegisterDevolution.setLayout(pnlRegisterDevolutionLayout);
@@ -306,51 +315,51 @@ public class LibrarianWindow extends javax.swing.JFrame {
             pnlRegisterDevolutionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlRegisterDevolutionLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jlbookimage1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblbook4, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jlbookimage1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblRegisterDevolution, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         pnlRegisterDevolutionLayout.setVerticalGroup(
             pnlRegisterDevolutionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlRegisterDevolutionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlRegisterDevolutionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblbook4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbookimage1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlbookimage1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRegisterDevolution))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnlManageFines.setBackground(new java.awt.Color(255, 255, 255));
-        pnlManageFines.setRequestFocusEnabled(false);
+        pnlManageFine.setBackground(new java.awt.Color(255, 255, 255));
+        pnlManageFine.setRequestFocusEnabled(false);
 
         jlbookimage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fineIcon.png"))); // NOI18N
 
-        lblbook7.setBackground(new java.awt.Color(255, 255, 255));
-        lblbook7.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblbook7.setForeground(new java.awt.Color(0, 0, 0));
-        lblbook7.setText("Administrar multas");
-        lblbook7.setToolTipText("");
-        lblbook7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblManageFine.setBackground(new java.awt.Color(255, 255, 255));
+        lblManageFine.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
+        lblManageFine.setForeground(new java.awt.Color(0, 0, 0));
+        lblManageFine.setText("Administrar multas");
+        lblManageFine.setToolTipText("");
+        lblManageFine.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        javax.swing.GroupLayout pnlManageFinesLayout = new javax.swing.GroupLayout(pnlManageFines);
-        pnlManageFines.setLayout(pnlManageFinesLayout);
-        pnlManageFinesLayout.setHorizontalGroup(
-            pnlManageFinesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlManageFinesLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlManageFineLayout = new javax.swing.GroupLayout(pnlManageFine);
+        pnlManageFine.setLayout(pnlManageFineLayout);
+        pnlManageFineLayout.setHorizontalGroup(
+            pnlManageFineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlManageFineLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jlbookimage2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblbook7, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jlbookimage2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblManageFine, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
-        pnlManageFinesLayout.setVerticalGroup(
-            pnlManageFinesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlManageFinesLayout.createSequentialGroup()
+        pnlManageFineLayout.setVerticalGroup(
+            pnlManageFineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlManageFineLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlManageFinesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblbook7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbookimage2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlManageFineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlbookimage2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblManageFine))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -364,13 +373,13 @@ public class LibrarianWindow extends javax.swing.JFrame {
                     .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(pnlManageBooks, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                         .addComponent(pnlGenerateReports, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                        .addComponent(pnlNotification, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                        .addComponent(pnlNotifications, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                         .addComponent(pnlShutdown, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
                     .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(pnlRegisterLoan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(pnlRegisterDevolution, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pnlManageFines, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(pnlManageFine, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(pnlWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 8, Short.MAX_VALUE))
             .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -391,21 +400,21 @@ public class LibrarianWindow extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(pnlRegisterDevolution, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(pnlManageFines, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlManageFine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addComponent(pnlManageBooks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(pnlGenerateReports, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(pnlNotification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlNotifications, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(pnlShutdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlBackgroundLayout.createSequentialGroup()
                     .addGap(30, 30, 30)
                     .addComponent(lblBookIcon)
-                    .addContainerGap(748, Short.MAX_VALUE)))
+                    .addContainerGap(655, Short.MAX_VALUE)))
         );
 
         pnlWelcome1.setBackground(new java.awt.Color(255, 255, 255));
@@ -423,7 +432,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
             pnlWelcome1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlWelcome1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblWelcome1, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE)
+                .addComponent(lblWelcome1, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlWelcome1Layout.setVerticalGroup(
@@ -434,6 +443,9 @@ public class LibrarianWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        pnlPrincipal.setBackground(new java.awt.Color(255, 255, 255));
+        pnlPrincipal.setLayout(new java.awt.BorderLayout());
+
         javax.swing.GroupLayout contentPaneLayout = new javax.swing.GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
@@ -442,18 +454,21 @@ public class LibrarianWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlWelcome1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlWelcome1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(contentPaneLayout.createSequentialGroup()
                         .addComponent(pnlWelcome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(744, 744, 744))
-                    .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pnlPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -502,9 +517,88 @@ public class LibrarianWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LibrarianWindow().setVisible(true);
+                LibrarianWindow lb = new LibrarianWindow();
+                new LibrarianWindowListener(lb);
+                lb.setVisible(true);
             }
         });
+    }
+
+    public JPanel getPnlGenerateReports() {
+        return pnlGenerateReports;
+    }
+
+    public JPanel getPnlManageBooks() {
+        return pnlManageBooks;
+    }
+
+    public JPanel getPnlManageFine() {
+        return pnlManageFine;
+    }
+
+    public JPanel getPnlNotifications() {
+        return pnlNotifications;
+    }
+
+    public JPanel getPnlRegisterDevolution() {
+        return pnlRegisterDevolution;
+    }
+
+    public JPanel getPnlRegisterLoan() {
+        return pnlRegisterLoan;
+    }
+
+    public JPanel getPnlShutdown() {
+        return pnlShutdown;
+    }
+
+    public JPanel getPnlPrincipal() {
+        return pnlPrincipal;
+    }
+
+    public JLabel getLblManageBooks() {
+        return lblManageBooks;
+    }
+
+    public JLabel getLblManageFine() {
+        return lblManageFine;
+    }
+
+    public JLabel getLblManageReports() {
+        return lblManageReports;
+    }
+
+    public JLabel getLblNotifications() {
+        return lblNotifications;
+    }
+
+    public JLabel getLblRegisterDevolution() {
+        return lblRegisterDevolution;
+    }
+
+    public JLabel getLblRegisterFine() {
+        return lblRegisterFine;
+    }
+
+    public JLabel getLblShutdown() {
+        return lblShutdown;
+    }
+    
+    
+
+    public void uploadPanel(JPanel panel) {
+        pnlPrincipal.removeAll();
+        pnlPrincipal.add(panel, BorderLayout.CENTER);
+        panel.setVisible(true);
+    }
+
+    public void changeColorPanel(Color color, Component component) {
+        if (component instanceof JPanel) {
+            ((JPanel) component).setBackground(color);
+        } else if (component instanceof JLabel) {
+            ((JLabel) component).setOpaque(true);
+            ((JLabel) component).setBackground(color);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -522,21 +616,22 @@ public class LibrarianWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jlreportimage3;
     private javax.swing.JLabel jlusersimage1;
     private javax.swing.JLabel lblBookIcon;
+    private javax.swing.JLabel lblManageBooks;
+    private javax.swing.JLabel lblManageFine;
+    private javax.swing.JLabel lblManageReports;
+    private javax.swing.JLabel lblNotifications;
+    private javax.swing.JLabel lblRegisterDevolution;
+    private javax.swing.JLabel lblRegisterFine;
+    private javax.swing.JLabel lblShutdown;
     private javax.swing.JLabel lblUser;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JLabel lblWelcome1;
-    private javax.swing.JLabel lblbook;
-    private javax.swing.JLabel lblbook2;
-    private javax.swing.JLabel lblbook3;
-    private javax.swing.JLabel lblbook4;
-    private javax.swing.JLabel lblbook5;
-    private javax.swing.JLabel lblbook6;
-    private javax.swing.JLabel lblbook7;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JPanel pnlGenerateReports;
     private javax.swing.JPanel pnlManageBooks;
-    private javax.swing.JPanel pnlManageFines;
-    private javax.swing.JPanel pnlNotification;
+    private javax.swing.JPanel pnlManageFine;
+    private javax.swing.JPanel pnlNotifications;
+    private javax.swing.JPanel pnlPrincipal;
     private javax.swing.JPanel pnlRegisterDevolution;
     private javax.swing.JPanel pnlRegisterLoan;
     private javax.swing.JPanel pnlShutdown;

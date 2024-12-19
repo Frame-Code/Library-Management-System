@@ -25,11 +25,7 @@ public class UserService {
 
     private boolean userExists(Long idCard, String role) {
         User user = userDao.findByIdCard(idCard, role);
-        if(user != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return user != null;
     }
 
     public boolean librarianExists(Long idCard) {
