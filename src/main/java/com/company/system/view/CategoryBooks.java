@@ -23,7 +23,6 @@ public class CategoryBooks extends JInternalFrame {
         super(categoryName, true, true, true, true);
         this.bookService = bookService;
         initComponents();
-        setTitle("Categoría: " + categoryName);
         setSize(800, 597);
         setLayout(new BorderLayout());
 
