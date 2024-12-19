@@ -24,6 +24,11 @@ public class InfoLibroWindow extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup4 = new javax.swing.ButtonGroup();
         contentPane = new BackgroundPanel("src/main/resources/images/Background_login.png");
         pnlBackground = new RoundedPanelWithShadow(30, new Color(0, 0, 0, 100), 2);
         pnlWelcome = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
@@ -111,23 +116,20 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         jLabel9.setText("IMAGEN DEL LIBRO xd");
 
         lblStock.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        lblStock.setForeground(new java.awt.Color(0, 0, 0));
         lblStock.setText(String.valueOf(book.getStock()));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("ISBN:");
 
         lblYearPublished.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        lblYearPublished.setForeground(new java.awt.Color(0, 0, 0));
         lblYearPublished.setText(book.getYearPublished().toString());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Descripcion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descripcion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         txtAreaDescription.setEditable(false);
         txtAreaDescription.setColumns(20);
-        txtAreaDescription.setForeground(new java.awt.Color(0, 0, 0));
         txtAreaDescription.setLineWrap(true);
         txtAreaDescription.setRows(5);
         jScrollPane1.setViewportView(txtAreaDescription);
@@ -150,7 +152,6 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         );
 
         lblPublisher.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        lblPublisher.setForeground(new java.awt.Color(0, 0, 0));
         lblPublisher.setText(book.getPublisher().getName());
 
         lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PortraitBook.png"))); // NOI18N
@@ -159,11 +160,9 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         jLabel7.setText("Categoría:");
 
         lblISBN.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        lblISBN.setForeground(new java.awt.Color(0, 0, 0));
         lblISBN.setText(book.getIsbn());
 
         lblAuthor.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        lblAuthor.setForeground(new java.awt.Color(0, 0, 0));
         String authors = "";
         for(Author author : book.getAuthors()) {
             authors += author.getSurNames() + ", ";
@@ -171,7 +170,6 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         lblAuthor.setText(authors);
 
         lblCategory.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        lblCategory.setForeground(new java.awt.Color(0, 0, 0));
         lblCategory.setText(book.getCategory().getName());
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -403,6 +401,10 @@ public class InfoLibroWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnNotify;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JPanel contentPane;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
