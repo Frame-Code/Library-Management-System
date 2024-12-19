@@ -35,16 +35,10 @@ public class LibrarianWindow extends javax.swing.JFrame {
         jlabeladm = new javax.swing.JLabel();
         lblBookIcon = new javax.swing.JLabel(new ImageIcon("/src/main/resources/images/Student_icon_Login.png"
         ));
-        pnlCategory = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 0);
-        jLabel4 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         jPanelBook = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
         jlbookimage = new javax.swing.JLabel();
         lblbook = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jPanelBook1 = new RoundedPanelWithShadow(0,new Color (0,0,0,0),0);
-        lblbook1 = new javax.swing.JLabel();
-        jlusersimage = new javax.swing.JLabel();
         jPanelBook2 = new RoundedPanelWithShadow(0,new Color (0,0,0,0),0);
         lblbook2 = new javax.swing.JLabel();
         jlusersimage1 = new javax.swing.JLabel();
@@ -57,6 +51,12 @@ public class LibrarianWindow extends javax.swing.JFrame {
         jPanelBook6 = new RoundedPanelWithShadow(25,new Color (0,0,0,100),2);
         lblbook6 = new javax.swing.JLabel();
         jlreportimage3 = new javax.swing.JLabel();
+        jPanelBook4 = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
+        jlbookimage1 = new javax.swing.JLabel();
+        lblbook4 = new javax.swing.JLabel();
+        jPanelBook7 = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
+        jlbookimage2 = new javax.swing.JLabel();
+        lblbook7 = new javax.swing.JLabel();
         desktopPane = new javax.swing.JDesktopPane();
         pnlWelcome1 = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         lblWelcome1 = new javax.swing.JLabel();
@@ -83,7 +83,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
         lblUser.setForeground(new java.awt.Color(255, 255, 255));
         lblUser.setText("User");
 
-        jlabeladm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LibrarianIconHome.png"))); // NOI18N
+        jlabeladm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/LibrarianIconHome.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlWelcomeLayout = new javax.swing.GroupLayout(pnlWelcome);
         pnlWelcome.setLayout(pnlWelcomeLayout);
@@ -120,35 +120,15 @@ public class LibrarianWindow extends javax.swing.JFrame {
                         .addGap(18, 18, 18))))
         );
 
-        pnlCategory.setBackground(new java.awt.Color(255, 255, 255));
-        pnlCategory.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        javax.swing.GroupLayout pnlCategoryLayout = new javax.swing.GroupLayout(pnlCategory);
-        pnlCategory.setLayout(pnlCategoryLayout);
-        pnlCategoryLayout.setHorizontalGroup(
-            pnlCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCategoryLayout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jLabel4)
-                .addContainerGap(135, Short.MAX_VALUE))
-        );
-        pnlCategoryLayout.setVerticalGroup(
-            pnlCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCategoryLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jLabel4)
-                .addContainerGap(158, Short.MAX_VALUE))
-        );
-
         jPanelBook.setBackground(new java.awt.Color(255, 255, 255));
         jPanelBook.setRequestFocusEnabled(false);
 
-        jlbookimage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fdsf(4)(2)(2).png"))); // NOI18N
+        jlbookimage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/LoanIcon.png"))); // NOI18N
 
         lblbook.setBackground(new java.awt.Color(255, 255, 255));
         lblbook.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
         lblbook.setForeground(new java.awt.Color(0, 0, 0));
-        lblbook.setText("Registrar devolución");
+        lblbook.setText("Registrar préstamo");
         lblbook.setToolTipText("");
         lblbook.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -176,39 +156,6 @@ public class LibrarianWindow extends javax.swing.JFrame {
         jSeparator2.setBackground(new java.awt.Color(56, 75, 147));
         jSeparator2.setForeground(new java.awt.Color(56, 75, 147));
 
-        jPanelBook1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelBook1.setPreferredSize(new java.awt.Dimension(287, 52));
-
-        lblbook1.setBackground(new java.awt.Color(255, 255, 255));
-        lblbook1.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblbook1.setForeground(new java.awt.Color(0, 0, 0));
-        lblbook1.setText("Administrar estudiantes");
-        lblbook1.setToolTipText("");
-        lblbook1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jlusersimage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/209914-200(1).png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanelBook1Layout = new javax.swing.GroupLayout(jPanelBook1);
-        jPanelBook1.setLayout(jPanelBook1Layout);
-        jPanelBook1Layout.setHorizontalGroup(
-            jPanelBook1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBook1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jlusersimage, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblbook1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanelBook1Layout.setVerticalGroup(
-            jPanelBook1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBook1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelBook1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jlusersimage, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblbook1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
         jPanelBook2.setBackground(new java.awt.Color(255, 255, 255));
         jPanelBook2.setPreferredSize(new java.awt.Dimension(287, 52));
 
@@ -219,7 +166,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
         lblbook2.setToolTipText("");
         lblbook2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jlusersimage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/PngItem_194508(2).png"))); // NOI18N
+        jlusersimage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/manageBookIcon.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelBook2Layout = new javax.swing.GroupLayout(jPanelBook2);
         jPanelBook2.setLayout(jPanelBook2Layout);
@@ -235,7 +182,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
         jPanelBook2Layout.setVerticalGroup(
             jPanelBook2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBook2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(16, 16, 16)
                 .addGroup(jPanelBook2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlusersimage1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelBook2Layout.createSequentialGroup()
@@ -253,7 +200,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
         lblbook3.setToolTipText("");
         lblbook3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jlreportimage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pngwing.com(2).png"))); // NOI18N
+        jlreportimage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reportIcon.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelBook3Layout = new javax.swing.GroupLayout(jPanelBook3);
         jPanelBook3.setLayout(jPanelBook3Layout);
@@ -286,7 +233,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
         lblbook5.setToolTipText("");
         lblbook5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jlreportimage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/notifyIcon.png"))); // NOI18N
+        jlreportimage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notifyIcon.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelBook5Layout = new javax.swing.GroupLayout(jPanelBook5);
         jPanelBook5.setLayout(jPanelBook5Layout);
@@ -319,7 +266,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
         lblbook6.setToolTipText("");
         lblbook6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jlreportimage3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/shutdownIcon.png"))); // NOI18N
+        jlreportimage3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shutdownIcon.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelBook6Layout = new javax.swing.GroupLayout(jPanelBook6);
         jPanelBook6.setLayout(jPanelBook6Layout);
@@ -342,6 +289,72 @@ public class LibrarianWindow extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
+        jPanelBook4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelBook4.setRequestFocusEnabled(false);
+
+        jlbookimage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/devolutionIcon.png"))); // NOI18N
+
+        lblbook4.setBackground(new java.awt.Color(255, 255, 255));
+        lblbook4.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
+        lblbook4.setForeground(new java.awt.Color(0, 0, 0));
+        lblbook4.setText("Registrar devolución");
+        lblbook4.setToolTipText("");
+        lblbook4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        javax.swing.GroupLayout jPanelBook4Layout = new javax.swing.GroupLayout(jPanelBook4);
+        jPanelBook4.setLayout(jPanelBook4Layout);
+        jPanelBook4Layout.setHorizontalGroup(
+            jPanelBook4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBook4Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jlbookimage1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblbook4, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelBook4Layout.setVerticalGroup(
+            jPanelBook4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBook4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelBook4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblbook4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlbookimage1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanelBook7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelBook7.setRequestFocusEnabled(false);
+
+        jlbookimage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fineIcon.png"))); // NOI18N
+
+        lblbook7.setBackground(new java.awt.Color(255, 255, 255));
+        lblbook7.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
+        lblbook7.setForeground(new java.awt.Color(0, 0, 0));
+        lblbook7.setText("Administrar multas");
+        lblbook7.setToolTipText("");
+        lblbook7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        javax.swing.GroupLayout jPanelBook7Layout = new javax.swing.GroupLayout(jPanelBook7);
+        jPanelBook7.setLayout(jPanelBook7Layout);
+        jPanelBook7Layout.setHorizontalGroup(
+            jPanelBook7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBook7Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jlbookimage2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblbook7, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelBook7Layout.setVerticalGroup(
+            jPanelBook7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBook7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelBook7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblbook7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlbookimage2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
         pnlBackgroundLayout.setHorizontalGroup(
@@ -349,31 +362,23 @@ public class LibrarianWindow extends javax.swing.JFrame {
             .addGroup(pnlBackgroundLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanelBook2, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                            .addComponent(jPanelBook1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                            .addComponent(jPanelBook3, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                            .addComponent(jPanelBook5, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                            .addComponent(jPanelBook6, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
-                        .addGap(83, 83, 83)
-                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1)
-                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                                .addComponent(pnlCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jPanelBook, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(pnlWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanelBook2, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                        .addComponent(jPanelBook3, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                        .addComponent(jPanelBook5, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                        .addComponent(jPanelBook6, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                    .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPanelBook, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanelBook4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanelBook7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 8, Short.MAX_VALUE))
             .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlBackgroundLayout.createSequentialGroup()
                     .addGap(34, 34, 34)
                     .addComponent(lblBookIcon)
-                    .addContainerGap(537, Short.MAX_VALUE)))
+                    .addContainerGap(268, Short.MAX_VALUE)))
         );
         pnlBackgroundLayout.setVerticalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,31 +387,26 @@ public class LibrarianWindow extends javax.swing.JFrame {
                 .addComponent(pnlWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(jPanelBook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelBook1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(pnlCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jPanelBook2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jPanelBook3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jPanelBook5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(66, 66, 66)
+                .addGap(28, 28, 28)
+                .addComponent(jPanelBook4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jPanelBook7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(jPanelBook2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jPanelBook3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jPanelBook5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addComponent(jPanelBook6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlBackgroundLayout.createSequentialGroup()
                     .addGap(30, 30, 30)
                     .addComponent(lblBookIcon)
-                    .addContainerGap(380, Short.MAX_VALUE)))
+                    .addContainerGap(748, Short.MAX_VALUE)))
         );
 
         desktopPane.setBackground(new java.awt.Color(255, 255, 255));
@@ -416,11 +416,11 @@ public class LibrarianWindow extends javax.swing.JFrame {
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 725, Short.MAX_VALUE)
+            .addGap(0, 1024, Short.MAX_VALUE)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 738, Short.MAX_VALUE)
         );
 
         pnlWelcome1.setBackground(new java.awt.Color(255, 255, 255));
@@ -455,7 +455,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
             contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlWelcome1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -529,36 +529,36 @@ public class LibrarianWindow extends javax.swing.JFrame {
     private javax.swing.JPanel contentPane;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanelBook;
-    private javax.swing.JPanel jPanelBook1;
     private javax.swing.JPanel jPanelBook2;
     private javax.swing.JPanel jPanelBook3;
+    private javax.swing.JPanel jPanelBook4;
     private javax.swing.JPanel jPanelBook5;
     private javax.swing.JPanel jPanelBook6;
+    private javax.swing.JPanel jPanelBook7;
     private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel jlabeladm;
     private javax.swing.JLabel jlbookimage;
+    private javax.swing.JLabel jlbookimage1;
+    private javax.swing.JLabel jlbookimage2;
     private javax.swing.JLabel jlreportimage;
     private javax.swing.JLabel jlreportimage2;
     private javax.swing.JLabel jlreportimage3;
-    private javax.swing.JLabel jlusersimage;
     private javax.swing.JLabel jlusersimage1;
     private javax.swing.JLabel lblBookIcon;
     private javax.swing.JLabel lblUser;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JLabel lblWelcome1;
     private javax.swing.JLabel lblbook;
-    private javax.swing.JLabel lblbook1;
     private javax.swing.JLabel lblbook2;
     private javax.swing.JLabel lblbook3;
+    private javax.swing.JLabel lblbook4;
     private javax.swing.JLabel lblbook5;
     private javax.swing.JLabel lblbook6;
+    private javax.swing.JLabel lblbook7;
     private javax.swing.JPanel pnlBackground;
-    private javax.swing.JPanel pnlCategory;
     private javax.swing.JPanel pnlWelcome;
     private javax.swing.JPanel pnlWelcome1;
     // End of variables declaration//GEN-END:variables
