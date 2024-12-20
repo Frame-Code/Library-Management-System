@@ -3,7 +3,11 @@ package com.company.system.view;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.Color;
-import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -21,21 +25,21 @@ public class RegisterLoan extends javax.swing.JPanel {
         jPanel1 =  new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 0);
         jPanel2 = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         lblbook = new javax.swing.JLabel();
-        txtIdUser = new javax.swing.JTextField();
-        btnBack = new RoundedButtonWithShadow("Iniciar sesion", 7, new Color(0, 0, 0, 100), 4);
-        lblbook1 = new javax.swing.JLabel();
+        txtISBN = new javax.swing.JTextField();
+        btnSearchBook = new RoundedButtonWithShadow("Iniciar sesion", 7, new Color(0, 0, 0, 100), 4);
+        lblBookTittle = new javax.swing.JLabel();
         lblbook2 = new javax.swing.JLabel();
         lblbook7 = new javax.swing.JLabel();
         lblWelcome1 = new javax.swing.JLabel();
         jPanel3 = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         lblbook3 = new javax.swing.JLabel();
-        txtIdUser1 = new javax.swing.JTextField();
-        btnBack1 = new RoundedButtonWithShadow("Iniciar sesion", 7, new Color(0, 0, 0, 100), 4);
-        lblbook4 = new javax.swing.JLabel();
+        txtIdCardUser = new javax.swing.JTextField();
+        btnSearchIdCard = new RoundedButtonWithShadow("Iniciar sesion", 7, new Color(0, 0, 0, 100), 4);
+        lblNameStudent = new javax.swing.JLabel();
         lblbook5 = new javax.swing.JLabel();
         lblbook6 = new javax.swing.JLabel();
-        btnBack2 = new RoundedButtonWithShadow("Iniciar sesion", 7, new Color(0, 0, 0, 100), 4);
-        btnBack3 = new RoundedButtonWithShadow("Iniciar sesion", 7, new Color(0, 0, 0, 100), 4);
+        btnRegisterLoan = new RoundedButtonWithShadow("Iniciar sesion", 7, new Color(0, 0, 0, 100), 4);
+        btnClean = new RoundedButtonWithShadow("Iniciar sesion", 7, new Color(0, 0, 0, 100), 4);
         jPanel5 = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         lblbook8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -46,9 +50,6 @@ public class RegisterLoan extends javax.swing.JPanel {
         txtYear = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
 
         setPreferredSize(new java.awt.Dimension(1024, 738));
 
@@ -63,21 +64,21 @@ public class RegisterLoan extends javax.swing.JPanel {
         lblbook.setToolTipText("");
         lblbook.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        txtIdUser.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 12)); // NOI18N
-        txtIdUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtISBN.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 12)); // NOI18N
+        txtISBN.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        btnBack.setBackground(new java.awt.Color(56, 75, 147));
-        btnBack.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
-        btnBack.setForeground(new java.awt.Color(255, 255, 255));
-        btnBack.setText("Buscar");
-        btnBack.setBorder(null);
+        btnSearchBook.setBackground(new java.awt.Color(56, 75, 147));
+        btnSearchBook.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
+        btnSearchBook.setForeground(new java.awt.Color(255, 255, 255));
+        btnSearchBook.setText("Buscar");
+        btnSearchBook.setBorder(null);
 
-        lblbook1.setBackground(new java.awt.Color(255, 255, 255));
-        lblbook1.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 13)); // NOI18N
-        lblbook1.setForeground(new java.awt.Color(0, 0, 0));
-        lblbook1.setText("(Aqui aparecera el titulo del libro buscado)");
-        lblbook1.setToolTipText("");
-        lblbook1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblBookTittle.setBackground(new java.awt.Color(255, 255, 255));
+        lblBookTittle.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 13)); // NOI18N
+        lblBookTittle.setForeground(new java.awt.Color(0, 0, 0));
+        lblBookTittle.setText("(Aqui aparecera el titulo del libro buscado)");
+        lblBookTittle.setToolTipText("");
+        lblBookTittle.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblbook2.setBackground(new java.awt.Color(255, 255, 255));
         lblbook2.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 13)); // NOI18N
@@ -104,11 +105,11 @@ public class RegisterLoan extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblbook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtIdUser)
+                        .addComponent(txtISBN)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSearchBook, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblbook2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblbook1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE))
+                    .addComponent(lblBookTittle, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -119,12 +120,12 @@ public class RegisterLoan extends javax.swing.JPanel {
                 .addComponent(lblbook, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIdUser, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchBook, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addComponent(lblbook2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblbook1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblBookTittle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -133,6 +134,7 @@ public class RegisterLoan extends javax.swing.JPanel {
         lblWelcome1.setForeground(new java.awt.Color(0, 0, 0));
         lblWelcome1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblWelcome1.setText("Registrar nuevo préstamo");
+        lblWelcome1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "", javax.swing.border.TitledBorder.TRAILING, javax.swing.border.TitledBorder.BELOW_BOTTOM, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(241, 241, 241));
 
@@ -143,21 +145,21 @@ public class RegisterLoan extends javax.swing.JPanel {
         lblbook3.setToolTipText("");
         lblbook3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        txtIdUser1.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 12)); // NOI18N
-        txtIdUser1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtIdCardUser.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 12)); // NOI18N
+        txtIdCardUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        btnBack1.setBackground(new java.awt.Color(56, 75, 147));
-        btnBack1.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
-        btnBack1.setForeground(new java.awt.Color(255, 255, 255));
-        btnBack1.setText("Buscar");
-        btnBack1.setBorder(null);
+        btnSearchIdCard.setBackground(new java.awt.Color(56, 75, 147));
+        btnSearchIdCard.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
+        btnSearchIdCard.setForeground(new java.awt.Color(255, 255, 255));
+        btnSearchIdCard.setText("Buscar");
+        btnSearchIdCard.setBorder(null);
 
-        lblbook4.setBackground(new java.awt.Color(255, 255, 255));
-        lblbook4.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 13)); // NOI18N
-        lblbook4.setForeground(new java.awt.Color(0, 0, 0));
-        lblbook4.setText("(Aqui aparecera el nombre del estudiante buscado)");
-        lblbook4.setToolTipText("");
-        lblbook4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblNameStudent.setBackground(new java.awt.Color(255, 255, 255));
+        lblNameStudent.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 13)); // NOI18N
+        lblNameStudent.setForeground(new java.awt.Color(0, 0, 0));
+        lblNameStudent.setText("(Aqui aparecera el nombre del estudiante buscado)");
+        lblNameStudent.setToolTipText("");
+        lblNameStudent.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblbook5.setBackground(new java.awt.Color(255, 255, 255));
         lblbook5.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 13)); // NOI18N
@@ -184,11 +186,11 @@ public class RegisterLoan extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblbook3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(txtIdUser1)
+                        .addComponent(txtIdCardUser)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSearchIdCard, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblbook5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblbook4, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
+                    .addComponent(lblNameStudent, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -199,26 +201,26 @@ public class RegisterLoan extends javax.swing.JPanel {
                 .addComponent(lblbook3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIdUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIdCardUser, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchIdCard, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(lblbook5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblbook4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNameStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnBack2.setBackground(new java.awt.Color(56, 75, 147));
-        btnBack2.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
-        btnBack2.setForeground(new java.awt.Color(255, 255, 255));
-        btnBack2.setText("Registrar préstamo");
-        btnBack2.setBorder(null);
+        btnRegisterLoan.setBackground(new java.awt.Color(56, 75, 147));
+        btnRegisterLoan.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
+        btnRegisterLoan.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegisterLoan.setText("Registrar préstamo");
+        btnRegisterLoan.setBorder(null);
 
-        btnBack3.setBackground(new java.awt.Color(56, 75, 147));
-        btnBack3.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
-        btnBack3.setForeground(new java.awt.Color(255, 255, 255));
-        btnBack3.setText("Limpiar");
-        btnBack3.setBorder(null);
+        btnClean.setBackground(new java.awt.Color(56, 75, 147));
+        btnClean.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
+        btnClean.setForeground(new java.awt.Color(255, 255, 255));
+        btnClean.setText("Limpiar");
+        btnClean.setBorder(null);
 
         jPanel5.setBackground(new java.awt.Color(241, 241, 241));
 
@@ -309,31 +311,6 @@ public class RegisterLoan extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Observaciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -341,21 +318,18 @@ public class RegisterLoan extends javax.swing.JPanel {
             .addComponent(lblWelcome1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBack2, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegisterLoan, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(267, 267, 267)
-                .addComponent(btnBack3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnClean, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -369,13 +343,11 @@ public class RegisterLoan extends javax.swing.JPanel {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBack3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(181, Short.MAX_VALUE))
+                    .addComponent(btnRegisterLoan, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClean, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(331, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -389,12 +361,61 @@ public class RegisterLoan extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+    public void showMessage(String errorMessage, String title, int messageType ) {
+        JOptionPane.showMessageDialog(this, errorMessage, title, messageType);
+    }
+    
+    public JButton getBtnClean() {
+        return btnClean;
+    }
 
+    public JButton getBtnRegisterLoan() {
+        return btnRegisterLoan;
+    }
+
+    public JButton getBtnSearchBook() {
+        return btnSearchBook;
+    }
+
+    public JButton getBtnSearchIdCard() {
+        return btnSearchIdCard;
+    }
+
+    public JComboBox<String> getCmbMonth() {
+        return cmbMonth;
+    }
+
+    public JLabel getLblBookTittle() {
+        return lblBookTittle;
+    }
+
+    public JLabel getLblNameStudent() {
+        return lblNameStudent;
+    }
+
+    public JTextField getTxtDay() {
+        return txtDay;
+    }
+
+    public JTextField getTxtISBN() {
+        return txtISBN;
+    }
+
+    public JTextField getTxtIdCardUser() {
+        return txtIdCardUser;
+    }
+
+    public JTextField getTxtYear() {
+        return txtYear;
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnBack1;
-    private javax.swing.JButton btnBack2;
-    private javax.swing.JButton btnBack3;
+    private javax.swing.JButton btnClean;
+    private javax.swing.JButton btnRegisterLoan;
+    private javax.swing.JButton btnSearchBook;
+    private javax.swing.JButton btnSearchIdCard;
     private javax.swing.JComboBox<String> cmbMonth;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -405,22 +426,19 @@ public class RegisterLoan extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lblBookTittle;
+    private javax.swing.JLabel lblNameStudent;
     private javax.swing.JLabel lblWelcome1;
     private javax.swing.JLabel lblbook;
-    private javax.swing.JLabel lblbook1;
     private javax.swing.JLabel lblbook2;
     private javax.swing.JLabel lblbook3;
-    private javax.swing.JLabel lblbook4;
     private javax.swing.JLabel lblbook5;
     private javax.swing.JLabel lblbook6;
     private javax.swing.JLabel lblbook7;
     private javax.swing.JLabel lblbook8;
     private javax.swing.JTextField txtDay;
-    private javax.swing.JTextField txtIdUser;
-    private javax.swing.JTextField txtIdUser1;
+    private javax.swing.JTextField txtISBN;
+    private javax.swing.JTextField txtIdCardUser;
     private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables
 }
