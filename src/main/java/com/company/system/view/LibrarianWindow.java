@@ -1,6 +1,7 @@
 package com.company.system.view;
 
 import com.company.system.controller.LibrarianWindowListener;
+import com.company.system.controller.RegisterBookListener;
 import com.company.system.controller.RegisterLoanListener;
 import com.company.system.model.User;
 import com.company.system.service.BookService;
@@ -21,6 +22,7 @@ import javax.swing.JPanel;
  */
 public class LibrarianWindow extends javax.swing.JFrame {
     private RegisterLoan registerLoan;
+    private RegisterBook registerBook;
     
     public LibrarianWindow() {
         initComponents();
@@ -611,6 +613,13 @@ public class LibrarianWindow extends javax.swing.JFrame {
         new RegisterLoanListener(librarian, registerLoan, bookService, userService, loanService);
         uploadPanel(registerLoan);
         registerLoan.setVisible(true);
+    }
+    
+    public void openRegisterBook(User librarian, BookService bookService, UserService userService, LoanService loanService ) {
+        registerBook = new RegisterBook();
+        new RegisterBookListener();
+        uploadPanel(registerBook);
+        registerBook.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -26,35 +26,25 @@ public class RegisterBookListener implements ActionListener, MouseListener, KeyL
     }
     
     public void addListener(){
-        lblRegisterBook.getBtnBack().addActionListener(this);
-        lblRegisterBook.getBtnBack().addMouseListener(this);
-        lblRegisterBook.getBtnBack().addKeyListener(this);
         lblRegisterBook.getBtnRegisterBook().addActionListener(this);
         lblRegisterBook.getBtnRegisterBook().addMouseListener(this);
         lblRegisterBook.getBtnRegisterBook().addKeyListener(this);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == lblRegisterBook.getBtnBack()){
-            lblRegisterBook.setVisible(false);
-        }
     }
 
     
     @Override
     public void mouseEntered(MouseEvent e) {
-        if (e.getSource() == lblRegisterBook.getBtnBack()) {
-            lblRegisterBook.mouseEvent(lblRegisterBook.getBtnBack(), Utils.btnEntered);
-        } else if (e.getSource() == lblRegisterBook.getBtnRegisterBook()) {
+        if (e.getSource() == lblRegisterBook.getBtnRegisterBook()) {
             lblRegisterBook.mouseEvent(lblRegisterBook.getBtnRegisterBook(), Utils.btnEntered);
         }
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        if (e.getSource() == lblRegisterBook.getBtnBack()) {
-            lblRegisterBook.mouseEvent(lblRegisterBook.getBtnBack(), Utils.btnExited);
-        } else if (e.getSource() == lblRegisterBook.getBtnRegisterBook()) {
+        if (e.getSource() == lblRegisterBook.getBtnRegisterBook()) {
             lblRegisterBook.mouseEvent(lblRegisterBook.getBtnRegisterBook(), Utils.btnExited);
         }
     }

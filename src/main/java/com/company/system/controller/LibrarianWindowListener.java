@@ -5,6 +5,7 @@ import com.company.system.service.BookService;
 import com.company.system.service.LoanService;
 import com.company.system.service.UserService;
 import com.company.system.view.LibrarianWindow;
+import com.company.system.view.RegisterBook;
 import com.company.system.view.RegisterLoan;
 import com.company.system.view.components.Utils;
 import java.awt.event.ActionEvent;
@@ -59,6 +60,10 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
         if (e.getSource() == frmLibraianWindow.getPnlRegisterLoan() || e.getSource() == frmLibraianWindow.getLblRegisterFine()) {
             frmLibraianWindow.openRegisterLoan(librarian, bookService, userService, loanService);
             frmLibraianWindow.getPnlRegisterLoan().setBackground(Utils.pnlEntered);
+            System.out.println("se clickeo el panel");
+        } else if (e.getSource() == frmLibraianWindow.getPnlManageBooks()|| e.getSource() == frmLibraianWindow.getLblManageBooks()) {
+            frmLibraianWindow.openRegisterBook(librarian, bookService, userService, loanService);
+            frmLibraianWindow.getPnlManageBooks().setBackground(Utils.pnlEntered);
             System.out.println("se clickeo el panel");
         }
     }
