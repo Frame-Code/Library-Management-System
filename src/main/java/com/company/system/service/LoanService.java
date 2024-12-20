@@ -8,6 +8,7 @@ import com.company.system.dao.impl.FineDaoImpl;
 import com.company.system.dao.impl.LoanDaoImpl;
 import com.company.system.dao.interfaces.FineDao;
 import com.company.system.dao.interfaces.LoanDao;
+import com.company.system.model.Book;
 import com.company.system.model.Fine;
 import com.company.system.model.Loan;
 import com.company.system.model.User;
@@ -70,6 +71,12 @@ public class LoanService {
             return false;
         }
 
+    }
+    
+    public boolean createLoan(User user, Book book, LocalDate devolutionDate, String registrationName) {
+        Loan loan = new Loan(user, book, devolutionDate, false, LocalDate.now(), registrationName,
+               null, null, false);
+        return loanDao.create(loan);
     }
 
 }

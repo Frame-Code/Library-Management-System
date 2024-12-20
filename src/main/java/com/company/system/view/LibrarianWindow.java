@@ -1,6 +1,11 @@
 package com.company.system.view;
 
 import com.company.system.controller.LibrarianWindowListener;
+import com.company.system.controller.RegisterLoanListener;
+import com.company.system.model.User;
+import com.company.system.service.BookService;
+import com.company.system.service.LoanService;
+import com.company.system.service.UserService;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.BorderLayout;
@@ -15,7 +20,8 @@ import javax.swing.JPanel;
  * @author ariel
  */
 public class LibrarianWindow extends javax.swing.JFrame {
-
+    private RegisterLoan registerLoan;
+    
     public LibrarianWindow() {
         initComponents();
         setResizable(true);
@@ -583,13 +589,12 @@ public class LibrarianWindow extends javax.swing.JFrame {
     public JLabel getLblShutdown() {
         return lblShutdown;
     }
-    
-    
 
     public void uploadPanel(JPanel panel) {
         pnlPrincipal.removeAll();
         pnlPrincipal.add(panel, BorderLayout.CENTER);
-        panel.setVisible(true);
+        setSize(getWidth()-1, getHeight()-1);
+        setSize(getWidth()+1, getHeight()+1);
     }
 
     public void changeColorPanel(Color color, Component component) {
@@ -599,6 +604,13 @@ public class LibrarianWindow extends javax.swing.JFrame {
             ((JLabel) component).setOpaque(true);
             ((JLabel) component).setBackground(color);
         }
+    }
+
+    public void openRegisterLoan(User librarian, BookService bookService, UserService userService, LoanService loanService ) {
+        registerLoan = new RegisterLoan();
+        new RegisterLoanListener(librarian, registerLoan, bookService, userService, loanService);
+        uploadPanel(registerLoan);
+        registerLoan.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

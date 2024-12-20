@@ -3,6 +3,7 @@ package com.company.system.view;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.Color;
+import java.time.LocalDate;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -17,6 +18,7 @@ public class RegisterLoan extends javax.swing.JPanel {
     
     public RegisterLoan() {
         initComponents();
+        setVisible(true);
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -76,7 +78,6 @@ public class RegisterLoan extends javax.swing.JPanel {
         lblBookTittle.setBackground(new java.awt.Color(255, 255, 255));
         lblBookTittle.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 13)); // NOI18N
         lblBookTittle.setForeground(new java.awt.Color(0, 0, 0));
-        lblBookTittle.setText("(Aqui aparecera el titulo del libro buscado)");
         lblBookTittle.setToolTipText("");
         lblBookTittle.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -157,7 +158,6 @@ public class RegisterLoan extends javax.swing.JPanel {
         lblNameStudent.setBackground(new java.awt.Color(255, 255, 255));
         lblNameStudent.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 13)); // NOI18N
         lblNameStudent.setForeground(new java.awt.Color(0, 0, 0));
-        lblNameStudent.setText("(Aqui aparecera el nombre del estudiante buscado)");
         lblNameStudent.setToolTipText("");
         lblNameStudent.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -172,7 +172,7 @@ public class RegisterLoan extends javax.swing.JPanel {
         lblbook6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblbook6.setForeground(new java.awt.Color(0, 0, 0));
         lblbook6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblbook6.setText("BUSCAR USUARIO");
+        lblbook6.setText("BUSCAR ESTUDIANTE");
         lblbook6.setToolTipText("");
         lblbook6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -252,6 +252,7 @@ public class RegisterLoan extends javax.swing.JPanel {
         jLabel12.setText("Año:");
 
         txtYear.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtYear.setText(String.valueOf(LocalDate.now().getYear()));
         txtYear.setToolTipText("");
         txtYear.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -318,18 +319,17 @@ public class RegisterLoan extends javax.swing.JPanel {
             .addComponent(lblWelcome1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRegisterLoan, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(267, 267, 267)
-                .addComponent(btnClean, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnRegisterLoan, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(267, 267, 267)
+                        .addComponent(btnClean, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(

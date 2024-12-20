@@ -28,6 +28,7 @@ public class Loan implements Serializable{
     @ManyToOne
     @JoinColumn(name = "fkBook")
     private Book book;
+    
 
     @Column(nullable = false, name = "devolutionDate")
     private LocalDate devolutionDate;

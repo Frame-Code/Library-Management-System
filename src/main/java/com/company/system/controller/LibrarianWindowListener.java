@@ -1,6 +1,8 @@
 package com.company.system.controller;
 
+import com.company.system.model.User;
 import com.company.system.service.BookService;
+import com.company.system.service.LoanService;
 import com.company.system.service.UserService;
 import com.company.system.view.LibrarianWindow;
 import com.company.system.view.RegisterLoan;
@@ -18,11 +20,15 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
     private final LibrarianWindow frmLibraianWindow;
     private final BookService bookService;
     private final UserService userService;
+    private final LoanService loanService;
+    private final User librarian;
 
     public LibrarianWindowListener(LibrarianWindow frmLibraianWindow) {
         this.frmLibraianWindow = frmLibraianWindow;
         this.bookService = new BookService();
         this.userService = new UserService();
+        this.librarian = userService.getLibrarianByIdCard(941239261L);
+        this.loanService = new LoanService();
         addListeners();
     }
 
@@ -50,11 +56,10 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == frmLibraianWindow.getPnlRegisterLoan()) {
-            RegisterLoan pnlRegisterLoan = new RegisterLoan();
-            new RegisterLoanListener(pnlRegisterLoan, bookService, userService);
-            frmLibraianWindow.uploadPanel(pnlRegisterLoan);
+        if (e.getSource() == frmLibraianWindow.getPnlRegisterLoan() || e.getSource() == frmLibraianWindow.getLblRegisterFine()) {
+            frmLibraianWindow.openRegisterLoan(librarian, bookService, userService, loanService);
             frmLibraianWindow.getPnlRegisterLoan().setBackground(Utils.pnlEntered);
+            System.out.println("se clickeo el panel");
         }
     }
 

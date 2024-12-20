@@ -27,6 +27,10 @@ public class UserService {
     public User getStudentByIdCard(Long idCardUser) {
         return userDao.findByIdCard(idCardUser, Role.roleStudent);
     }
+    
+    public User getLibrarianByIdCard(Long idCardUser) {
+        return userDao.findByIdCard(idCardUser, Role.roleLibrarian);
+    }
 
     private boolean userExists(Long idCard, String role) {
         User user = userDao.findByIdCard(idCard, role);
