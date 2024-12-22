@@ -6,9 +6,9 @@ import java.time.LocalDate;
  *
  * @author artist-code (Daniel Mora Cantillo)
  */
-public interface Utils {
+public interface UtilsController {
     
-    default  LocalDate getDate(int day, String month, int year) {
+    default  int getMonthByName(String month) {
         int monthNumber;
         switch (month) {
             case "Enero" -> monthNumber = 1;
@@ -26,7 +26,11 @@ public interface Utils {
             default -> throw new AssertionError();
         }
         
-        return LocalDate.of(year, monthNumber, day);
+        return monthNumber;
+    }
+
+    default  LocalDate getDate(int day, String month, int year) {
+        return LocalDate.of(year, getMonthByName(month), day);
     }
     
 }

@@ -84,7 +84,7 @@ public class LoanService {
         
         Loan loan = new Loan(user, book, devolutionDate, false, LocalDate.now(), registrationName,
                null, null, false);
-        book.setStockToLoan(book.getStockToLoan() - 1);
+        bookService.updateBookStock(book);
         return loanDao.create(loan);
     }
 

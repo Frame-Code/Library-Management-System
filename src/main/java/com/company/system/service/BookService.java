@@ -31,8 +31,13 @@ public class BookService {
         return bookDao.findByPattern(pattern);
     }
 
-    public Integer getStockToLoanByBook(Book book) {
-        return bookDao.findById(book.getIdBook()).getStockToLoan();
+    public boolean isAvailableToLoan(Book book) {
+        return book.getStockToLoan() > 0;
+    }
+
+    public boolean updateBookStock(Book book) {
+        book.setStockToLoan(book.getStockToLoan() - 1);
+        return bookDao.update(book);
     }
 
 }

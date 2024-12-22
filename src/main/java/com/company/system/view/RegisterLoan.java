@@ -366,6 +366,10 @@ public class RegisterLoan extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, errorMessage, title, messageType);
     }
     
+    public void changeColor(JButton btn, Color color) {
+        btn.setBackground(color);
+    }
+
     public JButton getBtnClean() {
         return btnClean;
     }
