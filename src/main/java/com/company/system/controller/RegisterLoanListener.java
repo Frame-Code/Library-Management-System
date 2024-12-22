@@ -1,5 +1,14 @@
 package com.company.system.controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.time.LocalDate;
+import java.util.LinkedList;
+
+import javax.swing.JOptionPane;
+
 import com.company.system.model.Book;
 import com.company.system.model.Loan;
 import com.company.system.model.User;
@@ -7,13 +16,6 @@ import com.company.system.service.BookService;
 import com.company.system.service.LoanService;
 import com.company.system.service.UserService;
 import com.company.system.view.RegisterLoan;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.time.LocalDate;
-import java.util.LinkedList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -81,20 +83,21 @@ public class RegisterLoanListener implements ActionListener, MouseListener, Util
         return day <= 31 && day >= 0 && year >= LocalDate.now().getYear() && year < (LocalDate.now().getYear() + 4) && getDate(day, month, year).isAfter(LocalDate.now());  
     }
 
+    //Verifica la existencia y el stock del libro buscado y lo agrega a la instancia book
     private void searchBook() {
         book = bookService.getBookByISBN(pnlRegisterLoan.getTxtISBN().getText());
-        if (book == null || book.getStockToLoan() < 0) {
+        if (book == null || bookService.isAvailableToLoan(book)) {
             String error = "No se ha encontrado un libro con el ISBN escrito o No existe stock del libro";
             pnlRegisterLoan.showMessage(error, "error", JOptionPane.ERROR_MESSAGE);
             pnlRegisterLoan.getLblBookTittle().setText(error);
             book = null;
-
         } else {
             pnlRegisterLoan.showMessage("Libro se ha encontrado", "Libro encontrado!", JOptionPane.INFORMATION_MESSAGE);
             pnlRegisterLoan.getLblBookTittle().setText(book.getTitle());
         }
     }
 
+    //Verifica la existencia y la validez del numero de cedula del estudiante buscado y lo agrega a la instancia student    
     private void searchIdCard() {
         Long idCard;
         try {
@@ -115,6 +118,10 @@ public class RegisterLoanListener implements ActionListener, MouseListener, Util
         }
     }
 
+    //Verifica que los campos no esten vacios (incluyendo las instancias de book y studente) y que el formato de la fecha sea correcto
+    //Verifica que el libro este disponible para prestamo
+    //Verifica que el estudiante no tenga un prestamo sin devolver
+    //Crea un nuevo prestamo
     private void registerLoan() {
         if (!isEmptyFields() && student != null && book != null) {
             try {
