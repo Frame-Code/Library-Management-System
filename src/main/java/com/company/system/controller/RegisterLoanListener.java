@@ -47,7 +47,7 @@ public class RegisterLoanListener implements ActionListener, Utils {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == pnlRegisterLoan.getBtnSearchBook()) {
             book = bookService.getBookByISBN(pnlRegisterLoan.getTxtISBN().getText());
-            if (book.getStock() < 0 || book == null) {
+            if (book.getStockToLoan() < 0 || book == null) {
                 String error = "No se ha encontrado un libro con el ISBN escrito o No existe stock del libro";
                 pnlRegisterLoan.showMessage(error, "error", JOptionPane.ERROR_MESSAGE);
                 pnlRegisterLoan.getLblBookTittle().setText(error);

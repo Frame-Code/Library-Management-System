@@ -116,7 +116,7 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         jLabel9.setText("IMAGEN DEL LIBRO xd");
 
         lblStock.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        lblStock.setText(String.valueOf(book.getStock()));
+        lblStock.setText(String.valueOf(book.getStockToLoan()));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("ISBN:");
