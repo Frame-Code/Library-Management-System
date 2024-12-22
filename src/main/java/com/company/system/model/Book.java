@@ -141,6 +141,14 @@ public class Book {
         return stockToLoan;
     }
 
+    public void setStockToLoan(Integer stockToLoan) {
+        this.stockToLoan = stockToLoan;
+    }
+
+    public void setGeneralStock(Integer generalStock) {
+        this.generalStock = generalStock;
+    }
+
     public Integer getGeneralStock() {
         return generalStock;
     }

@@ -63,7 +63,7 @@ public class UserService {
     LocalDate bornDate, String passwordPlain) {
         String passwordHash = encrypte.encryptPassword(passwordPlain);
         User user = new User(idCardUser, names, surNames, email, passwordHash, bornDate, 
-        roleDao.findByName(Role.roleStudent), LocalDate.now(), names, null, 
+        roleDao.findByName(Role.roleStudent), LocalDate.now(), names + " " + surNames + " ci: " + idCardUser, null, 
         null, 
         false
         );

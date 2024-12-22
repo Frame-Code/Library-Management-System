@@ -21,10 +21,12 @@ public class LoanService {
 
     private final LoanDao loanDao;
     private final FineDao fineDao;
+    private final BookService bookService;
 
     public LoanService() {
         this.loanDao = new LoanDaoImpl();
         this.fineDao = new FineDaoImpl();
+        this.bookService = new BookService();
     }
 
     public List<Loan> getLoansByUser(User user) {
@@ -74,8 +76,15 @@ public class LoanService {
     }
     
     public boolean createLoan(User user, Book book, LocalDate devolutionDate, String registrationName) {
+        /* Primero es necesario realizar la siguiente verificación:
+        1. Que se verifique si el estudiante tiene un prestamo que no ha devulto 
+        
+        Nota: esta funcion da por sentado que la verificion ya fue hecha
+        */
+        
         Loan loan = new Loan(user, book, devolutionDate, false, LocalDate.now(), registrationName,
                null, null, false);
+        book.setStockToLoan(book.getStockToLoan() - 1);
         return loanDao.create(loan);
     }
 
