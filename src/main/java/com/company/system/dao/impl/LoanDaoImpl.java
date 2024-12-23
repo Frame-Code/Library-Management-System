@@ -143,9 +143,26 @@ public class LoanDaoImpl implements LoanDao {
     @Override
     public List<Loan> findByUser(User user) throws QueryTimeoutException, TransactionRequiredException, PessimisticLockException, LockTimeoutException {
         EntityManager em = getEntityManager();
-        String jpal = "SELECT l FROM Loan l WHERE l.user = :user AND l.deleted=0";
-        TypedQuery<Loan> query = em.createQuery(jpal, Loan.class);
+        String jpql = "SELECT l FROM Loan l WHERE l.user = :user AND l.deleted=0";
+        TypedQuery<Loan> query = em.createQuery(jpql, Loan.class);
         query.setParameter("user", user);
+        List<Loan> loans;
+        try {
+            loans = query.getResultList();
+            return loans;
+        } catch (IllegalStateException | PersistenceException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public List<Loan> findRecentLoans(int limit) {
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT l FROM Loan l WHERE l.deleted=0 ORDER BY l.registrationDate DESC ";
+        TypedQuery<Loan> query = em.createQuery(jpql, Loan.class);
+        query.setMaxResults(limit);
         List<Loan> loans;
         try {
             loans = query.getResultList();

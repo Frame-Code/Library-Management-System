@@ -7,4 +7,6 @@ import com.company.system.model.User;
 
 public interface LoanDao extends Dao<Loan> {
     List<Loan> findByUser(User user);
+    
+    List<Loan> findRecentLoans(int limit);
 }

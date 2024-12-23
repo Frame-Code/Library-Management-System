@@ -5,8 +5,6 @@ import com.company.system.service.BookService;
 import com.company.system.service.LoanService;
 import com.company.system.service.UserService;
 import com.company.system.view.LibrarianWindow;
-import com.company.system.view.RegisterBook;
-import com.company.system.view.RegisterLoan;
 import com.company.system.view.components.Utils;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -49,10 +47,20 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
         frmLibraianWindow.getLblManageReports().addMouseListener(this);
         frmLibraianWindow.getLblNotifications().addMouseListener(this);
         frmLibraianWindow.getLblShutdown().addMouseListener(this);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        try{
+            frmLibraianWindow.getMenuItems().forEach((item) -> {
+                if(e.getSource() == item){
+                    frmLibraianWindow.openGenerateReport(item.getText());
+                }   
+            }); 
+        } catch(NullPointerException e1) {
+
+        }
     }
 
     @Override
@@ -60,11 +68,19 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
         if (e.getSource() == frmLibraianWindow.getPnlRegisterLoan() || e.getSource() == frmLibraianWindow.getLblRegisterFine()) {
             frmLibraianWindow.openRegisterLoan(librarian, bookService, userService, loanService);
             frmLibraianWindow.getPnlRegisterLoan().setBackground(Utils.pnlEntered);
-            System.out.println("se clickeo el panel");
         } else if (e.getSource() == frmLibraianWindow.getPnlManageBooks()|| e.getSource() == frmLibraianWindow.getLblManageBooks()) {
             frmLibraianWindow.openRegisterBook(librarian, bookService, userService, loanService);
             frmLibraianWindow.getPnlManageBooks().setBackground(Utils.pnlEntered);
-            System.out.println("se clickeo el panel");
+        } else if(e.getSource() == frmLibraianWindow.getPnlGenerateReports() || e.getSource() == frmLibraianWindow.getLblManageReports()){
+            //frmLibraianWindow.openGenerateReports(librarian, bookService, userService, loanService);
+            frmLibraianWindow.uploadListMenuReports();
+            frmLibraianWindow.getMenuItems().forEach((item) -> {
+                item.addActionListener(this);
+            }); 
+            frmLibraianWindow.getMenuContextual().show(frmLibraianWindow.getPnlGenerateReports(), e.getX(), e.getY());
+            frmLibraianWindow.getPnlGenerateReports().setBackground(Utils.pnlEntered);
+        } else if(e.getSource() == frmLibraianWindow.getPnlShutdown() || e.getSource() == frmLibraianWindow.getLblShutdown()){
+            frmLibraianWindow.dispose();
         }
     }
 

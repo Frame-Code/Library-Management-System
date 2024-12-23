@@ -20,7 +20,7 @@ import java.awt.event.MouseListener;
 public class RegisterBookListener implements ActionListener, MouseListener, KeyListener{
     private RegisterBook lblRegisterBook;
     
-    public void RegisterBookListener(RegisterBook lblRegisterBook){
+    public RegisterBookListener(RegisterBook lblRegisterBook){
         this.lblRegisterBook = lblRegisterBook;
         addListener();
     }

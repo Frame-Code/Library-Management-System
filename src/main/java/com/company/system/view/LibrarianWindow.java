@@ -1,8 +1,10 @@
 package com.company.system.view;
 
+import com.company.system.controller.GenerateReportController;
 import com.company.system.controller.LibrarianWindowListener;
 import com.company.system.controller.RegisterBookListener;
 import com.company.system.controller.RegisterLoanListener;
+import com.company.system.model.Category;
 import com.company.system.model.User;
 import com.company.system.service.BookService;
 import com.company.system.service.LoanService;
@@ -12,9 +14,14 @@ import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 
 /**
  *
@@ -23,7 +30,11 @@ import javax.swing.JPanel;
 public class LibrarianWindow extends javax.swing.JFrame {
     private RegisterLoan registerLoan;
     private RegisterBook registerBook;
-    
+    private GenerateReport generateReport;
+
+    private JPopupMenu menuContextual;
+    private List<JMenuItem> menuItems;  
+
     public LibrarianWindow() {
         initComponents();
         setResizable(true);
@@ -33,7 +44,8 @@ public class LibrarianWindow extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
@@ -45,28 +57,27 @@ public class LibrarianWindow extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         lblUser = new javax.swing.JLabel();
         jlabeladm = new javax.swing.JLabel();
-        lblBookIcon = new javax.swing.JLabel(new ImageIcon("/src/main/resources/images/Student_icon_Login.png"
-        ));
-        pnlRegisterLoan = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
+        lblBookIcon = new javax.swing.JLabel(new ImageIcon("/src/main/resources/images/Student_icon_Login.png"));
+        pnlRegisterLoan = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 0), 0);
         jlbookimage = new javax.swing.JLabel();
         lblRegisterFine = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        pnlManageBooks = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
+        pnlManageBooks = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 0), 0);
         lblManageBooks = new javax.swing.JLabel();
         jlusersimage1 = new javax.swing.JLabel();
-        pnlGenerateReports = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
+        pnlGenerateReports = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 0), 0);
         lblManageReports = new javax.swing.JLabel();
         jlreportimage = new javax.swing.JLabel();
-        pnlNotifications = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
+        pnlNotifications = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 0), 0);
         lblNotifications = new javax.swing.JLabel();
         jlreportimage2 = new javax.swing.JLabel();
-        pnlShutdown = new RoundedPanelWithShadow(25,new Color (0,0,0,100),2);
+        pnlShutdown = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         lblShutdown = new javax.swing.JLabel();
         jlreportimage3 = new javax.swing.JLabel();
-        pnlRegisterDevolution = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
+        pnlRegisterDevolution = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 0), 0);
         jlbookimage1 = new javax.swing.JLabel();
         lblRegisterDevolution = new javax.swing.JLabel();
-        pnlManageFine = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
+        pnlManageFine = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 0), 0);
         jlbookimage2 = new javax.swing.JLabel();
         lblManageFine = new javax.swing.JLabel();
         pnlWelcome1 = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
@@ -100,37 +111,41 @@ public class LibrarianWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout pnlWelcomeLayout = new javax.swing.GroupLayout(pnlWelcome);
         pnlWelcome.setLayout(pnlWelcomeLayout);
         pnlWelcomeLayout.setHorizontalGroup(
-            pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlWelcomeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlabeladm)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblWelcome))
-                .addGap(128, 128, 128))
-        );
+                pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlabeladm)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(
+                                        pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 234,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(lblWelcome))
+                                .addGap(128, 128, 128)));
         pnlWelcomeLayout.setVerticalGroup(
-            pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlWelcomeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlWelcomeLayout.createSequentialGroup()
-                        .addComponent(lblWelcome)
-                        .addGroup(pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlWelcomeLayout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(jLabel3))
-                            .addGroup(pnlWelcomeLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(lblUser)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlWelcomeLayout.createSequentialGroup()
-                        .addComponent(jlabeladm, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-                        .addGap(18, 18, 18))))
-        );
+                pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(pnlWelcomeLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                                                .addComponent(lblWelcome)
+                                                .addGroup(pnlWelcomeLayout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                                                                .addGap(29, 29, 29)
+                                                                .addComponent(jLabel3))
+                                                        .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(lblUser)))
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                                                .addComponent(jlabeladm, javax.swing.GroupLayout.DEFAULT_SIZE, 69,
+                                                        Short.MAX_VALUE)
+                                                .addGap(18, 18, 18)))));
 
         pnlRegisterLoan.setBackground(new java.awt.Color(255, 255, 255));
         pnlRegisterLoan.setRequestFocusEnabled(false);
@@ -147,23 +162,25 @@ public class LibrarianWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout pnlRegisterLoanLayout = new javax.swing.GroupLayout(pnlRegisterLoan);
         pnlRegisterLoan.setLayout(pnlRegisterLoanLayout);
         pnlRegisterLoanLayout.setHorizontalGroup(
-            pnlRegisterLoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlRegisterLoanLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jlbookimage, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblRegisterFine, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
+                pnlRegisterLoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlRegisterLoanLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jlbookimage, javax.swing.GroupLayout.PREFERRED_SIZE, 34,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblRegisterFine, javax.swing.GroupLayout.PREFERRED_SIZE, 196,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(27, Short.MAX_VALUE)));
         pnlRegisterLoanLayout.setVerticalGroup(
-            pnlRegisterLoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlRegisterLoanLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlRegisterLoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jlbookimage, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRegisterFine))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                pnlRegisterLoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlRegisterLoanLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(pnlRegisterLoanLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jlbookimage, javax.swing.GroupLayout.PREFERRED_SIZE, 40,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblRegisterFine))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
         jSeparator2.setBackground(new java.awt.Color(56, 75, 147));
         jSeparator2.setForeground(new java.awt.Color(56, 75, 147));
@@ -183,24 +200,23 @@ public class LibrarianWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout pnlManageBooksLayout = new javax.swing.GroupLayout(pnlManageBooks);
         pnlManageBooks.setLayout(pnlManageBooksLayout);
         pnlManageBooksLayout.setHorizontalGroup(
-            pnlManageBooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlManageBooksLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jlusersimage1)
-                .addGap(18, 18, 18)
-                .addComponent(lblManageBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                pnlManageBooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlManageBooksLayout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(jlusersimage1)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblManageBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 212,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         pnlManageBooksLayout.setVerticalGroup(
-            pnlManageBooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlManageBooksLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jlusersimage1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
-            .addGroup(pnlManageBooksLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(lblManageBooks)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+                pnlManageBooksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlManageBooksLayout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jlusersimage1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                        .addGroup(pnlManageBooksLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(lblManageBooks)
+                                .addGap(0, 0, Short.MAX_VALUE)));
 
         pnlGenerateReports.setBackground(new java.awt.Color(255, 255, 255));
         pnlGenerateReports.setPreferredSize(new java.awt.Dimension(287, 52));
@@ -217,25 +233,26 @@ public class LibrarianWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout pnlGenerateReportsLayout = new javax.swing.GroupLayout(pnlGenerateReports);
         pnlGenerateReports.setLayout(pnlGenerateReportsLayout);
         pnlGenerateReportsLayout.setHorizontalGroup(
-            pnlGenerateReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlGenerateReportsLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jlreportimage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblManageReports, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                pnlGenerateReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlGenerateReportsLayout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jlreportimage)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblManageReports, javax.swing.GroupLayout.PREFERRED_SIZE, 212,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         pnlGenerateReportsLayout.setVerticalGroup(
-            pnlGenerateReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGenerateReportsLayout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
-                .addComponent(jlreportimage)
-                .addGap(11, 11, 11))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGenerateReportsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblManageReports)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                pnlGenerateReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                pnlGenerateReportsLayout.createSequentialGroup()
+                                        .addContainerGap(11, Short.MAX_VALUE)
+                                        .addComponent(jlreportimage)
+                                        .addGap(11, 11, 11))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                pnlGenerateReportsLayout.createSequentialGroup()
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblManageReports)
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
         pnlNotifications.setBackground(new java.awt.Color(255, 255, 255));
         pnlNotifications.setPreferredSize(new java.awt.Dimension(287, 52));
@@ -252,25 +269,26 @@ public class LibrarianWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout pnlNotificationsLayout = new javax.swing.GroupLayout(pnlNotifications);
         pnlNotifications.setLayout(pnlNotificationsLayout);
         pnlNotificationsLayout.setHorizontalGroup(
-            pnlNotificationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNotificationsLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jlreportimage2)
-                .addGap(18, 18, 18)
-                .addComponent(lblNotifications, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                pnlNotificationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlNotificationsLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jlreportimage2)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblNotifications, javax.swing.GroupLayout.PREFERRED_SIZE, 212,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         pnlNotificationsLayout.setVerticalGroup(
-            pnlNotificationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNotificationsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlreportimage2)
-                .addGap(14, 14, 14))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNotificationsLayout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(lblNotifications)
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
+                pnlNotificationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                pnlNotificationsLayout.createSequentialGroup()
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jlreportimage2)
+                                        .addGap(14, 14, 14))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                pnlNotificationsLayout.createSequentialGroup()
+                                        .addContainerGap(15, Short.MAX_VALUE)
+                                        .addComponent(lblNotifications)
+                                        .addContainerGap(18, Short.MAX_VALUE)));
 
         pnlShutdown.setBackground(new java.awt.Color(255, 255, 255));
         pnlShutdown.setPreferredSize(new java.awt.Dimension(287, 52));
@@ -287,23 +305,24 @@ public class LibrarianWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout pnlShutdownLayout = new javax.swing.GroupLayout(pnlShutdown);
         pnlShutdown.setLayout(pnlShutdownLayout);
         pnlShutdownLayout.setHorizontalGroup(
-            pnlShutdownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlShutdownLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jlreportimage3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblShutdown, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                pnlShutdownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlShutdownLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jlreportimage3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblShutdown, javax.swing.GroupLayout.PREFERRED_SIZE, 212,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         pnlShutdownLayout.setVerticalGroup(
-            pnlShutdownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlShutdownLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(pnlShutdownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlreportimage3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblShutdown, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(14, 14, 14))
-        );
+                pnlShutdownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlShutdownLayout.createSequentialGroup()
+                                .addContainerGap(14, Short.MAX_VALUE)
+                                .addGroup(
+                                        pnlShutdownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jlreportimage3,
+                                                        javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(lblShutdown, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(14, 14, 14)));
 
         pnlRegisterDevolution.setBackground(new java.awt.Color(255, 255, 255));
         pnlRegisterDevolution.setRequestFocusEnabled(false);
@@ -320,23 +339,25 @@ public class LibrarianWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout pnlRegisterDevolutionLayout = new javax.swing.GroupLayout(pnlRegisterDevolution);
         pnlRegisterDevolution.setLayout(pnlRegisterDevolutionLayout);
         pnlRegisterDevolutionLayout.setHorizontalGroup(
-            pnlRegisterDevolutionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlRegisterDevolutionLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jlbookimage1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblRegisterDevolution, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
+                pnlRegisterDevolutionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlRegisterDevolutionLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jlbookimage1, javax.swing.GroupLayout.PREFERRED_SIZE, 34,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblRegisterDevolution, javax.swing.GroupLayout.PREFERRED_SIZE, 196,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(27, Short.MAX_VALUE)));
         pnlRegisterDevolutionLayout.setVerticalGroup(
-            pnlRegisterDevolutionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlRegisterDevolutionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlRegisterDevolutionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jlbookimage1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRegisterDevolution))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                pnlRegisterDevolutionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlRegisterDevolutionLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(pnlRegisterDevolutionLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jlbookimage1, javax.swing.GroupLayout.PREFERRED_SIZE, 40,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblRegisterDevolution))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
         pnlManageFine.setBackground(new java.awt.Color(255, 255, 255));
         pnlManageFine.setRequestFocusEnabled(false);
@@ -353,77 +374,102 @@ public class LibrarianWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout pnlManageFineLayout = new javax.swing.GroupLayout(pnlManageFine);
         pnlManageFine.setLayout(pnlManageFineLayout);
         pnlManageFineLayout.setHorizontalGroup(
-            pnlManageFineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlManageFineLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jlbookimage2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblManageFine, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
+                pnlManageFineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlManageFineLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jlbookimage2, javax.swing.GroupLayout.PREFERRED_SIZE, 34,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblManageFine, javax.swing.GroupLayout.PREFERRED_SIZE, 196,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(27, Short.MAX_VALUE)));
         pnlManageFineLayout.setVerticalGroup(
-            pnlManageFineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlManageFineLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlManageFineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jlbookimage2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblManageFine))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                pnlManageFineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlManageFineLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(pnlManageFineLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jlbookimage2, javax.swing.GroupLayout.PREFERRED_SIZE, 40,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblManageFine))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
         pnlBackgroundLayout.setHorizontalGroup(
-            pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(pnlManageBooks, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                        .addComponent(pnlGenerateReports, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                        .addComponent(pnlNotifications, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                        .addComponent(pnlShutdown, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
-                    .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(pnlRegisterLoan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(pnlRegisterDevolution, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pnlManageFine, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(pnlWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 8, Short.MAX_VALUE))
-            .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                    .addGap(34, 34, 34)
-                    .addComponent(lblBookIcon)
-                    .addContainerGap(268, Short.MAX_VALUE)))
-        );
+                pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(pnlBackgroundLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(pnlBackgroundLayout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(pnlManageBooks, javax.swing.GroupLayout.DEFAULT_SIZE, 288,
+                                                        Short.MAX_VALUE)
+                                                .addComponent(pnlGenerateReports, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        288, Short.MAX_VALUE)
+                                                .addComponent(pnlNotifications, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        288, Short.MAX_VALUE)
+                                                .addComponent(pnlShutdown, javax.swing.GroupLayout.DEFAULT_SIZE, 288,
+                                                        Short.MAX_VALUE))
+                                        .addGroup(pnlBackgroundLayout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(pnlRegisterLoan,
+                                                        javax.swing.GroupLayout.Alignment.LEADING,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(pnlRegisterDevolution,
+                                                        javax.swing.GroupLayout.Alignment.LEADING,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(pnlManageFine, javax.swing.GroupLayout.Alignment.LEADING,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(pnlWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 287,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 8, Short.MAX_VALUE))
+                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                        .addGap(34, 34, 34)
+                                        .addComponent(lblBookIcon)
+                                        .addContainerGap(268, Short.MAX_VALUE))));
         pnlBackgroundLayout.setVerticalGroup(
-            pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(pnlRegisterLoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(pnlRegisterDevolution, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(pnlManageFine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(pnlManageBooks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(pnlGenerateReports, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(pnlNotifications, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(pnlShutdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
-            .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                    .addGap(30, 30, 30)
-                    .addComponent(lblBookIcon)
-                    .addContainerGap(655, Short.MAX_VALUE)))
-        );
+                pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(pnlWelcome, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 2,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(pnlRegisterLoan, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(pnlRegisterDevolution, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(pnlManageFine, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)
+                                .addComponent(pnlManageBooks, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(pnlGenerateReports, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(pnlNotifications, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(pnlShutdown, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(20, Short.MAX_VALUE))
+                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addComponent(lblBookIcon)
+                                        .addContainerGap(655, Short.MAX_VALUE))));
 
         pnlWelcome1.setBackground(new java.awt.Color(255, 255, 255));
         pnlWelcome1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -437,19 +483,17 @@ public class LibrarianWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout pnlWelcome1Layout = new javax.swing.GroupLayout(pnlWelcome1);
         pnlWelcome1.setLayout(pnlWelcome1Layout);
         pnlWelcome1Layout.setHorizontalGroup(
-            pnlWelcome1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlWelcome1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblWelcome1, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+                pnlWelcome1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlWelcome1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lblWelcome1, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+                                .addContainerGap()));
         pnlWelcome1Layout.setVerticalGroup(
-            pnlWelcome1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlWelcome1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblWelcome1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                pnlWelcome1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlWelcome1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lblWelcome1)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
         pnlPrincipal.setBackground(new java.awt.Color(255, 255, 255));
         pnlPrincipal.setLayout(new java.awt.BorderLayout());
@@ -457,80 +501,50 @@ public class LibrarianWindow extends javax.swing.JFrame {
         javax.swing.GroupLayout contentPaneLayout = new javax.swing.GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
-            contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlWelcome1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+                contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(
+                                        contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(pnlWelcome1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(pnlPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap()));
         contentPaneLayout.setVerticalGroup(
-            contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(contentPaneLayout.createSequentialGroup()
-                        .addComponent(pnlWelcome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnlPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
+                contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(contentPaneLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                                .addComponent(pnlWelcome1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(pnlPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 639,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap()));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(contentPane, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(contentPane, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LibrarianWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LibrarianWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LibrarianWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LibrarianWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                LibrarianWindow lb = new LibrarianWindow();
-                new LibrarianWindowListener(lb);
-                lb.setVisible(true);
-            }
-        });
-    }
 
     public JPanel getPnlGenerateReports() {
         return pnlGenerateReports;
@@ -592,11 +606,19 @@ public class LibrarianWindow extends javax.swing.JFrame {
         return lblShutdown;
     }
 
+    public List<JMenuItem> getMenuItems() {
+        return menuItems;
+    }
+
+    public JPopupMenu getMenuContextual() {
+        return menuContextual;
+    }
+
     public void uploadPanel(JPanel panel) {
         pnlPrincipal.removeAll();
         pnlPrincipal.add(panel, BorderLayout.CENTER);
-        setSize(getWidth()-1, getHeight()-1);
-        setSize(getWidth()+1, getHeight()+1);
+        setSize(getWidth() - 1, getHeight() - 1);
+        setSize(getWidth() + 1, getHeight() + 1);
     }
 
     public void changeColorPanel(Color color, Component component) {
@@ -608,18 +630,39 @@ public class LibrarianWindow extends javax.swing.JFrame {
         }
     }
 
-    public void openRegisterLoan(User librarian, BookService bookService, UserService userService, LoanService loanService ) {
+    public void openRegisterLoan(User librarian, BookService bookService, UserService userService,
+            LoanService loanService) {
         registerLoan = new RegisterLoan();
         new RegisterLoanListener(librarian, registerLoan, bookService, userService, loanService);
         uploadPanel(registerLoan);
         registerLoan.setVisible(true);
     }
-    
-    public void openRegisterBook(User librarian, BookService bookService, UserService userService, LoanService loanService ) {
+
+    public void openRegisterBook(User librarian, BookService bookService, UserService userService,
+            LoanService loanService) {
         registerBook = new RegisterBook();
-        new RegisterBookListener();
+        new RegisterBookListener(registerBook);
         uploadPanel(registerBook);
         registerBook.setVisible(true);
+    }
+    
+    public void openGenerateReport(String title) {
+        generateReport = new GenerateReport();
+        generateReport.getLblGenerateReport().setText(title);
+        new GenerateReportController(generateReport);
+        uploadPanel(generateReport);
+        generateReport.setVisible(true);
+    }
+
+    public void uploadListMenuReports() {
+        menuContextual = new JPopupMenu();
+        menuItems = new ArrayList<>();
+        menuItems.add(new JMenuItem("Reporte de los ultimos libros prestados"));
+        menuItems.add(new JMenuItem("Reporte de libros mas prestados"));
+        menuItems.add(new JMenuItem("Historal de prestamos por estudiante"));
+        menuItems.forEach(menu -> {
+            menuContextual.add(menu);
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
