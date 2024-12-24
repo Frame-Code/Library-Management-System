@@ -1,5 +1,6 @@
 package com.company.system.view;
 
+import com.company.system.model.User;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.Color;
@@ -13,8 +14,9 @@ import javax.swing.JTextField;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class GenerateReport extends javax.swing.JPanel {
-
-    public GenerateReport() {
+    public User user;
+    public GenerateReport(User user) {
+        this.user = user;
         initComponents();
     }
 
@@ -125,7 +127,12 @@ public class GenerateReport extends javax.swing.JPanel {
     public JTextField getTxtLimit() {
         return txtLimit;
     }
-    
+
+    public User getUser() {
+        return user;
+    }
+
+
     public void showMessage(String text, String title, int type) {
         JOptionPane.showMessageDialog(null, text, title, type);
     }

@@ -1,14 +1,16 @@
 package com.company.system.controller;
 
-import com.company.system.service.PDFReportGenerator;
-import com.company.system.service.ReportService;
-import com.company.system.view.GenerateReport;
-import com.company.system.view.FileChooser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
+
+import com.company.system.service.PDFReportGenerator;
+import com.company.system.service.ReportService;
+import com.company.system.view.FileChooser;
+import com.company.system.view.GenerateReport;
 
 /**
  *
@@ -37,7 +39,7 @@ public class GenerateReportController implements ActionListener {
 
                 String filePath = new FileChooser().filePath();
                 System.out.println(filePath);
-                PDFReportGenerator.generateLastLoansReport(reportService.getRecentLoans(limit), filePath);
+                PDFReportGenerator.generateLastLoansReport(reportService.getRecentLoans(limit), filePath, generateReport.getUser());
                 generateReport.showMessage("Reporte creado correctamente ", "Exito", JOptionPane.INFORMATION_MESSAGE);
             } catch (NumberFormatException ex) {
                 generateReport.showMessage("Escribe correctamente la cantidad", "Error", JOptionPane.ERROR_MESSAGE);

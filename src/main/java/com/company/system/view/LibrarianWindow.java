@@ -31,11 +31,15 @@ public class LibrarianWindow extends javax.swing.JFrame {
     private RegisterLoan registerLoan;
     private RegisterBook registerBook;
     private GenerateReport generateReport;
+    private User user;
 
     private JPopupMenu menuContextual;
     private List<JMenuItem> menuItems;  
 
     public LibrarianWindow() {
+        //this.user = user;
+        this.user = new User();
+        user.setNames("Daniel Mora Cantillo");
         initComponents();
         setResizable(true);
         setSize(1080, 720);
@@ -647,7 +651,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
     }
     
     public void openGenerateReport(String title) {
-        generateReport = new GenerateReport();
+        generateReport = new GenerateReport(user);
         generateReport.getLblGenerateReport().setText(title);
         new GenerateReportController(generateReport);
         uploadPanel(generateReport);
