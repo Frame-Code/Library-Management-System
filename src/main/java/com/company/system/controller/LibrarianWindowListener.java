@@ -26,7 +26,7 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
         this.frmLibraianWindow = frmLibraianWindow;
         this.bookService = new BookService();
         this.userService = new UserService();
-        this.librarian = userService.getLibrarianByIdCard(941239261L);
+        this.librarian = userService.getLibrarianByIdCard(941239261L); //eliminar esto
         this.loanService = new LoanService();
         addListeners();
     }
@@ -72,7 +72,6 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
             frmLibraianWindow.openRegisterBook(librarian, bookService, userService, loanService);
             frmLibraianWindow.getPnlManageBooks().setBackground(Utils.pnlEntered);
         } else if(e.getSource() == frmLibraianWindow.getPnlGenerateReports() || e.getSource() == frmLibraianWindow.getLblManageReports()){
-            //frmLibraianWindow.openGenerateReports(librarian, bookService, userService, loanService);
             frmLibraianWindow.uploadListMenuReports();
             frmLibraianWindow.getMenuItems().forEach((item) -> {
                 item.addActionListener(this);

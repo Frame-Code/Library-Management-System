@@ -14,12 +14,20 @@ import javax.swing.JTextField;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class GenerateReport extends javax.swing.JPanel {
-    public User user;
-    public GenerateReport(User user) {
-        this.user = user;
+
+    public static String typeLatestBooksBorrowed = "Reporte de los ultimos libros prestados";
+    public static String typeMostBorrowedBooks = "Reporte de libros mas prestados";
+    public static String typeLoanHistoryByStudent = "Historal de prestamos por estudiante";
+
+    private final String optionSelected;
+
+    private final User librarian;
+
+    public GenerateReport(User librarian, String optionSelected) {
+        this.librarian = librarian;
+        this.optionSelected = optionSelected;
         initComponents();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -31,6 +39,12 @@ public class GenerateReport extends javax.swing.JPanel {
         txtLimit = new javax.swing.JTextField();
         lblbook8 = new javax.swing.JLabel();
         btnDowloadReport = new RoundedButtonWithShadow("Iniciar sesion", 7, new Color(0, 0, 0, 100), 4);
+        pnlInitialDate1 = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
+        txtIdCardUser = new javax.swing.JTextField();
+        lblId = new javax.swing.JLabel();
+        btnSearch = new RoundedButtonWithShadow("Iniciar sesion", 7, new Color(0, 0, 0, 100), 4);
+        lblNameStudent = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
 
         contentPane.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -78,18 +92,95 @@ public class GenerateReport extends javax.swing.JPanel {
         btnDowloadReport.setForeground(new java.awt.Color(255, 255, 255));
         btnDowloadReport.setText("Descargar reporte");
         btnDowloadReport.setBorder(null);
+        btnDowloadReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDowloadReportActionPerformed(evt);
+            }
+        });
+
+        pnlInitialDate1.setBackground(new java.awt.Color(241, 241, 241));
+
+        txtIdCardUser.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtIdCardUser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        lblId.setBackground(new java.awt.Color(255, 255, 255));
+        lblId.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 13)); // NOI18N
+        lblId.setForeground(new java.awt.Color(0, 0, 0));
+        lblId.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblId.setText("Escribe la cedula del estudiante: ");
+        lblId.setToolTipText("");
+        lblId.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        btnSearch.setBackground(new java.awt.Color(56, 75, 147));
+        btnSearch.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
+        btnSearch.setForeground(new java.awt.Color(255, 255, 255));
+        btnSearch.setText("Buscar");
+        btnSearch.setBorder(null);
+
+        lblNameStudent.setBackground(new java.awt.Color(255, 255, 255));
+        lblNameStudent.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 13)); // NOI18N
+        lblNameStudent.setForeground(new java.awt.Color(0, 0, 0));
+        lblNameStudent.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNameStudent.setText("(aqui aparecera el nombre del estudiante encontrado)");
+        lblNameStudent.setToolTipText("");
+        lblNameStudent.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        lblName.setBackground(new java.awt.Color(255, 255, 255));
+        lblName.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 13)); // NOI18N
+        lblName.setForeground(new java.awt.Color(0, 0, 0));
+        lblName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblName.setText("Nombres: ");
+        lblName.setToolTipText("");
+        lblName.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        javax.swing.GroupLayout pnlInitialDate1Layout = new javax.swing.GroupLayout(pnlInitialDate1);
+        pnlInitialDate1.setLayout(pnlInitialDate1Layout);
+        pnlInitialDate1Layout.setHorizontalGroup(
+            pnlInitialDate1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInitialDate1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlInitialDate1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlInitialDate1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlInitialDate1Layout.createSequentialGroup()
+                        .addComponent(txtIdCardUser)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblNameStudent, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
+        );
+        pnlInitialDate1Layout.setVerticalGroup(
+            pnlInitialDate1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInitialDate1Layout.createSequentialGroup()
+                .addGroup(pnlInitialDate1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlInitialDate1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtIdCardUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlInitialDate1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlInitialDate1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblNameStudent))
+                .addGap(15, 15, 15))
+        );
 
         javax.swing.GroupLayout contentPaneLayout = new javax.swing.GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblGenerateReport, javax.swing.GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE)
+            .addComponent(lblGenerateReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(contentPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlInitialDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlInitialDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlInitialDate1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(contentPaneLayout.createSequentialGroup()
-                .addGap(224, 224, 224)
+                .addGap(233, 233, 233)
                 .addComponent(btnDowloadReport, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -99,9 +190,11 @@ public class GenerateReport extends javax.swing.JPanel {
                 .addComponent(lblGenerateReport, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlInitialDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlInitialDate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDowloadReport, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 421, Short.MAX_VALUE))
+                .addContainerGap(343, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -116,6 +209,44 @@ public class GenerateReport extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnDowloadReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDowloadReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDowloadReportActionPerformed
+
+    public void setActiveOptions() {
+        if (optionSelected.equals(typeLatestBooksBorrowed) || optionSelected.equals(typeMostBorrowedBooks)) {
+            txtIdCardUser.setEnabled(false);
+            btnSearch.setEnabled(false);
+            btnSearch.setBackground(new Color(168, 168, 168));
+            lblNameStudent.setEnabled(false);
+            lblNameStudent.setBackground(new Color(168, 168, 168));
+            lblId.setBackground(new Color(168, 168, 168));
+            lblId.setEnabled(false);
+            lblName.setBackground(new Color(168, 168, 168));
+            lblName.setEnabled(false);
+
+        } else {
+            txtIdCardUser.setEnabled(true);
+            btnSearch.setEnabled(true); 
+            btnSearch.setBackground(new Color(56, 75, 147));
+            lblNameStudent.setEnabled(false);
+            lblNameStudent.setBackground(new Color(0,0,0));
+            lblId.setBackground(new Color(0,0,0));
+            lblName.setBackground(new Color(0,0,0));
+        }
+    }
+    
+    public void paintButton(JButton btn, Color color) {
+        if(btn.isEnabled()) {
+            btn.setBackground(color);
+        }
+    }
+    
+    public void cleanFields() {
+        txtIdCardUser.setText("");
+        txtLimit.setText("");
+    }
+
     public JButton getBtnDowloadReport() {
         return btnDowloadReport;
     }
@@ -128,22 +259,43 @@ public class GenerateReport extends javax.swing.JPanel {
         return txtLimit;
     }
 
-    public User getUser() {
-        return user;
+    public User getLibrarian() {
+        return librarian;
     }
 
+    public JButton getBtnSearch() {
+        return btnSearch;
+    }
+
+    public JLabel getLblNameStudent() {
+        return lblNameStudent;
+    }
+
+    public JTextField getTxtIdCardUser() {
+        return txtIdCardUser;
+    }
+
+    public String getOptionSelected() {
+        return optionSelected;
+    }
 
     public void showMessage(String text, String title, int type) {
         JOptionPane.showMessageDialog(null, text, title, type);
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDowloadReport;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JPanel contentPane;
     private javax.swing.JLabel lblGenerateReport;
+    private javax.swing.JLabel lblId;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblNameStudent;
     private javax.swing.JLabel lblbook8;
     private javax.swing.JPanel pnlInitialDate;
+    private javax.swing.JPanel pnlInitialDate1;
+    private javax.swing.JTextField txtIdCardUser;
     private javax.swing.JTextField txtLimit;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,10 +1,8 @@
 package com.company.system.view;
 
 import com.company.system.controller.GenerateReportController;
-import com.company.system.controller.LibrarianWindowListener;
 import com.company.system.controller.RegisterBookListener;
 import com.company.system.controller.RegisterLoanListener;
-import com.company.system.model.Category;
 import com.company.system.model.User;
 import com.company.system.service.BookService;
 import com.company.system.service.LoanService;
@@ -650,10 +648,11 @@ public class LibrarianWindow extends javax.swing.JFrame {
         registerBook.setVisible(true);
     }
     
-    public void openGenerateReport(String title) {
-        generateReport = new GenerateReport(user);
-        generateReport.getLblGenerateReport().setText(title);
+    public void openGenerateReport(String optionSelected) {
+        generateReport = new GenerateReport(user, optionSelected);
+        generateReport.getLblGenerateReport().setText(optionSelected);
         new GenerateReportController(generateReport);
+        generateReport.setActiveOptions();
         uploadPanel(generateReport);
         generateReport.setVisible(true);
     }
@@ -661,9 +660,9 @@ public class LibrarianWindow extends javax.swing.JFrame {
     public void uploadListMenuReports() {
         menuContextual = new JPopupMenu();
         menuItems = new ArrayList<>();
-        menuItems.add(new JMenuItem("Reporte de los ultimos libros prestados"));
-        menuItems.add(new JMenuItem("Reporte de libros mas prestados"));
-        menuItems.add(new JMenuItem("Historal de prestamos por estudiante"));
+        menuItems.add(new JMenuItem(GenerateReport.typeLatestBooksBorrowed));
+        menuItems.add(new JMenuItem(GenerateReport.typeMostBorrowedBooks));
+        menuItems.add(new JMenuItem(GenerateReport.typeLoanHistoryByStudent));
         menuItems.forEach(menu -> {
             menuContextual.add(menu);
         });
