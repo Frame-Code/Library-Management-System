@@ -26,7 +26,7 @@ import java.util.List;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class PDFReportGenerator {
-    public static void generateLastLoansReport(List<Loan> loans, String filePath, User user) throws DocumentException, MalformedURLException, IOException {
+    public static void generateLastLoansReport(List<Loan> loans, String filePath, User librarian) throws DocumentException, MalformedURLException, IOException {
         Document document = new Document();
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
         Image image = Image.getInstance("src/main/resources/images/book_illustration.png");
@@ -51,7 +51,7 @@ public class PDFReportGenerator {
         document.add(new Paragraph(" "));
 
         document.add(new Paragraph("Fecha: " + LocalDate.now().toString()));
-        document.add(new Paragraph("Solicitado por: " + user.getNames() + " " + user.getSurNames()));
+        document.add(new Paragraph("Solicitado por: " + librarian.getNames() + " " + librarian.getSurNames()));
         document.add(new Paragraph(" "));
 
         Paragraph head = new Paragraph("Reporte de los ultimos libros prestados", new Font(Font.FontFamily.HELVETICA, 17, Font.BOLD));
@@ -93,6 +93,68 @@ public class PDFReportGenerator {
             cell.setPhrase(new Phrase((loan.isReturned()) ? "Si" : "No"));
             table.addCell(cell);
         }
+        document.add(table);
+        document.close();
+    }
+    
+    public static void generateMostBorrowedBooksReport(List<Object[]> loans, String filePath, User user) throws DocumentException, MalformedURLException, IOException {
+        Document document = new Document();
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
+        Image image = Image.getInstance("src/main/resources/images/book_illustration.png");
+        image.scaleToFit(80, 80);
+        document.open();
+
+        PdfPTable header = new PdfPTable(1);
+        PdfPCell cellHeader = new PdfPCell(image);
+        cellHeader.setBorder(PdfPCell.NO_BORDER);
+        cellHeader.setVerticalAlignment(Element.ALIGN_RIGHT);
+        header.addCell(cellHeader);
+
+        cellHeader = new PdfPCell(new Phrase("Sistema de administración de biblioteca", new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD)));
+        cellHeader.setBorder(PdfPCell.NO_BORDER);
+        cellHeader.setVerticalAlignment(Element.ALIGN_JUSTIFIED_ALL);
+
+        header.setHorizontalAlignment(Element.ALIGN_CENTER);
+        header.addCell(cellHeader);
+
+        document.add(header);
+        document.add(new Paragraph(" "));
+        document.add(new Paragraph(" "));
+
+        document.add(new Paragraph("Fecha: " + LocalDate.now().toString()));
+        document.add(new Paragraph("Solicitado por: " + user.getNames() + " " + user.getSurNames()));
+        document.add(new Paragraph(" "));
+
+        Paragraph head = new Paragraph("Reporte de los libros mas prestados", new Font(Font.FontFamily.HELVETICA, 17, Font.BOLD));
+        head.setAlignment(Element.ALIGN_CENTER);
+        document.add(head);
+        document.add(new Paragraph(" "));
+
+        PdfContentByte cb = writer.getDirectContentUnder();
+        cb.moveTo(50, 700);
+        cb.lineTo(550, 700);
+        cb.stroke();
+
+        PdfPTable table = new PdfPTable(3); //numero de columnas
+        String[] headers = {"ISBN", "Título del libro", "Cantidad de prestamos"};  
+        for(String headerTable : headers) {
+            PdfPCell cell = new PdfPCell(new Phrase(headerTable, new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD)));
+            cell.setBackgroundColor(BaseColor.CYAN);
+            cell.setPadding(5f);
+            table.addCell(headerTable);
+        }   
+        
+        loans.forEach(loan -> {
+            PdfPCell cell = new PdfPCell(new Phrase(String.valueOf(loan[1])));
+            cell.setPadding(5f);
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase(String.valueOf(loan[0])));
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase(String.valueOf(loan[2])));
+            table.addCell(cell);
+        });
         document.add(table);
         document.close();
     }

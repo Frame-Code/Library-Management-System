@@ -92,11 +92,6 @@ public class GenerateReport extends javax.swing.JPanel {
         btnDowloadReport.setForeground(new java.awt.Color(255, 255, 255));
         btnDowloadReport.setText("Descargar reporte");
         btnDowloadReport.setBorder(null);
-        btnDowloadReport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDowloadReportActionPerformed(evt);
-            }
-        });
 
         pnlInitialDate1.setBackground(new java.awt.Color(241, 241, 241));
 
@@ -208,10 +203,6 @@ public class GenerateReport extends javax.swing.JPanel {
             .addComponent(contentPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnDowloadReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDowloadReportActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDowloadReportActionPerformed
 
     public void setActiveOptions() {
         if (optionSelected.equals(typeLatestBooksBorrowed) || optionSelected.equals(typeMostBorrowedBooks)) {

@@ -9,4 +9,6 @@ public interface LoanDao extends Dao<Loan> {
     List<Loan> findByUser(User user);
     
     List<Loan> findRecentLoans(int limit);
+
+    List<Object[]> findMostBorrowedBooks(int limit);
 }

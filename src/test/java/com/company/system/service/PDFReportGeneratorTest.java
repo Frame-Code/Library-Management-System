@@ -27,4 +27,11 @@ public class PDFReportGeneratorTest {
         user.setNames("Daniel Mora Cantillo");
         PDFReportGenerator.generateLastLoansReport(loanDao.findAllIncludeDeleted(), "/home/artist-code/Documents/last_loans_report.pdf", user);
     }
+
+    @Test
+    void testGenerateMostBorrowedBooksReport() throws MalformedURLException, DocumentException, IOException {
+        User user = new User();
+        user.setNames("Daniel Mora Cantillo");
+        PDFReportGenerator.generateMostBorrowedBooksReport(loanDao.findMostBorrowedBooks(5), "/home/artist-code/Documents/most_report.pdf", user);
+    }
 }

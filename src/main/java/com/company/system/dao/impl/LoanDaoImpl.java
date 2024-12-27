@@ -125,7 +125,8 @@ public class LoanDaoImpl implements LoanDao {
             em.merge(object);
             em.getTransaction().commit();
             return true;
-        } catch (IllegalStateException | TransactionRequiredException | IllegalArgumentException | RollbackException e) {
+        } catch (IllegalStateException | TransactionRequiredException | IllegalArgumentException
+                | RollbackException e) {
             em.getTransaction().rollback();
             return false;
         } finally {
@@ -141,7 +142,8 @@ public class LoanDaoImpl implements LoanDao {
     }
 
     @Override
-    public List<Loan> findByUser(User user) throws QueryTimeoutException, TransactionRequiredException, PessimisticLockException, LockTimeoutException {
+    public List<Loan> findByUser(User user)
+            throws QueryTimeoutException, TransactionRequiredException, PessimisticLockException, LockTimeoutException {
         EntityManager em = getEntityManager();
         String jpql = "SELECT l FROM Loan l WHERE l.user = :user AND l.deleted=0";
         TypedQuery<Loan> query = em.createQuery(jpql, Loan.class);
@@ -164,6 +166,40 @@ public class LoanDaoImpl implements LoanDao {
         TypedQuery<Loan> query = em.createQuery(jpql, Loan.class);
         query.setMaxResults(limit);
         List<Loan> loans;
+        try {
+            loans = query.getResultList();
+            return loans;
+        } catch (IllegalStateException | PersistenceException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    /**
+     * Explicacion JPQL: 
+     * Selecciona el titulo, isbn del libro y hace un conteo de los prestamos
+     * El titulo y el isbn son obtenidos por el JOIN a traves la entidad Loan (FROM Loan l JOIN l.book b)
+     * La condicion WHERE l.deleted = 0 es para obtener solo los prestamos que no han sido eliminados
+     * 
+     * Agrupa por titulo y isbn para que el conteo sea por cada libro que ha sido prestado
+     * Ordena las filas por los valores de la columna totalLoans de forma descendente
+     * 
+     * La consulta devuelve una lista de arreglos de objetos, 
+     * donde cada arreglo contiene el titulo, isbn y total de prestamos en ese orden
+     */
+    @Override
+    public List<Object[]> findMostBorrowedBooks(int limit) {
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT b.title, b.isbn, COUNT(l) AS totalLoans " +
+                "FROM Loan l " +
+                "JOIN l.book b " +
+                "WHERE l.deleted = 0 " +
+                "GROUP BY b.title, b.isbn " +
+                "ORDER BY totalLoans DESC";
+        TypedQuery<Object[]> query = em.createQuery(jpql, Object[].class);
+        query.setMaxResults(limit);
+        List<Object[]> loans;
         try {
             loans = query.getResultList();
             return loans;

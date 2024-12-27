@@ -95,4 +95,12 @@ public class LoanDaoImplTest {
         loan.setDevolutionDate(LocalDate.of(2024, 12, 25));
         System.out.println(loanDao.update(loan));
     }
+
+    @Test
+    void testFindMostBorrowedBooks() {
+        List<Object[]> loans = loanDao.findMostBorrowedBooks(5);
+        loans.forEach(loan -> {
+            System.out.println(loan[0] + " - " + loan[1] + " - " + loan[2]);
+        }); 
+    }
 }
