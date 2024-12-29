@@ -80,6 +80,8 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
             frmLibraianWindow.getPnlGenerateReports().setBackground(Utils.pnlEntered);
         } else if(e.getSource() == frmLibraianWindow.getPnlShutdown() || e.getSource() == frmLibraianWindow.getLblShutdown()){
             frmLibraianWindow.dispose();
+        } else if(e.getSource() == frmLibraianWindow.getPnlManageFine()|| e.getSource() == frmLibraianWindow.getLblManageFine()){
+            frmLibraianWindow.openRegisterFine();
         }
     }
 

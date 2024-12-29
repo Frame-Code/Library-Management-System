@@ -15,8 +15,6 @@ import com.company.system.view.GenerateReport;
 import com.company.system.view.components.Utils;
 import com.itextpdf.text.DocumentException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 
 /**

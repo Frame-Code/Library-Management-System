@@ -654,7 +654,13 @@ public class LibrarianWindow extends javax.swing.JFrame {
         uploadPanel(generateReport);
         generateReport.setVisible(true);
     }
-
+    
+    public void openRegisterFine() {
+        RegisterFine r = new RegisterFine();
+        uploadPanel(r);
+        r.setVisible(true);
+    }
+    
     public void uploadListMenuReports() {
         menuContextual = new JPopupMenu();
         menuItems = new ArrayList<>();
@@ -665,6 +671,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
             menuContextual.add(menu);
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contentPane;
