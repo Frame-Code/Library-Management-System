@@ -78,8 +78,8 @@ public class PDFReportGenerator {
 
             // Crea una tabla junto con sus columnas
             PdfPTable table = new PdfPTable(6); // numero de columnas
-            String[] headers = { "ID Préstamo", "Usuario", "Título del libro", "ISBN", "Fecha de prestamo",
-                    "¿Ha sido regresado?" };
+            String[] headers = {"ID Préstamo", "Usuario", "Título del libro", "ISBN", "Fecha de prestamo",
+                "¿Ha sido regresado?"};
             for (String headerTable : headers) {
                 PdfPCell cell = new PdfPCell(
                         new Phrase(headerTable, new Font(Font.FontFamily.HELVETICA, 13, Font.BOLD)));
@@ -142,7 +142,7 @@ public class PDFReportGenerator {
 
             // Crea una tabla junto con sus columnas
             PdfPTable table = new PdfPTable(3); // numero de columnas
-            String[] headers = { "ISBN", "Título del libro", "Cantidad de prestamos" };
+            String[] headers = {"ISBN", "Título del libro", "Cantidad de prestamos"};
             for (String headerTable : headers) {
                 PdfPCell cell = new PdfPCell(
                         new Phrase(headerTable, new Font(Font.FontFamily.HELVETICA, 13, Font.BOLD)));
@@ -173,66 +173,60 @@ public class PDFReportGenerator {
         }
     }
 
-    public static boolean generateLoanHistoryByStudent(List<Loan> loans, String filePath, String namesLibrarian, String namesStudent) {
-        try {
-            Document document = new Document();
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
+    public static boolean generateLoanHistoryByStudent(List<Loan> loans, String filePath, String namesLibrarian, String namesStudent) throws DocumentException, IOException {
+        Document document = new Document();
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
 
-            addHeader(document, namesLibrarian);
+        addHeader(document, namesLibrarian);
 
-            Paragraph head = new Paragraph("Historial de prestamos del estudiante " + namesStudent, new Font(Font.FontFamily.HELVETICA, 17, Font.BOLD));
-            head.setAlignment(Element.ALIGN_CENTER);
-            document.add(head);
-            document.add(new Paragraph(" "));
+        Paragraph head = new Paragraph("Historial de prestamos del estudiante " + namesStudent, new Font(Font.FontFamily.HELVETICA, 17, Font.BOLD));
+        head.setAlignment(Element.ALIGN_CENTER);
+        document.add(head);
+        document.add(new Paragraph(" "));
 
-            // Dibuja una linea
-            PdfContentByte cb = writer.getDirectContentUnder();
-            cb.moveTo(50, 700);
-            cb.lineTo(550, 700);
-            cb.stroke();
+        // Dibuja una linea
+        PdfContentByte cb = writer.getDirectContentUnder();
+        cb.moveTo(50, 700);
+        cb.lineTo(550, 700);
+        cb.stroke();
 
-            // Crea una tabla junto con sus columnas
-            PdfPTable table = new PdfPTable(6); // numero de columnas
-            String[] headers = { "Título del libro", "ISBN", "Fecha de prestamo", "Fecha de devolución",
-                    "¿Ha sido regresado?", "¿Ha solicitado prorroga?" };
-            for (String headerTable : headers) {
-                PdfPCell cell = new PdfPCell(
-                        new Phrase(headerTable, new Font(Font.FontFamily.HELVETICA, 13, Font.BOLD)));
-                cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-                cell.setPadding(5f);
-                table.addCell(cell);
-            }
-
-            // Agrega filas a la tabla con los datos de los prestamos
-            loans.forEach(loan -> {
-                PdfPCell cell = new PdfPCell(new Phrase(loan.getBook().getTitle()));
-                cell.setPadding(5f);
-                table.addCell(cell);
-
-                cell.setPhrase(new Phrase(loan.getBook().getIsbn()));
-                table.addCell(cell);
-
-                cell.setPhrase(new Phrase(loan.getRegistrationDate().toString()));
-                table.addCell(cell);
-
-                cell.setPhrase(new Phrase(loan.getDevolutionDate().toString()));
-                table.addCell(cell);
-
-                cell.setPhrase(new Phrase((loan.isReturned()) ? "Si" : "No"));
-                table.addCell(cell);
-
-                cell.setPhrase(new Phrase((loan.getRegistrationUpdateDate() != null) ? "Si" : "No"));
-                table.addCell(cell);
-            });
-
-            document.add(table);
-            document.close();
-            return true;
-
-        } catch (DocumentException | IOException e) {
-            e.printStackTrace();
-            return false;
+        // Crea una tabla junto con sus columnas
+        PdfPTable table = new PdfPTable(6); // numero de columnas
+        String[] headers = {"Título del libro", "ISBN", "Fecha de prestamo", "Fecha de devolución",
+            "¿Ha sido regresado?", "¿Ha solicitado prorroga?"};
+        for (String headerTable : headers) {
+            PdfPCell cell = new PdfPCell(
+                    new Phrase(headerTable, new Font(Font.FontFamily.HELVETICA, 13, Font.BOLD)));
+            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            cell.setPadding(5f);
+            table.addCell(cell);
         }
+
+        // Agrega filas a la tabla con los datos de los prestamos
+        loans.forEach(loan -> {
+            PdfPCell cell = new PdfPCell(new Phrase(loan.getBook().getTitle()));
+            cell.setPadding(5f);
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase(loan.getBook().getIsbn()));
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase(loan.getRegistrationDate().toString()));
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase(loan.getDevolutionDate().toString()));
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase((loan.isReturned()) ? "Si" : "No"));
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase((loan.getRegistrationUpdateDate() != null) ? "Si" : "No"));
+            table.addCell(cell);
+        });
+
+        document.add(table);
+        document.close();
+        return true;
 
     }
 

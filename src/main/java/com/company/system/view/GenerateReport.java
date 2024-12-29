@@ -1,6 +1,7 @@
 package com.company.system.view;
 
 import com.company.system.model.User;
+import com.company.system.view.components.LoadingDialog;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.Color;
@@ -18,10 +19,9 @@ public class GenerateReport extends javax.swing.JPanel {
     public static String typeLatestBooksBorrowed = "Reporte de los ultimos libros prestados";
     public static String typeMostBorrowedBooks = "Reporte de libros mas prestados";
     public static String typeLoanHistoryByStudent = "Historal de prestamos por estudiante";
-
     private final String optionSelected;
-
     private final User librarian;
+    private LoadingDialog loadingDialog;
 
     public GenerateReport(User librarian, String optionSelected) {
         this.librarian = librarian;
@@ -218,21 +218,21 @@ public class GenerateReport extends javax.swing.JPanel {
 
         } else {
             txtIdCardUser.setEnabled(true);
-            btnSearch.setEnabled(true); 
+            btnSearch.setEnabled(true);
             btnSearch.setBackground(new Color(56, 75, 147));
             lblNameStudent.setEnabled(false);
-            lblNameStudent.setBackground(new Color(0,0,0));
-            lblId.setBackground(new Color(0,0,0));
-            lblName.setBackground(new Color(0,0,0));
+            lblNameStudent.setBackground(new Color(0, 0, 0));
+            lblId.setBackground(new Color(0, 0, 0));
+            lblName.setBackground(new Color(0, 0, 0));
         }
     }
-    
+
     public void paintButton(JButton btn, Color color) {
-        if(btn.isEnabled()) {
+        if (btn.isEnabled()) {
             btn.setBackground(color);
         }
     }
-    
+
     public void cleanFields() {
         txtIdCardUser.setText("");
         txtLimit.setText("");
@@ -268,6 +268,20 @@ public class GenerateReport extends javax.swing.JPanel {
 
     public String getOptionSelected() {
         return optionSelected;
+    }
+
+    public LoadingDialog getLoadingDialog() {
+        return loadingDialog;
+    }
+
+    public void showLoadingDialog() {
+        this.loadingDialog = new LoadingDialog("Generando reporte...", "Generando reporte, por favor espere...");
+        loadingDialog.setVisible(true);
+    }
+
+    public void hideLoadingDialog() {
+        loadingDialog.setVisible(false);
+        loadingDialog.dispose();
     }
 
     public void showMessage(String text, String title, int type) {

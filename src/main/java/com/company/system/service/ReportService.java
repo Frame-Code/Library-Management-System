@@ -4,6 +4,8 @@ import com.company.system.dao.impl.LoanDaoImpl;
 import com.company.system.dao.interfaces.LoanDao;
 import com.company.system.model.Loan;
 import com.company.system.model.User;
+import com.itextpdf.text.DocumentException;
+import java.io.IOException;
 
 import java.util.List;
 
@@ -40,7 +42,7 @@ public class ReportService {
         return PDFReportGenerator.generateMostBorrowedBooksReport(getMostBorrowedBooks(limit), filePath, namesLibrarian);
     }
 
-    public boolean generateLoanHistoryByStudentReport(User student, String filePath, User librarian) {
+    public boolean generateLoanHistoryByStudentReport(User student, String filePath, User librarian) throws DocumentException, IOException {
         String namesStudent = student.getNames() + " " + student.getSurNames();
         String namesLibrarian = librarian.getNames() + " " + librarian.getSurNames();
         return PDFReportGenerator.generateLoanHistoryByStudent(getLoanHistoryByStudent(student), filePath, namesLibrarian, namesStudent);

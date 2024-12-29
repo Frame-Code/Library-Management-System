@@ -13,6 +13,11 @@ import com.company.system.service.UserService;
 import com.company.system.view.FileChooser;
 import com.company.system.view.GenerateReport;
 import com.company.system.view.components.Utils;
+import com.itextpdf.text.DocumentException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -41,20 +46,18 @@ public class GenerateReportController implements ActionListener, MouseListener {
 
     }
 
-    private boolean verifyAndGenerateReport(String option, int limit) {
-        String filePath = new FileChooser().filePath();
+    private void verifyAndGenerateReport(String option, int limit, String filePath) throws DocumentException, IOException {
         if (option.equals(GenerateReport.typeLatestBooksBorrowed)) {
-            return reportService.generateLastLoansReport(limit, filePath, generateReport.getLibrarian());
+            reportService.generateLastLoansReport(limit, filePath, generateReport.getLibrarian());
         } else if (option.equals(GenerateReport.typeMostBorrowedBooks)) {
-            return reportService.generateMostBorrowedBooksReport(limit, filePath, generateReport.getLibrarian());
+            reportService.generateMostBorrowedBooksReport(limit, filePath, generateReport.getLibrarian());
         } else if (option.equals(GenerateReport.typeLoanHistoryByStudent)) {
             if (student != null) {
-                return reportService.generateLoanHistoryByStudentReport(student, filePath, generateReport.getLibrarian());
+                reportService.generateLoanHistoryByStudentReport(student, filePath, generateReport.getLibrarian());
             } else {
                 generateReport.showMessage("Primero busca un estudiante", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        return false;
     }
 
     @Override
@@ -62,12 +65,27 @@ public class GenerateReportController implements ActionListener, MouseListener {
         if (e.getSource() == generateReport.getBtnDowloadReport()) {
             try {
                 int limit = Integer.parseInt(generateReport.getTxtLimit().getText());
-                if(verifyAndGenerateReport(generateReport.getOptionSelected(), limit)) {
-                    generateReport.showMessage("Reporte creado correctamente ", "Exito", JOptionPane.INFORMATION_MESSAGE);
-                    generateReport.cleanFields();
-                } else {
-                    generateReport.showMessage("Error al crear el reporte", "Error", JOptionPane.ERROR_MESSAGE);
-                }
+                String filePath = new FileChooser().filePath();
+                generateReport.showLoadingDialog();
+
+                Thread generate = new Thread(() -> {
+                    try {
+                        Thread.sleep(500);
+                        verifyAndGenerateReport(generateReport.getOptionSelected(), limit, filePath);
+
+                        SwingUtilities.invokeLater(() -> {
+                            generateReport.hideLoadingDialog();
+                            generateReport.showMessage("Reporte creado correctamente ", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                        });
+                    } catch (DocumentException | IOException | InterruptedException ex) {
+                        generateReport.hideLoadingDialog();
+                        generateReport.showMessage("Error al crear el reporte", "Error", JOptionPane.ERROR_MESSAGE);
+                        ex.printStackTrace();
+                    } 
+                });
+                
+                generate.start();
+                
             } catch (NumberFormatException ex) {
                 generateReport.showMessage("Escribe correctamente la cantidad de resultados", "Error", JOptionPane.ERROR_MESSAGE);
             }
