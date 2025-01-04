@@ -1,4 +1,4 @@
-package com.company.system.view;
+    package com.company.system.view;
 
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -28,7 +29,7 @@ public class RegisterFine extends javax.swing.JPanel {
         jPanel2 = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         lblBookTittle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        areaMessage = new javax.swing.JTextArea();
         lblWelcome1 = new javax.swing.JLabel();
         jPanel3 = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         lblbook3 = new javax.swing.JLabel();
@@ -60,16 +61,15 @@ public class RegisterFine extends javax.swing.JPanel {
 
         lblBookTittle.setBackground(new java.awt.Color(255, 255, 255));
         lblBookTittle.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 13)); // NOI18N
-        lblBookTittle.setForeground(new java.awt.Color(0, 0, 0));
         lblBookTittle.setToolTipText("");
         lblBookTittle.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("DejaVu Sans", 0, 13)); // NOI18N
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Escribe un mensaje de porque se genera la multa al estudiante", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 1, 12))); // NOI18N
-        jScrollPane1.setViewportView(jTextArea1);
+        areaMessage.setColumns(20);
+        areaMessage.setFont(new java.awt.Font("DejaVu Sans", 0, 13)); // NOI18N
+        areaMessage.setLineWrap(true);
+        areaMessage.setRows(5);
+        areaMessage.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Escribe un mensaje de porque se genera la multa al estudiante", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 1, 12))); // NOI18N
+        jScrollPane1.setViewportView(areaMessage);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -97,17 +97,15 @@ public class RegisterFine extends javax.swing.JPanel {
 
         lblWelcome1.setBackground(new java.awt.Color(255, 255, 255));
         lblWelcome1.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 18)); // NOI18N
-        lblWelcome1.setForeground(new java.awt.Color(0, 0, 0));
         lblWelcome1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblWelcome1.setText("Registrar nueva multa");
-        lblWelcome1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "", javax.swing.border.TitledBorder.TRAILING, javax.swing.border.TitledBorder.BELOW_BOTTOM, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        lblWelcome1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "", javax.swing.border.TitledBorder.TRAILING, javax.swing.border.TitledBorder.BELOW_BOTTOM, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(241, 241, 241));
         jPanel3.setPreferredSize(new java.awt.Dimension(521, 210));
 
         lblbook3.setBackground(new java.awt.Color(255, 255, 255));
         lblbook3.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 13)); // NOI18N
-        lblbook3.setForeground(new java.awt.Color(0, 0, 0));
         lblbook3.setText("Escribe el #Cédula del estudiante:");
         lblbook3.setToolTipText("");
         lblbook3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -123,20 +121,17 @@ public class RegisterFine extends javax.swing.JPanel {
 
         lblNameStudent.setBackground(new java.awt.Color(255, 255, 255));
         lblNameStudent.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 13)); // NOI18N
-        lblNameStudent.setForeground(new java.awt.Color(0, 0, 0));
         lblNameStudent.setToolTipText("");
         lblNameStudent.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblbook5.setBackground(new java.awt.Color(255, 255, 255));
         lblbook5.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 13)); // NOI18N
-        lblbook5.setForeground(new java.awt.Color(0, 0, 0));
         lblbook5.setText("Nombres completos del estudiante:");
         lblbook5.setToolTipText("");
         lblbook5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblbook6.setBackground(new java.awt.Color(255, 255, 255));
         lblbook6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblbook6.setForeground(new java.awt.Color(0, 0, 0));
         lblbook6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblbook6.setText("BUSCAR ESTUDIANTE");
         lblbook6.setToolTipText("");
@@ -173,7 +168,7 @@ public class RegisterFine extends javax.swing.JPanel {
                 .addComponent(lblbook5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNameStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         btnRegisterLoan.setBackground(new java.awt.Color(56, 75, 147));
@@ -193,14 +188,11 @@ public class RegisterFine extends javax.swing.JPanel {
 
         lblbook8.setBackground(new java.awt.Color(255, 255, 255));
         lblbook8.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 13)); // NOI18N
-        lblbook8.setForeground(new java.awt.Color(0, 0, 0));
         lblbook8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblbook8.setText("Escribe la fecha de finalización de multa");
         lblbook8.setToolTipText("");
         lblbook8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Dia:");
 
         txtDay.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
@@ -214,8 +206,6 @@ public class RegisterFine extends javax.swing.JPanel {
         cmbMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero ", "Marzo ", "Abril ", "Mayo ", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre ", "Diciembre" }));
         cmbMonth.setBorder(null);
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Año:");
 
         txtYear.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
@@ -227,8 +217,6 @@ public class RegisterFine extends javax.swing.JPanel {
         jLabel14.setForeground(new java.awt.Color(205, 205, 205));
         jLabel14.setText("(número)");
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Mes:");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -296,7 +284,7 @@ public class RegisterFine extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 920, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1012, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnRegisterLoan, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -305,7 +293,7 @@ public class RegisterFine extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -330,7 +318,7 @@ public class RegisterFine extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,7 +370,14 @@ public class RegisterFine extends javax.swing.JPanel {
         return txtYear;
     }
 
+    public JTextArea getAreaMessage() {
+        return areaMessage;
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea areaMessage;
     private javax.swing.JButton btnClean;
     private javax.swing.JButton btnRegisterLoan;
     private javax.swing.JButton btnSearchIdCard;
@@ -397,7 +392,6 @@ public class RegisterFine extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblBookTittle;
     private javax.swing.JLabel lblNameStudent;
     private javax.swing.JLabel lblWelcome1;

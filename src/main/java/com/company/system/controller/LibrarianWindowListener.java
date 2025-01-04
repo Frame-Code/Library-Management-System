@@ -16,6 +16,7 @@ import java.awt.event.MouseListener;
  * @author Joel Pazmiño Abad
  */
 public class LibrarianWindowListener implements ActionListener, MouseListener {
+
     private final LibrarianWindow frmLibraianWindow;
     private final BookService bookService;
     private final UserService userService;
@@ -52,13 +53,13 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        try{
+        try {
             frmLibraianWindow.getMenuItems().forEach((item) -> {
-                if(e.getSource() == item){
+                if (e.getSource() == item) {
                     frmLibraianWindow.openGenerateReport(item.getText());
-                }   
-            }); 
-        } catch(NullPointerException e1) {
+                }
+            });
+        } catch (NullPointerException e1) {
 
         }
     }
@@ -68,19 +69,20 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
         if (e.getSource() == frmLibraianWindow.getPnlRegisterLoan() || e.getSource() == frmLibraianWindow.getLblRegisterFine()) {
             frmLibraianWindow.openRegisterLoan(librarian, bookService, userService, loanService);
             frmLibraianWindow.getPnlRegisterLoan().setBackground(Utils.pnlEntered);
-        } else if (e.getSource() == frmLibraianWindow.getPnlManageBooks()|| e.getSource() == frmLibraianWindow.getLblManageBooks()) {
+        } else if (e.getSource() == frmLibraianWindow.getPnlManageBooks() || e.getSource() == frmLibraianWindow.getLblManageBooks()) {
             frmLibraianWindow.openRegisterBook(librarian, bookService, userService, loanService);
             frmLibraianWindow.getPnlManageBooks().setBackground(Utils.pnlEntered);
-        } else if(e.getSource() == frmLibraianWindow.getPnlGenerateReports() || e.getSource() == frmLibraianWindow.getLblManageReports()){
+        } else if (e.getSource() == frmLibraianWindow.getPnlGenerateReports() || e.getSource() == frmLibraianWindow.getLblManageReports()) {
             frmLibraianWindow.uploadListMenuReports();
             frmLibraianWindow.getMenuItems().forEach((item) -> {
                 item.addActionListener(this);
-            }); 
+            });
             frmLibraianWindow.getMenuContextual().show(frmLibraianWindow.getPnlGenerateReports(), e.getX(), e.getY());
             frmLibraianWindow.getPnlGenerateReports().setBackground(Utils.pnlEntered);
-        } else if(e.getSource() == frmLibraianWindow.getPnlShutdown() || e.getSource() == frmLibraianWindow.getLblShutdown()){
+        } else if (e.getSource() == frmLibraianWindow.getPnlShutdown() || e.getSource() == frmLibraianWindow.getLblShutdown()) {
             frmLibraianWindow.dispose();
-        } else if(e.getSource() == frmLibraianWindow.getPnlManageFine()|| e.getSource() == frmLibraianWindow.getLblManageFine()){
+        } else if (e.getSource() == frmLibraianWindow.getPnlManageFine() || e.getSource() == frmLibraianWindow.getLblManageFine()) {
+            System.out.println("Se abrio la tecla");
             frmLibraianWindow.openRegisterFine();
         }
     }
@@ -164,7 +166,7 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
     }
-    
+
     @Override
     public void mousePressed(MouseEvent e) {
     }

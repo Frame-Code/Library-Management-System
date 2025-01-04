@@ -656,6 +656,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
     }
     
     public void openRegisterFine() {
+        System.out.println("Entro");
         RegisterFine r = new RegisterFine();
         uploadPanel(r);
         r.setVisible(true);

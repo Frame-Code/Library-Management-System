@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         LibrarianWindow lb = new LibrarianWindow();
-        new LibrarianWindowListener(lb);
+        new LibrarianWindowListener(lb);    
         lb.setVisible(true);
     }
 }
