@@ -329,7 +329,9 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="DejaVu Sans Condensed" size="16" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Registrar pr&#xe9;stamo"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="LibrarianWindow.optionRegisterLoan" type="code"/>
+                    </Property>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Default Cursor"/>
@@ -396,7 +398,9 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="DejaVu Sans Condensed" size="16" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Administrar libros"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="LibrarianWindow.optionManageBooks" type="code"/>
+                    </Property>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Default Cursor"/>
@@ -461,7 +465,9 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="DejaVu Sans Condensed" size="16" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Generaci&#xf3;n de reportes"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="LibrarianWindow.optionManageReports" type="code"/>
+                    </Property>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Default Cursor"/>
@@ -526,7 +532,9 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="DejaVu Sans Condensed" size="16" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Notificaciones"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="LibrarianWindow.optionNotifications" type="code"/>
+                    </Property>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Default Cursor"/>
@@ -589,7 +597,9 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="DejaVu Sans Condensed" size="16" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Salir"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="LibrarianWindow.optionShutdown" type="code"/>
+                    </Property>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Default Cursor"/>
@@ -657,7 +667,9 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="DejaVu Sans Condensed" size="16" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Registrar devoluci&#xf3;n"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="LibrarianWindow.optionRegisterDevolution" type="code"/>
+                    </Property>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Default Cursor"/>
@@ -718,7 +730,9 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="DejaVu Sans Condensed" size="16" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Administrar multas"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="LibrarianWindow.optionManageFine" type="code"/>
+                    </Property>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Default Cursor"/>

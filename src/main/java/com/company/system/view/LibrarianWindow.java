@@ -27,7 +27,15 @@ import javax.swing.JPopupMenu;
  * @author ariel
  */
 public class LibrarianWindow extends javax.swing.JFrame {
-
+    
+    private static final String optionRegisterLoan = "Registrar prestamo";
+    private static final String optionRegisterDevolution = "Registrar devolucion";
+    private static final String optionManageFine = "Administrar multas";
+    private static final String optionManageBooks = "Administrar libros";
+    private static final String optionManageReports = "Generacion de reportes";
+    private static final String optionNotifications = "Notificaciones";
+    private static final String optionShutdown = "Salir";
+    
     private RegisterLoan registerLoan;
     private RegisterBook registerBook;
     private GenerateReport generateReport;
@@ -155,7 +163,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
 
         lblRegisterFine.setBackground(new java.awt.Color(255, 255, 255));
         lblRegisterFine.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblRegisterFine.setText("Registrar préstamo");
+        lblRegisterFine.setText(LibrarianWindow.optionRegisterLoan);
         lblRegisterFine.setToolTipText("");
         lblRegisterFine.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -188,7 +196,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
 
         lblManageBooks.setBackground(new java.awt.Color(255, 255, 255));
         lblManageBooks.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblManageBooks.setText("Administrar libros");
+        lblManageBooks.setText(LibrarianWindow.optionManageBooks);
         lblManageBooks.setToolTipText("");
         lblManageBooks.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -221,7 +229,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
 
         lblManageReports.setBackground(new java.awt.Color(255, 255, 255));
         lblManageReports.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblManageReports.setText("Generación de reportes");
+        lblManageReports.setText(LibrarianWindow.optionManageReports);
         lblManageReports.setToolTipText("");
         lblManageReports.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -255,7 +263,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
 
         lblNotifications.setBackground(new java.awt.Color(255, 255, 255));
         lblNotifications.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblNotifications.setText("Notificaciones");
+        lblNotifications.setText(LibrarianWindow.optionNotifications);
         lblNotifications.setToolTipText("");
         lblNotifications.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -289,7 +297,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
 
         lblShutdown.setBackground(new java.awt.Color(255, 255, 255));
         lblShutdown.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblShutdown.setText("Salir");
+        lblShutdown.setText(LibrarianWindow.optionShutdown);
         lblShutdown.setToolTipText("");
         lblShutdown.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -323,7 +331,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
 
         lblRegisterDevolution.setBackground(new java.awt.Color(255, 255, 255));
         lblRegisterDevolution.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblRegisterDevolution.setText("Registrar devolución");
+        lblRegisterDevolution.setText(LibrarianWindow.optionRegisterDevolution);
         lblRegisterDevolution.setToolTipText("");
         lblRegisterDevolution.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -355,7 +363,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
 
         lblManageFine.setBackground(new java.awt.Color(255, 255, 255));
         lblManageFine.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblManageFine.setText("Administrar multas");
+        lblManageFine.setText(LibrarianWindow.optionManageFine);
         lblManageFine.setToolTipText("");
         lblManageFine.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
