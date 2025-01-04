@@ -82,7 +82,6 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
         } else if (e.getSource() == frmLibraianWindow.getPnlShutdown() || e.getSource() == frmLibraianWindow.getLblShutdown()) {
             frmLibraianWindow.dispose();
         } else if (e.getSource() == frmLibraianWindow.getPnlManageFine() || e.getSource() == frmLibraianWindow.getLblManageFine()) {
-            System.out.println("Se abrio la tecla");
             frmLibraianWindow.openRegisterFine();
         }
     }
