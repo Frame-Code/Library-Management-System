@@ -6,6 +6,8 @@ import com.company.system.service.UserService;
 import com.company.system.view.RegisterFine;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
@@ -13,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author artist-code (Daniel Mora Cantillo)
  */
-public class RegisterFineListener implements ActionListener, UtilsController {
+public class RegisterFineListener implements ActionListener, MouseListener, UtilsController {
 
     private RegisterFine registerFine;
     private UserService userService;
@@ -34,6 +36,10 @@ public class RegisterFineListener implements ActionListener, UtilsController {
         registerFine.getBtnSearchIdCard().addActionListener(this);
         registerFine.getBtnRegisterLoan().addActionListener(this);
         registerFine.getBtnClean().addActionListener(this);
+        
+        registerFine.getBtnSearchIdCard().addMouseListener(this);
+        registerFine.getBtnRegisterLoan().addMouseListener(this);
+        registerFine.getBtnClean().addMouseListener(this);
     }
 
     private boolean isAvailableToRegister() {
@@ -47,11 +53,12 @@ public class RegisterFineListener implements ActionListener, UtilsController {
             int day = Integer.parseInt(registerFine.getTxtDay().getText());
             int year = Integer.parseInt(registerFine.getTxtYear().getText());
             String month = (String) registerFine.getCmbMonth().getSelectedItem();
-            if(day <= 31 && day >= 0 && year >= LocalDate.now().getYear() && year < (LocalDate.now().getYear() + 4) && getDate(day, month, year).isAfter(LocalDate.now())) {
+            if (day <= 31 && day >= 0 && year >= LocalDate.now().getYear() && year < (LocalDate.now().getYear() + 4) && getDate(day, month, year).isAfter(LocalDate.now())) {
                 deadeline = getDate(day, month, year);
                 return true;
-            } else 
+            } else {
                 return false;
+            }
         } catch (NumberFormatException ex) {
             return false;
         }
@@ -89,5 +96,45 @@ public class RegisterFineListener implements ActionListener, UtilsController {
         } else if (registerFine.getBtnClean() == e.getSource()) {
             cleanFields();
         }
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        if (e.getSource() == registerFine.getBtnSearchIdCard()) {
+            registerFine.getBtnSearchIdCard().setBackground(btnEntered);
+            registerFine.getBtnRegisterLoan().setBackground(btnExited);
+            registerFine.getBtnClean().setBackground(btnExited);
+        } else if (e.getSource() == registerFine.getBtnRegisterLoan()) {
+            registerFine.getBtnSearchIdCard().setBackground(btnExited);
+            registerFine.getBtnRegisterLoan().setBackground(btnEntered);
+            registerFine.getBtnClean().setBackground(btnExited);
+        } else if (e.getSource() == registerFine.getBtnClean()) {
+            registerFine.getBtnSearchIdCard().setBackground(btnExited);
+            registerFine.getBtnRegisterLoan().setBackground(btnExited);
+            registerFine.getBtnClean().setBackground(btnEntered);
+        }
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        if (e.getSource() == registerFine.getBtnSearchIdCard()) {
+            registerFine.getBtnSearchIdCard().setBackground(btnExited);
+        } else if (e.getSource() == registerFine.getBtnRegisterLoan()) {
+            registerFine.getBtnRegisterLoan().setBackground(btnExited);
+        } else if (e.getSource() == registerFine.getBtnClean()) {
+            registerFine.getBtnClean().setBackground(btnExited);
+        }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
     }
 }

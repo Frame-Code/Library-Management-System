@@ -59,7 +59,7 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
                     frmLibraianWindow.openGenerateReport(item.getText());
                 }
             });
-        } catch (NullPointerException e1) {
+        } catch (NullPointerException ex) {
 
         }
     }
@@ -82,7 +82,11 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
         } else if (e.getSource() == frmLibraianWindow.getPnlShutdown() || e.getSource() == frmLibraianWindow.getLblShutdown()) {
             frmLibraianWindow.dispose();
         } else if (e.getSource() == frmLibraianWindow.getPnlManageFine() || e.getSource() == frmLibraianWindow.getLblManageFine()) {
-            frmLibraianWindow.openRegisterFine();
+            frmLibraianWindow.uploadListMenuFines();
+            frmLibraianWindow.getMenuItems().forEach(item -> {
+                item.addActionListener(this);
+            });
+            frmLibraianWindow.getMenuContextual().show(frmLibraianWindow.getPnlManageFine(), e.getX(), e.getY());
         }
     }
 

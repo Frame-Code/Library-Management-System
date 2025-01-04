@@ -27,13 +27,14 @@ import javax.swing.JPopupMenu;
  * @author ariel
  */
 public class LibrarianWindow extends javax.swing.JFrame {
+
     private RegisterLoan registerLoan;
     private RegisterBook registerBook;
     private GenerateReport generateReport;
     private User librarian;
 
     private JPopupMenu menuContextual;
-    private List<JMenuItem> menuItems;  
+    private List<JMenuItem> menuItems;
 
     public LibrarianWindow() {
         //this.librarian = user;
@@ -600,7 +601,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
         uploadPanel(registerBook);
         registerBook.setVisible(true);
     }
-    
+
     public void openGenerateReport(String optionSelected) {
         generateReport = new GenerateReport(librarian, optionSelected);
         generateReport.getLblGenerateReport().setText(optionSelected);
@@ -609,14 +610,14 @@ public class LibrarianWindow extends javax.swing.JFrame {
         uploadPanel(generateReport);
         generateReport.setVisible(true);
     }
-    
+
     public void openRegisterFine() {
         RegisterFine registerFine = new RegisterFine();
         new RegisterFineListener(registerFine, librarian);
         uploadPanel(registerFine);
         registerFine.setVisible(true);
     }
-    
+
     public void uploadListMenuReports() {
         menuContextual = new JPopupMenu();
         menuItems = new ArrayList<>();
@@ -627,7 +628,17 @@ public class LibrarianWindow extends javax.swing.JFrame {
             menuContextual.add(menu);
         });
     }
-    
+
+    public void uploadListMenuFines() {
+        menuContextual = new JPopupMenu();
+        menuItems = new ArrayList<>();
+        menuItems.add(new JMenuItem("Registrar nueva multa"));
+        menuItems.add(new JMenuItem("Ver las multas de un estudiante"));
+        menuItems.forEach(menu -> {
+            menuContextual.add(menu);
+        });
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contentPane;
