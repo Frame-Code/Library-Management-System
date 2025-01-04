@@ -24,11 +24,11 @@ public class RegisterFineListener implements ActionListener, MouseListener, Util
     private User student;
     private User librarian;
 
-    public RegisterFineListener(RegisterFine registerFine, User librarian) {
+    public RegisterFineListener(RegisterFine registerFine, User librarian, UserService userService, FineService fineService) {
         this.registerFine = registerFine;
         this.librarian = librarian;
-        this.userService = new UserService();
-        this.fineService = new FineService();
+        this.userService = userService;
+        this.fineService = fineService;
         addListeners();
     }
 

@@ -6,6 +6,7 @@ import com.company.system.controller.RegisterFineListener;
 import com.company.system.controller.RegisterLoanListener;
 import com.company.system.model.User;
 import com.company.system.service.BookService;
+import com.company.system.service.FineService;
 import com.company.system.service.LoanService;
 import com.company.system.service.UserService;
 import com.company.system.view.components.BackgroundPanel;
@@ -581,8 +582,8 @@ public class LibrarianWindow extends javax.swing.JFrame {
     public void uploadPanel(JPanel panel) {
         pnlPrincipal.removeAll();
         pnlPrincipal.add(panel, BorderLayout.CENTER);
-        setSize(getWidth() - 1, getHeight() - 1);
-        setSize(getWidth() + 1, getHeight() + 1);
+        pnlPrincipal.revalidate();
+        pnlPrincipal.repaint();
     }
 
     public void changeColorPanel(Color color, Component component) {
@@ -619,9 +620,9 @@ public class LibrarianWindow extends javax.swing.JFrame {
         generateReport.setVisible(true);
     }
 
-    public void openRegisterFine() {
+    public void openRegisterFine(UserService userService, FineService fineService) {
         RegisterFine registerFine = new RegisterFine();
-        new RegisterFineListener(registerFine, librarian);
+        new RegisterFineListener(registerFine, librarian, userService, fineService);
         uploadPanel(registerFine);
         registerFine.setVisible(true);
     }

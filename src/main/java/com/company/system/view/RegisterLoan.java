@@ -61,7 +61,6 @@ public class RegisterLoan extends javax.swing.JPanel {
 
         lblbook.setBackground(new java.awt.Color(255, 255, 255));
         lblbook.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 13)); // NOI18N
-        lblbook.setForeground(new java.awt.Color(0, 0, 0));
         lblbook.setText("Escribe el ISBN:");
         lblbook.setToolTipText("");
         lblbook.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -77,20 +76,17 @@ public class RegisterLoan extends javax.swing.JPanel {
 
         lblBookTittle.setBackground(new java.awt.Color(255, 255, 255));
         lblBookTittle.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 13)); // NOI18N
-        lblBookTittle.setForeground(new java.awt.Color(0, 0, 0));
         lblBookTittle.setToolTipText("");
         lblBookTittle.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblbook2.setBackground(new java.awt.Color(255, 255, 255));
         lblbook2.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 13)); // NOI18N
-        lblbook2.setForeground(new java.awt.Color(0, 0, 0));
         lblbook2.setText("Titulo del libro: ");
         lblbook2.setToolTipText("");
         lblbook2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblbook7.setBackground(new java.awt.Color(255, 255, 255));
         lblbook7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblbook7.setForeground(new java.awt.Color(0, 0, 0));
         lblbook7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblbook7.setText("BUSCAR LIBRO");
         lblbook7.setToolTipText("");
@@ -132,16 +128,14 @@ public class RegisterLoan extends javax.swing.JPanel {
 
         lblWelcome1.setBackground(new java.awt.Color(255, 255, 255));
         lblWelcome1.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 18)); // NOI18N
-        lblWelcome1.setForeground(new java.awt.Color(0, 0, 0));
         lblWelcome1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblWelcome1.setText("Registrar nuevo préstamo");
-        lblWelcome1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "", javax.swing.border.TitledBorder.TRAILING, javax.swing.border.TitledBorder.BELOW_BOTTOM, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        lblWelcome1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "", javax.swing.border.TitledBorder.TRAILING, javax.swing.border.TitledBorder.BELOW_BOTTOM, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(241, 241, 241));
 
         lblbook3.setBackground(new java.awt.Color(255, 255, 255));
         lblbook3.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 13)); // NOI18N
-        lblbook3.setForeground(new java.awt.Color(0, 0, 0));
         lblbook3.setText("Escribe el #Cédula del estudiante:");
         lblbook3.setToolTipText("");
         lblbook3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -157,20 +151,17 @@ public class RegisterLoan extends javax.swing.JPanel {
 
         lblNameStudent.setBackground(new java.awt.Color(255, 255, 255));
         lblNameStudent.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 13)); // NOI18N
-        lblNameStudent.setForeground(new java.awt.Color(0, 0, 0));
         lblNameStudent.setToolTipText("");
         lblNameStudent.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblbook5.setBackground(new java.awt.Color(255, 255, 255));
         lblbook5.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 13)); // NOI18N
-        lblbook5.setForeground(new java.awt.Color(0, 0, 0));
         lblbook5.setText("Nombres completos del estudiante:");
         lblbook5.setToolTipText("");
         lblbook5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblbook6.setBackground(new java.awt.Color(255, 255, 255));
         lblbook6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblbook6.setForeground(new java.awt.Color(0, 0, 0));
         lblbook6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblbook6.setText("BUSCAR ESTUDIANTE");
         lblbook6.setToolTipText("");
@@ -226,14 +217,11 @@ public class RegisterLoan extends javax.swing.JPanel {
 
         lblbook8.setBackground(new java.awt.Color(255, 255, 255));
         lblbook8.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 13)); // NOI18N
-        lblbook8.setForeground(new java.awt.Color(0, 0, 0));
         lblbook8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblbook8.setText("Escribe la fecha de devolución del libro:");
         lblbook8.setToolTipText("");
         lblbook8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Dia:");
 
         txtDay.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
@@ -247,8 +235,6 @@ public class RegisterLoan extends javax.swing.JPanel {
         cmbMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero ", "Marzo ", "Abril ", "Mayo ", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre ", "Diciembre" }));
         cmbMonth.setBorder(null);
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Año:");
 
         txtYear.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
@@ -260,8 +246,6 @@ public class RegisterLoan extends javax.swing.JPanel {
         jLabel14.setForeground(new java.awt.Color(205, 205, 205));
         jLabel14.setText("(número)");
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Mes:");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);

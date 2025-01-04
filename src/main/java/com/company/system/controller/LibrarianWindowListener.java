@@ -2,6 +2,7 @@ package com.company.system.controller;
 
 import com.company.system.model.User;
 import com.company.system.service.BookService;
+import com.company.system.service.FineService;
 import com.company.system.service.LoanService;
 import com.company.system.service.UserService;
 import com.company.system.view.LibrarianWindow;
@@ -23,6 +24,7 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
     private final BookService bookService;
     private final UserService userService;
     private final LoanService loanService;
+    private final FineService fineService;
     private final User librarian;
 
     private String contenedor;
@@ -33,6 +35,7 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
         this.userService = new UserService();
         this.librarian = userService.getLibrarianByIdCard(941239261L); //eliminar esto
         this.loanService = new LoanService();
+        this.fineService = new FineService();
         addListeners();
     }
 
@@ -66,7 +69,7 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
             });
         } else if (contenedor == LibrarianWindow.optionManageFine) {
             if (source.getText().equals(RegisterFine.typeRegisterNew)) {
-                frmLibraianWindow.openRegisterFine();
+                frmLibraianWindow.openRegisterFine(userService, fineService);
             } else if (source.getText().equals(RegisterFine.typeShowFines)) {
                 System.out.println("Se presioni historial ");
             }
