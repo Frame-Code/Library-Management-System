@@ -28,13 +28,13 @@ import javax.swing.JPopupMenu;
  */
 public class LibrarianWindow extends javax.swing.JFrame {
     
-    private static final String optionRegisterLoan = "Registrar prestamo";
-    private static final String optionRegisterDevolution = "Registrar devolucion";
-    private static final String optionManageFine = "Administrar multas";
-    private static final String optionManageBooks = "Administrar libros";
-    private static final String optionManageReports = "Generacion de reportes";
-    private static final String optionNotifications = "Notificaciones";
-    private static final String optionShutdown = "Salir";
+    public static final String optionRegisterLoan = "Registrar prestamo";
+    public static final String optionRegisterDevolution = "Registrar devolucion";
+    public static final String optionManageFine = "Administrar multas";
+    public static final String optionManageBooks = "Administrar libros";
+    public static final String optionManageReports = "Generacion de reportes";
+    public static final String optionNotifications = "Notificaciones";
+    public static final String optionShutdown = "Salir";
     
     private RegisterLoan registerLoan;
     private RegisterBook registerBook;
@@ -640,8 +640,8 @@ public class LibrarianWindow extends javax.swing.JFrame {
     public void uploadListMenuFines() {
         menuContextual = new JPopupMenu();
         menuItems = new ArrayList<>();
-        menuItems.add(new JMenuItem("Registrar nueva multa"));
-        menuItems.add(new JMenuItem("Ver las multas de un estudiante"));
+        menuItems.add(new JMenuItem(RegisterFine.typeRegisterNew));
+        menuItems.add(new JMenuItem(RegisterFine.typeShowFines));
         menuItems.forEach(menu -> {
             menuContextual.add(menu);
         });

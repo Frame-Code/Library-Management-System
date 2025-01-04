@@ -16,7 +16,11 @@ import javax.swing.JTextField;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class RegisterFine extends javax.swing.JPanel {
-
+    
+    public static final String typeRegisterNew = "Registrar nueva multa";
+    public static final String typeShowFines = "Ver multas de un estudiante";
+    
+    
     public RegisterFine() {
         initComponents();
         setVisible(true);

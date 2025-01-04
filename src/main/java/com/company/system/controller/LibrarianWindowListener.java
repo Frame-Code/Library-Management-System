@@ -5,11 +5,13 @@ import com.company.system.service.BookService;
 import com.company.system.service.LoanService;
 import com.company.system.service.UserService;
 import com.company.system.view.LibrarianWindow;
+import com.company.system.view.RegisterFine;
 import com.company.system.view.components.Utils;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JMenuItem;
 
 /**
  *
@@ -22,6 +24,8 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
     private final UserService userService;
     private final LoanService loanService;
     private final User librarian;
+
+    private String contenedor;
 
     public LibrarianWindowListener(LibrarianWindow frmLibraianWindow) {
         this.frmLibraianWindow = frmLibraianWindow;
@@ -53,14 +57,19 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        try {
+        JMenuItem source = (JMenuItem) e.getSource();
+        if (contenedor == LibrarianWindow.optionManageReports) {
             frmLibraianWindow.getMenuItems().forEach((item) -> {
                 if (e.getSource() == item) {
                     frmLibraianWindow.openGenerateReport(item.getText());
                 }
             });
-        } catch (NullPointerException ex) {
-
+        } else if (contenedor == LibrarianWindow.optionManageFine) {
+            if (source.getText().equals(RegisterFine.typeRegisterNew)) {
+                frmLibraianWindow.openRegisterFine();
+            } else if (source.getText().equals(RegisterFine.typeShowFines)) {
+                System.out.println("Se presioni historial ");
+            }
         }
     }
 
@@ -73,6 +82,7 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
             frmLibraianWindow.openRegisterBook(librarian, bookService, userService, loanService);
             frmLibraianWindow.getPnlManageBooks().setBackground(Utils.pnlEntered);
         } else if (e.getSource() == frmLibraianWindow.getPnlGenerateReports() || e.getSource() == frmLibraianWindow.getLblManageReports()) {
+            contenedor = frmLibraianWindow.getLblManageReports().getText();
             frmLibraianWindow.uploadListMenuReports();
             frmLibraianWindow.getMenuItems().forEach((item) -> {
                 item.addActionListener(this);
@@ -82,6 +92,7 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
         } else if (e.getSource() == frmLibraianWindow.getPnlShutdown() || e.getSource() == frmLibraianWindow.getLblShutdown()) {
             frmLibraianWindow.dispose();
         } else if (e.getSource() == frmLibraianWindow.getPnlManageFine() || e.getSource() == frmLibraianWindow.getLblManageFine()) {
+            contenedor = frmLibraianWindow.getLblManageFine().getText();
             frmLibraianWindow.uploadListMenuFines();
             frmLibraianWindow.getMenuItems().forEach(item -> {
                 item.addActionListener(this);
