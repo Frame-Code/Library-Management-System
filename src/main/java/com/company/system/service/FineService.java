@@ -38,4 +38,8 @@ public class FineService {
         return fineDao.update(fine);
     }
     
+    public boolean deleteFine(Long idFine) {
+        return fineDao.deleteByID(idFine);
+    }
+    
 }

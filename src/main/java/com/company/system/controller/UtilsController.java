@@ -12,8 +12,10 @@ import java.util.Locale;
  */
 public interface UtilsController {
 
-    public final static Color btnExited = new Color(56, 75, 147);
-    public final static Color btnEntered = new Color(26, 54, 148);
+    static Color btnExited = new Color(56, 75, 147);
+    static Color btnEntered = new Color(26, 54, 148);
+    static Color btnDeleteEntered = new Color(167,89,89);
+    static Color btnDeleteExited = new Color(133, 71, 71);
 
     public final static Color pnlEntered = new Color(200, 206, 238);
     public final static Color pnlExited = new Color(255, 255, 255);
