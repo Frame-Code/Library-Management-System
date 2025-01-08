@@ -2,6 +2,9 @@ package com.company.system.controller;
 
 import java.awt.Color;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 /**
  *
@@ -17,6 +20,7 @@ public interface UtilsController {
 
     default int getMonthByName(String month) {
         int monthNumber;
+        month = month.trim(); //eliminar espacios en blanco de la cadena
         switch (month) {
             case "Enero" ->
                 monthNumber = 1;
@@ -53,4 +57,5 @@ public interface UtilsController {
         return LocalDate.of(year, getMonthByName(month), day);
     }
 
+   
 }

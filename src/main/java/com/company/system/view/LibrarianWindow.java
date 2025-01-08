@@ -1,6 +1,7 @@
 package com.company.system.view;
 
 import com.company.system.controller.GenerateReportController;
+import com.company.system.controller.HistoryFinesListener;
 import com.company.system.controller.RegisterBookListener;
 import com.company.system.controller.RegisterFineListener;
 import com.company.system.controller.RegisterLoanListener;
@@ -40,7 +41,9 @@ public class LibrarianWindow extends javax.swing.JFrame {
     private RegisterLoan registerLoan;
     private RegisterBook registerBook;
     private GenerateReport generateReport;
-    private User librarian;
+    private RegisterFine registerFine;
+    private HistoryFines historyFines;
+    private final User librarian;
 
     private JPopupMenu menuContextual;
     private List<JMenuItem> menuItems;
@@ -584,6 +587,9 @@ public class LibrarianWindow extends javax.swing.JFrame {
         pnlPrincipal.add(panel, BorderLayout.CENTER);
         pnlPrincipal.revalidate();
         pnlPrincipal.repaint();
+        panel.setSize(pnlPrincipal.getSize());
+        panel.setPreferredSize(pnlPrincipal.getSize());
+        panel.setVisible(true);
     }
 
     public void changeColorPanel(Color color, Component component) {
@@ -600,7 +606,6 @@ public class LibrarianWindow extends javax.swing.JFrame {
         registerLoan = new RegisterLoan();
         new RegisterLoanListener(librarian, registerLoan, bookService, userService, loanService);
         uploadPanel(registerLoan);
-        registerLoan.setVisible(true);
     }
 
     public void openRegisterBook(User librarian, BookService bookService, UserService userService,
@@ -608,7 +613,6 @@ public class LibrarianWindow extends javax.swing.JFrame {
         registerBook = new RegisterBook();
         new RegisterBookListener(registerBook);
         uploadPanel(registerBook);
-        registerBook.setVisible(true);
     }
 
     public void openGenerateReport(String optionSelected) {
@@ -617,16 +621,19 @@ public class LibrarianWindow extends javax.swing.JFrame {
         new GenerateReportController(generateReport);
         generateReport.setActiveOptions();
         uploadPanel(generateReport);
-        generateReport.setVisible(true);
     }
 
     public void openRegisterFine(UserService userService, FineService fineService) {
-        RegisterFine registerFine = new RegisterFine();
+        registerFine = new RegisterFine();
         new RegisterFineListener(registerFine, librarian, userService, fineService);
         uploadPanel(registerFine);
-        registerFine.setVisible(true);
     }
 
+    public void openHistoryFines(UserService userService) {
+        historyFines = new HistoryFines();
+        new HistoryFinesListener(historyFines, userService);
+        uploadPanel(historyFines);
+    }
     public void uploadListMenuReports() {
         menuContextual = new JPopupMenu();
         menuItems = new ArrayList<>();

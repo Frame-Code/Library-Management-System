@@ -61,17 +61,17 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JMenuItem source = (JMenuItem) e.getSource();
-        if (contenedor == LibrarianWindow.optionManageReports) {
+        if (contenedor.equals(LibrarianWindow.optionManageReports)) {
             frmLibraianWindow.getMenuItems().forEach((item) -> {
                 if (e.getSource() == item) {
                     frmLibraianWindow.openGenerateReport(item.getText());
                 }
             });
-        } else if (contenedor == LibrarianWindow.optionManageFine) {
+        } else if (contenedor.equals(LibrarianWindow.optionManageFine)) {
             if (source.getText().equals(RegisterFine.typeRegisterNew)) {
                 frmLibraianWindow.openRegisterFine(userService, fineService);
             } else if (source.getText().equals(RegisterFine.typeShowFines)) {
-                System.out.println("Se presioni historial ");
+                frmLibraianWindow.openHistoryFines(userService);
             }
         }
     }

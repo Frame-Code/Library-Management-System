@@ -17,7 +17,7 @@ import com.company.system.model.Fine;
 import com.company.system.model.User;
 
 public class FineDaoImpl implements FineDao {
-    private EntityManagerFactory emf;
+    private final EntityManagerFactory emf;
 
     public FineDaoImpl() {
         this.emf = Persistence.createEntityManagerFactory(namePersistenceUnit);

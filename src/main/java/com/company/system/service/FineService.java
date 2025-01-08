@@ -5,7 +5,7 @@ import com.company.system.dao.interfaces.FineDao;
 import com.company.system.model.Fine;
 import com.company.system.model.User;
 import java.time.LocalDate;
-import java.time.Month;
+import java.util.List;
 
 /**
  *
@@ -18,7 +18,6 @@ public class FineService {
         this.fineDao = new FineDaoImpl();
     }
     
-    
     public boolean register(User student, LocalDate deadline, String message, String nameLibrarian) {
         Fine fine = new Fine(student, deadline, message, LocalDate.now(), 
                 nameLibrarian, null, null, false);
@@ -26,6 +25,15 @@ public class FineService {
         return fineDao.create(fine);
     }
     
+    public List<Fine> getFinesByStudent(User student) {
+        return fineDao.findByUser(student);
+    }
     
+    public boolean updateFine(Long idFine, LocalDate deadline, String message) {
+        Fine fine = fineDao.findById(idFine);
+        fine.setDeadline(deadline);
+        fine.setMessage(message);
+        return fineDao.update(fine);
+    }
     
 }

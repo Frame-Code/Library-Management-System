@@ -17,12 +17,12 @@ import javax.swing.JOptionPane;
  */
 public class RegisterFineListener implements ActionListener, MouseListener, UtilsController {
 
-    private RegisterFine registerFine;
-    private UserService userService;
-    private FineService fineService;
+    private final RegisterFine registerFine;
+    private final UserService userService;
+    private final FineService fineService;
+    private final User librarian;
     private LocalDate deadeline;
     private User student;
-    private User librarian;
 
     public RegisterFineListener(RegisterFine registerFine, User librarian, UserService userService, FineService fineService) {
         this.registerFine = registerFine;
@@ -52,7 +52,7 @@ public class RegisterFineListener implements ActionListener, MouseListener, Util
         try {
             int day = Integer.parseInt(registerFine.getTxtDay().getText());
             int year = Integer.parseInt(registerFine.getTxtYear().getText());
-            String month = (String) registerFine.getCmbMonth().getSelectedItem();
+            String month = String.valueOf(registerFine.getCmbMonth().getSelectedItem());
             if (day <= 31 && day >= 0 && year >= LocalDate.now().getYear() && year < (LocalDate.now().getYear() + 4) && getDate(day, month, year).isAfter(LocalDate.now())) {
                 deadeline = getDate(day, month, year);
                 return true;
@@ -69,6 +69,7 @@ public class RegisterFineListener implements ActionListener, MouseListener, Util
         registerFine.getTxtDay().setText("");
         registerFine.getTxtYear().setText("");
         registerFine.getAreaMessage().setText("");
+        registerFine.getLblNameStudent().setText("");
         student = null;
         deadeline = null;
     }

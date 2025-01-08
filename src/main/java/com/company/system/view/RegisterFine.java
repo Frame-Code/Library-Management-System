@@ -53,8 +53,6 @@ public class RegisterFine extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         areaMessage = new javax.swing.JTextArea();
 
-        setPreferredSize(new java.awt.Dimension(1024, 738));
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lblWelcome1.setBackground(new java.awt.Color(255, 255, 255));
