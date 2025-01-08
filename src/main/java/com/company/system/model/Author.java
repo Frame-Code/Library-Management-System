@@ -50,19 +50,6 @@ public class Author {
     public Author() {
     }
 
-    public Author(Long idAuthor, String names, String surNames, List<Book> books, LocalDate registrationDate,
-            String registrationName, LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
-        this.idAuthor = idAuthor;
-        this.names = names;
-        this.surNames = surNames;
-        this.books = books;
-        this.registrationDate = registrationDate;
-        this.registrationName = registrationName;
-        this.registrationUpdateDate = registrationUpdateDate;
-        this.registrationUpdateName = registrationUpdateName;
-        this.deleted = deleted;
-    }
-
     public Author(String names, String surNames, List<Book> books, LocalDate registrationDate, String registrationName,
             LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
         this.names = names;

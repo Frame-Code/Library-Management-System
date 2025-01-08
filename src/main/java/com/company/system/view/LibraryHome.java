@@ -56,19 +56,18 @@ public class LibraryHome extends javax.swing.JFrame {
         lblCategory = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        pnlAutor = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 0);
-        lblHistorialDePrestamos = new javax.swing.JLabel();
+        pnlLoanHistory = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 0);
+        lblLoanHistory = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         pnlEditorial = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 0);
-        lblCategory2 = new javax.swing.JLabel();
+        lblPublisher = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        pnlNotification = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 0);
-        lblCategory3 = new javax.swing.JLabel();
+        pnlRequest = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 0);
+        lblRequest = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         pnlShutdown = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 1);
-        lblCategory4 = new javax.swing.JLabel();
+        lblShutdown = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        lblSolicitar = new javax.swing.JLabel();
         desktopPane = new javax.swing.JDesktopPane();
         pnlWelcome1 = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         txtPatternToSearch = new javax.swing.JTextField();
@@ -154,33 +153,33 @@ public class LibraryHome extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnlAutor.setBackground(new java.awt.Color(255, 255, 255));
-        pnlAutor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnlLoanHistory.setBackground(new java.awt.Color(255, 255, 255));
+        pnlLoanHistory.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        lblHistorialDePrestamos.setBackground(new java.awt.Color(255, 255, 255));
-        lblHistorialDePrestamos.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblHistorialDePrestamos.setForeground(new java.awt.Color(0, 0, 0));
-        lblHistorialDePrestamos.setText("Historial De Prestamos");
+        lblLoanHistory.setBackground(new java.awt.Color(255, 255, 255));
+        lblLoanHistory.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
+        lblLoanHistory.setForeground(new java.awt.Color(0, 0, 0));
+        lblLoanHistory.setText("Historial De Prestamos");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/authorIcon.png"))); // NOI18N
 
-        javax.swing.GroupLayout pnlAutorLayout = new javax.swing.GroupLayout(pnlAutor);
-        pnlAutor.setLayout(pnlAutorLayout);
-        pnlAutorLayout.setHorizontalGroup(
-            pnlAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAutorLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlLoanHistoryLayout = new javax.swing.GroupLayout(pnlLoanHistory);
+        pnlLoanHistory.setLayout(pnlLoanHistoryLayout);
+        pnlLoanHistoryLayout.setHorizontalGroup(
+            pnlLoanHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLoanHistoryLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblHistorialDePrestamos)
+                .addComponent(lblLoanHistory)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        pnlAutorLayout.setVerticalGroup(
-            pnlAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAutorLayout.createSequentialGroup()
+        pnlLoanHistoryLayout.setVerticalGroup(
+            pnlLoanHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLoanHistoryLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlAutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblHistorialDePrestamos)
+                .addGroup(pnlLoanHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblLoanHistory)
                     .addComponent(jLabel5))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -188,10 +187,10 @@ public class LibraryHome extends javax.swing.JFrame {
         pnlEditorial.setBackground(new java.awt.Color(255, 255, 255));
         pnlEditorial.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        lblCategory2.setBackground(new java.awt.Color(255, 255, 255));
-        lblCategory2.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblCategory2.setForeground(new java.awt.Color(0, 0, 0));
-        lblCategory2.setText("Editorial");
+        lblPublisher.setBackground(new java.awt.Color(255, 255, 255));
+        lblPublisher.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
+        lblPublisher.setForeground(new java.awt.Color(0, 0, 0));
+        lblPublisher.setText("Editorial");
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/publisherIcon.png"))); // NOI18N
 
@@ -203,7 +202,7 @@ public class LibraryHome extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(lblCategory2)
+                .addComponent(lblPublisher)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlEditorialLayout.setVerticalGroup(
@@ -212,48 +211,48 @@ public class LibraryHome extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(pnlEditorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(lblCategory2))
+                    .addComponent(lblPublisher))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnlNotification.setBackground(new java.awt.Color(255, 255, 255));
-        pnlNotification.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnlRequest.setBackground(new java.awt.Color(255, 255, 255));
+        pnlRequest.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        lblCategory3.setBackground(new java.awt.Color(255, 255, 255));
-        lblCategory3.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblCategory3.setForeground(new java.awt.Color(0, 0, 0));
-        lblCategory3.setText("Notificaciones");
+        lblRequest.setBackground(new java.awt.Color(255, 255, 255));
+        lblRequest.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
+        lblRequest.setForeground(new java.awt.Color(0, 0, 0));
+        lblRequest.setText("Solicitar prorroga");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notifyIcon.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Request_extension.png"))); // NOI18N
 
-        javax.swing.GroupLayout pnlNotificationLayout = new javax.swing.GroupLayout(pnlNotification);
-        pnlNotification.setLayout(pnlNotificationLayout);
-        pnlNotificationLayout.setHorizontalGroup(
-            pnlNotificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNotificationLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlRequestLayout = new javax.swing.GroupLayout(pnlRequest);
+        pnlRequest.setLayout(pnlRequestLayout);
+        pnlRequestLayout.setHorizontalGroup(
+            pnlRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRequestLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
-                .addComponent(lblCategory3)
+                .addComponent(lblRequest)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        pnlNotificationLayout.setVerticalGroup(
-            pnlNotificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNotificationLayout.createSequentialGroup()
+        pnlRequestLayout.setVerticalGroup(
+            pnlRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRequestLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addGroup(pnlNotificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(lblCategory3))
+                    .addComponent(lblRequest))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlShutdown.setBackground(new java.awt.Color(255, 255, 255));
         pnlShutdown.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        lblCategory4.setBackground(new java.awt.Color(255, 255, 255));
-        lblCategory4.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblCategory4.setForeground(new java.awt.Color(0, 0, 0));
-        lblCategory4.setText("Salir");
+        lblShutdown.setBackground(new java.awt.Color(255, 255, 255));
+        lblShutdown.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
+        lblShutdown.setForeground(new java.awt.Color(0, 0, 0));
+        lblShutdown.setText("Salir");
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shutdownIcon.png"))); // NOI18N
 
@@ -265,7 +264,7 @@ public class LibraryHome extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblCategory4)
+                .addComponent(lblShutdown)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlShutdownLayout.setVerticalGroup(
@@ -274,14 +273,9 @@ public class LibraryHome extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlShutdownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCategory4))
+                    .addComponent(lblShutdown))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
-
-        lblSolicitar.setBackground(new java.awt.Color(255, 255, 255));
-        lblSolicitar.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblSolicitar.setForeground(new java.awt.Color(0, 0, 0));
-        lblSolicitar.setText("Solicitar prorroga");
 
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
@@ -293,15 +287,11 @@ public class LibraryHome extends javax.swing.JFrame {
                     .addComponent(pnlWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
-                    .addComponent(pnlAutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlNotification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlLoanHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlRequest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlShutdown, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlEditorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(lblSolicitar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlBackgroundLayout.createSequentialGroup()
                     .addGap(34, 34, 34)
@@ -320,12 +310,10 @@ public class LibraryHome extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(pnlEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(pnlAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlLoanHistory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(pnlNotification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(lblSolicitar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(pnlRequest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addComponent(pnlShutdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
             .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -495,20 +483,40 @@ public class LibraryHome extends javax.swing.JFrame {
         return pnlCategory;
     }
 
-    public JPanel getPnlAutor() {
-        return pnlAutor;
+    public JPanel getPnlLoanHistory() {
+        return pnlLoanHistory;
     }
 
     public JPanel getPnlEditorial() {
         return pnlEditorial;
     }
 
-    public JPanel getPnlNotification() {
-        return pnlNotification;
+    public JPanel getPnlRequest() {
+        return pnlRequest;
     }
 
     public JPanel getPnlShutdown() {
         return pnlShutdown;
+    }
+
+    public JLabel getLblCategory() {
+        return lblCategory;
+    }
+
+    public JLabel getLblLoanHistory() {
+        return lblLoanHistory;
+    }
+
+    public JLabel getLblPublisher() {
+        return lblPublisher;
+    }
+
+    public JLabel getLblRequest() {
+        return lblRequest;
+    }
+
+    public JLabel getLblShutdown() {
+        return lblShutdown;
     }
 
     public JButton getBtnSearch() {
@@ -516,12 +524,9 @@ public class LibraryHome extends javax.swing.JFrame {
     }
 
     public JLabel getLblHistorialDePrestamos() {
-        return lblHistorialDePrestamos;
+        return lblLoanHistory;
     }
 
-    public JLabel getLblSolicitar() {
-        return lblSolicitar;
-    }
 
     public JTextField getTxtPatternToSearch() {
         return txtPatternToSearch;
@@ -542,18 +547,17 @@ public class LibraryHome extends javax.swing.JFrame {
     private javax.swing.JLabel lblBookIcon;
     private javax.swing.JLabel lblCategory;
     private javax.swing.JLabel lblCategory1;
-    private javax.swing.JLabel lblCategory2;
-    private javax.swing.JLabel lblCategory3;
-    private javax.swing.JLabel lblCategory4;
-    private javax.swing.JLabel lblHistorialDePrestamos;
-    private javax.swing.JLabel lblSolicitar;
+    private javax.swing.JLabel lblLoanHistory;
+    private javax.swing.JLabel lblPublisher;
+    private javax.swing.JLabel lblRequest;
+    private javax.swing.JLabel lblShutdown;
     private javax.swing.JLabel lblUser;
     private javax.swing.JLabel lblWelcome;
-    private javax.swing.JPanel pnlAutor;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JPanel pnlCategory;
     private javax.swing.JPanel pnlEditorial;
-    private javax.swing.JPanel pnlNotification;
+    private javax.swing.JPanel pnlLoanHistory;
+    private javax.swing.JPanel pnlRequest;
     private javax.swing.JPanel pnlShutdown;
     private javax.swing.JPanel pnlWelcome;
     private javax.swing.JPanel pnlWelcome1;

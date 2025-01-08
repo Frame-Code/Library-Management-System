@@ -67,22 +67,6 @@ public class User implements Serializable{
     public User() {
     }
     
-    public User(Long idUser, Long idCardUser, String names, String surNames, String email, String passwordHash, LocalDate bornDate, Role role, LocalDate registrationDate, String registrationName, LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
-        this.idUser = idUser;
-        this.idCardUser = idCardUser;
-        this.names = names;
-        this.surNames = surNames;
-        this.email = email;
-        this.passwordHash = passwordHash;
-        this.bornDate = bornDate;
-        this.role = role;
-        this.registrationDate = registrationDate;
-        this.registrationName = registrationName;
-        this.registrationUpdateDate = registrationUpdateDate;
-        this.registrationUpdateName = registrationUpdateName;
-        this.deleted = deleted;
-    }
-
     public User(Long idCardUser, String names, String surNames, String email, String passwordHash, LocalDate bornDate, Role role, LocalDate registrationDate, String registrationName, LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
         this.idCardUser = idCardUser;
         this.names = names;

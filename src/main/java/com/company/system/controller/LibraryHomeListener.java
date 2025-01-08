@@ -61,17 +61,14 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
 
     private void addListeners() {
         frmLibraryHome.getPnlCategory().addMouseListener(this);
-        frmLibraryHome.getPnlAutor().addMouseListener(this);
+        frmLibraryHome.getPnlLoanHistory().addMouseListener(this);
         frmLibraryHome.getPnlEditorial().addMouseListener(this);
-        frmLibraryHome.getPnlNotification().addMouseListener(this);
         frmLibraryHome.getPnlShutdown().addMouseListener(this);
         frmLibraryHome.getBtnSearch().addActionListener(this);
+        frmLibraryHome.getPnlRequest().addMouseListener(this);
 
         // Agregar el MouseListener para el JLabel de Historial de Préstamos
         frmLibraryHome.getLblHistorialDePrestamos().addMouseListener(this);
-
-        // Agregar MouseListener al JLabel lblSolicitar
-        frmLibraryHome.getLblSolicitar().addMouseListener(this);
 
         frmLibraryHome.getBtnSearch().addMouseListener(this);
     }
@@ -147,17 +144,15 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
             });
 
             // Mostrar el menu contextual en la posición del panel
-            popupMenu.show(frmLibraryHome.getPnlEditorial(), frmLibraryHome.getPnlEditorial().getWidth() / 2, frmLibraryHome.getPnlEditorial().getHeight() / 2);
+            popupMenu.show(frmLibraryHome.getPnlEditorial(), e.getX(), e.getY());
 
             // Cambiar el color del panel seleccionado
             frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlEditorial());
         } else if (e.getSource() == frmLibraryHome.getPnlCategory()) {
             frmLibraryHome.uploadListMenu(categoryService.getCategories());
             addListenerMenu();
-            frmLibraryHome.getMenuContextual().show(frmLibraryHome.getPnlCategory(), frmLibraryHome.getPnlCategory().getWidth(), 0);
+            frmLibraryHome.getMenuContextual().show(frmLibraryHome.getPnlCategory(), e.getX(), e.getY());
             frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlCategory());
-        } else if (e.getSource() == frmLibraryHome.getLblSolicitar()) {
-            frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getLblSolicitar());
         } else if (e.getSource() == frmLibraryHome.getPnlShutdown()) {
             frmLibraryHome.openLoginStudent(userService);
             frmLibraryHome.close();
@@ -166,57 +161,55 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        if (e.getSource() == frmLibraryHome.getPnlCategory()) {
+        if (e.getSource() == frmLibraryHome.getPnlCategory() || e.getSource() == frmLibraryHome.getLblCategory()) {
             frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlCategory());
-            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlAutor());
+            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlLoanHistory());
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlEditorial());
-            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlNotification());
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlShutdown());
-        } else if (e.getSource() == frmLibraryHome.getPnlAutor()) {
+            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlRequest());
+        } else if (e.getSource() == frmLibraryHome.getPnlLoanHistory() || e.getSource() == frmLibraryHome.getLblLoanHistory()) {
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlCategory());
-            frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlAutor());
+            frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlLoanHistory());
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlEditorial());
-            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlNotification());
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlShutdown());
-        } else if (e.getSource() == frmLibraryHome.getPnlEditorial()) {
+            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlRequest());
+        } else if (e.getSource() == frmLibraryHome.getPnlEditorial() || e.getSource() == frmLibraryHome.getLblPublisher()) {
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlCategory());
-            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlAutor());
+            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlLoanHistory());
             frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlEditorial());
-            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlNotification());
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlShutdown());
-        } else if (e.getSource() == frmLibraryHome.getPnlNotification()) {
+            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlRequest());
+        } else if (e.getSource() == frmLibraryHome.getPnlRequest() || e.getSource() == frmLibraryHome.getLblRequest()) {
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlCategory());
-            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlAutor());
+            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlLoanHistory());
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlEditorial());
-            frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlNotification());
+            frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlRequest());
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlShutdown());
-        } else if (e.getSource() == frmLibraryHome.getPnlShutdown()) {
+        } else if (e.getSource() == frmLibraryHome.getPnlShutdown() || e.getSource() == frmLibraryHome.getLblShutdown()) {
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlCategory());
-            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlAutor());
+            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlLoanHistory());
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlEditorial());
-            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlNotification());
             frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlShutdown());
+            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlRequest());
         } else if (e.getSource() == frmLibraryHome.getBtnSearch()) {
             frmLibraryHome.mouseEvent(frmLibraryHome.getBtnSearch(), Utils.btnEntered);
-        } else if (e.getSource() == frmLibraryHome.getLblSolicitar()) {
-            frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getLblSolicitar());
-        }
+        } 
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
         if (e.getSource() == frmLibraryHome.getPnlCategory()) {
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlCategory());
-        } else if (e.getSource() == frmLibraryHome.getPnlAutor()) {
-            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlAutor());
+        } else if (e.getSource() == frmLibraryHome.getPnlLoanHistory()) {
+            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlLoanHistory());
         } else if (e.getSource() == frmLibraryHome.getPnlEditorial()) {
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlEditorial());
-        } else if (e.getSource() == frmLibraryHome.getPnlNotification()) {
-            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlNotification());
         } else if (e.getSource() == frmLibraryHome.getPnlShutdown()) {
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlShutdown());
         } else if (e.getSource() == frmLibraryHome.getBtnSearch()) {
             frmLibraryHome.mouseEvent(frmLibraryHome.getBtnSearch(), Utils.btnExited);
+        } else if (e.getSource() == frmLibraryHome.getPnlRequest()) {
+            frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlRequest());
         }
     }
 

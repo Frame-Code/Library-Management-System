@@ -46,16 +46,6 @@ public class Role implements Serializable {
     public Role() {
     }
 
-    public Role(Long id, String name, LocalDate registrationDate, String registrationName, LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
-        this.id = id;
-        this.name = name;
-        this.registrationDate = registrationDate;
-        this.registrationName = registrationName;
-        this.registrationUpdateDate = registrationUpdateDate;
-        this.registrationUpdateName = registrationUpdateName;
-        this.deleted = deleted;
-    }
-
     public Role(String name, LocalDate registrationDate, String registrationName, LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
         this.name = name;
         this.registrationDate = registrationDate;

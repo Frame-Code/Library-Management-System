@@ -64,17 +64,6 @@ public class Category {
     public Category() {
     }
 
-    public Category(Long idCategory, String name, LocalDate registrationDate, String registrationName,
-            LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
-        this.idCategory = idCategory;
-        this.name = name;
-        this.registrationDate = registrationDate;
-        this.registrationName = registrationName;
-        this.registrationUpdateDate = registrationUpdateDate;
-        this.registrationUpdateName = registrationUpdateName;
-        this.deleted = deleted;
-    }
-
     public Category(String name, LocalDate registrationDate, String registrationName, LocalDate registrationUpdateDate,
             String registrationUpdateName, boolean deleted) {
         this.name = name;

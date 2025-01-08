@@ -1,5 +1,6 @@
 package com.company.system.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Publishers")
-public class Publisher {
+public class Publisher implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,17 +42,6 @@ public class Publisher {
     private boolean deleted;
 
     public Publisher() {
-    }
-
-    public Publisher(Long idPublisher, String name, LocalDate registrationDate, String registrationName,
-            LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
-        this.idPublisher = idPublisher;
-        this.name = name;
-        this.registrationDate = registrationDate;
-        this.registrationName = registrationName;
-        this.registrationUpdateDate = registrationUpdateDate;
-        this.registrationUpdateName = registrationUpdateName;
-        this.deleted = deleted;
     }
 
     public Publisher(String name, LocalDate registrationDate, String registrationName, LocalDate registrationUpdateDate,

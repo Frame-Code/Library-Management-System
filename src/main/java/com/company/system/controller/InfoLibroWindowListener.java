@@ -23,11 +23,6 @@ public class InfoLibroWindowListener implements ActionListener, MouseListener {
     }
 
     private void addListeners() {
-
-        // SE AGREGA ActionListener Y MouseListener AL BOTON DE NOTIFICACIONES
-        frmLibrowindow.getBtnNotify().addActionListener(this);
-        frmLibrowindow.getBtnNotify().addMouseListener(this);
-
         // SE AGREGA ActionListener Y MouseListener AL BOTON DE ATRAS
         frmLibrowindow.getBtnBack().addActionListener(this);
         frmLibrowindow.getBtnBack().addMouseListener(this);
@@ -36,11 +31,7 @@ public class InfoLibroWindowListener implements ActionListener, MouseListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        //VERIFICA SI SE ACCIONO EL BOTON DE NOTIFICACION
-        if (e.getSource() == frmLibrowindow.getBtnNotify()) {
-            //VERIFICA SI SE ACCIONO EL BOTON DE ATRAS
-        } else if (e.getSource() == frmLibrowindow.getBtnBack()) {
+        if (e.getSource() == frmLibrowindow.getBtnBack()) {
             frmLibrowindow.close();
         }
     }
@@ -49,9 +40,7 @@ public class InfoLibroWindowListener implements ActionListener, MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        if (e.getSource() == frmLibrowindow.getBtnNotify()) {
-            frmLibrowindow.mouseEntered(frmLibrowindow.getBtnNotify());
-        } else if (e.getSource() == frmLibrowindow.getBtnBack()) {
+        if (e.getSource() == frmLibrowindow.getBtnBack()) {
             frmLibrowindow.mouseEntered(frmLibrowindow.getBtnBack());
         }
     }
@@ -60,9 +49,7 @@ public class InfoLibroWindowListener implements ActionListener, MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
-        if (e.getSource() == frmLibrowindow.getBtnNotify()) {
-            frmLibrowindow.mouseExited(frmLibrowindow.getBtnNotify());
-        } else if (e.getSource() == frmLibrowindow.getBtnBack()) {
+        if (e.getSource() == frmLibrowindow.getBtnBack()) {
             frmLibrowindow.mouseExited(frmLibrowindow.getBtnBack());
         }
     }

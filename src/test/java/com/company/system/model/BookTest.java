@@ -16,7 +16,7 @@ public class BookTest {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("libraryPU");
         EntityManager em = emf.createEntityManager();
         Book book = new Book("JPKL-4", "50 sombras de grey", "Un libro para aprender a coger de maneras peculiares", 
-            LocalDate.now(), 5, null, new CategoryDaoImpl().findByName(Category.categoryAI), 
+            LocalDate.now(), 5, 5, null, new CategoryDaoImpl().findByName(Category.categoryAI), 
             null, LocalDate.now(), "Admin", null, null, false
         );
 

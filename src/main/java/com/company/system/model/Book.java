@@ -38,8 +38,11 @@ public class Book {
     @Column(nullable = false, name = "yearPublished")
     private LocalDate yearPublished;
     
-    @Column(nullable = false, name = "stock")
-    private Integer stock;
+    @Column(nullable = false, name = "stockToLoan")
+    private Integer stockToLoan;
+    
+    @Column(nullable = false, name = "generalStock")
+    private Integer generalStock;
 
     @ManyToOne
     @JoinColumn(name = "fkPublisher")
@@ -75,15 +78,16 @@ public class Book {
     public Book() {
     }
 
-    public Book(Long idBook, String isbn, String title, String description, LocalDate yearPublished, Integer stock,
-            Publisher publisher, Category category, List<Author> authors, LocalDate registrationDate,
-            String registrationName, LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
-        this.idBook = idBook;
+    public Book(String isbn, String title, String description, LocalDate yearPublished, Integer stockToLoan,
+            Integer generalStock, Publisher publisher, Category category, List<Author> authors,
+            LocalDate registrationDate, String registrationName, LocalDate registrationUpdateDate,
+            String registrationUpdateName, boolean deleted) {
         this.isbn = isbn;
         this.title = title;
         this.description = description;
         this.yearPublished = yearPublished;
-        this.stock = stock;
+        this.stockToLoan = stockToLoan;
+        this.generalStock = generalStock;
         this.publisher = publisher;
         this.category = category;
         this.authors = authors;
@@ -94,23 +98,7 @@ public class Book {
         this.deleted = deleted;
     }
 
-    public Book(String isbn, String title, String description, LocalDate yearPublished, Integer stock,
-            Publisher publisher, Category category, List<Author> authors, LocalDate registrationDate,
-            String registrationName, LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
-        this.isbn = isbn;
-        this.title = title;
-        this.description = description;
-        this.yearPublished = yearPublished;
-        this.stock = stock;
-        this.publisher = publisher;
-        this.category = category;
-        this.authors = authors;
-        this.registrationDate = registrationDate;
-        this.registrationName = registrationName;
-        this.registrationUpdateDate = registrationUpdateDate;
-        this.registrationUpdateName = registrationUpdateName;
-        this.deleted = deleted;
-    }
+
 
     public Long getIdBook() {
         return idBook;
@@ -148,12 +136,21 @@ public class Book {
         this.yearPublished = yearPublished;
     }
 
-    public Integer getStock() {
-        return stock;
+
+    public Integer getStockToLoan() {
+        return stockToLoan;
     }
 
-    public void setStock(Integer stock) {
-        this.stock = stock;
+    public void setStockToLoan(Integer stockToLoan) {
+        this.stockToLoan = stockToLoan;
+    }
+
+    public void setGeneralStock(Integer generalStock) {
+        this.generalStock = generalStock;
+    }
+
+    public Integer getGeneralStock() {
+        return generalStock;
     }
 
     public Publisher getPublisher() {
@@ -229,7 +226,8 @@ public class Book {
         result = prime * result + ((title == null) ? 0 : title.hashCode());
         result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((yearPublished == null) ? 0 : yearPublished.hashCode());
-        result = prime * result + ((stock == null) ? 0 : stock.hashCode());
+        result = prime * result + ((stockToLoan == null) ? 0 : stockToLoan.hashCode());
+        result = prime * result + ((generalStock == null) ? 0 : generalStock.hashCode());
         result = prime * result + ((publisher == null) ? 0 : publisher.hashCode());
         result = prime * result + ((category == null) ? 0 : category.hashCode());
         result = prime * result + ((authors == null) ? 0 : authors.hashCode());
@@ -275,10 +273,15 @@ public class Book {
                 return false;
         } else if (!yearPublished.equals(other.yearPublished))
             return false;
-        if (stock == null) {
-            if (other.stock != null)
+        if (stockToLoan == null) {
+            if (other.stockToLoan != null)
                 return false;
-        } else if (!stock.equals(other.stock))
+        } else if (!stockToLoan.equals(other.stockToLoan))
+            return false;
+        if (generalStock == null) {
+            if (other.generalStock != null)
+                return false;
+        } else if (!generalStock.equals(other.generalStock))
             return false;
         if (publisher == null) {
             if (other.publisher != null)
@@ -323,11 +326,10 @@ public class Book {
     @Override
     public String toString() {
         return "Book [idBook=" + idBook + ", isbn=" + isbn + ", title=" + title + ", description=" + description
-                + ", yearPublished=" + yearPublished + ", stock=" + stock + ", publisher=" + publisher + ", category="
-                + category + ", authors=" + authors + ", registrationDate=" + registrationDate + ", registrationName="
-                + registrationName + ", registrationUpdateDate=" + registrationUpdateDate + ", registrationUpdateName="
-                + registrationUpdateName + ", deleted=" + deleted + "]";
+                + ", yearPublished=" + yearPublished + ", stockToLoan=" + stockToLoan + ", generalStock=" + generalStock
+                + ", publisher=" + publisher + ", category=" + category + ", authors=" + authors + ", registrationDate="
+                + registrationDate + ", registrationName=" + registrationName + ", registrationUpdateDate="
+                + registrationUpdateDate + ", registrationUpdateName=" + registrationUpdateName + ", deleted=" + deleted
+                + "]";
     }
-    
-    
 }

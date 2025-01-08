@@ -36,7 +36,7 @@ public class BookDaoImplTest {
     @Test
     void testCreate() {
         Book book = new Book("JPKL-5", "La sociedad del cansancio", "Un libro que trata sobre como las generaciones actuales se autoexplotan por la compotencia",
-         LocalDate.now(), 4, null, new CategoryDaoImpl().findByName(Category.categoryAI), null, 
+         LocalDate.now(), 4,5, null, new CategoryDaoImpl().findByName(Category.categoryAI), null, 
          LocalDate.now(), "Admin", null, null, false);
         System.out.println(bookDao.create(book));
     }
