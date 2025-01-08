@@ -1,12 +1,8 @@
 package com.company.system.view;
 
-import com.company.system.model.Fine;
-import com.company.system.model.User;
-import com.company.system.service.FineService;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.Color;
-import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;

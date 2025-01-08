@@ -29,10 +29,12 @@ public class FineService {
         return fineDao.findByUser(student);
     }
     
-    public boolean updateFine(Long idFine, LocalDate deadline, String message) {
+    public boolean updateFine(Long idFine, LocalDate deadline, String message, User librarian) {
         Fine fine = fineDao.findById(idFine);
         fine.setDeadline(deadline);
         fine.setMessage(message);
+        fine.setRegistrationUpdateDate(LocalDate.now());
+        fine.setRegistrationName(librarian.getFullNames());
         return fineDao.update(fine);
     }
     

@@ -38,12 +38,12 @@ public class LibrarianWindow extends javax.swing.JFrame {
     public static final String optionNotifications = "Notificaciones";
     public static final String optionShutdown = "Salir";
     
+    private final User librarian;
     private RegisterLoan registerLoan;
     private RegisterBook registerBook;
     private GenerateReport generateReport;
     private RegisterFine registerFine;
     private HistoryFines historyFines;
-    private final User librarian;
 
     private JPopupMenu menuContextual;
     private List<JMenuItem> menuItems;
@@ -85,9 +85,6 @@ public class LibrarianWindow extends javax.swing.JFrame {
         pnlGenerateReports = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
         lblManageReports = new javax.swing.JLabel();
         jlreportimage = new javax.swing.JLabel();
-        pnlNotifications = new RoundedPanelWithShadow(25,new Color (0,0,0,0),0);
-        lblNotifications = new javax.swing.JLabel();
-        jlreportimage2 = new javax.swing.JLabel();
         pnlShutdown = new RoundedPanelWithShadow(25,new Color (0,0,0,100),2);
         lblShutdown = new javax.swing.JLabel();
         jlreportimage3 = new javax.swing.JLabel();
@@ -262,40 +259,6 @@ public class LibrarianWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnlNotifications.setBackground(new java.awt.Color(255, 255, 255));
-        pnlNotifications.setPreferredSize(new java.awt.Dimension(287, 52));
-
-        lblNotifications.setBackground(new java.awt.Color(255, 255, 255));
-        lblNotifications.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
-        lblNotifications.setText(LibrarianWindow.optionNotifications);
-        lblNotifications.setToolTipText("");
-        lblNotifications.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jlreportimage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notifyIcon.png"))); // NOI18N
-
-        javax.swing.GroupLayout pnlNotificationsLayout = new javax.swing.GroupLayout(pnlNotifications);
-        pnlNotifications.setLayout(pnlNotificationsLayout);
-        pnlNotificationsLayout.setHorizontalGroup(
-            pnlNotificationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNotificationsLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jlreportimage2)
-                .addGap(18, 18, 18)
-                .addComponent(lblNotifications, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlNotificationsLayout.setVerticalGroup(
-            pnlNotificationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNotificationsLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(jlreportimage2)
-                .addGap(14, 14, 14))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNotificationsLayout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(lblNotifications)
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-
         pnlShutdown.setBackground(new java.awt.Color(255, 255, 255));
         pnlShutdown.setPreferredSize(new java.awt.Dimension(287, 52));
 
@@ -402,7 +365,6 @@ public class LibrarianWindow extends javax.swing.JFrame {
                     .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(pnlManageBooks, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                         .addComponent(pnlGenerateReports, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                        .addComponent(pnlNotifications, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                         .addComponent(pnlShutdown, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
                     .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(pnlRegisterLoan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -434,11 +396,9 @@ public class LibrarianWindow extends javax.swing.JFrame {
                 .addComponent(pnlManageBooks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(pnlGenerateReports, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(pnlNotifications, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(40, 40, 40)
                 .addComponent(pnlShutdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
             .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlBackgroundLayout.createSequentialGroup()
                     .addGap(30, 30, 30)
@@ -526,10 +486,6 @@ public class LibrarianWindow extends javax.swing.JFrame {
         return pnlManageFine;
     }
 
-    public JPanel getPnlNotifications() {
-        return pnlNotifications;
-    }
-
     public JPanel getPnlRegisterDevolution() {
         return pnlRegisterDevolution;
     }
@@ -556,10 +512,6 @@ public class LibrarianWindow extends javax.swing.JFrame {
 
     public JLabel getLblManageReports() {
         return lblManageReports;
-    }
-
-    public JLabel getLblNotifications() {
-        return lblNotifications;
     }
 
     public JLabel getLblRegisterDevolution() {
@@ -631,7 +583,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
 
     public void openHistoryFines(UserService userService) {
         historyFines = new HistoryFines();
-        new HistoryFinesListener(historyFines, userService);
+        new HistoryFinesListener(historyFines, userService, librarian);
         uploadPanel(historyFines);
     }
     public void uploadListMenuReports() {
@@ -667,14 +619,12 @@ public class LibrarianWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jlbookimage1;
     private javax.swing.JLabel jlbookimage2;
     private javax.swing.JLabel jlreportimage;
-    private javax.swing.JLabel jlreportimage2;
     private javax.swing.JLabel jlreportimage3;
     private javax.swing.JLabel jlusersimage1;
     private javax.swing.JLabel lblBookIcon;
     private javax.swing.JLabel lblManageBooks;
     private javax.swing.JLabel lblManageFine;
     private javax.swing.JLabel lblManageReports;
-    private javax.swing.JLabel lblNotifications;
     private javax.swing.JLabel lblRegisterDevolution;
     private javax.swing.JLabel lblRegisterFine;
     private javax.swing.JLabel lblShutdown;
@@ -685,7 +635,6 @@ public class LibrarianWindow extends javax.swing.JFrame {
     private javax.swing.JPanel pnlGenerateReports;
     private javax.swing.JPanel pnlManageBooks;
     private javax.swing.JPanel pnlManageFine;
-    private javax.swing.JPanel pnlNotifications;
     private javax.swing.JPanel pnlPrincipal;
     private javax.swing.JPanel pnlRegisterDevolution;
     private javax.swing.JPanel pnlRegisterLoan;

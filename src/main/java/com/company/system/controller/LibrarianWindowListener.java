@@ -45,7 +45,6 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
         frmLibraianWindow.getPnlManageFine().addMouseListener(this);
         frmLibraianWindow.getPnlManageBooks().addMouseListener(this);
         frmLibraianWindow.getPnlGenerateReports().addMouseListener(this);
-        frmLibraianWindow.getPnlNotifications().addMouseListener(this);
         frmLibraianWindow.getPnlShutdown().addMouseListener(this);
 
         frmLibraianWindow.getLblRegisterFine().addMouseListener(this);
@@ -53,7 +52,6 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
         frmLibraianWindow.getLblManageFine().addMouseListener(this);
         frmLibraianWindow.getLblManageBooks().addMouseListener(this);
         frmLibraianWindow.getLblManageReports().addMouseListener(this);
-        frmLibraianWindow.getLblNotifications().addMouseListener(this);
         frmLibraianWindow.getLblShutdown().addMouseListener(this);
 
     }
@@ -112,7 +110,6 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
             frmLibraianWindow.getPnlManageFine().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlManageBooks().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlGenerateReports().setBackground(Utils.pnlExited);
-            frmLibraianWindow.getPnlNotifications().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlShutdown().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlRegisterLoan().repaint();
 
@@ -122,7 +119,6 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
             frmLibraianWindow.getPnlManageFine().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlManageBooks().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlGenerateReports().setBackground(Utils.pnlExited);
-            frmLibraianWindow.getPnlNotifications().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlShutdown().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlRegisterDevolution().repaint();
 
@@ -132,7 +128,6 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
             frmLibraianWindow.getPnlRegisterDevolution().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlManageBooks().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlGenerateReports().setBackground(Utils.pnlExited);
-            frmLibraianWindow.getPnlNotifications().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlShutdown().setBackground(Utils.pnlExited);
 
             frmLibraianWindow.getPnlManageFine().repaint();
@@ -143,7 +138,6 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
             frmLibraianWindow.getPnlManageFine().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlRegisterDevolution().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlGenerateReports().setBackground(Utils.pnlExited);
-            frmLibraianWindow.getPnlNotifications().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlShutdown().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlManageBooks().repaint();
 
@@ -151,25 +145,13 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
             frmLibraianWindow.getPnlGenerateReports().setBackground(Utils.pnlEntered);
             frmLibraianWindow.getPnlRegisterLoan().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlRegisterDevolution().setBackground(Utils.pnlExited);
-            frmLibraianWindow.getPnlNotifications().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlManageFine().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlShutdown().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlManageBooks().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlGenerateReports().repaint();
 
-        } else if (e.getSource() == frmLibraianWindow.getPnlNotifications() || e.getSource() == frmLibraianWindow.getLblNotifications()) {
-            frmLibraianWindow.getPnlNotifications().setBackground(Utils.pnlEntered);
-            frmLibraianWindow.getPnlGenerateReports().setBackground(Utils.pnlExited);
-            frmLibraianWindow.getPnlRegisterLoan().setBackground(Utils.pnlExited);
-            frmLibraianWindow.getPnlRegisterDevolution().setBackground(Utils.pnlExited);
-            frmLibraianWindow.getPnlManageFine().setBackground(Utils.pnlExited);
-            frmLibraianWindow.getPnlShutdown().setBackground(Utils.pnlExited);
-            frmLibraianWindow.getPnlManageBooks().setBackground(Utils.pnlExited);
-            frmLibraianWindow.getPnlNotifications().repaint();
-
         } else if (e.getSource() == frmLibraianWindow.getPnlShutdown() || e.getSource() == frmLibraianWindow.getLblShutdown()) {
             frmLibraianWindow.getPnlShutdown().setBackground(Utils.pnlEntered);
-            frmLibraianWindow.getPnlNotifications().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlGenerateReports().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlRegisterLoan().setBackground(Utils.pnlExited);
             frmLibraianWindow.getPnlRegisterDevolution().setBackground(Utils.pnlExited);
