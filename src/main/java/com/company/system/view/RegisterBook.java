@@ -4,6 +4,8 @@
  */
 package com.company.system.view;
 
+import com.company.system.view.components.RoundedButtonWithShadow;
+import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -92,7 +94,7 @@ public class RegisterBook extends javax.swing.JPanel {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        jPanel4 = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         jLabel2 = new javax.swing.JLabel();
         txtTitle = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -102,11 +104,11 @@ public class RegisterBook extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        btnRegisterBook = new javax.swing.JButton();
+        btnRegisterBook = new RoundedButtonWithShadow("Registrar Libro", 7, new Color(0, 0, 0, 100), 2);
         jComboBox2 = new javax.swing.JComboBox<>();
         txtIsbn = new javax.swing.JTextField();
         txtPublication = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         jLabel1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
