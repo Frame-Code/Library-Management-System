@@ -17,6 +17,7 @@ public class Main {
         } catch (InterruptedException | InvocationTargetException ex) {
             ex.printStackTrace();
         }
+        
         new LibrarianWindowListener(lb);    
         lb.setExtendedState(JFrame.MAXIMIZED_BOTH);
         lb.setVisible(true);

@@ -7,6 +7,7 @@ import com.company.system.service.LoanService;
 import com.company.system.service.UserService;
 import com.company.system.view.LibrarianWindow;
 import com.company.system.view.RegisterFine;
+import com.company.system.view.RegisterLoan;
 import com.company.system.view.components.Utils;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,7 +34,9 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
         this.frmLibraianWindow = frmLibraianWindow;
         this.bookService = new BookService();
         this.userService = new UserService();
-        this.librarian = userService.getLibrarianByIdCard(941239261L); //eliminar esto
+        this.librarian = new User();
+        this.librarian.setNames("Daniel ");  //ELiminar esto
+        this.librarian.setSurNames("Mora Cantillo"); //ELiminar esto
         this.loanService = new LoanService();
         this.fineService = new FineService();
         addListeners();
@@ -65,20 +68,36 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
                     frmLibraianWindow.openGenerateReport(item.getText());
                 }
             });
+            frmLibraianWindow.getPnlGenerateReports().setBackground(Utils.pnlEntered);
         } else if (contenedor.equals(LibrarianWindow.optionManageFine)) {
             if (source.getText().equals(RegisterFine.typeRegisterNew)) {
                 frmLibraianWindow.openRegisterFine(userService, fineService);
+
             } else if (source.getText().equals(RegisterFine.typeShowFines)) {
                 frmLibraianWindow.openHistoryFines(userService);
             }
+            frmLibraianWindow.getPnlManageFine().setBackground(Utils.pnlEntered);
+
+        } else if(contenedor.equals(LibrarianWindow.optionRegisterLoan)) {
+            if(source.getText().equals(RegisterLoan.typeRegisterNew)) {
+                frmLibraianWindow.openRegisterLoan(librarian, bookService, userService, loanService);
+                
+            } else if(source.getText().equals(RegisterLoan.typeShowLoans)) {
+                frmLibraianWindow.openHistoryLoans(userService, loanService);
+            }
+            frmLibraianWindow.getPnlRegisterLoan().setBackground(Utils.pnlEntered);
         }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == frmLibraianWindow.getPnlRegisterLoan() || e.getSource() == frmLibraianWindow.getLblRegisterFine()) {
-            frmLibraianWindow.openRegisterLoan(librarian, bookService, userService, loanService);
-            frmLibraianWindow.getPnlRegisterLoan().setBackground(Utils.pnlEntered);
+            contenedor = frmLibraianWindow.getLblRegisterFine().getText();
+            frmLibraianWindow.uploadListMenuLoans();
+            frmLibraianWindow.getMenuItems().forEach(item -> {
+                item.addActionListener(this);
+            });
+            frmLibraianWindow.getMenuContextual().show(frmLibraianWindow.getPnlRegisterLoan(), e.getX(), e.getY());
         } else if (e.getSource() == frmLibraianWindow.getPnlManageBooks() || e.getSource() == frmLibraianWindow.getLblManageBooks()) {
             frmLibraianWindow.openRegisterBook(librarian, bookService, userService, loanService);
             frmLibraianWindow.getPnlManageBooks().setBackground(Utils.pnlEntered);

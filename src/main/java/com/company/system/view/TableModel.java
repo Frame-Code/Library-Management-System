@@ -1,6 +1,11 @@
 package com.company.system.view;
 
+import com.company.system.model.Devolution;
 import com.company.system.model.Fine;
+import com.company.system.model.Loan;
+import com.company.system.service.DevolutionService;
+
+import java.time.LocalDate;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -37,6 +42,20 @@ public interface TableModel {
         tableModel.setColumnIdentifiers(columnNames);
         fines.forEach(fine -> {
             Object obj[] = {fine.getIdFine(), fine.getRegistrationDate().toString(), fine.getMessage(), fine.getDeadline().toString()};
+            tableModel.addRow(obj);
+        });
+        
+        return tableModel;
+
+    }
+    
+    default DefaultTableModel getTableModelLoans(String columnNames[], List<Loan> loans, DevolutionService devolutionService) {
+        DefaultTableModel tableModel = model();
+        tableModel.setColumnIdentifiers(columnNames);
+        loans.forEach(loan -> {
+            Devolution devolution = devolutionService.getDevolutionByLoan(loan);
+            Object obj[] = {loan.getIdLoan(), loan.getRegistrationDate().toString(), (loan.isReturned())? "Si" : "No", 
+            (devolution != null)? devolution.getRegistrationDate().toString() : "----", loan.getBook().getTitle(), loan.getBook().getIsbn()};
             tableModel.addRow(obj);
         });
         

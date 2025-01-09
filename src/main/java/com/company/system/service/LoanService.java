@@ -28,7 +28,11 @@ public class LoanService {
         this.fineDao = new FineDaoImpl();
         this.bookService = new BookService();
     }
-
+    
+    public Loan getLoanById(Long id) {
+        return loanDao.findById(id);
+    }
+    
     public List<Loan> getLoansByUser(User user) {
         return loanDao.findByUser(user);
     }

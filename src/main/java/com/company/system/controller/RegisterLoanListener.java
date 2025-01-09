@@ -80,20 +80,20 @@ public class RegisterLoanListener implements ActionListener, MouseListener, Util
     }
 
     private boolean isValidDate(Integer day, String month, Integer year) {
-        return day <= 31 && day >= 0 && year >= LocalDate.now().getYear() && year < (LocalDate.now().getYear() + 4) && getDate(day, month, year).isAfter(LocalDate.now());  
+        return day <= 31 && day >= 0 && year >= LocalDate.now().getYear() && year < (LocalDate.now().getYear() + 4) && getDate(day, month, year).isAfter(LocalDate.now());
     }
 
     //Verifica la existencia y el stock del libro buscado y lo agrega a la instancia book
     private void searchBook() {
-        book = bookService.getBookByISBN(pnlRegisterLoan.getTxtISBN().getText());
-        if (book == null || bookService.isAvailableToLoan(book)) {
+        book = bookService.getBookByISBN(pnlRegisterLoan.getTxtISBN().getText().trim());
+        if (book != null && bookService.isAvailableToLoan(book)) {
+            pnlRegisterLoan.showMessage("Libro se ha encontrado", "Libro encontrado!", JOptionPane.INFORMATION_MESSAGE);
+            pnlRegisterLoan.getLblBookTittle().setText(book.getTitle());
+        } else {
             String error = "No se ha encontrado un libro con el ISBN escrito o No existe stock del libro";
             pnlRegisterLoan.showMessage(error, "error", JOptionPane.ERROR_MESSAGE);
             pnlRegisterLoan.getLblBookTittle().setText(error);
             book = null;
-        } else {
-            pnlRegisterLoan.showMessage("Libro se ha encontrado", "Libro encontrado!", JOptionPane.INFORMATION_MESSAGE);
-            pnlRegisterLoan.getLblBookTittle().setText(book.getTitle());
         }
     }
 
@@ -128,8 +128,8 @@ public class RegisterLoanListener implements ActionListener, MouseListener, Util
                 Integer day = Integer.valueOf(pnlRegisterLoan.getTxtDay().getText());
                 Integer year = Integer.valueOf(pnlRegisterLoan.getTxtYear().getText());
 
-                if (isValidDate(day, (String) pnlRegisterLoan.getCmbMonth().getSelectedItem(), year) && 
-                bookService.isAvailableToLoan(book)) {
+                if (isValidDate(day, (String) pnlRegisterLoan.getCmbMonth().getSelectedItem(), year)
+                        && bookService.isAvailableToLoan(book)) {
                     LinkedList<Loan> userLoans = new LinkedList<>(loanService.getLoansByUser(student));
                     if (userLoans.isEmpty() || userLoans.getLast().isReturned()) {
                         loanService.createLoan(student, book,
@@ -157,19 +157,19 @@ public class RegisterLoanListener implements ActionListener, MouseListener, Util
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == pnlRegisterLoan.getBtnSearchBook()) {
-            if(!isEmptyFieldsBook()) {
+            if (!isEmptyFieldsBook()) {
                 searchBook();
             } else {
                 pnlRegisterLoan.showMessage("Escribe un ISBN", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else if (e.getSource() == pnlRegisterLoan.getBtnSearchIdCard()) {
-            if(!isEmptyFieldsUser()) {
+            if (!isEmptyFieldsUser()) {
                 searchIdCard();
             } else {
                 pnlRegisterLoan.showMessage("Escribe un numero de cedula", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else if (e.getSource() == pnlRegisterLoan.getBtnRegisterLoan()) {
-            if(!isEmptyFields()) {
+            if (!isEmptyFields()) {
                 registerLoan();
             } else {
                 pnlRegisterLoan.showMessage("No pueden haber campos vacios", "Error", JOptionPane.ERROR_MESSAGE);

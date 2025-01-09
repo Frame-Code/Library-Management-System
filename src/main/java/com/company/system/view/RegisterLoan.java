@@ -15,7 +15,9 @@ import javax.swing.JTextField;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class RegisterLoan extends javax.swing.JPanel {
-    
+    public static final String typeRegisterNew = "Registrar nuevo prestamo";
+    public static final String typeShowLoans = "Ver prestamos de un estudiante";
+
     public RegisterLoan() {
         initComponents();
         setVisible(true);
