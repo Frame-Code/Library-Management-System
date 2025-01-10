@@ -1,5 +1,6 @@
 package com.company.system.controller;
 
+import com.company.system.model.Author;
 import com.company.system.service.PublisherService;
 import com.company.system.service.UserService;
 import com.company.system.model.Book;
@@ -22,12 +23,19 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.BoxLayout;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -120,69 +128,108 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == frmLibraryHome.getPnlEditorial()) {
-            // Obtener la lista de editoriales desde el servicio
-            List<Publisher> publishers = publisherService.getPublishers();
-
-            // Crear un menu contextual con los nombres de las editoriales
-            JPopupMenu popupMenu = new JPopupMenu();
-            publishers.forEach(publisher -> {
-                JMenuItem menuItem = new JMenuItem(publisher.getName());
-                menuItem.addActionListener(ev -> {
-                    String selectedPublisherName = menuItem.getText();
-
-                    // Llamar al método en PublisherService con el nombre seleccionado
-                    Publisher selectedPublisher = publisherService.getPublisherByName(selectedPublisherName);
-
-                    // Obtener la lista de libros de esta editorial
-                    List<Book> booksByPublisher = bookService.getBooksByPublisher(selectedPublisher);
-
-                    // Crear un nuevo CategoryBooks Internal Frame con los libros obtenidos
-                    frmLibraryHome.clearDesltopPane();
-                    categoryBooksInternalFrm = new CategoryBooks("Editorial: " + selectedPublisher.getName(), bookService);
-                    categoryBooksInternalFrm.setSize(frmLibraryHome.getDesktopPane().getSize());
-
-                    // Agregar cada libro al JInternalFrame
-                    categoryBooksInternalFrm.addBooks(booksByPublisher);
-
-                    // Agregar el JInternalFrame al desktopPane de la ventana LibraryHome
-                    frmLibraryHome.addToDesktopPane(categoryBooksInternalFrm);
-
-                    // Mostrar los detalles de la editorial seleccionada
-                    System.out.println("Editorial seleccionada: " + selectedPublisher.getName());
-                });
-                popupMenu.add(menuItem);
-            });
-
-            // Mostrar el menu contextual en la posición del panel
-            popupMenu.show(frmLibraryHome.getPnlEditorial(), e.getX(), e.getY());
-
-            // Cambiar el color del panel seleccionado
-            frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlEditorial());
-        } else if (e.getSource() == frmLibraryHome.getPnlCategory()) {
-            frmLibraryHome.uploadListMenu(categoryService.getCategories());
-            addListenerMenu();
-            frmLibraryHome.getMenuContextual().show(frmLibraryHome.getPnlCategory(), e.getX(), e.getY());
-            frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlCategory());
-        } else if (e.getSource() == frmLibraryHome.getPnlShutdown()) {
-            frmLibraryHome.openLoginStudent(userService);
-            frmLibraryHome.close();
-        } else if (e.getSource() == frmLibraryHome.getLblHistorialDePrestamos()) {
+        if (e.getSource() == frmLibraryHome.getLblHistorialDePrestamos()) {
             // Instanciar y crear la tabla para mostrar el historial de préstamos
             List<Loan> loanHistory = loanService.getLoansByUser(frmLibraryHome.getStudent());  // Asumiendo que tienes un identificador de usuario
-            
+
             // Crear el modelo de la tabla
             DefaultTableModel loanTableModel = getTableModelLoans(frmLibraryHome.getColumnNames(), loanHistory); // Asegúrate de tener el LoanTableModel implementado
-            
+
             // Crear la tabla con el modelo
             JTable loanHistoryTable = new JTable(loanTableModel);
-            
-            // Crear un JInternalFrame para mostrar la tabla
+
+            // Crear barras de texto o campos de entrada
+            JPanel formPanel = new JPanel();
+            formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
+
+            // Campos de entrada para el listado de libros o recursos prestados
+            JTextField titleField = new JTextField(20);
+            JTextField authorsField = new JTextField(20);
+            JTextField categoryField = new JTextField(20);
+            JTextField loanDateField = new JTextField(20);
+            JTextField returnDateField = new JTextField(20);
+            JLabel daysRemainingLabel = new JLabel("Días restantes: 0");
+            JTextField renewalsField = new JTextField(20);
+            JTextField renewalHistoryField = new JTextField(20);
+
+            // Si hay historial de préstamos, completamos los campos
+            if (!loanHistory.isEmpty()) {
+                Loan loan = loanHistory.get(0);  // Supongamos que estamos mostrando el primer préstamo como ejemplo
+
+                // Mostrar el título del libro
+                titleField.setText(loan.getBook().getTitle());
+
+                // Obtener y mostrar los autores
+                if (loan.getBook().getAuthors() != null && !loan.getBook().getAuthors().isEmpty()) {
+                    String authors = loan.getBook().getAuthors().stream()
+                            .map(Author::getNames) // Usamos getNames() en lugar de getName()
+                            .collect(Collectors.joining(", "));  // Unimos los nombres con coma
+                    authorsField.setText(authors);
+                } else {
+                    authorsField.setText("No authors available");
+                }
+
+                // Obtener y mostrar la categoría
+                if (loan.getBook().getCategory() != null) {
+                    categoryField.setText(loan.getBook().getCategory().getName());  // Asumimos que Category tiene getName()
+                } else {
+                    categoryField.setText("No category available");
+                }
+
+                // Mostrar las fechas de préstamo y devolución
+                loanDateField.setText(loan.getRegistrationDate().toString());  // Usamos la fecha de registro como fecha de préstamo
+                returnDateField.setText(loan.getDevolutionDate().toString());
+
+                // Mostrar el número de renovaciones
+                renewalsField.setText(String.valueOf(loan.isReturned() ? 0 : 1)); // Suponiendo que 1 significa que ha sido renovado
+                renewalHistoryField.setText(String.valueOf(loan.getIdLoan())); // Esto es solo un ejemplo. Si tienes un historial de renovaciones, ajústalo aquí
+
+                // Contar los días restantes para la devolución
+                long daysRemaining = ChronoUnit.DAYS.between(LocalDate.now(), loan.getDevolutionDate());
+                daysRemainingLabel.setText("Días restantes: " + daysRemaining);
+            }
+
+            // Agregar los campos al formulario
+            formPanel.add(new JLabel("Título:"));
+            formPanel.add(titleField);
+            formPanel.add(new JLabel("Autor(es):"));
+            formPanel.add(authorsField);
+            formPanel.add(new JLabel("Categoría/Temática:"));
+            formPanel.add(categoryField);
+            formPanel.add(new JLabel("Fecha de Préstamo:"));
+            formPanel.add(loanDateField);
+            formPanel.add(new JLabel("Fecha de Devolución:"));
+            formPanel.add(returnDateField);
+            formPanel.add(daysRemainingLabel);  // Etiqueta para los días restantes
+            formPanel.add(new JLabel("Renovaciones:"));
+            formPanel.add(renewalsField);
+            formPanel.add(new JLabel("Historial de Renovaciones:"));
+            formPanel.add(renewalHistoryField);
+
+            // Crear un JInternalFrame para mostrar la tabla y el formulario
             JInternalFrame loanHistoryInternalFrame = new JInternalFrame("Historial de Préstamos", true, true, true, true);
             loanHistoryInternalFrame.setLayout(new BorderLayout());
-            loanHistoryInternalFrame.add(new JScrollPane(loanHistoryTable), BorderLayout.CENTER);
+
+            // Crear un panel para la tabla y el formulario
+            JPanel mainPanel = new JPanel();
+            mainPanel.setLayout(new BorderLayout());
+
+            // Crear un panel para contener la tabla
+            JPanel tablePanel = new JPanel(new BorderLayout());
+            tablePanel.add(new JScrollPane(loanHistoryTable), BorderLayout.CENTER);
+
+            // Agregar el panel de la tabla al panel principal
+            mainPanel.add(tablePanel, BorderLayout.CENTER);
+
+            // Agregar el formulario a la derecha del panel principal
+            mainPanel.add(formPanel, BorderLayout.EAST);
+
+            // Agregar el panel principal al InternalFrame
+            loanHistoryInternalFrame.add(mainPanel, BorderLayout.CENTER);
+
+            // Establecer el tamaño del InternalFrame
             loanHistoryInternalFrame.setSize(frmLibraryHome.getDesktopPane().getSize());
-            
+
             // Mostrar el InternalFrame en el DesktopPane
             frmLibraryHome.clearDesltopPane();  // Limpiar el pane de cualquier contenido anterior
             frmLibraryHome.addToDesktopPane(loanHistoryInternalFrame);  // Agregar el JInternalFrame al DesktopPane
@@ -245,22 +292,28 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+    }
 
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+    }
 
     @Override
-    public void componentResized(ComponentEvent e) {}
+    public void componentResized(ComponentEvent e) {
+    }
 
     @Override
-    public void componentMoved(ComponentEvent e) {}
+    public void componentMoved(ComponentEvent e) {
+    }
 
     @Override
-    public void componentShown(ComponentEvent e) {}
+    public void componentShown(ComponentEvent e) {
+    }
 
     @Override
-    public void componentHidden(ComponentEvent e) {}
+    public void componentHidden(ComponentEvent e) {
+    }
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -270,9 +323,10 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 
     @Override
-    public void keyReleased(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {
+    }
 }
-
