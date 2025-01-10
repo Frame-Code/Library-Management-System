@@ -19,7 +19,7 @@ import javax.swing.table.TableColumn;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class HistoryLoans extends javax.swing.JPanel implements TableModel {
-    private final String[] columnNames = new String[]{"Id", "Fecha de registro", "Ha sido retornado?", "Fecha retorno", "Libro", "ISBN"};
+    private final String[] columnNames = new String[]{"Id", "Fecha de registro", "Ha sido retornado?", "Fecha que se devolvio", "Libro", "ISBN"};
 
     public HistoryLoans() {
         initComponents();
@@ -39,7 +39,6 @@ public class HistoryLoans extends javax.swing.JPanel implements TableModel {
         lblNameStudent = new javax.swing.JLabel();
         lblbook5 = new javax.swing.JLabel();
         lblbook6 = new javax.swing.JLabel();
-        btnGuardar = new RoundedButtonWithShadow("Iniciar sesion", 7, new Color(0, 0, 0, 100), 4);
         btnClean = new RoundedButtonWithShadow("Iniciar sesion", 7, new Color(0, 0, 0, 100), 4);
         jPanel5 = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         lblbook8 = new javax.swing.JLabel();
@@ -52,14 +51,6 @@ public class HistoryLoans extends javax.swing.JPanel implements TableModel {
         lblbook9 = new javax.swing.JLabel();
         txtRegisterDay = new javax.swing.JTextField();
         lblbook10 = new javax.swing.JLabel();
-        txtDay = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        cmbMonth = new javax.swing.JComboBox<>();
-        jLabel12 = new javax.swing.JLabel();
-        txtYear = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
         lblbook12 = new javax.swing.JLabel();
         txtIsReturned = new javax.swing.JTextField();
         txtReturnDate = new javax.swing.JTextField();
@@ -70,6 +61,7 @@ public class HistoryLoans extends javax.swing.JPanel implements TableModel {
         txtBookISBN = new javax.swing.JTextField();
         txtRequest = new javax.swing.JTextField();
         lblbook16 = new javax.swing.JLabel();
+        txtDevolutionDate = new javax.swing.JTextField();
         btnDelete = new RoundedButtonWithShadow("Iniciar sesion", 7, new Color(0, 0, 0, 100), 4);
         btnUpdate = new RoundedButtonWithShadow("Iniciar sesion", 7, new Color(0, 0, 0, 100), 4);
 
@@ -152,12 +144,6 @@ public class HistoryLoans extends javax.swing.JPanel implements TableModel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnGuardar.setBackground(new java.awt.Color(56, 75, 147));
-        btnGuardar.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
-        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuardar.setText("Guardar");
-        btnGuardar.setBorder(null);
-
         btnClean.setBackground(new java.awt.Color(56, 75, 147));
         btnClean.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         btnClean.setForeground(new java.awt.Color(255, 255, 255));
@@ -193,7 +179,7 @@ public class HistoryLoans extends javax.swing.JPanel implements TableModel {
             .addComponent(lblbook8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -236,34 +222,9 @@ public class HistoryLoans extends javax.swing.JPanel implements TableModel {
 
         lblbook10.setBackground(new java.awt.Color(255, 255, 255));
         lblbook10.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 13)); // NOI18N
-        lblbook10.setText("Fecha devolucion:");
+        lblbook10.setText("Fecha devolucion esperada:");
         lblbook10.setToolTipText("");
         lblbook10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        txtDay.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 12)); // NOI18N
-        txtDay.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel10.setText("Dia:");
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(205, 205, 205));
-        jLabel13.setText("(número)");
-
-        jLabel11.setText("Mes:");
-
-        cmbMonth.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        cmbMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero ", "Marzo ", "Abril ", "Mayo ", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre ", "Diciembre" }));
-        cmbMonth.setBorder(null);
-
-        jLabel12.setText("Año:");
-
-        txtYear.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        txtYear.setToolTipText("");
-        txtYear.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(205, 205, 205));
-        jLabel14.setText("(número)");
 
         lblbook12.setBackground(new java.awt.Color(255, 255, 255));
         lblbook12.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 13)); // NOI18N
@@ -315,6 +276,10 @@ public class HistoryLoans extends javax.swing.JPanel implements TableModel {
         lblbook16.setToolTipText("");
         lblbook16.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        txtDevolutionDate.setEditable(false);
+        txtDevolutionDate.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 12)); // NOI18N
+        txtDevolutionDate.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -323,110 +288,63 @@ public class HistoryLoans extends javax.swing.JPanel implements TableModel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblbook9)
-                    .addComponent(lblbook4)
-                    .addComponent(lblbook10)
-                    .addComponent(lblbook12)
-                    .addComponent(lblbook13)
-                    .addComponent(lblbook14)
-                    .addComponent(lblbook15)
-                    .addComponent(lblbook16))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtRegisterDay)
+                    .addComponent(txtRegisterDay, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtDevolutionDate)
+                    .addComponent(txtBooName)
+                    .addComponent(txtReturnDate)
+                    .addComponent(txtIsReturned)
+                    .addComponent(txtRequest)
+                    .addComponent(txtBookISBN)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel4Layout.createSequentialGroup()
-                                            .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(cmbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel10))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11)
-                                    .addGap(65, 65, 65)
-                                    .addComponent(jLabel12)
-                                    .addGap(23, 23, 23)))
-                            .addComponent(txtIdLoan, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 19, Short.MAX_VALUE))
-                    .addComponent(txtIsReturned)
-                    .addComponent(txtReturnDate)
-                    .addComponent(txtBooName)
-                    .addComponent(txtBookISBN)
-                    .addComponent(txtRequest))
+                            .addComponent(txtIdLoan, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblbook4)
+                            .addComponent(lblbook9)
+                            .addComponent(lblbook10)
+                            .addComponent(lblbook12)
+                            .addComponent(lblbook13)
+                            .addComponent(lblbook14)
+                            .addComponent(lblbook16)
+                            .addComponent(lblbook15))
+                        .addGap(0, 110, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(lblbook7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIdLoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblbook4))
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(lblbook9))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtRegisterDay, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(lblbook16))
-                    .addComponent(txtRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblbook4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtIdLoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblbook9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtRegisterDay, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblbook16)
+                .addGap(1, 1, 1)
+                .addComponent(txtRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(lblbook12)
+                .addGap(1, 1, 1)
+                .addComponent(txtIsReturned, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(lblbook12))
-                    .addComponent(txtIsReturned, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblbook13)
+                .addGap(1, 1, 1)
+                .addComponent(txtReturnDate, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(lblbook13))
-                    .addComponent(txtReturnDate, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(lblbook14))
-                    .addComponent(txtBooName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(lblbook15))
-                    .addComponent(txtBookISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblbook10)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel10))
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cmbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel14))))
+                .addComponent(lblbook14)
+                .addGap(1, 1, 1)
+                .addComponent(txtBooName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblbook15)
+                .addGap(1, 1, 1)
+                .addComponent(txtBookISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(lblbook10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDevolutionDate, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -449,20 +367,18 @@ public class HistoryLoans extends javax.swing.JPanel implements TableModel {
             .addComponent(lblWelcome1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(137, 137, 137)
                         .addComponent(btnClean, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -477,14 +393,13 @@ public class HistoryLoans extends javax.swing.JPanel implements TableModel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnClean, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -539,24 +454,12 @@ public class HistoryLoans extends javax.swing.JPanel implements TableModel {
         return txtIdCardUser;
     }
 
-    public JComboBox<String> getCmbMonth() {
-        return cmbMonth;
-    }
-
-    public void setCmbMonth(JComboBox<String> cmbMonth) {
-        this.cmbMonth = cmbMonth;
-    }
-
     public JTextField getTxtBooName() {
         return txtBooName;
     }
 
     public JTextField getTxtBookISBN() {
         return txtBookISBN;
-    }
-
-    public JTextField getTxtDay() {
-        return txtDay;
     }
 
     public JTextField getTxtIdLoan() {
@@ -579,8 +482,8 @@ public class HistoryLoans extends javax.swing.JPanel implements TableModel {
         return txtReturnDate;
     }
 
-    public JTextField getTxtYear() {
-        return txtYear;
+    public JTextField getTxtDevolutionDate() {
+        return txtDevolutionDate;
     }
     
     public JTable getTblLoans() {
@@ -589,10 +492,6 @@ public class HistoryLoans extends javax.swing.JPanel implements TableModel {
 
     public ListSelectionModel getModelSelectionOfTable() {
         return tblLoans.getSelectionModel();
-    }
-
-    public JButton getBtnGuardar() {
-        return btnGuardar;
     }
 
     public JButton getBtnDelete() {
@@ -606,15 +505,8 @@ public class HistoryLoans extends javax.swing.JPanel implements TableModel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClean;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnSearchIdCard;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cmbMonth;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -638,13 +530,12 @@ public class HistoryLoans extends javax.swing.JPanel implements TableModel {
     private javax.swing.JTable tblLoans;
     private javax.swing.JTextField txtBooName;
     private javax.swing.JTextField txtBookISBN;
-    private javax.swing.JTextField txtDay;
+    private javax.swing.JTextField txtDevolutionDate;
     private javax.swing.JTextField txtIdCardUser;
     private javax.swing.JTextField txtIdLoan;
     private javax.swing.JTextField txtIsReturned;
     private javax.swing.JTextField txtRegisterDay;
     private javax.swing.JTextField txtRequest;
     private javax.swing.JTextField txtReturnDate;
-    private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables
 }
