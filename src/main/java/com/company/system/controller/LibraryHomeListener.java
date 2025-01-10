@@ -11,6 +11,7 @@ import com.company.system.service.CategoryService;
 import com.company.system.service.LoanService;
 import com.company.system.view.CategoryBooks;
 import com.company.system.view.LibraryHome;
+import com.company.system.view.TableModel;
 import com.company.system.view.components.Utils;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -27,12 +28,13 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Ronald Seminario Santana
  */
-public class LibraryHomeListener implements ActionListener, MouseListener, ComponentListener, KeyListener {
+public class LibraryHomeListener implements ActionListener, MouseListener, ComponentListener, KeyListener, TableModel {
 
     private final LibraryHome frmLibraryHome;
     private final BookService bookService;
@@ -49,6 +51,7 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
         this.categoryService = new CategoryService();
         this.publisherService = new PublisherService();
         this.loanService = new LoanService(); // Inicialización de LoanService
+        frmLibraryHome.setStudent(userService.getLoggedUser(94123L));
         addListeners();
     }
 
@@ -166,10 +169,10 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
             frmLibraryHome.close();
         } else if (e.getSource() == frmLibraryHome.getLblHistorialDePrestamos()) {
             // Instanciar y crear la tabla para mostrar el historial de préstamos
-            List<Loan> loanHistory = loanService.getLoansByUser(userService.getLoggedUser(someUserId));  // Asumiendo que tienes un identificador de usuario
+            List<Loan> loanHistory = loanService.getLoansByUser(frmLibraryHome.getStudent());  // Asumiendo que tienes un identificador de usuario
             
             // Crear el modelo de la tabla
-            LoanTableModel loanTableModel = new LoanTableModel(loanHistory);  // Asegúrate de tener el LoanTableModel implementado
+            DefaultTableModel loanTableModel = getTableModelLoans(frmLibraryHome.getColumnNames(), loanHistory); // Asegúrate de tener el LoanTableModel implementado
             
             // Crear la tabla con el modelo
             JTable loanHistoryTable = new JTable(loanTableModel);

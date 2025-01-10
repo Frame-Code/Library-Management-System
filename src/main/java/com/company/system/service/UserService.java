@@ -14,9 +14,9 @@ import com.company.system.model.User;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class UserService {
-    private UserDao userDao;
-    private RoleDao roleDao;
-    private EncryptationService encrypte;
+    private final UserDao userDao;
+    private final RoleDao roleDao;
+    private final EncryptationService encrypte;
     public UserService() {
         this.userDao = new UserDaoImpl();
         this.roleDao = new RoleDaoImpl();
@@ -25,11 +25,7 @@ public class UserService {
 
     private boolean userExists(Long idCard, String role) {
         User user = userDao.findByIdCard(idCard, role);
-        if(user != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return user != null;
     }
 
     public boolean librarianExists(Long idCard) {

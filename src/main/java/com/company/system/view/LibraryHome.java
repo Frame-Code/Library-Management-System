@@ -26,15 +26,16 @@ import javax.swing.JTextField;
  * @author artist-code (Daniel Mora Cantillo)
  */
 public class LibraryHome extends javax.swing.JFrame {
-    private final User user;
+    private User student;
     private JPopupMenu menuContextual;
     private ArrayList<JMenuItem> menuItems;
+    private String columnNames[] = new String[] {"Titulo libro", "Fecha devolucion esperado", "Ha sido devuelto?", "fecha registro", "Ha soliticado prorroga?"};
     
     public LibraryHome(User user) {
         //this.user = user;
-        this.user = new User(); //Eliminar esta linea
-        this.user.setNames("ejemplo");  //Eliminar esta linea
-        this.user.setSurNames("ejemplo1"); //eliminar esta linea
+        this.student = new User(); //Eliminar esta linea
+        this.student.setNames("ejemplo");  //Eliminar esta linea
+        this.student.setSurNames("ejemplo1"); //eliminar esta linea
         initComponents();
         setResizable(true);
         setLocationRelativeTo(null);
@@ -530,6 +531,19 @@ public class LibraryHome extends javax.swing.JFrame {
 
     public JTextField getTxtPatternToSearch() {
         return txtPatternToSearch;
+    }
+
+    public User getStudent() {
+        return student;
+    }
+
+    public String[] getColumnNames() {
+        return columnNames;
+    }
+    
+    //ELiminar este setter porque el estudiante ya estara cargado y no cambiara//
+    public void setStudent(User student) {
+        this.student = student;
     }
     
 
