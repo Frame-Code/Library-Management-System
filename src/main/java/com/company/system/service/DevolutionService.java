@@ -19,10 +19,6 @@ public class DevolutionService {
         this.devolutionDao = new DevolutionDaoImpl();
     }
 
-    public Devolution getDevolutionByLoan(Loan loan) {
-        return devolutionDao.findDevolutionByLoan(loan);
-    }
-
     public List<Devolution> getDevolutionsByStudent(User student) {
         return devolutionDao.findByStudent(student);
     }

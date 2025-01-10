@@ -14,6 +14,7 @@ import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
 
 import com.company.system.dao.interfaces.LoanDao;
+import com.company.system.model.Book;
 import com.company.system.model.Loan;
 import com.company.system.model.User;
 import javax.persistence.NoResultException;
@@ -177,32 +178,52 @@ public class LoanDaoImpl implements LoanDao {
     }
 
     /**
-     * Explicacion JPQL: 
-     * Selecciona el titulo, isbn del libro y hace un conteo de los prestamos
-     * El titulo y el isbn son obtenidos por el JOIN a traves la entidad Loan (FROM Loan l JOIN l.book b)
-     * La condicion WHERE l.deleted = 0 es para obtener solo los prestamos que no han sido eliminados
-     * 
-     * Agrupa por titulo y isbn para que el conteo sea por cada libro que ha sido prestado
-     * Ordena las filas por los valores de la columna totalLoans de forma descendente
-     * 
-     * La consulta devuelve una lista de arreglos de objetos, 
-     * donde cada arreglo contiene el titulo, isbn y total de prestamos en ese orden
+     * Explicacion JPQL: Selecciona el titulo, isbn del libro y hace un conteo
+     * de los prestamos El titulo y el isbn son obtenidos por el JOIN a traves
+     * la entidad Loan (FROM Loan l JOIN l.book b) La condicion WHERE l.deleted
+     * = 0 es para obtener solo los prestamos que no han sido eliminados
+     *
+     * Agrupa por titulo y isbn para que el conteo sea por cada libro que ha
+     * sido prestado Ordena las filas por los valores de la columna totalLoans
+     * de forma descendente
+     *
+     * La consulta devuelve una lista de arreglos de objetos, donde cada arreglo
+     * contiene el titulo, isbn y total de prestamos en ese orden
      */
     @Override
     public List<Object[]> findMostBorrowedBooks(int limit) {
         EntityManager em = getEntityManager();
-        String jpql = "SELECT b.title, b.isbn, COUNT(l) AS totalLoans " +
-                "FROM Loan l " +
-                "JOIN l.book b " +
-                "WHERE l.deleted = 0 " +
-                "GROUP BY b.title, b.isbn " +
-                "ORDER BY totalLoans DESC";
+        String jpql = "SELECT b.title, b.isbn, COUNT(l) AS totalLoans "
+                + "FROM Loan l "
+                + "JOIN l.book b "
+                + "WHERE l.deleted = 0 "
+                + "GROUP BY b.title, b.isbn "
+                + "ORDER BY totalLoans DESC";
         TypedQuery<Object[]> query = em.createQuery(jpql, Object[].class);
         query.setMaxResults(limit);
         List<Object[]> loans;
         try {
             loans = query.getResultList();
             return loans;
+        } catch (IllegalStateException | PersistenceException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public Loan findLoanForDevolution(User student, Book book) {
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT l FROM Loan l WHERE l.deleted=0 AND l.book = :book "
+                + "AND l.user = :user AND l.returned = 0 AND l.devolution IS NULL";
+        TypedQuery<Loan> query = em.createQuery(jpql, Loan.class);
+        query.setParameter("user", student);
+        query.setParameter("book", book);
+        Loan loan;
+        try {
+            loan = query.getSingleResult();
+            return loan;
         } catch (IllegalStateException | PersistenceException e) {
             return null;
         } finally {

@@ -10,6 +10,7 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
@@ -28,32 +29,6 @@ public class DevolutionDaoImpl implements DevolutionDao {
 
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
-    }
-
-    @Override
-    public Devolution findDevolutionByLoan(Loan loan) {
-        EntityManager em = getEntityManager();
-        String jpql = "SELECT d FROM Devolution d"
-                + " WHERE d.user = :user"
-                + " AND d.book = :book"
-                + " AND EXISTS("
-                + " SELECT l FROM Loan l"
-                + " WHERE l.book = d.book"
-                + " AND l.user = d.user"
-                + " AND l.returned = 1"
-                + ")";
-        TypedQuery<Devolution> query = em.createQuery(jpql, Devolution.class);
-        query.setParameter("user", loan.getUser());
-        query.setParameter("book", loan.getBook());
-        Devolution devolution;
-        try {
-            devolution = query.getSingleResult();
-            return devolution;
-        } catch (NoResultException e) {
-            return null;
-        } finally {
-            em.close();
-        }
     }
 
     @Override

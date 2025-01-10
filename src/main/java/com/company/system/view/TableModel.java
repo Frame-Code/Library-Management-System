@@ -4,8 +4,8 @@ import com.company.system.model.Devolution;
 import com.company.system.model.Fine;
 import com.company.system.model.Loan;
 import com.company.system.service.DevolutionService;
+import com.company.system.service.LoanService;
 
-import java.time.LocalDate;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -49,11 +49,11 @@ public interface TableModel {
 
     }
     
-    default DefaultTableModel getTableModelLoans(String columnNames[], List<Loan> loans, DevolutionService devolutionService) {
+    default DefaultTableModel getTableModelLoans(String columnNames[], List<Loan> loans) {
         DefaultTableModel tableModel = model();
         tableModel.setColumnIdentifiers(columnNames);
         loans.forEach(loan -> {
-            Devolution devolution = devolutionService.getDevolutionByLoan(loan);
+            Devolution devolution = loan.getDevolution();
             Object obj[] = {loan.getIdLoan(), loan.getRegistrationDate().toString(), (loan.isReturned())? "Si" : "No", 
             (devolution != null)? devolution.getRegistrationDate().toString() : "----", loan.getBook().getTitle(), loan.getBook().getIsbn()};
             tableModel.addRow(obj);

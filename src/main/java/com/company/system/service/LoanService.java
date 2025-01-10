@@ -37,6 +37,10 @@ public class LoanService {
         return loanDao.findByUser(user);
     }
     
+    public boolean deleteLoan(Long idLoan) {
+        return loanDao.deleteByID(idLoan);
+    }
+    
     //Este metodo verifica que el usuario si tiene multas, estas sean menores que 4 y su fecha de finalizacion haya pasado
     public boolean checkFinesToRequestExtension(User user) {
         LinkedList<Fine> fines = new LinkedList<>(fineDao.findByUser(user));

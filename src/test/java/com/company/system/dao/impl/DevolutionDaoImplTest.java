@@ -34,14 +34,13 @@ public class DevolutionDaoImplTest {
     void testCreate() {
         User student = userDao.findByIdCard(9412392L);
         Book book = bookDao.findByISBN("JPKL-5");
-        Devolution devolution = new Devolution(student, book, LocalDate.now(), 
+        Loan loan = loanDao.findById(14L);
+        Devolution devolution = new Devolution(student, book, loan, LocalDate.now(), 
                 "Admin", null, null, false);
-        System.out.println(devolutionDao.create(devolution));
+        loan.setReturned(true);
+        loan.setDevolution(devolution);
+        loanDao.update(loan);
+        
     }
     
-    @Test
-    void testGetDevolutionByLoan() {
-        Loan loan = loanDao.findById(10L);
-        System.out.println(devolutionDao.findDevolutionByLoan(loan));
-    }
 }
