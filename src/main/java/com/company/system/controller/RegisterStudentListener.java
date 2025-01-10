@@ -95,9 +95,9 @@ public class RegisterStudentListener implements ActionListener, MouseListener, K
         }
     }
     
-    private int convertNumber(String mes) {
+    private int convertNumber(String month) {
         int numberMonth;
-        switch (mes.toLowerCase()) {
+        switch (month.toLowerCase()) {
             case "enero" -> numberMonth = 1;
             case "febrero" -> numberMonth = 2;
             case "marzo" -> numberMonth = 3;
@@ -110,7 +110,7 @@ public class RegisterStudentListener implements ActionListener, MouseListener, K
             case "octubre" -> numberMonth = 10;
             case "noviembre" -> numberMonth = 11;
             case "diciembre" -> numberMonth = 12;
-            default -> throw new IllegalArgumentException("Mes inválido: " + mes);
+            default -> throw new IllegalArgumentException("Mes inválido: " + month);
         }
         return numberMonth;
     }

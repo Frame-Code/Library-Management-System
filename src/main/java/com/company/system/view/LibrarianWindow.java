@@ -608,7 +608,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
     public void openRegisterBook(User librarian, BookService bookService, UserService userService,
             LoanService loanService) {
         registerBook = new RegisterBook();
-        new RegisterBookListener(registerBook);
+        new RegisterBookListener(registerBook, bookService);
         uploadPanel(registerBook);
     }
 
