@@ -46,6 +46,18 @@ public class Devolution implements Serializable{
     public Devolution() {
     }
 
+    public Devolution(Long idDovolution, User user, Book book, LocalDate registrationDate, String registrationName,
+            LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
+        this.idDovolution = idDovolution;
+        this.user = user;
+        this.book = book;
+        this.registrationDate = registrationDate;
+        this.registrationName = registrationName;
+        this.registrationUpdateDate = registrationUpdateDate;
+        this.registrationUpdateName = registrationUpdateName;
+        this.deleted = deleted;
+    }
+
     public Devolution(User user, Book book, LocalDate registrationDate, String registrationName,
             LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
         this.user = user;

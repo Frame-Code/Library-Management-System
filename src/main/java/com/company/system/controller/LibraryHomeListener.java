@@ -4,12 +4,15 @@ import com.company.system.service.PublisherService;
 import com.company.system.service.UserService;
 import com.company.system.model.Book;
 import com.company.system.model.Category;
+import com.company.system.model.Loan;
 import com.company.system.model.Publisher;
 import com.company.system.service.BookService;
 import com.company.system.service.CategoryService;
+import com.company.system.service.LoanService;
 import com.company.system.view.CategoryBooks;
 import com.company.system.view.LibraryHome;
 import com.company.system.view.components.Utils;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
@@ -19,8 +22,11 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
+import javax.swing.JInternalFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -33,6 +39,7 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
     private final CategoryService categoryService;
     private final PublisherService publisherService;
     private final UserService userService;
+    private final LoanService loanService; // Instancia de LoanService
     private CategoryBooks categoryBooksInternalFrm;
 
     public LibraryHomeListener(LibraryHome frmLibraryHome, UserService userService) {
@@ -41,6 +48,7 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
         this.bookService = new BookService();
         this.categoryService = new CategoryService();
         this.publisherService = new PublisherService();
+        this.loanService = new LoanService(); // Inicialización de LoanService
         addListeners();
     }
 
@@ -156,6 +164,26 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
         } else if (e.getSource() == frmLibraryHome.getPnlShutdown()) {
             frmLibraryHome.openLoginStudent(userService);
             frmLibraryHome.close();
+        } else if (e.getSource() == frmLibraryHome.getLblHistorialDePrestamos()) {
+            // Instanciar y crear la tabla para mostrar el historial de préstamos
+            List<Loan> loanHistory = loanService.getLoansByUser(userService.getLoggedUser(someUserId));  // Asumiendo que tienes un identificador de usuario
+            
+            // Crear el modelo de la tabla
+            LoanTableModel loanTableModel = new LoanTableModel(loanHistory);  // Asegúrate de tener el LoanTableModel implementado
+            
+            // Crear la tabla con el modelo
+            JTable loanHistoryTable = new JTable(loanTableModel);
+            
+            // Crear un JInternalFrame para mostrar la tabla
+            JInternalFrame loanHistoryInternalFrame = new JInternalFrame("Historial de Préstamos", true, true, true, true);
+            loanHistoryInternalFrame.setLayout(new BorderLayout());
+            loanHistoryInternalFrame.add(new JScrollPane(loanHistoryTable), BorderLayout.CENTER);
+            loanHistoryInternalFrame.setSize(frmLibraryHome.getDesktopPane().getSize());
+            
+            // Mostrar el InternalFrame en el DesktopPane
+            frmLibraryHome.clearDesltopPane();  // Limpiar el pane de cualquier contenido anterior
+            frmLibraryHome.addToDesktopPane(loanHistoryInternalFrame);  // Agregar el JInternalFrame al DesktopPane
+            loanHistoryInternalFrame.setVisible(true);  // Hacerlo visible
         }
     }
 
@@ -193,7 +221,7 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
             frmLibraryHome.changeColorPanel(Utils.pnlExited, frmLibraryHome.getPnlRequest());
         } else if (e.getSource() == frmLibraryHome.getBtnSearch()) {
             frmLibraryHome.mouseEvent(frmLibraryHome.getBtnSearch(), Utils.btnEntered);
-        } 
+        }
     }
 
     @Override

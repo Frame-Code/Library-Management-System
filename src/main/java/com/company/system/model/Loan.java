@@ -53,6 +53,21 @@ public class Loan implements Serializable{
 
     public Loan() {
     }
+    
+    public Loan(Long idLoan, User user, Book book, LocalDate devolutionDate, boolean returned,
+            LocalDate registrationDate, String registrationName, LocalDate registrationUpdateDate,
+            String registrationUpdateName, boolean deleted) {
+        this.idLoan = idLoan;
+        this.user = user;
+        this.book = book;
+        this.devolutionDate = devolutionDate;
+        this.returned = returned;
+        this.registrationDate = registrationDate;
+        this.registrationName = registrationName;
+        this.registrationUpdateDate = registrationUpdateDate;
+        this.registrationUpdateName = registrationUpdateName;
+        this.deleted = deleted;
+    }
 
     public Loan(User user, Book book, LocalDate devolutionDate, boolean returned, LocalDate registrationDate,
             String registrationName, LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
@@ -66,6 +81,7 @@ public class Loan implements Serializable{
         this.registrationUpdateName = registrationUpdateName;
         this.deleted = deleted;
     }
+    
 
     public Long getIdLoan() {
         return idLoan;
