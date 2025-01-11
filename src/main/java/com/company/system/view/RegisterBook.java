@@ -21,6 +21,8 @@ public class RegisterBook extends javax.swing.JPanel {
     
     public final String errorFormat = "Error: Escribe correctamente el campo";
     public final String errorEmptyFields = "Error: no pueden haber campos vacíos";
+    public static final String typeRegisterNew = "Registrar nuevo libro";
+    public static final String typeShowBook = "ver libros registrados";
     /**
      * Creates new form RegisterBook
      */
@@ -402,8 +404,8 @@ public class RegisterBook extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRegisterBook, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(311, 311, 311))
+                .addComponent(btnRegisterBook, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(295, 295, 295))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

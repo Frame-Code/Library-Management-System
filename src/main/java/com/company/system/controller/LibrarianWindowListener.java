@@ -6,6 +6,7 @@ import com.company.system.service.FineService;
 import com.company.system.service.LoanService;
 import com.company.system.service.UserService;
 import com.company.system.view.LibrarianWindow;
+import com.company.system.view.RegisterBook;
 import com.company.system.view.RegisterFine;
 import com.company.system.view.RegisterLoan;
 import com.company.system.view.components.Utils;
@@ -86,6 +87,12 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
                 frmLibraianWindow.openHistoryLoans(userService, loanService);
             }
             frmLibraianWindow.getPnlRegisterLoan().setBackground(Utils.pnlEntered);
+        /////////////////////////////////////////////////////////////////////////////////
+        } else if(contenedor.equals(LibrarianWindow.optionManageBooks)) {
+            if(source.getText().equals(RegisterBook.typeRegisterNew)) {
+                frmLibraianWindow.openRegisterBook(librarian, bookService, userService, loanService);
+            }
+            frmLibraianWindow.getPnlManageBooks().setBackground(Utils.pnlEntered);
         }
     }
 
@@ -118,6 +125,13 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
                 item.addActionListener(this);
             });
             frmLibraianWindow.getMenuContextual().show(frmLibraianWindow.getPnlManageFine(), e.getX(), e.getY());
+        } else if (e.getSource() == frmLibraianWindow.getPnlManageBooks()|| e.getSource() == frmLibraianWindow.getLblManageBooks()) {
+            contenedor = frmLibraianWindow.getLblManageBooks().getText();
+            frmLibraianWindow.uploadListMenuContext();
+            frmLibraianWindow.getMenuItems().forEach((item) -> {
+                item.addActionListener(this);
+            });
+            frmLibraianWindow.getMenuContextual().show(frmLibraianWindow.getPnlManageBooks(), e.getX(), e.getY());
         }
     }
 

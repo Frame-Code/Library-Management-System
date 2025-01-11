@@ -652,6 +652,16 @@ public class LibrarianWindow extends javax.swing.JFrame {
             menuContextual.add(menu);
         });
     }
+    
+    public void uploadListMenuContext() {
+        menuContextual = new JPopupMenu();
+        menuItems = new ArrayList<>();
+        menuItems.add(new JMenuItem(RegisterBook.typeRegisterNew));
+        menuItems.add(new JMenuItem(RegisterBook.typeShowBook));
+        menuItems.forEach(menu -> {
+            menuContextual.add(menu);
+        });
+    }
 
     public void uploadListMenuLoans() {
         menuContextual = new JPopupMenu();
