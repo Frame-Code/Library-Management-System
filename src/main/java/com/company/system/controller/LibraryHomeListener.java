@@ -28,11 +28,15 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -59,7 +63,7 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
         this.categoryService = new CategoryService();
         this.publisherService = new PublisherService();
         this.loanService = new LoanService(); // Inicialización de LoanService
-        frmLibraryHome.setStudent(userService.getLoggedUser(94123L));
+        frmLibraryHome.setStudent(userService.getLoggedUser(9412392L));
         addListeners();
     }
 
@@ -127,115 +131,112 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == frmLibraryHome.getLblHistorialDePrestamos()) {
-            // Instanciar y crear la tabla para mostrar el historial de préstamos
-            List<Loan> loanHistory = loanService.getLoansByUser(frmLibraryHome.getStudent());  // Asumiendo que tienes un identificador de usuario
+public void mouseClicked(MouseEvent e) {
+    if (e.getSource() == frmLibraryHome.getLblHistorialDePrestamos()) {
+        // Instanciar y crear la tabla para mostrar el historial de préstamos
+        List<Loan> loanHistory = loanService.getLoansByUser(frmLibraryHome.getStudent());
 
-            // Crear el modelo de la tabla
-            DefaultTableModel loanTableModel = getTableModelLoans(frmLibraryHome.getColumnNames(), loanHistory); // Asegúrate de tener el LoanTableModel implementado
+        // Crear el modelo de la tabla
+        DefaultTableModel loanTableModel = getTableModelLoans(frmLibraryHome.getColumnNames(), loanHistory);
 
-            // Crear la tabla con el modelo
-            JTable loanHistoryTable = new JTable(loanTableModel);
+        // Crear la tabla con el modelo
+        JTable loanHistoryTable = new JTable(loanTableModel);
 
-            // Crear barras de texto o campos de entrada
-            JPanel formPanel = new JPanel();
-            formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
+        // Crear barras de texto o campos de entrada
+        JPanel formPanel = new JPanel();
+        formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
 
-            // Campos de entrada para el listado de libros o recursos prestados
-            JTextField titleField = new JTextField(20);
-            JTextField authorsField = new JTextField(20);
-            JTextField categoryField = new JTextField(20);
-            JTextField loanDateField = new JTextField(20);
-            JTextField returnDateField = new JTextField(20);
-            JLabel daysRemainingLabel = new JLabel("Días restantes: 0");
-            JTextField renewalsField = new JTextField(20);
-            JTextField renewalHistoryField = new JTextField(20);
+        // Campos de entrada para la información del préstamo
+        JTextField titleField = new JTextField(20);
+        JTextField authorsField = new JTextField(20);
+        JTextField categoryField = new JTextField(20);
+        JTextField loanDateField = new JTextField(20);
+        JTextField returnDateField = new JTextField(20);
+        JLabel daysRemainingLabel = new JLabel("Días restantes: 0");
+        JCheckBox returnedCheckBox = new JCheckBox("¿Devuelto?");
 
-            // Si hay historial de préstamos, completamos los campos
-            if (!loanHistory.isEmpty()) {
-                Loan loan = loanHistory.get(0);  // Supongamos que estamos mostrando el primer préstamo como ejemplo
+        // Si hay historial de préstamos, completamos los campos
+        if (!loanHistory.isEmpty()) {
+            Loan loan = loanHistory.get(0);
 
-                // Mostrar el título del libro
-                titleField.setText(loan.getBook().getTitle());
+            // Mostrar el título del libro
+            titleField.setText(loan.getBook().getTitle());
 
-                // Obtener y mostrar los autores
-                if (loan.getBook().getAuthors() != null && !loan.getBook().getAuthors().isEmpty()) {
-                    String authors = loan.getBook().getAuthors().stream()
-                            .map(Author::getNames) // Usamos getNames() en lugar de getName()
-                            .collect(Collectors.joining(", "));  // Unimos los nombres con coma
-                    authorsField.setText(authors);
-                } else {
-                    authorsField.setText("No authors available");
-                }
-
-                // Obtener y mostrar la categoría
-                if (loan.getBook().getCategory() != null) {
-                    categoryField.setText(loan.getBook().getCategory().getName());  // Asumimos que Category tiene getName()
-                } else {
-                    categoryField.setText("No category available");
-                }
-
-                // Mostrar las fechas de préstamo y devolución
-                loanDateField.setText(loan.getRegistrationDate().toString());  // Usamos la fecha de registro como fecha de préstamo
-                returnDateField.setText(loan.getDevolutionDate().toString());
-
-                // Mostrar el número de renovaciones
-                renewalsField.setText(String.valueOf(loan.isReturned() ? 0 : 1)); // Suponiendo que 1 significa que ha sido renovado
-                renewalHistoryField.setText(String.valueOf(loan.getIdLoan())); // Esto es solo un ejemplo. Si tienes un historial de renovaciones, ajústalo aquí
-
-                // Contar los días restantes para la devolución
-                long daysRemaining = ChronoUnit.DAYS.between(LocalDate.now(), loan.getDevolutionDate());
-                daysRemainingLabel.setText("Días restantes: " + daysRemaining);
+            // Obtener y mostrar los autores
+            if (loan.getBook().getAuthors() != null && !loan.getBook().getAuthors().isEmpty()) {
+                String authors = loan.getBook().getAuthors().stream()
+                        .map(Author::getNames)
+                        .collect(Collectors.joining(", "));
+                authorsField.setText(authors);
+            } else {
+                authorsField.setText("No authors available");
             }
 
-            // Agregar los campos al formulario
-            formPanel.add(new JLabel("Título:"));
-            formPanel.add(titleField);
-            formPanel.add(new JLabel("Autor(es):"));
-            formPanel.add(authorsField);
-            formPanel.add(new JLabel("Categoría/Temática:"));
-            formPanel.add(categoryField);
-            formPanel.add(new JLabel("Fecha de Préstamo:"));
-            formPanel.add(loanDateField);
-            formPanel.add(new JLabel("Fecha de Devolución:"));
-            formPanel.add(returnDateField);
-            formPanel.add(daysRemainingLabel);  // Etiqueta para los días restantes
-            formPanel.add(new JLabel("Renovaciones:"));
-            formPanel.add(renewalsField);
-            formPanel.add(new JLabel("Historial de Renovaciones:"));
-            formPanel.add(renewalHistoryField);
+            // Obtener y mostrar la categoría
+            if (loan.getBook().getCategory() != null) {
+                categoryField.setText(loan.getBook().getCategory().getName());
+            } else {
+                categoryField.setText("No category available");
+            }
 
-            // Crear un JInternalFrame para mostrar la tabla y el formulario
-            JInternalFrame loanHistoryInternalFrame = new JInternalFrame("Historial de Préstamos", true, true, true, true);
-            loanHistoryInternalFrame.setLayout(new BorderLayout());
+            // Mostrar las fechas de préstamo y devolución
+            loanDateField.setText(loan.getRegistrationDate().toString());
+            returnDateField.setText(loan.getDevolutionDate().toString());
 
-            // Crear un panel para la tabla y el formulario
-            JPanel mainPanel = new JPanel();
-            mainPanel.setLayout(new BorderLayout());
+            // Mostrar si el préstamo fue devuelto
+            returnedCheckBox.setSelected(loan.isReturned());
 
-            // Crear un panel para contener la tabla
-            JPanel tablePanel = new JPanel(new BorderLayout());
-            tablePanel.add(new JScrollPane(loanHistoryTable), BorderLayout.CENTER);
-
-            // Agregar el panel de la tabla al panel principal
-            mainPanel.add(tablePanel, BorderLayout.CENTER);
-
-            // Agregar el formulario a la derecha del panel principal
-            mainPanel.add(formPanel, BorderLayout.EAST);
-
-            // Agregar el panel principal al InternalFrame
-            loanHistoryInternalFrame.add(mainPanel, BorderLayout.CENTER);
-
-            // Establecer el tamaño del InternalFrame
-            loanHistoryInternalFrame.setSize(frmLibraryHome.getDesktopPane().getSize());
-
-            // Mostrar el InternalFrame en el DesktopPane
-            frmLibraryHome.clearDesltopPane();  // Limpiar el pane de cualquier contenido anterior
-            frmLibraryHome.addToDesktopPane(loanHistoryInternalFrame);  // Agregar el JInternalFrame al DesktopPane
-            loanHistoryInternalFrame.setVisible(true);  // Hacerlo visible
+            // Calcular y mostrar los días restantes para devolución
+            long daysRemaining = ChronoUnit.DAYS.between(LocalDate.now(), loan.getDevolutionDate());
+            daysRemainingLabel.setText("Días restantes: " + daysRemaining);
         }
+
+        // Agregar los campos al formulario
+        formPanel.add(new JLabel("Título:"));
+        formPanel.add(titleField);
+        formPanel.add(new JLabel("Autor(es):"));
+        formPanel.add(authorsField);
+        formPanel.add(new JLabel("Categoría/Temática:"));
+        formPanel.add(categoryField);
+        formPanel.add(new JLabel("Fecha de Préstamo:"));
+        formPanel.add(loanDateField);
+        formPanel.add(new JLabel("Fecha de Devolución:"));
+        formPanel.add(returnDateField);
+        formPanel.add(daysRemainingLabel);
+        formPanel.add(new JLabel("¿Devuelto?"));
+        formPanel.add(returnedCheckBox);
+
+        // Crear un JInternalFrame para mostrar la tabla y el formulario
+        JInternalFrame loanHistoryInternalFrame = new JInternalFrame("Historial de Préstamos", true, true, true, true);
+        loanHistoryInternalFrame.setLayout(new BorderLayout());
+
+        // Crear un panel para la tabla y el formulario
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
+
+        // Crear un panel para contener la tabla
+        JPanel tablePanel = new JPanel(new BorderLayout());
+        tablePanel.add(new JScrollPane(loanHistoryTable), BorderLayout.CENTER);
+
+        // Agregar el panel de la tabla al panel principal
+        mainPanel.add(tablePanel, BorderLayout.CENTER);
+
+        // Agregar el formulario a la derecha del panel principal
+        mainPanel.add(formPanel, BorderLayout.EAST);
+
+        // Agregar el panel principal al InternalFrame
+        loanHistoryInternalFrame.add(mainPanel, BorderLayout.CENTER);
+
+        // Establecer el tamaño del InternalFrame
+        loanHistoryInternalFrame.setSize(frmLibraryHome.getDesktopPane().getSize());
+
+        // Mostrar el InternalFrame en el DesktopPane
+        frmLibraryHome.clearDesltopPane();
+        frmLibraryHome.addToDesktopPane(loanHistoryInternalFrame);
+        loanHistoryInternalFrame.setVisible(true);
     }
+}
+
 
     @Override
     public void mouseEntered(MouseEvent e) {
