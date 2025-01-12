@@ -53,13 +53,15 @@ public class RegisterFine extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         areaMessage = new javax.swing.JTextArea();
 
+        setPreferredSize(new java.awt.Dimension(1024, 738));
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lblWelcome1.setBackground(new java.awt.Color(255, 255, 255));
         lblWelcome1.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 18)); // NOI18N
         lblWelcome1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblWelcome1.setText("Registrar nueva multa");
-        lblWelcome1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "", javax.swing.border.TitledBorder.TRAILING, javax.swing.border.TitledBorder.BELOW_BOTTOM, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
+        lblWelcome1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "", javax.swing.border.TitledBorder.TRAILING, javax.swing.border.TitledBorder.BELOW_BOTTOM, new java.awt.Font("JetBrains Mono", 0, 12), new java.awt.Color(204, 204, 204))); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(241, 241, 241));
 

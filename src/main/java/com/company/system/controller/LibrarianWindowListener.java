@@ -91,6 +91,8 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
         } else if(contenedor.equals(LibrarianWindow.optionManageBooks)) {
             if(source.getText().equals(RegisterBook.typeRegisterNew)) {
                 frmLibraianWindow.openRegisterBook(librarian, bookService, userService, loanService);
+            } else if(source.getText().equals(RegisterBook.typeShowBook)) {
+                frmLibraianWindow.openFindBook(bookService);
             }
             frmLibraianWindow.getPnlManageBooks().setBackground(Utils.pnlEntered);
         }
@@ -105,9 +107,6 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
                 item.addActionListener(this);
             });
             frmLibraianWindow.getMenuContextual().show(frmLibraianWindow.getPnlRegisterLoan(), e.getX(), e.getY());
-        } else if (e.getSource() == frmLibraianWindow.getPnlManageBooks() || e.getSource() == frmLibraianWindow.getLblManageBooks()) {
-            frmLibraianWindow.openRegisterBook(librarian, bookService, userService, loanService);
-            frmLibraianWindow.getPnlManageBooks().setBackground(Utils.pnlEntered);
         } else if (e.getSource() == frmLibraianWindow.getPnlGenerateReports() || e.getSource() == frmLibraianWindow.getLblManageReports()) {
             contenedor = frmLibraianWindow.getLblManageReports().getText();
             frmLibraianWindow.uploadListMenuReports();
@@ -116,8 +115,6 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
             });
             frmLibraianWindow.getMenuContextual().show(frmLibraianWindow.getPnlGenerateReports(), e.getX(), e.getY());
             frmLibraianWindow.getPnlGenerateReports().setBackground(Utils.pnlEntered);
-        } else if (e.getSource() == frmLibraianWindow.getPnlShutdown() || e.getSource() == frmLibraianWindow.getLblShutdown()) {
-            frmLibraianWindow.dispose();
         } else if (e.getSource() == frmLibraianWindow.getPnlManageFine() || e.getSource() == frmLibraianWindow.getLblManageFine()) {
             contenedor = frmLibraianWindow.getLblManageFine().getText();
             frmLibraianWindow.uploadListMenuFines();
@@ -125,13 +122,16 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
                 item.addActionListener(this);
             });
             frmLibraianWindow.getMenuContextual().show(frmLibraianWindow.getPnlManageFine(), e.getX(), e.getY());
+            
         } else if (e.getSource() == frmLibraianWindow.getPnlManageBooks()|| e.getSource() == frmLibraianWindow.getLblManageBooks()) {
             contenedor = frmLibraianWindow.getLblManageBooks().getText();
-            frmLibraianWindow.uploadListMenuContext();
+            frmLibraianWindow.uploadListMenuBooks();
             frmLibraianWindow.getMenuItems().forEach((item) -> {
                 item.addActionListener(this);
             });
             frmLibraianWindow.getMenuContextual().show(frmLibraianWindow.getPnlManageBooks(), e.getX(), e.getY());
+        } else if (e.getSource() == frmLibraianWindow.getPnlShutdown() || e.getSource() == frmLibraianWindow.getLblShutdown()) {
+            frmLibraianWindow.dispose();
         }
     }
 

@@ -14,7 +14,7 @@ import java.time.LocalDate;
 
 /**
  *
- * @author HP240
+ * @author Joel Pazmiño
  */
 public class RegisterBookListener implements ActionListener, MouseListener, KeyListener{
     private RegisterBook pnlRegisterBook;
