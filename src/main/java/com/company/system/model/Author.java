@@ -85,6 +85,10 @@ public class Author {
         this.registrationUpdateName = registrationUpdateName;
         this.deleted = deleted;
     }
+    
+    public String getFullNames() {
+        return getNames() + " " + getSurNames();
+    }
 
     public Long getIdAuthor() {
         return idAuthor;

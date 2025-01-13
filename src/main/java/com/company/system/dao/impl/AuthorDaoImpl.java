@@ -136,4 +136,21 @@ public class AuthorDaoImpl implements AuthorDao {
         return update(author);
     }
 
+    @Override
+    public List<Author> findByName(String name) {
+        EntityManager em = getEntityManager();
+        String jpql = "SELECT a FROM Author a WHERE (LOWER(a.names) LIKE :name OR LOWER(a.surNames) LIKE :name) AND a.deleted = 0";
+        TypedQuery<Author> query = em.createQuery(jpql, Author.class);
+        query.setParameter("name", "%" + name.toLowerCase() + "%");
+        List<Author> authors;
+        try {
+            authors = query.getResultList();
+            return authors;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
 }

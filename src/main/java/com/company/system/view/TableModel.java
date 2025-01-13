@@ -1,5 +1,6 @@
 package com.company.system.view;
 
+import com.company.system.model.Author;
 import com.company.system.model.Devolution;
 import com.company.system.model.Fine;
 import com.company.system.model.Loan;
@@ -24,6 +25,24 @@ public interface TableModel {
         };
     }
 
+    default DefaultTableModel selectionTableModel() {
+        return new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return column == 0;
+            }
+
+            @Override
+            public Class<?> getColumnClass(int column) {
+                // La primera columna tendrá CheckBoxes, por lo tanto tipo Boolean
+                if (column == 0) {
+                    return Boolean.class;
+                }
+                return super.getColumnClass(column);
+            }
+        };
+    }
+
     default DefaultTableModel deleteRows(TableModel tableModel) {
         DefaultTableModel model = (DefaultTableModel) tableModel;
         model.setRowCount(0);
@@ -44,23 +63,34 @@ public interface TableModel {
             Object obj[] = {fine.getIdFine(), fine.getRegistrationDate().toString(), fine.getMessage(), fine.getDeadline().toString()};
             tableModel.addRow(obj);
         });
-        
+
         return tableModel;
 
     }
-    
+
     default DefaultTableModel getTableModelLoans(String columnNames[], List<Loan> loans) {
         DefaultTableModel tableModel = model();
         tableModel.setColumnIdentifiers(columnNames);
         loans.forEach(loan -> {
             Devolution devolution = loan.getDevolution();
-            Object obj[] = {loan.getIdLoan(), loan.getRegistrationDate().toString(), (loan.isReturned())? "Si" : "No", 
-            (devolution != null)? devolution.getRegistrationDate().toString() : "----", loan.getBook().getTitle(), loan.getBook().getIsbn()};
+            Object obj[] = {loan.getIdLoan(), loan.getRegistrationDate().toString(), (loan.isReturned()) ? "Si" : "No",
+                (devolution != null) ? devolution.getRegistrationDate().toString() : "----", loan.getBook().getTitle(), loan.getBook().getIsbn()};
             tableModel.addRow(obj);
         });
-        
+
         return tableModel;
 
+    }
+
+    default DefaultTableModel getTableModelAuthors(String columnNames[], List<Author> authors) {
+        DefaultTableModel tableModel = selectionTableModel();
+        tableModel.setColumnIdentifiers(columnNames);
+        authors.forEach(author -> {
+            Object obj[] = {false, author.getIdAuthor(), author.getFullNames()};
+            tableModel.addRow(obj);
+        });
+
+        return tableModel;
     }
 
 }

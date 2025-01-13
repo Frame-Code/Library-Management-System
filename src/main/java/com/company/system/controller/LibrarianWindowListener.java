@@ -90,7 +90,7 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
         
         } else if(contenedor.equals(LibrarianWindow.optionManageBooks)) {
             if(source.getText().equals(RegisterBook.typeRegisterNew)) {
-                frmLibraianWindow.openRegisterBook(librarian, bookService, userService, loanService);
+                frmLibraianWindow.openRegisterBook(librarian, bookService);
             } else if(source.getText().equals(RegisterBook.typeShowBook)) {
                 frmLibraianWindow.openFindBook(bookService);
             }

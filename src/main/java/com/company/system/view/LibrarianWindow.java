@@ -8,14 +8,18 @@ import com.company.system.controller.RegisterFineListener;
 import com.company.system.controller.RegisterLoanListener;
 import com.company.system.model.User;
 import com.company.system.service.BookService;
+import com.company.system.service.CategoryService;
 import com.company.system.service.FineService;
 import com.company.system.service.LoanService;
+import com.company.system.service.PublisherService;
 import com.company.system.service.UserService;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,10 +60,12 @@ public class LibrarianWindow extends javax.swing.JFrame {
         this.librarian = new User();
         librarian.setNames("Daniel Mora Cantillo");
         initComponents();
+        setTitle("Manage library, made with <3");
         setResizable(true);
         setSize(1080, 720);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/libraryIconPrincipal.png")));
     }
 
     @SuppressWarnings("unchecked")
@@ -570,10 +576,9 @@ public class LibrarianWindow extends javax.swing.JFrame {
         uploadPanel(historyLoans);
     }
 
-    public void openRegisterBook(User librarian, BookService bookService, UserService userService,
-            LoanService loanService) {
+   public void openRegisterBook(User librarian, BookService bookService) {
         registerBook = new RegisterBook();
-        new RegisterBookListener(registerBook, bookService);
+        new RegisterBookListener(registerBook, bookService, new CategoryService(), new PublisherService());
         uploadPanel(registerBook);
     }
 
