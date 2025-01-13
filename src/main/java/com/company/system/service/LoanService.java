@@ -30,46 +30,66 @@ public class LoanService {
         return loanDao.findByUser(user);
     }
     
-    //Este metodo verifica que el usuario si tiene multas, estas sean menores que 4 y su fecha de finalizacion haya pasado
+    // Verifica si el usuario tiene multas y si son menos de 3 y si la última multa ya ha pasado la fecha límite
     public boolean checkFinesToRequestExtension(User user) {
         LinkedList<Fine> fines = new LinkedList<>(fineDao.findByUser(user));
         
-        if(fines.isEmpty()) {
-            return true;
+        if (fines.isEmpty()) {
+            return true; // No hay multas, se puede solicitar la prórroga
         } else {
-            return fines.size() <= 3 && fines.getLast().getDeadline().isBefore(LocalDate.now());
+            return fines.size() < 3 && fines.getLast().getDeadline().isBefore(LocalDate.now());
         }
     }
-    
-    //Este metodo verifica que el usuario tiene prestamos hechos y si el ultimo prestamo hecho aun no ha sido devuelto
+
+    // Verifica que el usuario tiene préstamos hechos y que el último no ha sido devuelto
     public boolean isEntitledToRequestExtension(User user) {
         LinkedList<Loan> loans = new LinkedList<>(getLoansByUser(user));
         return !loans.isEmpty() && !loans.getLast().isReturned();
     }
 
-    public boolean requestExtension(User user, LocalDate newDevolutionDate) {
-        /* Primero es necesario realizar estas verificaciones:
-        1. Que el usuario tiene prestamos hechos y ademas que el ultimo no se haya devuelto (isEntitledToRequestExtension)
-            deshabilitando el boton "Solicitar Prorroga" en caso que no sea asi
-        
-        2. Que si el usuario tiene multas que estas sean menores que 4 y que la ultima multa ya haya pasado (checkFinesToRequestExtension)
-            mostrando un mensaje por pantalla que le informe esto al usuario
-            
-        
-        Nota: esta funcion da por sentado que ambas verificiones fueron hechas
-        */
-        
-        Loan lastLoan = new LinkedList<>(getLoansByUser(user)).getLast();
-
-        if (LocalDate.now().isBefore(lastLoan.getDevolutionDate()) && lastLoan.getRegistrationUpdateDate() == null ) {
-            lastLoan.setDevolutionDate(newDevolutionDate);
-            lastLoan.setRegistrationUpdateDate(LocalDate.now());
-            lastLoan.setRegistrationUpdateName(user.getNames() + " " + user.getSurNames() + ", role: " + user.getRole().getName());
-            return loanDao.update(lastLoan);
-        } else {
-            return false;
-        }
-
+    // Verifica si ya se ha solicitado una prórroga para el último préstamo
+    public boolean hasAlreadyRequestedExtension(User user) {
+        LinkedList<Loan> loans = new LinkedList<>(getLoansByUser(user));
+        Loan lastLoan = loans.getLast();
+        return lastLoan.getRegistrationUpdateDate() != null; // Si ya tiene una fecha de actualización, ya solicitó una prórroga
     }
 
+    // Verifica que haya un libro pendiente de devolución para poder solicitar la prórroga
+    public boolean hasPendingBookForExtension(User user) {
+        LinkedList<Loan> loans = new LinkedList<>(getLoansByUser(user));
+        return !loans.isEmpty() && !loans.getLast().isReturned();
+    }
+
+    // Método para solicitar la prórroga
+    public boolean requestExtension(User user, LocalDate newDevolutionDate) {
+        // Verificar si hay un préstamo pendiente
+        if (!hasPendingBookForExtension(user)) {
+            return false; // No hay libros pendientes de devolución
+        }
+
+        // Verificar si el usuario tiene multas y si cumple con las condiciones
+        if (!checkFinesToRequestExtension(user)) {
+            return false; // El usuario tiene más de 3 multas o la última multa no ha pasado la fecha límite
+        }
+
+        // Verificar si el usuario ya solicitó una prórroga
+        if (hasAlreadyRequestedExtension(user)) {
+            return false; // Ya se ha solicitado una prórroga anteriormente
+        }
+
+        // Obtener el último préstamo
+        Loan lastLoan = new LinkedList<>(getLoansByUser(user)).getLast();
+
+        // Verificar que la fecha actual no sobrepasa la fecha de devolución registrada
+        if (LocalDate.now().isAfter(lastLoan.getDevolutionDate())) {
+            return false; // La fecha de solicitud no puede ser posterior a la fecha de devolución registrada
+        }
+
+        // Si todas las condiciones son válidas, actualizar la fecha de devolución
+        lastLoan.setDevolutionDate(newDevolutionDate);
+        lastLoan.setRegistrationUpdateDate(LocalDate.now());
+        lastLoan.setRegistrationUpdateName(user.getNames() + " " + user.getSurNames() + ", role: " + user.getRole().getName());
+
+        return loanDao.update(lastLoan); // Actualizar la base de datos con la nueva fecha de devolución
+    }
 }

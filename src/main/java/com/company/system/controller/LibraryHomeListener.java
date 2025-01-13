@@ -7,6 +7,7 @@ import com.company.system.model.Book;
 import com.company.system.model.Category;
 import com.company.system.model.Loan;
 import com.company.system.model.Publisher;
+import com.company.system.model.User;
 import com.company.system.service.BookService;
 import com.company.system.service.CategoryService;
 import com.company.system.service.LoanService;
@@ -15,6 +16,7 @@ import com.company.system.view.LibraryHome;
 import com.company.system.view.TableModel;
 import com.company.system.view.components.Utils;
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
@@ -25,20 +27,24 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -94,6 +100,7 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
         frmLibraryHome.getLblHistorialDePrestamos().addMouseListener(this);
 
         frmLibraryHome.getBtnSearch().addMouseListener(this);
+        frmLibraryHome.getLblRequest().addMouseListener(this);
     }
 
     @Override
@@ -130,7 +137,7 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
 
     }
 
-    @Override
+   @Override
 public void mouseClicked(MouseEvent e) {
     if (e.getSource() == frmLibraryHome.getLblHistorialDePrestamos()) {
         // Instanciar y crear la tabla para mostrar el historial de préstamos
@@ -235,9 +242,74 @@ public void mouseClicked(MouseEvent e) {
         frmLibraryHome.addToDesktopPane(loanHistoryInternalFrame);
         loanHistoryInternalFrame.setVisible(true);
     }
+
+    if (e.getSource() == frmLibraryHome.getLblRequest()) {
+    // Obtener el usuario actual (suponiendo que tienes acceso al usuario en el contexto)
+    User currentUser = frmLibraryHome.getStudent();
+
+    // Verificar si el usuario tiene préstamos pendientes
+    if (!loanService.hasPendingBookForExtension(currentUser)) {
+        JOptionPane.showMessageDialog(frmLibraryHome, "No tienes un libro pendiente para solicitar prórroga.");
+        return;
+    }
+
+    // Verificar que el usuario tenga menos de 3 multas
+    if (!loanService.checkFinesToRequestExtension(currentUser)) {
+        JOptionPane.showMessageDialog(frmLibraryHome, "Tienes más de 3 multas o tu última multa no ha pasado su fecha límite.");
+        return;
+    }
+
+    // Verificar si el usuario ya solicitó una prórroga
+    if (loanService.hasAlreadyRequestedExtension(currentUser)) {
+        JOptionPane.showMessageDialog(frmLibraryHome, "Ya has solicitado una prórroga para este libro.");
+        return;
+    }
+
+    // Obtener el último préstamo
+    Loan lastLoan = new LinkedList<>(loanService.getLoansByUser(currentUser)).getLast();
+
+    // Verificar que la fecha actual no sobrepase la fecha de devolución registrada
+    if (LocalDate.now().isAfter(lastLoan.getDevolutionDate())) {
+        JOptionPane.showMessageDialog(frmLibraryHome, "La fecha actual ya ha pasado la fecha de devolución registrada.");
+        return;
+    }
+
+    // Mostrar el formulario para solicitar la prórroga
+    JPanel formPanel = new JPanel();
+    formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
+
+    JTextField yearField = new JTextField(4);
+    JComboBox<String> monthComboBox = new JComboBox<>(new String[]{
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    });
+    JTextField dayField = new JTextField(2);
+
+    JPanel datePanel = new JPanel();
+    datePanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+    datePanel.add(new JLabel("Día:"));
+    datePanel.add(dayField);
+    datePanel.add(new JLabel("Mes:"));
+    datePanel.add(monthComboBox);
+    datePanel.add(new JLabel("Año:"));
+    datePanel.add(yearField);
+
+    formPanel.add(new JLabel("Nueva Fecha de Devolución:"));
+    formPanel.add(datePanel);
+
+    JButton requestButton = new JButton("Solicitar Prórroga");
+    formPanel.add(requestButton);
+
+    JInternalFrame requestExtensionInternalFrame = new JInternalFrame("Solicitar Prórroga", true, true, true, true);
+    requestExtensionInternalFrame.setLayout(new BorderLayout());
+    requestExtensionInternalFrame.add(formPanel, BorderLayout.CENTER);
+    requestExtensionInternalFrame.setSize(frmLibraryHome.getDesktopPane().getSize());
+
+    frmLibraryHome.clearDesltopPane();
+    frmLibraryHome.addToDesktopPane(requestExtensionInternalFrame);
+    requestExtensionInternalFrame.setVisible(true);
 }
-
-
+}
     @Override
     public void mouseEntered(MouseEvent e) {
         if (e.getSource() == frmLibraryHome.getPnlCategory() || e.getSource() == frmLibraryHome.getLblCategory()) {
