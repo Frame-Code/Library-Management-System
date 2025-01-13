@@ -9,11 +9,13 @@ import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
@@ -40,6 +42,9 @@ public class LibraryHome extends javax.swing.JFrame {
         setResizable(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setTitle("System management student, made with <3");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/libraryIconPrincipal.png")));
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
