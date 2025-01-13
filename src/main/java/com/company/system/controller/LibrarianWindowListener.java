@@ -87,7 +87,7 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
                 frmLibraianWindow.openHistoryLoans(userService, loanService);
             }
             frmLibraianWindow.getPnlRegisterLoan().setBackground(Utils.pnlEntered);
-        /////////////////////////////////////////////////////////////////////////////////
+        
         } else if(contenedor.equals(LibrarianWindow.optionManageBooks)) {
             if(source.getText().equals(RegisterBook.typeRegisterNew)) {
                 frmLibraianWindow.openRegisterBook(librarian, bookService, userService, loanService);
