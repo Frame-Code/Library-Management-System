@@ -4,6 +4,7 @@ import com.company.system.controller.GenerateReportController;
 import com.company.system.controller.HistoryFinesListener;
 import com.company.system.controller.HistoryLoansListener;
 import com.company.system.controller.RegisterBookListener;
+import com.company.system.controller.RegisterDevolutionListener;
 import com.company.system.controller.RegisterFineListener;
 import com.company.system.controller.RegisterLoanListener;
 import com.company.system.model.User;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
@@ -45,6 +47,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
 
     private final User librarian;
     private RegisterLoan registerLoan;
+    private RegisterDevolution registerDevolution;
     private HistoryLoans historyLoans;
     private RegisterBook registerBook;
     private FindBook findBook;
@@ -65,6 +68,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
         setSize(1080, 720);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/libraryIconPrincipal.png")));
     }
 
@@ -576,7 +580,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
         uploadPanel(historyLoans);
     }
 
-   public void openRegisterBook(User librarian, BookService bookService) {
+    public void openRegisterBook(User librarian, BookService bookService) {
         registerBook = new RegisterBook();
         new RegisterBookListener(registerBook, bookService, new CategoryService(), new PublisherService());
         uploadPanel(registerBook);
@@ -596,12 +600,18 @@ public class LibrarianWindow extends javax.swing.JFrame {
         uploadPanel(registerFine);
     }
 
+    public void openRegisterDevolution(User librarian, LoanService loanService, UserService userService) {
+        registerDevolution = new RegisterDevolution();
+        new RegisterDevolutionListener(librarian, registerDevolution, loanService, userService);
+        uploadPanel(registerDevolution);
+    }
+
     public void openHistoryFines(UserService userService) {
         historyFines = new HistoryFines();
         new HistoryFinesListener(historyFines, userService, librarian);
         uploadPanel(historyFines);
     }
-    
+
     public void openFindBook(BookService bookService) {
         findBook = new FindBook();
         uploadPanel(findBook);
@@ -627,7 +637,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
             menuContextual.add(menu);
         });
     }
-    
+
     public void uploadListMenuBooks() {
         menuContextual = new JPopupMenu();
         menuItems = new ArrayList<>();

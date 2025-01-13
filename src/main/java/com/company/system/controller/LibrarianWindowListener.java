@@ -107,6 +107,8 @@ public class LibrarianWindowListener implements ActionListener, MouseListener {
                 item.addActionListener(this);
             });
             frmLibraianWindow.getMenuContextual().show(frmLibraianWindow.getPnlRegisterLoan(), e.getX(), e.getY());
+        } else if (e.getSource() == frmLibraianWindow.getPnlRegisterDevolution() || e.getSource() == frmLibraianWindow.getLblRegisterDevolution()) {
+            frmLibraianWindow.openRegisterDevolution(librarian, loanService, userService);
         } else if (e.getSource() == frmLibraianWindow.getPnlGenerateReports() || e.getSource() == frmLibraianWindow.getLblManageReports()) {
             contenedor = frmLibraianWindow.getLblManageReports().getText();
             frmLibraianWindow.uploadListMenuReports();

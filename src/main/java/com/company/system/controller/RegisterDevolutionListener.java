@@ -2,40 +2,36 @@ package com.company.system.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
-import com.company.system.model.Book;
 import com.company.system.model.Loan;
 import com.company.system.model.User;
-import com.company.system.service.BookService;
+import com.company.system.service.DevolutionService;
 import com.company.system.service.LoanService;
 import com.company.system.service.UserService;
 import com.company.system.view.RegisterDevolution;
-import com.company.system.view.RegisterLoan;
+
 
 /**
  *
  * @author artist-code (Daniel Mora Cantillo)
  */
-public class RegisterDevolutionListener implements ActionListener, MouseListener, UtilsController {
+public class RegisterDevolutionListener implements ActionListener {
 
     private final RegisterDevolution registerDevolution;
-    private final BookService bookService;
     private final UserService userService;
     private final LoanService loanService;
+    private final DevolutionService devolutionService;
     private final User librarian;
+    private LinkedList<Loan> loans;
     private User student;
-    private Book book;
 
-    public RegisterDevolutionListener(User librarian, RegisterDevolution registerDevolution, BookService bookService,
-            UserService userService, LoanService loanService) {
+    public RegisterDevolutionListener(User librarian, RegisterDevolution registerDevolution, LoanService loanService, UserService userService) {
         this.librarian = librarian;
         this.registerDevolution = registerDevolution;
-        this.bookService = bookService;
+        this.devolutionService = new DevolutionService();
         this.userService = userService;
         this.loanService = loanService;
         addListeners();
@@ -69,140 +65,39 @@ public class RegisterDevolutionListener implements ActionListener, MouseListener
     }
     
     private void uploadLoan() {
-        List<Loan> loans = lo
-    }
-
-    //Verifica que los campos no esten vacios (incluyendo las instancias de book y studente) y que el formato de la fecha sea correcto
-    //Verifica que el libro este disponible para prestamo
-    //Verifica que el estudiante no tenga un prestamo sin devolver
-    //Crea un nuevo prestamo
-    private void registerLoan() {
-        if (!isEmptyFields() && student != null && book != null) {
-            try {
-                Integer day = Integer.valueOf(pnlRegisterLoan.getTxtDay().getText());
-                Integer year = Integer.valueOf(pnlRegisterLoan.getTxtYear().getText());
-
-                if (isValidDate(day, (String) pnlRegisterLoan.getCmbMonth().getSelectedItem(), year)
-                        && bookService.isAvailableToLoan(book)) {
-                    LinkedList<Loan> userLoans = new LinkedList<>(loanService.getLoansByUser(student));
-                    if (userLoans.isEmpty() || userLoans.getLast().isReturned()) {
-                        loanService.createLoan(student, book,
-                                getDate(day, (String) pnlRegisterLoan.getCmbMonth().getSelectedItem(), year),
-                                librarian.getNames() + " " + librarian.getSurNames() + " ci: " + librarian.getIdCardUser());
-                        pnlRegisterLoan.showMessage("Prestamo creado correctamente", "Nuevo prestamo", JOptionPane.INFORMATION_MESSAGE);
-                        cleanFields();
-                    } else {
-                        pnlRegisterLoan.showMessage("No se puede registrar prestamo. El estudiante tiene un prestamo sin devolver", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                } else {
-                    pnlRegisterLoan.showMessage("Escribe un formato de fecha correcto", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-
-            } catch (NumberFormatException e1) {
-                pnlRegisterLoan.showMessage("Escribe valores numericos en los campos de fecha", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            }
+        loans = new LinkedList<>(loanService.getLoansByUser(student));
+        if(loans != null && loans.getLast().getDevolution() == null) {
+            registerDevolution.getTxtAreaInfoLoan().append(
+                    "Libro prestado: " + loans.getLast().getBook().getTitle() + "\n" +
+                    "ISBN: " + loans.getLast().getBook().getIsbn() + "\n" +
+                    "Fecha devolucion esperada: " + loans.getLast().getDevolutionDate() + "\n" +
+                    "Fecha de prestamo: " + loans.getLast().getRegistrationDate().toString() + "\n" +
+                    "Ha solicitado prorroga?: " + ((loans.getLast().getRegistrationDate() != null)? "No" : "Si") + "\n" +
+                    "Fecha de registro de prorroga: " + ((loans.getLast().getRegistrationDate() != null)? "----" : loans.getLast().getRegistrationUpdateDate().toString()) + "\n" +
+                    "Ha sido devuelto? " + ((loans.getLast().isReturned())? "Si" : "No")
+            );
         } else {
-            pnlRegisterLoan.showMessage("No pueden haber campos vacios, ni busquedas sin realizar", "Error",
+            registerDevolution.getTxtAreaInfoLoan().setText("El estudiante no tiene un libro registrado disponible para devolucion");
+        }
+    }
+    
+    private void registerDevolution() {
+        if (student != null && loans.getLast().getDevolution() == null) {
+            devolutionService.registerDevolution(loans.getLast(), librarian);
+            registerDevolution.showMessage("Devolucion registrada correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            registerDevolution.showMessage("No pueden haber campos vacios, o el usario ya registrado una devolucion del su ultimo libro", "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == pnlRegisterLoan.getBtnSearchBook()) {
-            if (!isEmptyFieldsBook()) {
-                searchBook();
-            } else {
-                pnlRegisterLoan.showMessage("Escribe un ISBN", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else if (e.getSource() == pnlRegisterLoan.getBtnSearchIdCard()) {
-            if (!isEmptyFieldsUser()) {
-                searchIdCard();
-            } else {
-                pnlRegisterLoan.showMessage("Escribe un numero de cedula", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else if (e.getSource() == pnlRegisterLoan.getBtnRegisterLoan()) {
-            if (!isEmptyFields()) {
-                registerLoan();
-            } else {
-                pnlRegisterLoan.showMessage("No pueden haber campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else if (e.getSource() == pnlRegisterLoan.getBtnClean()) {
-            cleanFields();
+        if(e.getSource() == registerDevolution.getBtnSearchIdCard()) {
+            searchIdCard();
+            uploadLoan();
+        } else if(e.getSource() == registerDevolution.getBtnRegisterDevolutio()) {
+            registerDevolution();
         }
     }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        if (e.getSource() == pnlRegisterLoan.getBtnSearchBook()) {
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnSearchBook(),
-                    com.company.system.view.components.Utils.btnEntered);
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnSearchIdCard(),
-                    com.company.system.view.components.Utils.btnExited);
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnRegisterLoan(),
-                    com.company.system.view.components.Utils.btnExited);
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnClean(),
-                    com.company.system.view.components.Utils.btnExited);
-
-        } else if (e.getSource() == pnlRegisterLoan.getBtnSearchIdCard()) {
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnSearchBook(),
-                    com.company.system.view.components.Utils.btnExited);
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnSearchIdCard(),
-                    com.company.system.view.components.Utils.btnEntered);
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnRegisterLoan(),
-                    com.company.system.view.components.Utils.btnExited);
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnClean(),
-                    com.company.system.view.components.Utils.btnExited);
-
-        } else if (e.getSource() == pnlRegisterLoan.getBtnRegisterLoan()) {
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnSearchBook(),
-                    com.company.system.view.components.Utils.btnExited);
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnSearchIdCard(),
-                    com.company.system.view.components.Utils.btnExited);
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnRegisterLoan(),
-                    com.company.system.view.components.Utils.btnEntered);
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnClean(),
-                    com.company.system.view.components.Utils.btnExited);
-        } else if (e.getSource() == pnlRegisterLoan.getBtnClean()) {
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnSearchBook(),
-                    com.company.system.view.components.Utils.btnExited);
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnSearchIdCard(),
-                    com.company.system.view.components.Utils.btnExited);
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnRegisterLoan(),
-                    com.company.system.view.components.Utils.btnExited);
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnClean(),
-                    com.company.system.view.components.Utils.btnEntered);
-        }
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        if (e.getSource() == pnlRegisterLoan.getBtnSearchBook()) {
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnSearchBook(),
-                    com.company.system.view.components.Utils.btnExited);
-        } else if (e.getSource() == pnlRegisterLoan.getBtnSearchIdCard()) {
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnSearchIdCard(),
-                    com.company.system.view.components.Utils.btnExited);
-        } else if (e.getSource() == pnlRegisterLoan.getBtnRegisterLoan()) {
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnRegisterLoan(),
-                    com.company.system.view.components.Utils.btnExited);
-        } else if (e.getSource() == pnlRegisterLoan.getBtnClean()) {
-            pnlRegisterLoan.changeColor(pnlRegisterLoan.getBtnClean(),
-                    com.company.system.view.components.Utils.btnExited);
-        }
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
 }

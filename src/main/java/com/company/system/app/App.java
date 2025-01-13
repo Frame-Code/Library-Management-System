@@ -4,7 +4,6 @@ import com.company.system.controller.LibrarianWindowListener;
 import com.company.system.view.LibrarianWindow;
 
 import java.lang.reflect.InvocationTargetException;
-import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 public class App {
@@ -18,8 +17,7 @@ public class App {
         } catch (InterruptedException | InvocationTargetException ex) {
             ex.printStackTrace();
         }
-        new LibrarianWindowListener(lb);    
-        lb.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        new LibrarianWindowListener(lb);
         lb.setVisible(true);
     }
     

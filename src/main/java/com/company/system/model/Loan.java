@@ -32,7 +32,7 @@ public class Loan implements Serializable{
     @JoinColumn(name = "fkBook")
     private Book book;
     
-    @OneToOne (cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "fkDevolution")
     private Devolution devolution;
     
