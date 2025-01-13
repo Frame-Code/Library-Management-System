@@ -7,6 +7,9 @@ import com.company.system.dao.interfaces.BookDao;
 import com.company.system.model.Book;
 import com.company.system.model.Category;
 import com.company.system.model.Publisher;
+import com.company.system.model.Role;
+import com.company.system.model.User;
+import java.time.LocalDate;
 
 public class BookService {
     private BookDao bookDao;
@@ -40,4 +43,14 @@ public class BookService {
         return bookDao.update(book);
     }
 
+    /*public boolean RegisterBook(String names, String surNames, String email, Long idCardUser, 
+    LocalDate bornDate, String passwordPlain) {
+        String passwordHash = encrypte.encryptPassword(passwordPlain);
+        User user = new User(idCardUser, names, surNames, email, passwordHash, bornDate, 
+        roleDao.findByName(Role.roleStudent), LocalDate.now(), names + " " + surNames + " ci: " + idCardUser, null, 
+        null, 
+        false
+        );
+        return userDao.create(user); 
+    }  */
 }

@@ -258,9 +258,13 @@ public class RegisterBook extends javax.swing.JPanel {
         jLabel4.setText("Categoria");
         jLabel4.setToolTipText("");
 
+        cmbCategory.setBorder(null);
+
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel5.setText("Editorial");
+
+        cmbEditorial.setBorder(null);
 
         txaDescription.setColumns(20);
         txaDescription.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
