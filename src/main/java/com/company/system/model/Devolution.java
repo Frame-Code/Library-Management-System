@@ -14,38 +14,41 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Devolutions")
-public class Devolution implements Serializable{
+public class Devolution implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idDevolution")
-    private Long idDovolution;
+    private Long idDovolution; // Identificador único de la devolución (clave primaria)
 
     @ManyToOne
     @JoinColumn(name = "fkUser")
-    private User user;
+    private User user; // Usuario que realizó la devolución
 
     @ManyToOne
     @JoinColumn(name = "fkBook")
-    private Book book;
+    private Book book; // Libro que fue devuelto
 
     @Column(nullable = false, name = "registrationDate")
-    private LocalDate registrationDate;
+    private LocalDate registrationDate; // Fecha de registro de la devolución. No puede ser nula
 
     @Column(nullable = false, name = "registrationName")
-    private String registrationName;
-    
-    @Column(name = "registrationUpdateDate")
-    private LocalDate registrationUpdateDate;
-    
-    @Column(name = "registrationUpdateName")
-    private String registrationUpdateName;
-    
-    @Column(name = "isDeleted", nullable = false)
-    private boolean deleted;
+    private String registrationName; // Nombre de la persona que registró la devolución. No puede ser nulo
 
+    @Column(name = "registrationUpdateDate")
+    private LocalDate registrationUpdateDate; // Fecha de la última actualización. Puede ser nula
+
+    @Column(name = "registrationUpdateName")
+    private String registrationUpdateName; // Nombre de la persona que realizó la última actualización. Puede ser nulo
+
+    @Column(name = "isDeleted", nullable = false)
+    private boolean deleted; // Indicador de si la devolución ha sido eliminada. No puede ser nulo
+
+    // Constructor vacío
     public Devolution() {
     }
 
+    // Constructor con parámetros para inicializar todos los atributos
     public Devolution(Long idDovolution, User user, Book book, LocalDate registrationDate, String registrationName,
             LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
         this.idDovolution = idDovolution;
@@ -58,6 +61,7 @@ public class Devolution implements Serializable{
         this.deleted = deleted;
     }
 
+    // Constructor sin el idDovolution (en caso de no contar con él al crear una nueva devolución)
     public Devolution(User user, Book book, LocalDate registrationDate, String registrationName,
             LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
         this.user = user;
@@ -69,6 +73,7 @@ public class Devolution implements Serializable{
         this.deleted = deleted;
     }
 
+    // Métodos getters y setters
     public Long getIdDovolution() {
         return idDovolution;
     }
@@ -129,6 +134,7 @@ public class Devolution implements Serializable{
         this.deleted = deleted;
     }
 
+    // Métodos hashCode y equals para comparación de objetos
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -144,6 +150,7 @@ public class Devolution implements Serializable{
         return result;
     }
 
+    // Método equals para comparar dos objetos Devolution
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -193,6 +200,7 @@ public class Devolution implements Serializable{
         return true;
     }
 
+    // Método toString para representar la devolución como cadena
     @Override
     public String toString() {
         return "Devolution [idDovolution=" + idDovolution + ", user=" + user + ", book=" + book + ", registrationDate="
@@ -203,3 +211,4 @@ public class Devolution implements Serializable{
 
 
 }
+

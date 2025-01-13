@@ -21,29 +21,31 @@ public class Publisher implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idPublisher")
-    private Long idPublisher;
+    private Long idPublisher; // Identificador único del editor (clave primaria)
 
     @Column(unique = true, nullable = false, name = "name")
-    private String name;
+    private String name; // Nombre del editor, debe ser único y no nulo
 
     @Column(nullable = false, name = "registrationDate")
-    private LocalDate registrationDate;
+    private LocalDate registrationDate; // Fecha en que se registró el editor. No puede ser nula
 
     @Column(nullable = false, name = "registrationName")
-    private String registrationName;
+    private String registrationName; // Nombre de la persona que registró el editor. No puede ser nulo
     
     @Column(name = "registrationUpdateDate")
-    private LocalDate registrationUpdateDate;
+    private LocalDate registrationUpdateDate; // Fecha de la última actualización del editor. Puede ser nula
     
     @Column(name = "registrationUpdateName")
-    private String registrationUpdateName;
+    private String registrationUpdateName; // Nombre de la persona que realizó la última actualización. Puede ser nulo
     
     @Column(name = "isDeleted", nullable = false)
-    private boolean deleted;
+    private boolean deleted; // Indicador de si el editor ha sido eliminado. No puede ser nulo
 
+    // Constructor vacío
     public Publisher() {
     }
 
+    // Constructor con parámetros para inicializar todos los atributos
     public Publisher(String name, LocalDate registrationDate, String registrationName, LocalDate registrationUpdateDate,
             String registrationUpdateName, boolean deleted) {
         this.name = name;
@@ -54,6 +56,7 @@ public class Publisher implements Serializable {
         this.deleted = deleted;
     }
 
+    // Métodos getters y setters
     public Long getIdPublisher() {
         return idPublisher;
     }
@@ -106,6 +109,7 @@ public class Publisher implements Serializable {
         this.deleted = deleted;
     }
 
+    // Métodos hashCode y equals para comparación de objetos
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -120,6 +124,7 @@ public class Publisher implements Serializable {
         return result;
     }
 
+    // Método equals para comparar dos objetos Publisher
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -164,6 +169,7 @@ public class Publisher implements Serializable {
         return true;
     }
 
+    // Método toString para representar el editor como cadena
     @Override
     public String toString() {
         return "Publisher [idPublisher=" + idPublisher + ", name=" + name + ", registrationDate=" + registrationDate
@@ -172,3 +178,4 @@ public class Publisher implements Serializable {
     }
     
 }
+

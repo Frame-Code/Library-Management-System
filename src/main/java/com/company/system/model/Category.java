@@ -16,6 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Categories")
 public class Category {
+    // Constantes de las categorías disponibles en el sistema
     public static final String categoryHistory = "Historia";
     public static final String categoryScience = "Cientifico";
     public static final String categoryBibliography = "Bibliografia";
@@ -41,29 +42,31 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idCategory")
-    private Long idCategory;
+    private Long idCategory; // Identificador único de la categoría (clave primaria)
 
     @Column(unique = true, nullable = false, name = "name")
-    private String name;
+    private String name; // Nombre de la categoría. No puede ser nulo
 
     @Column(nullable = false, name = "registrationDate")
-    private LocalDate registrationDate;
+    private LocalDate registrationDate; // Fecha de registro de la categoría. No puede ser nula
 
     @Column(nullable = false, name = "registrationName")
-    private String registrationName;
+    private String registrationName; // Nombre de la persona que registró la categoría. No puede ser nulo
     
     @Column(name = "registrationUpdateDate")
-    private LocalDate registrationUpdateDate;
+    private LocalDate registrationUpdateDate; // Fecha de la última actualización. Puede ser nula
     
     @Column(name = "registrationUpdateName")
-    private String registrationUpdateName;
+    private String registrationUpdateName; // Nombre de la persona que realizó la última actualización. Puede ser nulo
     
     @Column(name = "isDeleted", nullable = false)
-    private boolean deleted;
+    private boolean deleted; // Indicador de si la categoría ha sido eliminada. No puede ser nulo
 
+    // Constructor vacío
     public Category() {
     }
 
+    // Constructor con parámetros
     public Category(String name, LocalDate registrationDate, String registrationName, LocalDate registrationUpdateDate,
             String registrationUpdateName, boolean deleted) {
         this.name = name;
@@ -74,6 +77,7 @@ public class Category {
         this.deleted = deleted;
     }
 
+    // Métodos getters y setters
     public Long getIdCategory() {
         return idCategory;
     }
@@ -130,6 +134,7 @@ public class Category {
         this.deleted = deleted;
     }
 
+    // Métodos hashCode y equals para comparación de objetos
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -144,6 +149,7 @@ public class Category {
         return result;
     }
 
+    // Método equals para comparar dos objetos Category
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -188,6 +194,7 @@ public class Category {
         return true;
     }
 
+    // Método toString para representar la categoría como cadena
     @Override
     public String toString() {
         return "Category [idCategory=" + idCategory + ", name=" + name + ", registrationDate=" + registrationDate

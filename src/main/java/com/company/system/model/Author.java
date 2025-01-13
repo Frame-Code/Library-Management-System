@@ -18,38 +18,50 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Authors")
 public class Author {
+    
+    // Identificador único de la entidad Author
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idAuthor")
     private Long idAuthor;
 
+    // Nombre del autor, único y no nulo
     @Column(unique = true, nullable = false, name = "names")
     private String names;
-    
+
+    // Apellidos del autor, único y no nulo
     @Column(unique = true, nullable = false, name = "surNames")
     private String surNames;
 
+    // Relación muchos a muchos con la entidad Book (un autor puede tener muchos libros)
     @ManyToMany(mappedBy = "authors")
     private List<Book> books;
 
+    // Fecha de registro del autor
     @Column(nullable = false, name = "registrationDate")
     private LocalDate registrationDate;
 
+    // Nombre de la persona que registró al autor
     @Column(nullable = false, name = "registrationName")
     private String registrationName;
-    
+
+    // Fecha de última actualización del registro
     @Column(name = "registrationUpdateDate")
     private LocalDate registrationUpdateDate;
-    
+
+    // Nombre de la persona que realizó la última actualización
     @Column(name = "registrationUpdateName")
     private String registrationUpdateName;
-    
+
+    // Marca para indicar si el autor ha sido eliminado (lógico)
     @Column(name = "isDeleted", nullable = false)
     private boolean deleted;
 
+    // Constructor por defecto
     public Author() {
     }
 
+    // Constructor completo que incluye todos los atributos
     public Author(String names, String surNames, List<Book> books, LocalDate registrationDate, String registrationName,
             LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
         this.names = names;
@@ -62,6 +74,7 @@ public class Author {
         this.deleted = deleted;
     }
 
+    // Constructor sin la lista de libros
     public Author(String names, String surNames, LocalDate registrationDate, String registrationName,
             LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
         this.names = names;
@@ -72,6 +85,8 @@ public class Author {
         this.registrationUpdateName = registrationUpdateName;
         this.deleted = deleted;
     }
+
+    // Getters y setters para cada uno de los atributos
 
     public Long getIdAuthor() {
         return idAuthor;
@@ -140,6 +155,8 @@ public class Author {
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
+
+    // Métodos de comparación (hashCode y equals) para comparar dos autores por sus atributos
 
     @Override
     public int hashCode() {
@@ -210,6 +227,8 @@ public class Author {
             return false;
         return true;
     }
+
+    // Método toString para obtener una representación en cadena del objeto Author
 
     @Override
     public String toString() {

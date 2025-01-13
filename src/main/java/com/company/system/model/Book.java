@@ -21,67 +21,70 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Books")
 public class Book {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idBook")
-    private Long idBook;
+    private Long idBook; // Identificador único del libro (clave primaria)
 
     @Column(unique = true, nullable = false, name = "isbn")
-    private String isbn;
-    
+    private String isbn; // Número ISBN único del libro. No puede ser nulo
+
     @Column(unique = true, nullable = false, name = "title")
-    private String title;
-    
+    private String title; // Título único del libro. No puede ser nulo
+
     @Column(unique = true, nullable = false, name = "description", length = 255)
-    private String description;
-    
+    private String description; // Descripción del libro. Longitud máxima 255 caracteres. No puede ser nulo
+
     @Column(nullable = false, name = "yearPublished")
-    private LocalDate yearPublished;
-    
+    private LocalDate yearPublished; // Año de publicación del libro. No puede ser nulo
+
     @Column(nullable = false, name = "stockToLoan")
-    private Integer stockToLoan;
-    
+    private Integer stockToLoan; // Cantidad de ejemplares disponibles para préstamo. No puede ser nulo
+
     @Column(nullable = false, name = "generalStock")
-    private Integer generalStock;
+    private Integer generalStock; // Stock total del libro. No puede ser nulo
 
     @ManyToOne
     @JoinColumn(name = "fkPublisher")
-    private Publisher publisher;
+    private Publisher publisher; // Relación con la entidad Publisher (Editorial). Relación de tipo ManyToOne
 
     @ManyToOne
     @JoinColumn(name = "fkCategory")
-    private Category category;
+    private Category category; // Relación con la entidad Category (Categoría). Relación de tipo ManyToOne
 
     @ManyToMany
     @JoinTable(
-        name = "book_author", // Nombre de la tabla intermedia
+        name = "book_author", // Nombre de la tabla intermedia para la relación ManyToMany
         joinColumns = @JoinColumn(name = "book_id"), // Clave foránea hacia Book
         inverseJoinColumns = @JoinColumn(name = "author_id") // Clave foránea hacia Author
     )
-    private List<Author> authors;
+    private List<Author> authors; // Relación con la entidad Author (Autores). Relación de tipo ManyToMany
 
     @Column(nullable = false, name = "registrationDate")
-    private LocalDate registrationDate;
+    private LocalDate registrationDate; // Fecha de registro del libro. No puede ser nula
 
     @Column(nullable = false, name = "registrationName")
-    private String registrationName;
-    
-    @Column(name = "registrationUpdateDate")
-    private LocalDate registrationUpdateDate;
-    
-    @Column(name = "registrationUpdateName")
-    private String registrationUpdateName;
-    
-    @Column(name = "isDeleted", nullable = false)
-    private boolean deleted;
+    private String registrationName; // Nombre de la persona que registró el libro. No puede ser nulo
 
+    @Column(name = "registrationUpdateDate")
+    private LocalDate registrationUpdateDate; // Fecha de la última actualización. Puede ser nula
+
+    @Column(name = "registrationUpdateName")
+    private String registrationUpdateName; // Nombre de la persona que realizó la actualización. Puede ser nulo
+
+    @Column(name = "isDeleted", nullable = false)
+    private boolean deleted; // Indicador de si el libro ha sido marcado como eliminado. No puede ser nulo
+
+    // Constructor vacío
     public Book() {
     }
 
+    // Constructor con parámetros
     public Book(String isbn, String title, String description, LocalDate yearPublished, Integer stockToLoan,
-            Integer generalStock, Publisher publisher, Category category, List<Author> authors,
-            LocalDate registrationDate, String registrationName, LocalDate registrationUpdateDate,
-            String registrationUpdateName, boolean deleted) {
+                Integer generalStock, Publisher publisher, Category category, List<Author> authors,
+                LocalDate registrationDate, String registrationName, LocalDate registrationUpdateDate,
+                String registrationUpdateName, boolean deleted) {
         this.isbn = isbn;
         this.title = title;
         this.description = description;
@@ -98,8 +101,7 @@ public class Book {
         this.deleted = deleted;
     }
 
-
-
+    // Métodos getters y setters
     public Long getIdBook() {
         return idBook;
     }
@@ -136,7 +138,6 @@ public class Book {
         this.yearPublished = yearPublished;
     }
 
-
     public Integer getStockToLoan() {
         return stockToLoan;
     }
@@ -145,12 +146,12 @@ public class Book {
         this.stockToLoan = stockToLoan;
     }
 
-    public void setGeneralStock(Integer generalStock) {
-        this.generalStock = generalStock;
-    }
-
     public Integer getGeneralStock() {
         return generalStock;
+    }
+
+    public void setGeneralStock(Integer generalStock) {
+        this.generalStock = generalStock;
     }
 
     public Publisher getPublisher() {
@@ -217,6 +218,7 @@ public class Book {
         this.deleted = deleted;
     }
 
+    // Métodos hashCode y equals para comparación de objetos
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -323,6 +325,7 @@ public class Book {
         return true;
     }
 
+    // Método toString para representar el libro como cadena
     @Override
     public String toString() {
         return "Book [idBook=" + idBook + ", isbn=" + isbn + ", title=" + title + ", description=" + description
@@ -333,3 +336,4 @@ public class Book {
                 + "]";
     }
 }
+

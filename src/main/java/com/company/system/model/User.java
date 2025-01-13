@@ -19,54 +19,56 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table (name="Users")
-public class User implements Serializable{
+@Table(name = "Users")
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idUser")
-    private Long idUser;
+    private Long idUser; // Identificador único del usuario (clave primaria)
 
     @Column(unique = true, nullable = false, name = "idCardUser")
-    private Long idCardUser;
+    private Long idCardUser; // Número de tarjeta del usuario, debe ser único y no nulo
 
     @Column(length = 60, nullable = false, name = "names")
-    private String names;
+    private String names; // Nombres del usuario, no puede ser nulo
 
     @Column(length = 60, nullable = false, name = "surNames")
-    private String surNames;
+    private String surNames; // Apellidos del usuario, no puede ser nulo
 
     @Column(length = 60, unique = true, nullable = false, name = "email")
-    private String email;
+    private String email; // Correo electrónico del usuario, debe ser único y no nulo
 
     @Column(length = 64, nullable = false, name = "passwordHash")
-    private String passwordHash; 
+    private String passwordHash; // Contraseña en formato hash, no puede ser nulo
 
     @Column(name = "bornDate")
-    private LocalDate bornDate;
+    private LocalDate bornDate; // Fecha de nacimiento del usuario (opcional)
 
     @ManyToOne
     @JoinColumn(name = "fkRole")
-    private Role role;
+    private Role role; // Relación con el rol del usuario
 
     @Column(nullable = false, name = "registrationDate")
-    private LocalDate registrationDate;
+    private LocalDate registrationDate; // Fecha en que el usuario fue registrado, no puede ser nula
 
     @Column(nullable = false, name = "registrationName")
-    private String registrationName;
+    private String registrationName; // Nombre de la persona que registró al usuario, no puede ser nulo
 
     @Column(name = "registrationUpdateDate")
-    private LocalDate registrationUpdateDate;
-    
+    private LocalDate registrationUpdateDate; // Fecha de la última actualización (opcional)
+
     @Column(name = "registrationUpdateName")
-    private String registrationUpdateName;
+    private String registrationUpdateName; // Nombre de la persona que realizó la última actualización (opcional)
 
     @Column(name = "isDeleted", nullable = false)
-    private boolean deleted;
+    private boolean deleted; // Indicador de si el usuario ha sido eliminado. No puede ser nulo
 
+    // Constructor vacío
     public User() {
     }
-    
+
+    // Constructor con parámetros para inicializar todos los atributos
     public User(Long idCardUser, String names, String surNames, String email, String passwordHash, LocalDate bornDate, Role role, LocalDate registrationDate, String registrationName, LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
         this.idCardUser = idCardUser;
         this.names = names;
@@ -82,10 +84,11 @@ public class User implements Serializable{
         this.deleted = deleted;
     }
 
+    // Métodos getters y setters
     public Long getIdUser() {
         return idUser;
     }
-    
+
     public Long getIdCardUser() {
         return idCardUser;
     }
@@ -182,6 +185,7 @@ public class User implements Serializable{
         this.deleted = deleted;
     }
 
+    // Métodos hashCode y equals para comparación de objetos
     @Override
     public int hashCode() {
         int hash = 7;
@@ -201,6 +205,7 @@ public class User implements Serializable{
         return hash;
     }
 
+    // Método equals para comparar dos objetos User
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -252,6 +257,7 @@ public class User implements Serializable{
         return Objects.equals(this.registrationUpdateDate, other.registrationUpdateDate);
     }
 
+    // Método toString para representar el usuario como cadena
     @Override
     public String toString() {
         return "User{" + "idUser=" + idUser + 
