@@ -97,15 +97,15 @@ public class User implements Serializable{
         this.registrationUpdateName = registrationUpdateName;
         this.deleted = deleted;
     }
-
+    
+    public String getFullNames() {
+        return getNames() + " " + getSurNames();
+    }
+    
     public Long getIdUser() {
         return idUser;
     }
-
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
-    }
-
+    
     public Long getIdCardUser() {
         return idCardUser;
     }

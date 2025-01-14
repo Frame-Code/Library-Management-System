@@ -4,6 +4,13 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.company.system.model.Role</class>
     <class>com.company.system.model.User</class>
+    <class>com.company.system.model.Publisher</class>
+    <class>com.company.system.model.Author</class>
+    <class>com.company.system.model.Book</class>
+    <class>com.company.system.model.Category</class>
+    <class>com.company.system.model.Loan</class>
+    <class>com.company.system.model.Devolution</class>
+    <class>com.company.system.model.Fine</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://82.197.82.14:3306/u677638702_Library?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="u677638702_root"/>

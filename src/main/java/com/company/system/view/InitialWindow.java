@@ -2,6 +2,7 @@ package com.company.system.view;
 
 import com.company.system.controller.LoginLibrarianListener;
 import com.company.system.controller.LoginStudentListener;
+import com.company.system.service.UserService;
 import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
@@ -16,7 +17,7 @@ import javax.swing.JButton;
 public class InitialWindow extends javax.swing.JFrame {
     private LoginStudent frmLoginStudent;
     private LoginLibrarian frmLoginLibrarian;
-    
+
     public InitialWindow() {
         initComponents();
         setResizable(true);
@@ -24,7 +25,6 @@ public class InitialWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -198,16 +198,16 @@ public class InitialWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    public void openLoginStudent() {
+    public void openLoginStudent(UserService userService) {
         frmLoginStudent = new LoginStudent();
+        new LoginStudentListener(frmLoginStudent, userService);
         frmLoginStudent.setVisible(true);
-        new LoginStudentListener(frmLoginStudent);
     }
     
-    public void openLoginLibrarian() {
+    public void openLoginLibrarian(UserService userService) {
         frmLoginLibrarian = new LoginLibrarian();
+        new LoginLibrarianListener(frmLoginLibrarian, userService);
         frmLoginLibrarian.setVisible(true);
-        new LoginLibrarianListener(frmLoginLibrarian);
     }
     
     //Este metodo cierra esta ventana
@@ -220,7 +220,6 @@ public class InitialWindow extends javax.swing.JFrame {
     public void mouseEvent(JButton btn, Color color) {
         btn.setBackground(color);
     }
-    
     
     public JButton getBtnLibrarianLogin() {
         return btnLibrarianLogin;

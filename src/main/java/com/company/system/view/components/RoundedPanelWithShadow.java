@@ -7,9 +7,9 @@ import java.awt.RenderingHints;
 import javax.swing.JPanel;
 
 public class RoundedPanelWithShadow extends JPanel{
-    private int cornerRadius;
-    private Color shadowColor;
-    private int shadowSize;
+    private final int cornerRadius;
+    private final Color shadowColor;
+    private final int shadowSize;
 
     public RoundedPanelWithShadow(int cornerRadius, Color shadowColor, int shadowSize) {
         this.cornerRadius = cornerRadius;
