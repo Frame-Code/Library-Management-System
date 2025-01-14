@@ -4,10 +4,10 @@ import java.util.List;
 
 import com.company.system.dao.impl.BookDaoImpl;
 import com.company.system.dao.interfaces.BookDao;
+import com.company.system.model.Author;
 import com.company.system.model.Book;
 import com.company.system.model.Category;
 import com.company.system.model.Publisher;
-import com.company.system.model.Role;
 import com.company.system.model.User;
 import java.time.LocalDate;
 
@@ -43,14 +43,13 @@ public class BookService {
         return bookDao.update(book);
     }
 
-    /*public boolean RegisterBook(String names, String surNames, String email, Long idCardUser, 
-    LocalDate bornDate, String passwordPlain) {
-        String passwordHash = encrypte.encryptPassword(passwordPlain);
-        User user = new User(idCardUser, names, surNames, email, passwordHash, bornDate, 
-        roleDao.findByName(Role.roleStudent), LocalDate.now(), names + " " + surNames + " ci: " + idCardUser, null, 
-        null, 
-        false
-        );
-        return userDao.create(user); 
-    }  */
+    public boolean RegisterBook(String isbn, String title, String description, LocalDate yearPublished, 
+        Publisher publisher, Category category, List<Author> authors, Integer stock, User librarian) {
+        
+        Book book = new Book(isbn, title, description, yearPublished, stock,
+                stock, publisher, category, authors, LocalDate.now(), 
+               librarian.getFullNames(), null, null, false);
+        return bookDao.create(book); 
+    }  
+    
 }

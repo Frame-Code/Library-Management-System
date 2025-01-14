@@ -1,5 +1,7 @@
 package com.company.system.controller;
 
+import com.company.system.model.Category;
+import com.company.system.model.Publisher;
 import com.company.system.service.BookService;
 import com.company.system.service.CategoryService;
 import com.company.system.service.PublisherService;
@@ -51,16 +53,16 @@ public class RegisterBookListener implements ActionListener, MouseListener, KeyL
             // Obtener valores del formulario
             String title = pnlRegisterBook.getTxtTitle().getText();
             String isbn = pnlRegisterBook.getTxtISBN().getText();
-            String stock = pnlRegisterBook.getTxtStock().getText();
+            Integer stock = Integer.parseInt(pnlRegisterBook.getTxtStock().getText());
             String description = pnlRegisterBook.getTxaDescription().getText();
-            String category = pnlRegisterBook.getCmbMonth().getSelectedItem().toString();
-            String editorial = pnlRegisterBook.getCmbMonth().getSelectedItem().toString();
+            String category = pnlRegisterBook.getCmbCategory().getSelectedItem().toString();
+            String editorial = pnlRegisterBook.getCmbEditorial().getSelectedItem().toString();
             String yearText = pnlRegisterBook.getTxtYear().getText();
             String monthText = pnlRegisterBook.getCmbMonth().getSelectedItem().toString();
             String dayText = pnlRegisterBook.getTxtDay().getText();
 
             // Validación de campos vacíos
-            if (title.isEmpty() || isbn.isEmpty() || stock.isEmpty() || description.isEmpty()
+            if (title.isEmpty() || isbn.isEmpty() || stock == null || description.isEmpty()
                     || category.isEmpty() || editorial.isEmpty()
                     || yearText.isEmpty() || monthText.isEmpty() || dayText.isEmpty()) {
                 pnlRegisterBook.errorMessage(pnlRegisterBook.errorEmptyFields);
@@ -73,9 +75,13 @@ public class RegisterBookListener implements ActionListener, MouseListener, KeyL
                 int month = convertNumber(monthText);
                 int day = Integer.parseInt(dayText);
                 LocalDate publicationDate = LocalDate.of(year, month, day);
-
+                
+                Category categoryInstan = categoryService.getCategoryByName(category);
+                Publisher publisher = publisherService.getPublisherByName(editorial);
+                        
+                
                 // Registro del Libro
-                boolean registered = false;
+                boolean registered = bookService.RegisterBook(isbn, title, description, publicationDate, publisher, categoryInstan, pnlRegisterBook.getAuthors(), stock, pnlRegisterBook.getLibrarian());
                 if (registered) {
                     pnlRegisterBook.successMessage("Libro registrado exitosamente.");
                 } else {

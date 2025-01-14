@@ -211,9 +211,6 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
-                                  <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
-=======
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="txtTitle" min="-2" pref="262" max="-2" attributes="0"/>
@@ -243,7 +240,6 @@
                                           </Group>
                                       </Group>
                                   </Group>
->>>>>>> 4e69f98936ac6a58498a3a2f1d4c68c21e06ccf1
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                       <Component id="btnSelectAutors" min="-2" pref="173" max="-2" attributes="0"/>

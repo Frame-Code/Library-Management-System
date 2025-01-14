@@ -3,6 +3,7 @@ package com.company.system.view;
 import com.company.system.model.Author;
 import com.company.system.model.Category;
 import com.company.system.model.Publisher;
+import com.company.system.model.User;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.Color;
@@ -25,14 +26,19 @@ public class RegisterBook extends javax.swing.JPanel {
     public static final String typeShowBook = "ver libros registrados";
     
     public List<Author> authors;
+    private User librarian;
 
     /**
      * Creates new form RegisterBook
      */
-    public RegisterBook() {
+    public RegisterBook(User librarian) {
+        this.librarian = librarian;
         initComponents();
     }
 
+    public User getLibrarian(){
+        return librarian;
+    }
     public JButton getBtnRegisterBook() {
         return btnRegisterBook;
     }

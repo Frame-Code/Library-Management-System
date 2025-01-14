@@ -137,7 +137,6 @@ public class Book implements Serializable {
         this.yearPublished = yearPublished;
     }
 
-
     public Integer getStockToLoan() {
         return stockToLoan;
     }
