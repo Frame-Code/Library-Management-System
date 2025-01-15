@@ -106,7 +106,7 @@
                               <Component id="btnStudentLogin" min="-2" pref="223" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="111" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="btnLibrarianLogin" min="-2" pref="221" max="-2" attributes="0"/>

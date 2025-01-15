@@ -58,10 +58,8 @@ public class LibrarianWindow extends javax.swing.JFrame {
     private JPopupMenu menuContextual;
     private List<JMenuItem> menuItems;
 
-    public LibrarianWindow() {
-        // this.librarian = user;
-        this.librarian = new User();
-        librarian.setNames("Daniel Mora Cantillo");
+    public LibrarianWindow(User librarian) {
+        this.librarian = librarian;
         initComponents();
         setTitle("Manage library, made with <3");
         setResizable(true);

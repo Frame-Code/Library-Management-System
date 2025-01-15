@@ -15,52 +15,43 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Fines")
-public class Fine implements Serializable{
+public class Fine implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idFine")
-    private Long idFine;
+    private Long idFine; // Identificador único de la multa (clave primaria)
 
     @ManyToOne
     @JoinColumn(name = "fkUser", nullable = false)
-    private User user;
+    private User user; // Usuario al que se le aplica la multa
 
     @Column(nullable = false, name = "deadline")
-    private LocalDate deadline;
-    
+    private LocalDate deadline; // Fecha límite para pagar la multa. No puede ser nula
+
     @Column(nullable = false, name = "message")
-    private String message;
+    private String message; // Mensaje asociado a la multa (razón o descripción). No puede ser nulo
 
     @Column(nullable = false, name = "registrationDate")
-    private LocalDate registrationDate;
+    private LocalDate registrationDate; // Fecha en que la multa fue registrada. No puede ser nula
 
     @Column(nullable = false, name = "registrationName")
-    private String registrationName;
-    
-    @Column(name = "registrationUpdateDate")
-    private LocalDate registrationUpdateDate;
-    
-    @Column(name = "registrationUpdateName")
-    private String registrationUpdateName;
-    
-    @Column(name = "isDeleted", nullable = false)
-    private boolean deleted;
+    private String registrationName; // Nombre de la persona que registró la multa. No puede ser nulo
 
+    @Column(name = "registrationUpdateDate")
+    private LocalDate registrationUpdateDate; // Fecha de la última actualización de la multa. Puede ser nula
+
+    @Column(name = "registrationUpdateName")
+    private String registrationUpdateName; // Nombre de la persona que realizó la última actualización. Puede ser nulo
+
+    @Column(name = "isDeleted", nullable = false)
+    private boolean deleted; // Indicador de si la multa ha sido eliminada. No puede ser nulo
+
+    // Constructor vacío
     public Fine() {
     }
 
-    public Fine(Long idFine, User user, LocalDate deadline, LocalDate registrationDate, String registrationName,
-            LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
-        this.idFine = idFine;
-        this.user = user;
-        this.deadline = deadline;
-        this.registrationDate = registrationDate;
-        this.registrationName = registrationName;
-        this.registrationUpdateDate = registrationUpdateDate;
-        this.registrationUpdateName = registrationUpdateName;
-        this.deleted = deleted;
-    }
-
+    // Constructor con parámetros para inicializar todos los atributos
     public Fine(User user, LocalDate deadline, String message, LocalDate registrationDate, String registrationName, LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
         this.user = user;
         this.deadline = deadline;
@@ -72,6 +63,7 @@ public class Fine implements Serializable{
         this.deleted = deleted;
     }
 
+    // Métodos getters y setters
     public Long getIdFine() {
         return idFine;
     }
@@ -140,6 +132,7 @@ public class Fine implements Serializable{
         this.deleted = deleted;
     }
 
+    // Métodos hashCode y equals para comparación de objetos
     @Override
     public int hashCode() {
         int hash = 7;
@@ -155,6 +148,7 @@ public class Fine implements Serializable{
         return hash;
     }
 
+    // Método equals para comparar dos objetos Fine
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -194,9 +188,11 @@ public class Fine implements Serializable{
         return Objects.equals(this.registrationUpdateDate, other.registrationUpdateDate);
     }
 
+    // Método toString para representar la multa como cadena
     @Override
     public String toString() {
         return "Fine{" + "idFine=" + idFine + ", user=" + user + ", deadline=" + deadline + ", message=" + message + ", registrationDate=" + registrationDate + ", registrationName=" + registrationName + ", registrationUpdateDate=" + registrationUpdateDate + ", registrationUpdateName=" + registrationUpdateName + ", deleted=" + deleted + '}';
     }
     
 }
+

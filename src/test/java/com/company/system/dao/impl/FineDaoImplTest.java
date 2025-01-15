@@ -20,7 +20,7 @@ public class FineDaoImplTest {
     @Test
     void testCreate() {
         Fine fine = new Fine(new UserDaoImpl().findById(21L), 
-        LocalDate.of(2024, 12, 25),"Message", LocalDate.now(), "Admin",
+        LocalDate.of(2024, 12, 25),"Multa por razones desconocidas" ,LocalDate.now(), "Admin",
          null, null, false);
         //System.out.println(fineDao.create(fine));
     }

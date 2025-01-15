@@ -7,79 +7,106 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- *
- * @author Ariel Reyes Domo
+ * Clase InfoLibroWindowListener
+ * 
+ * Esta clase implementa `ActionListener` y `MouseListener` para manejar eventos relacionados con la ventana `InfoLibroWindow`,
+ * en particular para el botón "Atrás" que permite cerrar la ventana o interactuar visualmente al pasar el mouse.
  */
-//IMPLEMENTACION DE ActionListener Y MouseListener PARA MANEJAR LOS EVENTOS DE ESTOS MISMOS
 public class InfoLibroWindowListener implements ActionListener, MouseListener {
 
-    //SE REFERENCIA AL JFRAME INFOLIBROWINDOW
+    // Referencia a la ventana InfoLibroWindow
     private final InfoLibroWindow frmLibrowindow;
 
-    //SE INICIALIZA LA REFERENCIA A INFOLIBROWINDOW Y SE AGREGA LOS LISTENERS
+    /**
+     * Constructor de InfoLibroWindowListener
+     * 
+     * @param frmLibrowindow Instancia de la ventana `InfoLibroWindow` asociada a este listener.
+     *                       Se inicializa la referencia y se registran los listeners necesarios.
+     */
     public InfoLibroWindowListener(InfoLibroWindow frmLibrowindow) {
         this.frmLibrowindow = frmLibrowindow;
         addListeners();
     }
 
+    /**
+     * Método para agregar los listeners al botón "Atrás".
+     * - Se añade un `ActionListener` para manejar la acción del clic en el botón.
+     * - Se añade un `MouseListener` para manejar la interacción visual (hover).
+     */
     private void addListeners() {
-
-        // SE AGREGA ActionListener Y MouseListener AL BOTON DE NOTIFICACIONES
-        frmLibrowindow.getBtnNotify().addActionListener(this);
-        frmLibrowindow.getBtnNotify().addMouseListener(this);
-
-        // SE AGREGA ActionListener Y MouseListener AL BOTON DE ATRAS
         frmLibrowindow.getBtnBack().addActionListener(this);
         frmLibrowindow.getBtnBack().addMouseListener(this);
     }
-//METODO PARA MANEJAR LA ACCION DE LOS BOTONES
 
+    /**
+     * Manejo de acciones de los botones.
+     * Si se hace clic en el botón "Atrás", se cierra la ventana actual.
+     * 
+     * @param e Evento de acción capturado.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        //VERIFICA SI SE ACCIONO EL BOTON DE NOTIFICACION
-        if (e.getSource() == frmLibrowindow.getBtnNotify()) {
-            //VERIFICA SI SE ACCIONO EL BOTON DE ATRAS
-        } else if (e.getSource() == frmLibrowindow.getBtnBack()) {
-            frmLibrowindow.close();
+        if (e.getSource() == frmLibrowindow.getBtnBack()) {
+            frmLibrowindow.close(); // Cierra la ventana.
         }
     }
-//METODO PARA CAMBIAR EL COLOR O ALGO CUANDO PASAMOS EL MOUSE POR EL BOTON
-    //DE NOTIFICACION O EL BOTON ATRAS
 
+    /**
+     * Manejo del evento cuando el mouse entra en el botón "Atrás".
+     * Cambia el color o aspecto del botón según lo definido en `frmLibrowindow`.
+     * 
+     * @param e Evento del mouse capturado.
+     */
     @Override
     public void mouseEntered(MouseEvent e) {
-        if (e.getSource() == frmLibrowindow.getBtnNotify()) {
-            frmLibrowindow.mouseEntered(frmLibrowindow.getBtnNotify());
-        } else if (e.getSource() == frmLibrowindow.getBtnBack()) {
+        if (e.getSource() == frmLibrowindow.getBtnBack()) {
             frmLibrowindow.mouseEntered(frmLibrowindow.getBtnBack());
         }
     }
-//METODO PARA CAMBIAR EL COLOR O ALGO CUANDO SACAMOS EL MOUSE DEL BOTON
-    //DE NOTIFICACION O EL BOTON ATRAS
 
+    /**
+     * Manejo del evento cuando el mouse sale del botón "Atrás".
+     * Restaura el color o aspecto original del botón según lo definido en `frmLibrowindow`.
+     * 
+     * @param e Evento del mouse capturado.
+     */
     @Override
     public void mouseExited(MouseEvent e) {
-        if (e.getSource() == frmLibrowindow.getBtnNotify()) {
-            frmLibrowindow.mouseExited(frmLibrowindow.getBtnNotify());
-        } else if (e.getSource() == frmLibrowindow.getBtnBack()) {
+        if (e.getSource() == frmLibrowindow.getBtnBack()) {
             frmLibrowindow.mouseExited(frmLibrowindow.getBtnBack());
         }
     }
-//METODO PARA MANEJAR EL CLICK EN EL BOTON (NO USADO EN MI TRABAJO POR AHORA)
 
+    /**
+     * Manejo del evento de clic del mouse.
+     * Actualmente no implementado.
+     * 
+     * @param e Evento del mouse capturado.
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
+        // No implementado.
     }
 
-    //METODO PARA MANEJAR CUANDO TENEMOS PRESIONADO EL BOTON (NO USADO EN MI TRABAJO POR AHORA)
+    /**
+     * Manejo del evento cuando el botón del mouse se presiona.
+     * Actualmente no implementado.
+     * 
+     * @param e Evento del mouse capturado.
+     */
     @Override
     public void mousePressed(MouseEvent e) {
+        // No implementado.
     }
 
-    //METODO PARA MANEJAR CUANDO SOLTAMOS EL BOTON (NO USADO EN MI TRABAJO POR AHORA)
+    /**
+     * Manejo del evento cuando el botón del mouse se suelta.
+     * Actualmente no implementado.
+     * 
+     * @param e Evento del mouse capturado.
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
+        // No implementado.
     }
-
 }

@@ -3,7 +3,6 @@ package com.company.system.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,15 +17,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Loans")
-public class Loan implements Serializable{
+public class Loan implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idLoan")
-    private Long idLoan;
+    private Long idLoan; // Identificador único del préstamo (clave primaria)
 
     @ManyToOne
     @JoinColumn(name = "fkUser")
-    private User user;
+    private User user; // Usuario que realiza el préstamo
 
     @ManyToOne
     @JoinColumn(name = "fkBook")
@@ -37,29 +37,31 @@ public class Loan implements Serializable{
     private Devolution devolution;
     
     @Column(nullable = false, name = "devolutionDate")
-    private LocalDate devolutionDate;
+    private LocalDate devolutionDate; // Fecha límite para devolver el libro. No puede ser nula
 
     @Column(nullable = false, name = "isReturned")
-    private boolean returned;
+    private boolean returned; // Indicador de si el libro ha sido devuelto. No puede ser nulo
     
     @Column(nullable = false, name = "registrationDate")
-    private LocalDate registrationDate;
+    private LocalDate registrationDate; // Fecha en que el préstamo fue registrado. No puede ser nula
 
     @Column(nullable = false, name = "registrationName")
-    private String registrationName;
+    private String registrationName; // Nombre de la persona que registró el préstamo. No puede ser nulo
     
     @Column(name = "registrationUpdateDate")
-    private LocalDate registrationUpdateDate;
+    private LocalDate registrationUpdateDate; // Fecha de la última actualización del préstamo. Puede ser nula
     
     @Column(name = "registrationUpdateName")
-    private String registrationUpdateName;
+    private String registrationUpdateName; // Nombre de la persona que realizó la última actualización. Puede ser nulo
     
     @Column(name = "isDeleted", nullable = false)
-    private boolean deleted;
+    private boolean deleted; // Indicador de si el préstamo ha sido eliminado. No puede ser nulo
 
+    // Constructor vacío
     public Loan() {
     }
 
+    // Constructor sin idLoan, útil para nuevas instancias
     public Loan(User user, Book book, LocalDate devolutionDate, boolean returned, LocalDate registrationDate,
             String registrationName, LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
         this.user = user;
@@ -74,6 +76,7 @@ public class Loan implements Serializable{
         this.devolution = null;
     }
 
+    // Métodos getters y setters
     public Long getIdLoan() {
         return idLoan;
     }
@@ -158,6 +161,7 @@ public class Loan implements Serializable{
         this.deleted = deleted;
     }
 
+    // Métodos hashCode y equals para comparación de objetos
     @Override
     public int hashCode() {
         int hash = 7;
@@ -175,6 +179,7 @@ public class Loan implements Serializable{
         return hash;
     }
 
+    // Método equals para comparar dos objetos Loan
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -220,9 +225,11 @@ public class Loan implements Serializable{
         return Objects.equals(this.registrationUpdateDate, other.registrationUpdateDate);
     }
 
+    // Método toString para representar el préstamo como cadena
     @Override
     public String toString() {
         return "Loan{" + "idLoan=" + idLoan + ", user=" + user + ", book=" + book + ", devolution=" + devolution + ", devolutionDate=" + devolutionDate + ", returned=" + returned + ", registrationDate=" + registrationDate + ", registrationName=" + registrationName + ", registrationUpdateDate=" + registrationUpdateDate + ", registrationUpdateName=" + registrationUpdateName + ", deleted=" + deleted + '}';
     }
     
 }
+

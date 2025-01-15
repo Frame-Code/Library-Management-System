@@ -1,5 +1,6 @@
 package com.company.system.controller;
 
+import com.company.system.model.User;
 import com.company.system.service.UserService;
 import com.company.system.view.LoginLibrarian;
 import com.company.system.view.components.Utils;
@@ -55,9 +56,11 @@ public class LoginLibrarianListener implements ActionListener, MouseListener, Ke
                 for (char p : frmLoginLibrarian.getPswUser().getPassword()) {
                     plainPassword += p;
                 }
-
-                if (userService.login(idUser, plainPassword) != null) {
-                    frmLoginLibrarian.login();
+                
+                User librarian = userService.login(idUser, plainPassword);
+                if (librarian != null) {
+                    frmLoginLibrarian.login(librarian);
+                    frmLoginLibrarian.dispose();
                 } else {
                     frmLoginLibrarian.errorMessage(frmLoginLibrarian.errorIncorrectPassword);
                 }
@@ -88,7 +91,7 @@ public class LoginLibrarianListener implements ActionListener, MouseListener, Ke
             verifyFields();
         }
     }
-    
+
     //Escuchador de evento de los dos botones que tiene la ventana para cambiar color cuando el puntero esta sobre el bton
     @Override
     public void mouseEntered(MouseEvent e) {
@@ -98,7 +101,7 @@ public class LoginLibrarianListener implements ActionListener, MouseListener, Ke
             frmLoginLibrarian.mouseEvent(frmLoginLibrarian.getBtnLogin(), Utils.btnEntered);
         }
     }
-    
+
     //Escuchador de evento de los dos botones que tiene la ventana para cambiar color cuando el puntero sale del btn
     @Override
     public void mouseExited(MouseEvent e) {
@@ -108,7 +111,7 @@ public class LoginLibrarianListener implements ActionListener, MouseListener, Ke
             frmLoginLibrarian.mouseEvent(frmLoginLibrarian.getBtnLogin(), Utils.btnExited);
         }
     }
-    
+
     //Escuchador de evento en el caso que se presione la tecla Ok o Enter del teclado
     @Override
     public void keyPressed(KeyEvent e) {
@@ -119,22 +122,32 @@ public class LoginLibrarianListener implements ActionListener, MouseListener, Ke
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        // Este método se llama cuando se hace clic en un componente con el ratón.
+        // Actualmente no se implementa ninguna acción específica.
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+        // Este método se llama cuando se presiona un botón del ratón sobre un componente.
+        // Actualmente no se implementa ninguna acción específica.
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        // Este método se llama cuando se libera el botón del ratón después de presionarlo.
+        // Actualmente no se implementa ninguna acción específica.
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
+        // Este método se llama cuando se ingresa un carácter (cuando se presiona una tecla que produce un carácter).
+        // Actualmente no se implementa ninguna acción específica.
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        // Este método se llama cuando se suelta una tecla.
+        // Actualmente no se implementa ninguna acción específica.
     }
 
 }

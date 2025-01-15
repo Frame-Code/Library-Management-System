@@ -1,24 +1,27 @@
 package com.company.system.app;
 
-import com.company.system.controller.LibrarianWindowListener;
-import com.company.system.view.LibrarianWindow;
+import com.company.system.controller.InitialWindowListener;
+import com.company.system.service.UserService;
+import com.company.system.view.InitialWindow;
 
 import java.lang.reflect.InvocationTargetException;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class App {
-    private static LibrarianWindow lb;
+    private static InitialWindow iw;
     
     public static void main(String[] args) {
         try {
             SwingUtilities.invokeAndWait(() -> {
-                lb = new LibrarianWindow();
+                iw = new InitialWindow();
             });
         } catch (InterruptedException | InvocationTargetException ex) {
+            JOptionPane.showMessageDialog(iw, "Ocurrio un error inesperado", "Error" , JOptionPane.INFORMATION_MESSAGE);
             ex.printStackTrace();
         }
-        new LibrarianWindowListener(lb);
-        lb.setVisible(true);
+        new InitialWindowListener(iw, new UserService());
+        iw.setVisible(true);
     }
     
 }
