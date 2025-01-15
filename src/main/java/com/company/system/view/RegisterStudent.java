@@ -42,7 +42,7 @@ public class RegisterStudent extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new BackgroundPanel("src/main/resources/images/Background_login.png");
+        jPanel1 = new BackgroundPanel("images/Background_login.png");
         jPanel2 = new RoundedPanelWithShadow(30, new Color(0, 0, 0, 100), 2);
         jPanel3 = new RoundedPanelWithShadow(30, new Color(0, 0, 0, 100), 2);
         jLabel1 = new javax.swing.JLabel();

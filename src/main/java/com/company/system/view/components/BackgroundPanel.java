@@ -5,13 +5,16 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class BackgroundPanel extends JPanel{
+public class BackgroundPanel extends JPanel {
 
     private Image backgroundImage;
 
     public BackgroundPanel(String imagePath) {
-        // Cargar la imagen
-        this.backgroundImage = new ImageIcon(imagePath).getImage();
+        try {
+            backgroundImage = new ImageIcon(getClass().getClassLoader().getResource(imagePath)).getImage();
+        } catch (NullPointerException e) {
+            System.err.println("No se encontró la imagen: " + imagePath);
+        }
     }
 
     @Override

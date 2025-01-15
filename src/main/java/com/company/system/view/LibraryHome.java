@@ -50,7 +50,7 @@ public class LibraryHome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        contentPane = new BackgroundPanel("src/main/resources/images/Background_login.png");
+        contentPane = new BackgroundPanel("images/Background_login.png");
         pnlBackground = new RoundedPanelWithShadow(30, new Color(0, 0, 0, 100), 2);
         pnlWelcome = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         lblWelcome = new javax.swing.JLabel();
