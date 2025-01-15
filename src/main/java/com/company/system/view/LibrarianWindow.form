@@ -57,7 +57,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new BackgroundPanel(&quot;src/main/resources/images/Background_login.png&quot;)"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new BackgroundPanel(&quot;/images/Background_login.png&quot;)"/>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="LibrarianWindow_contentPane"/>
       </AuxValues>
 

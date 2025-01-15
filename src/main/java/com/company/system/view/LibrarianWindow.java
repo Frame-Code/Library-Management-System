@@ -78,7 +78,7 @@ public class LibrarianWindow extends javax.swing.JFrame {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenu1 = new javax.swing.JMenu();
-        contentPane = new BackgroundPanel("src/main/resources/images/Background_login.png");
+        contentPane = new BackgroundPanel("/images/Background_login.png");
         pnlBackground = new RoundedPanelWithShadow(30, new Color(0, 0, 0, 100), 2);
         pnlWelcome = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         lblWelcome = new javax.swing.JLabel();
