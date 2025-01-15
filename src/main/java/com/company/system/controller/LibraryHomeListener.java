@@ -281,92 +281,127 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
         }
 
         if (e.getSource() == frmLibraryHome.getLblRequest()) {
-            // Obtener el usuario actual (suponiendo que tienes acceso al usuario en el contexto)
-            User currentUser = frmLibraryHome.getStudent();
+    // Obtener el usuario actual (suponiendo que tienes acceso al usuario en el contexto)
+    User currentUser = frmLibraryHome.getStudent();
 
-            // Verificar si el usuario tiene préstamos pendientes
-            if (!loanService.hasPendingBookForExtension(currentUser)) {
-                JOptionPane.showMessageDialog(frmLibraryHome, "No tienes un libro pendiente para solicitar prórroga.");
-                return;
-            }
-
-            // Verificar que el usuario tenga menos de 3 multas
-            if (!loanService.checkFinesToRequestExtension(currentUser)) {
-                JOptionPane.showMessageDialog(frmLibraryHome, "Tienes más de 3 multas o tu última multa no ha pasado su fecha límite.");
-                return;
-            }
-
-            // Verificar si el usuario ya solicitó una prórroga
-            if (loanService.hasAlreadyRequestedExtension(currentUser)) {
-                JOptionPane.showMessageDialog(frmLibraryHome, "Ya has solicitado una prórroga para este libro.");
-                return;
-            }
-
-            // Obtener el último préstamo
-            Loan lastLoan = new LinkedList<>(loanService.getLoansByUser(currentUser)).getLast();
-
-            // Verificar que la fecha actual no sobrepase la fecha de devolución registrada
-            if (LocalDate.now().isAfter(lastLoan.getDevolutionDate())) {
-                JOptionPane.showMessageDialog(frmLibraryHome, "La fecha actual ya ha pasado la fecha de devolución registrada.");
-                return;
-            }
-
-            // Mostrar el formulario para solicitar la prórroga
-            JPanel formPanel = new JPanel();
-            formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
-
-            // Crear un campo de texto para ingresar el año (4 caracteres de ancho).
-            JTextField yearField = new JTextField(4);
-
-// Crear un combo box para seleccionar el mes con nombres en español.
-            JComboBox<String> monthComboBox = new JComboBox<>(new String[]{
-                "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-                "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-            });
-
-// Crear un campo de texto para ingresar el día (2 caracteres de ancho).
-            JTextField dayField = new JTextField(2);
-
-// Crear un panel para agrupar los elementos de entrada de la fecha.
-            JPanel datePanel = new JPanel();
-            datePanel.setLayout(new FlowLayout(FlowLayout.CENTER)); // Configurar un diseño de flujo centrado.
-            datePanel.add(new JLabel("Día:")); // Etiqueta para el campo del día.
-            datePanel.add(dayField);           // Agregar el campo de texto del día.
-            datePanel.add(new JLabel("Mes:")); // Etiqueta para el combo box del mes.
-            datePanel.add(monthComboBox);      // Agregar el combo box del mes.
-            datePanel.add(new JLabel("Año:")); // Etiqueta para el campo del año.
-            datePanel.add(yearField);          // Agregar el campo de texto del año.
-
-// Crear un panel para el formulario principal.
-            formPanel.add(new JLabel("Nueva Fecha de Devolución:")); // Etiqueta descriptiva para el formulario.
-            formPanel.add(datePanel); // Agregar el panel con los elementos de la fecha al formulario.
-
-// Crear un botón para enviar la solicitud de prórroga.
-            JButton requestButton = new JButton("Solicitar Prórroga");
-            formPanel.add(requestButton); // Agregar el botón al formulario.
-
-// Crear una ventana interna (JInternalFrame) para la solicitud de prórroga.
-            JInternalFrame requestExtensionInternalFrame = new JInternalFrame(
-                    "Solicitar Prórroga", // Título de la ventana.
-                    true, // Hacer que la ventana sea redimensionable.
-                    true, // Hacer que la ventana sea cerrable.
-                    true, // Hacer que la ventana sea maximizable.
-                    true // Hacer que la ventana sea iconificable.
-            );
-            requestExtensionInternalFrame.setLayout(new BorderLayout()); // Establecer un diseño de bordes.
-            requestExtensionInternalFrame.add(formPanel, BorderLayout.CENTER); // Agregar el formulario al centro de la ventana interna.
-            requestExtensionInternalFrame.setSize(frmLibraryHome.getDesktopPane().getSize()); // Ajustar el tamaño de la ventana interna al tamaño del desktop pane.
-
-// Limpiar el desktop pane antes de agregar la nueva ventana.
-            frmLibraryHome.clearDesltopPane();
-
-// Agregar la ventana interna al desktop pane de frmLibraryHome.
-            frmLibraryHome.addToDesktopPane(requestExtensionInternalFrame);
-
-// Hacer visible la ventana interna.
-            requestExtensionInternalFrame.setVisible(true);
-        }
+    // Verificar si el usuario tiene préstamos pendientes
+    if (!loanService.hasPendingBookForExtension(currentUser)) {
+        JOptionPane.showMessageDialog(frmLibraryHome, "No tienes un libro pendiente para solicitar prórroga.");
+        return;
     }
+
+    // Verificar que el usuario tenga menos de 3 multas
+    if (!loanService.checkFinesToRequestExtension(currentUser)) {
+        JOptionPane.showMessageDialog(frmLibraryHome, "Tienes más de 3 multas o tu última multa no ha pasado su fecha límite.");
+        return;
+    }
+
+    // Verificar si el usuario ya solicitó una prórroga
+    if (loanService.hasAlreadyRequestedExtension(currentUser)) {
+        JOptionPane.showMessageDialog(frmLibraryHome, "Ya has solicitado una prórroga para este libro.");
+        return;
+    }
+
+    // Obtener el último préstamo
+    Loan lastLoan = new LinkedList<>(loanService.getLoansByUser(currentUser)).getLast();
+
+    // Verificar que la fecha actual no sobrepase la fecha de devolución registrada
+    if (LocalDate.now().isAfter(lastLoan.getDevolutionDate())) {
+        JOptionPane.showMessageDialog(frmLibraryHome, "La fecha actual ya ha pasado la fecha de devolución registrada.");
+        return;
+    }
+
+    // Mostrar el formulario para solicitar la prórroga
+    JPanel formPanel = new JPanel();
+    formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
+
+    // Crear un campo de texto para ingresar el año (4 caracteres de ancho).
+    JTextField yearField = new JTextField(4);
+
+    // Crear un combo box para seleccionar el mes con nombres en español.
+    JComboBox<String> monthComboBox = new JComboBox<>(new String[]{
+        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    });
+
+    // Crear un campo de texto para ingresar el día (2 caracteres de ancho).
+    JTextField dayField = new JTextField(2);
+
+    // Crear un panel para agrupar los elementos de entrada de la fecha.
+    JPanel datePanel = new JPanel();
+    datePanel.setLayout(new FlowLayout(FlowLayout.CENTER)); // Configurar un diseño de flujo centrado.
+    datePanel.add(new JLabel("Día:")); // Etiqueta para el campo del día.
+    datePanel.add(dayField);           // Agregar el campo de texto del día.
+    datePanel.add(new JLabel("Mes:")); // Etiqueta para el combo box del mes.
+    datePanel.add(monthComboBox);      // Agregar el combo box del mes.
+    datePanel.add(new JLabel("Año:")); // Etiqueta para el campo del año.
+    datePanel.add(yearField);          // Agregar el campo de texto del año.
+
+    // Crear un panel para el formulario principal.
+    formPanel.add(new JLabel("Nueva Fecha de Devolución:")); // Etiqueta descriptiva para el formulario.
+    formPanel.add(datePanel); // Agregar el panel con los elementos de la fecha al formulario.
+
+    // Crear un botón para enviar la solicitud de prórroga.
+    JButton requestButton = new JButton("Solicitar Prórroga");
+    formPanel.add(requestButton); // Agregar el botón al formulario.
+
+    // Agregar un ActionListener al botón para guardar la información
+    requestButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                // Obtener el día, mes y año ingresados por el usuario
+                int day = Integer.parseInt(dayField.getText());
+                int month = monthComboBox.getSelectedIndex() + 1;  // El combo box está basado en índices, sumar 1 para obtener el mes real
+                int year = Integer.parseInt(yearField.getText());
+
+                // Crear la nueva fecha de devolución
+                LocalDate newDevolutionDate = LocalDate.of(year, month, day);
+
+                // Verificar que la fecha de devolución no sea en el pasado
+                if (newDevolutionDate.isBefore(LocalDate.now())) {
+                    JOptionPane.showMessageDialog(frmLibraryHome, "La nueva fecha de devolución no puede ser en el pasado.");
+                    return;
+                }
+
+                // Llamar al servicio para solicitar la prórroga
+                boolean success = loanService.requestExtension(currentUser, newDevolutionDate);
+
+                // Mostrar un mensaje según el resultado
+                if (success) {
+                    JOptionPane.showMessageDialog(frmLibraryHome, "Prórroga solicitada exitosamente.");
+                } else {
+                    JOptionPane.showMessageDialog(frmLibraryHome, "No se pudo solicitar la prórroga. Verifique las condiciones.");
+                }
+            } catch (NumberFormatException ex) {
+                // Manejar la excepción si los campos de día, mes o año no son válidos
+                JOptionPane.showMessageDialog(frmLibraryHome, "Por favor, ingresa una fecha válida.");
+            }
+        }
+    });
+
+    // Crear una ventana interna (JInternalFrame) para la solicitud de prórroga.
+    JInternalFrame requestExtensionInternalFrame = new JInternalFrame(
+            "Solicitar Prórroga", // Título de la ventana.
+            true, // Hacer que la ventana sea redimensionable.
+            true, // Hacer que la ventana sea cerrable.
+            true, // Hacer que la ventana sea maximizable.
+            true // Hacer que la ventana sea iconificable.
+    );
+    requestExtensionInternalFrame.setLayout(new BorderLayout()); // Establecer un diseño de bordes.
+    requestExtensionInternalFrame.add(formPanel, BorderLayout.CENTER); // Agregar el formulario al centro de la ventana interna.
+    requestExtensionInternalFrame.setSize(frmLibraryHome.getDesktopPane().getSize()); // Ajustar el tamaño de la ventana interna al tamaño del desktop pane.
+
+    // Limpiar el desktop pane antes de agregar la nueva ventana.
+    frmLibraryHome.clearDesltopPane();
+
+    // Agregar la ventana interna al desktop pane de frmLibraryHome.
+    frmLibraryHome.addToDesktopPane(requestExtensionInternalFrame);
+
+    // Hacer visible la ventana interna.
+    requestExtensionInternalFrame.setVisible(true);
+    }
+   }
 
     @Override
     public void mouseEntered(MouseEvent e) {
