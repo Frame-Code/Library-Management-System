@@ -34,6 +34,14 @@ public class UserService {
         this.roleDao = new RoleDaoImpl();
         this.encrypte = new EncryptationService();
     }
+    
+    public User getStudentByIdCard(Long idCardUser) {
+        return userDao.findByIdCard(idCardUser, Role.roleStudent);
+    }
+    
+    public User getLibrarianByIdCard(Long idCardUser) {
+        return userDao.findByIdCard(idCardUser, Role.roleLibrarian);
+    }
 
     /**
      * Verifica si un usuario existe en la base de datos basado en su número de tarjeta de identidad

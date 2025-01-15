@@ -9,6 +9,7 @@ import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.Color;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -34,6 +35,8 @@ public class LoginStudent extends javax.swing.JFrame {
         setResizable(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setTitle("System management student, made with <3");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/libraryIconPrincipal.png")));
     }
 
     public void back(UserService userService) {
@@ -51,7 +54,7 @@ public class LoginStudent extends javax.swing.JFrame {
 
     public void openLibraryHome(User user, UserService userService) { {
         frmLibraryHome = new LibraryHome(user);
-        new LibraryHomeListener(frmLibraryHome, userService);
+        new LibraryHomeListener(frmLibraryHome, user, userService);
         frmLibraryHome.setVisible(true);
     }
 
@@ -201,7 +204,7 @@ public class LoginStudent extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(112, 112, 112));
         jLabel5.setText("¿No tiene cuenta aún?");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Sample_User_Icon(1).png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/authorIcon.png"))); // NOI18N
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/password-148(2).png"))); // NOI18N
 

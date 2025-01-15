@@ -1,5 +1,6 @@
 package com.company.system.controller;
 
+import com.company.system.model.User;
 import com.company.system.service.UserService;
 import com.company.system.view.LoginLibrarian;
 import com.company.system.view.components.Utils;
@@ -55,9 +56,11 @@ public class LoginLibrarianListener implements ActionListener, MouseListener, Ke
                 for (char p : frmLoginLibrarian.getPswUser().getPassword()) {
                     plainPassword += p;
                 }
-
-                if (userService.login(idUser, plainPassword) != null) {
-                    frmLoginLibrarian.login();
+                
+                User librarian = userService.login(idUser, plainPassword);
+                if (librarian != null) {
+                    frmLoginLibrarian.login(librarian);
+                    frmLoginLibrarian.dispose();
                 } else {
                     frmLoginLibrarian.errorMessage(frmLoginLibrarian.errorIncorrectPassword);
                 }

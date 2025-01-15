@@ -25,7 +25,7 @@ public class UserDaoImplTest {
 
     @Test
     void testFindByIdCard() {
-        User user = userDao.findByIdCard(654654654L);
+        User user = userDao.findByIdCard(941239261L);
         System.out.println(user);
     }
 
@@ -71,7 +71,7 @@ public class UserDaoImplTest {
 
     @Test
     void testUpdate() {
-        User user = userDao.findById(5L);
+        User user = userDao.findByIdIncludeDeleted(5L);
         user.setDeleted(false);
         System.out.println(userDao.update(user));
     }

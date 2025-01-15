@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,7 +28,10 @@ public class Devolution implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "fkBook")
-    private Book book; // Libro que fue devuelto
+    private Book book;
+    
+    @OneToOne(mappedBy = "devolution")
+    private Loan loan;
 
     @Column(nullable = false, name = "registrationDate")
     private LocalDate registrationDate; // Fecha de registro de la devolución. No puede ser nula
@@ -61,11 +65,10 @@ public class Devolution implements Serializable {
         this.deleted = deleted;
     }
 
-    // Constructor sin el idDovolution (en caso de no contar con él al crear una nueva devolución)
-    public Devolution(User user, Book book, LocalDate registrationDate, String registrationName,
-            LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
+    public Devolution(User user, Book book, Loan loan, LocalDate registrationDate, String registrationName, LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
         this.user = user;
         this.book = book;
+        this.loan = loan;
         this.registrationDate = registrationDate;
         this.registrationName = registrationName;
         this.registrationUpdateDate = registrationUpdateDate;
@@ -88,6 +91,14 @@ public class Devolution implements Serializable {
 
     public Book getBook() {
         return book;
+    }
+
+    public Loan getLoan() {
+        return loan;
+    }
+
+    public void setLoan(Loan loan) {
+        this.loan = loan;
     }
 
     public void setBook(Book book) {

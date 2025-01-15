@@ -122,16 +122,14 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         jLabel4.setText("ISBN:");
 
         lblYearPublished.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        lblYearPublished.setForeground(new java.awt.Color(0, 0, 0));
         lblYearPublished.setText(book.getYearPublished().toString());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Descripcion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descripcion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         txtAreaDescription.setEditable(false);
         txtAreaDescription.setColumns(20);
-        txtAreaDescription.setForeground(new java.awt.Color(0, 0, 0));
         txtAreaDescription.setLineWrap(true);
         txtAreaDescription.setRows(5);
         jScrollPane1.setViewportView(txtAreaDescription);
@@ -154,7 +152,6 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         );
 
         lblPublisher.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        lblPublisher.setForeground(new java.awt.Color(0, 0, 0));
         lblPublisher.setText(book.getPublisher().getName());
 
         lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PortraitBook.png"))); // NOI18N
@@ -163,11 +160,9 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         jLabel7.setText("Categoría:");
 
         lblISBN.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        lblISBN.setForeground(new java.awt.Color(0, 0, 0));
         lblISBN.setText(book.getIsbn());
 
         lblAuthor.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        lblAuthor.setForeground(new java.awt.Color(0, 0, 0));
         String authors = "";
         for(Author author : book.getAuthors()) {
             authors += author.getSurNames() + ", ";
@@ -175,7 +170,6 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         lblAuthor.setText(authors);
 
         lblCategory.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        lblCategory.setForeground(new java.awt.Color(0, 0, 0));
         lblCategory.setText(book.getCategory().getName());
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

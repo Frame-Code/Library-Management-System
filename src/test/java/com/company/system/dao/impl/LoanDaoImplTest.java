@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import com.company.system.dao.interfaces.LoanDao;
 import com.company.system.model.Loan;
+import java.util.LinkedList;
 
 /**
  *
@@ -23,7 +24,7 @@ public class LoanDaoImplTest {
 
     @Test
     void testCreate() {
-        Loan loan = new Loan(new UserDaoImpl().findById(6L), 
+        Loan loan = new Loan(new UserDaoImpl().findById(9412392L), 
         new BookDaoImpl().findById(13L), LocalDate.of(2024, 11, 15), true,
         LocalDate.of(2024, 11, 15), "Admin",
          null, null, false);
@@ -48,10 +49,13 @@ public class LoanDaoImplTest {
         
     @Test
     void testFindByUser() {
-        List<Loan> loans = loanDao.findByUser(new UserDaoImpl().findByIdCard(941239292L));
-        loans.forEach(loan -> {
+        LinkedList<Loan> loans = new LinkedList<>(loanDao.findByUser(new UserDaoImpl().findByIdCard(9412392L)));
+        /*loans.forEach(loan -> {
             System.out.println(loan);
-        });
+        });*/
+        Loan l = loans.getLast();
+        l.setDevolution(null);
+        //loanDao.update(l);
     }
 
     @Test
@@ -94,5 +98,13 @@ public class LoanDaoImplTest {
         Loan loan = loanDao.findByIdIncludeDeleted(3L);
         loan.setDevolutionDate(LocalDate.of(2024, 12, 25));
         System.out.println(loanDao.update(loan));
+    }
+
+    @Test
+    void testFindMostBorrowedBooks() {
+        List<Object[]> loans = loanDao.findMostBorrowedBooks(5);
+        loans.forEach(loan -> {
+            System.out.println(loan[0] + " - " + loan[1] + " - " + loan[2]);
+        }); 
     }
 }

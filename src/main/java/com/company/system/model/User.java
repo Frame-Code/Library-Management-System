@@ -83,8 +83,11 @@ public class User implements Serializable {
         this.registrationUpdateName = registrationUpdateName;
         this.deleted = deleted;
     }
-
-    // Métodos getters y setters
+    
+    public String getFullNames() {
+        return getNames() + " " + getSurNames();
+    }
+    
     public Long getIdUser() {
         return idUser;
     }

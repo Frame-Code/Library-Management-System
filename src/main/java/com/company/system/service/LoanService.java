@@ -8,6 +8,7 @@ import com.company.system.dao.impl.FineDaoImpl;
 import com.company.system.dao.impl.LoanDaoImpl;
 import com.company.system.dao.interfaces.FineDao;
 import com.company.system.dao.interfaces.LoanDao;
+import com.company.system.model.Book;
 import com.company.system.model.Fine;
 import com.company.system.model.Loan;
 import com.company.system.model.User;
@@ -20,14 +21,24 @@ public class LoanService {
 
     private final LoanDao loanDao;
     private final FineDao fineDao;
+    private final BookService bookService;
 
     public LoanService() {
         this.loanDao = new LoanDaoImpl();
         this.fineDao = new FineDaoImpl();
+        this.bookService = new BookService();
     }
-
+    
+    public Loan getLoanById(Long id) {
+        return loanDao.findById(id);
+    }
+    
     public List<Loan> getLoansByUser(User user) {
         return loanDao.findByUser(user);
+    }
+    
+    public boolean deleteLoan(Long idLoan) {
+        return loanDao.deleteByID(idLoan);
     }
     
     // Verifica si el usuario tiene multas y si son menos de 3 y si la última multa ya ha pasado la fecha límite
@@ -92,4 +103,18 @@ public class LoanService {
 
         return loanDao.update(lastLoan); // Actualizar la base de datos con la nueva fecha de devolución
     }
+    
+    public boolean createLoan(User user, Book book, LocalDate devolutionDate, String registrationName) {
+        /* Primero es necesario realizar la siguiente verificación:
+        1. Que se verifique si el estudiante tiene un prestamo que no ha devulto 
+        
+        Nota: esta funcion da por sentado que la verificion ya fue hecha
+        */
+        
+        Loan loan = new Loan(user, book, devolutionDate, false, LocalDate.now(), registrationName,
+               null, null, false);
+        bookService.updateBookStock(book);
+        return loanDao.create(loan);
+    }
+
 }

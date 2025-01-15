@@ -2,6 +2,7 @@ package com.company.system.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -28,7 +30,11 @@ public class Loan implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "fkBook")
-    private Book book; // Libro que se ha prestado
+    private Book book;
+    
+    @OneToOne
+    @JoinColumn(name = "fkDevolution")
+    private Devolution devolution;
     
     @Column(nullable = false, name = "devolutionDate")
     private LocalDate devolutionDate; // Fecha límite para devolver el libro. No puede ser nula
@@ -55,22 +61,6 @@ public class Loan implements Serializable {
     public Loan() {
     }
 
-    // Constructor con parámetros para inicializar todos los atributos
-    public Loan(Long idLoan, User user, Book book, LocalDate devolutionDate, boolean returned,
-            LocalDate registrationDate, String registrationName, LocalDate registrationUpdateDate,
-            String registrationUpdateName, boolean deleted) {
-        this.idLoan = idLoan;
-        this.user = user;
-        this.book = book;
-        this.devolutionDate = devolutionDate;
-        this.returned = returned;
-        this.registrationDate = registrationDate;
-        this.registrationName = registrationName;
-        this.registrationUpdateDate = registrationUpdateDate;
-        this.registrationUpdateName = registrationUpdateName;
-        this.deleted = deleted;
-    }
-
     // Constructor sin idLoan, útil para nuevas instancias
     public Loan(User user, Book book, LocalDate devolutionDate, boolean returned, LocalDate registrationDate,
             String registrationName, LocalDate registrationUpdateDate, String registrationUpdateName, boolean deleted) {
@@ -83,6 +73,7 @@ public class Loan implements Serializable {
         this.registrationUpdateDate = registrationUpdateDate;
         this.registrationUpdateName = registrationUpdateName;
         this.deleted = deleted;
+        this.devolution = null;
     }
 
     // Métodos getters y setters
@@ -104,6 +95,14 @@ public class Loan implements Serializable {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public Devolution getDevolution() {
+        return devolution;
+    }
+
+    public void setDevolution(Devolution devolution) {
+        this.devolution = devolution;
     }
 
     public LocalDate getDevolutionDate() {
@@ -165,85 +164,71 @@ public class Loan implements Serializable {
     // Métodos hashCode y equals para comparación de objetos
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((idLoan == null) ? 0 : idLoan.hashCode());
-        result = prime * result + ((user == null) ? 0 : user.hashCode());
-        result = prime * result + ((book == null) ? 0 : book.hashCode());
-        result = prime * result + ((devolutionDate == null) ? 0 : devolutionDate.hashCode());
-        result = prime * result + (returned ? 1231 : 1237);
-        result = prime * result + ((registrationDate == null) ? 0 : registrationDate.hashCode());
-        result = prime * result + ((registrationName == null) ? 0 : registrationName.hashCode());
-        result = prime * result + ((registrationUpdateDate == null) ? 0 : registrationUpdateDate.hashCode());
-        result = prime * result + ((registrationUpdateName == null) ? 0 : registrationUpdateName.hashCode());
-        result = prime * result + (deleted ? 1231 : 1237);
-        return result;
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.idLoan);
+        hash = 67 * hash + Objects.hashCode(this.user);
+        hash = 67 * hash + Objects.hashCode(this.book);
+        hash = 67 * hash + Objects.hashCode(this.devolution);
+        hash = 67 * hash + Objects.hashCode(this.devolutionDate);
+        hash = 67 * hash + (this.returned ? 1 : 0);
+        hash = 67 * hash + Objects.hashCode(this.registrationDate);
+        hash = 67 * hash + Objects.hashCode(this.registrationName);
+        hash = 67 * hash + Objects.hashCode(this.registrationUpdateDate);
+        hash = 67 * hash + Objects.hashCode(this.registrationUpdateName);
+        hash = 67 * hash + (this.deleted ? 1 : 0);
+        return hash;
     }
 
     // Método equals para comparar dos objetos Loan
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
-        Loan other = (Loan) obj;
-        if (idLoan == null) {
-            if (other.idLoan != null)
-                return false;
-        } else if (!idLoan.equals(other.idLoan))
+        }
+        final Loan other = (Loan) obj;
+        if (this.returned != other.returned) {
             return false;
-        if (user == null) {
-            if (other.user != null)
-                return false;
-        } else if (!user.equals(other.user))
+        }
+        if (this.deleted != other.deleted) {
             return false;
-        if (book == null) {
-            if (other.book != null)
-                return false;
-        } else if (!book.equals(other.book))
+        }
+        if (!Objects.equals(this.registrationName, other.registrationName)) {
             return false;
-        if (devolutionDate == null) {
-            if (other.devolutionDate != null)
-                return false;
-        } else if (!devolutionDate.equals(other.devolutionDate))
+        }
+        if (!Objects.equals(this.registrationUpdateName, other.registrationUpdateName)) {
             return false;
-        if (returned != other.returned)
+        }
+        if (!Objects.equals(this.idLoan, other.idLoan)) {
             return false;
-        if (registrationDate == null) {
-            if (other.registrationDate != null)
-                return false;
-        } else if (!registrationDate.equals(other.registrationDate))
+        }
+        if (!Objects.equals(this.user, other.user)) {
             return false;
-        if (registrationName == null) {
-            if (other.registrationName != null)
-                return false;
-        } else if (!registrationName.equals(other.registrationName))
+        }
+        if (!Objects.equals(this.book, other.book)) {
             return false;
-        if (registrationUpdateDate == null) {
-            if (other.registrationUpdateDate != null)
-                return false;
-        } else if (!registrationUpdateDate.equals(other.registrationUpdateDate))
+        }
+        if (!Objects.equals(this.devolution, other.devolution)) {
             return false;
-        if (registrationUpdateName == null) {
-            if (other.registrationUpdateName != null)
-                return false;
-        } else if (!registrationUpdateName.equals(other.registrationUpdateName))
+        }
+        if (!Objects.equals(this.devolutionDate, other.devolutionDate)) {
             return false;
-        if (deleted != other.deleted)
+        }
+        if (!Objects.equals(this.registrationDate, other.registrationDate)) {
             return false;
-        return true;
+        }
+        return Objects.equals(this.registrationUpdateDate, other.registrationUpdateDate);
     }
 
     // Método toString para representar el préstamo como cadena
     @Override
     public String toString() {
-        return "Loan [idLoan=" + idLoan + ", user=" + user + ", book=" + book + ", devolutionDate=" + devolutionDate
-                + ", returned=" + returned + ", registrationDate=" + registrationDate + ", registrationName=" 
-                + registrationName + ", registrationUpdateDate=" + registrationUpdateDate + ", registrationUpdateName=" 
-                + registrationUpdateName + ", deleted=" + deleted + "]";
+        return "Loan{" + "idLoan=" + idLoan + ", user=" + user + ", book=" + book + ", devolution=" + devolution + ", devolutionDate=" + devolutionDate + ", returned=" + returned + ", registrationDate=" + registrationDate + ", registrationName=" + registrationName + ", registrationUpdateDate=" + registrationUpdateDate + ", registrationUpdateName=" + registrationUpdateName + ", deleted=" + deleted + '}';
     }
     
 }

@@ -4,9 +4,12 @@ import java.util.List;
 
 import com.company.system.dao.impl.BookDaoImpl;
 import com.company.system.dao.interfaces.BookDao;
+import com.company.system.model.Author;
 import com.company.system.model.Book;
 import com.company.system.model.Category;
 import com.company.system.model.Publisher;
+import com.company.system.model.User;
+import java.time.LocalDate;
 
 /**
  * Clase encargada de gestionar las operaciones relacionadas con los libros.
@@ -70,4 +73,22 @@ public class BookService {
         return bookDao.findByPattern(pattern.toLowerCase());
     }
 
+    public boolean isAvailableToLoan(Book book) {
+        return book.getStockToLoan() > 0;
+    }
+
+    public boolean updateBookStock(Book book) {
+        book.setStockToLoan(book.getStockToLoan() - 1);
+        return bookDao.update(book);
+    }
+
+    public boolean RegisterBook(String isbn, String title, String description, LocalDate yearPublished, 
+        Publisher publisher, Category category, List<Author> authors, Integer stock, User librarian) {
+        
+        Book book = new Book(isbn, title, description, yearPublished, stock,
+                stock, publisher, category, authors, LocalDate.now(), 
+               librarian.getFullNames(), null, null, false);
+        return bookDao.create(book); 
+    }  
+    
 }

@@ -1,5 +1,6 @@
 package com.company.system.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -20,8 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Books")
-public class Book {
-
+public class Book implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idBook")
@@ -218,7 +218,6 @@ public class Book {
         this.deleted = deleted;
     }
 
-    // Métodos hashCode y equals para comparación de objetos
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -240,6 +239,9 @@ public class Book {
         result = prime * result + (deleted ? 1231 : 1237);
         return result;
     }
+
+    
+
 
     @Override
     public boolean equals(Object obj) {
@@ -336,4 +338,5 @@ public class Book {
                 + "]";
     }
 }
+
 

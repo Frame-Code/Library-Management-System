@@ -6,6 +6,7 @@ import com.company.system.view.components.BackgroundPanel;
 import com.company.system.view.components.RoundedButtonWithShadow;
 import com.company.system.view.components.RoundedPanelWithShadow;
 import java.awt.Color;
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -29,6 +30,8 @@ public class RegisterStudent extends javax.swing.JFrame {
         setResizable(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setTitle("System management student, made with <3");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/libraryIconPrincipal.png")));
     }
 
     /**
@@ -120,49 +123,43 @@ public class RegisterStudent extends javax.swing.JFrame {
         btnRegister.setBorder(null);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Información personal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Información personal"));
+        jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel4.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(112, 112, 112));
         jLabel3.setText("Nombres:");
 
         txtNames.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtNames.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(112, 112, 112));
         jLabel4.setText("Apellidos:");
 
         txtSurnames.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtSurnames.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(112, 112, 112));
         jLabel5.setText("Correo electronico:");
 
         txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtEmail.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(112, 112, 112));
         jLabel6.setText("Num/Cedula:");
 
         txtId.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtId.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(112, 112, 112));
         jLabel9.setText("Fecha/nacimiento:");
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(112, 112, 112));
         jLabel10.setText("Dia:");
 
         txtDay.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtDay.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(112, 112, 112));
         jLabel11.setText("Mes:");
 
@@ -170,7 +167,6 @@ public class RegisterStudent extends javax.swing.JFrame {
         cmbMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero ", "Marzo ", "Abril ", "Mayo ", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre ", "Diciembre" }));
         cmbMonth.setBorder(null);
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(112, 112, 112));
         jLabel12.setText("Año:");
 
@@ -277,16 +273,14 @@ public class RegisterStudent extends javax.swing.JFrame {
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Contraseña de la cuenta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Contraseña de la cuenta"));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(112, 112, 112));
         jLabel7.setText("Contraseña:");
 
         pswPassword.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         pswPassword.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(112, 112, 112));
         jLabel8.setText("Confirmar Contraseña:");
 
