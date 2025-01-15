@@ -67,7 +67,7 @@ public class BookService {
      */
     public List<Book> searchBook(String pattern) {
         // Llama al método findByPattern de bookDao para obtener los libros que coincidan con el patrón
-        return bookDao.findByPattern(pattern);
+        return bookDao.findByPattern(pattern.toLowerCase());
     }
 
 }
