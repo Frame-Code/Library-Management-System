@@ -5,6 +5,7 @@ import com.company.system.service.UserService;
 import com.company.system.view.InitialWindow;
 
 import java.lang.reflect.InvocationTargetException;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class App {
@@ -16,6 +17,7 @@ public class App {
                 iw = new InitialWindow();
             });
         } catch (InterruptedException | InvocationTargetException ex) {
+            JOptionPane.showMessageDialog(iw, "Ocurrio un error inesperado", "Error" , JOptionPane.INFORMATION_MESSAGE);
             ex.printStackTrace();
         }
         new InitialWindowListener(iw, new UserService());

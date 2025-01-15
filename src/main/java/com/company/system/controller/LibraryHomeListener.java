@@ -31,7 +31,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -41,10 +40,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -278,9 +275,7 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
             frmLibraryHome.clearDesltopPane();
             frmLibraryHome.addToDesktopPane(loanHistoryInternalFrame);
             loanHistoryInternalFrame.setVisible(true);
-        }
-
-        if (e.getSource() == frmLibraryHome.getLblRequest()) {
+        } else if (e.getSource() == frmLibraryHome.getLblRequest()) {
             // Obtener el usuario actual (suponiendo que tienes acceso al usuario en el contexto)
             User currentUser = frmLibraryHome.getStudent();
 
@@ -400,7 +395,51 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
 
             // Hacer visible la ventana interna.
             requestExtensionInternalFrame.setVisible(true);
-        } else if (e.getSource() == frmLibraryHome.getPnlShutdown()) {
+        } else   if (e.getSource() == frmLibraryHome.getPnlEditorial()) {
+            // Obtener la lista de editoriales desde el servicio
+            List<Publisher> publishers = publisherService.getPublishers();
+
+            // Crear un menu contextual con los nombres de las editoriales
+            JPopupMenu popupMenu = new JPopupMenu();
+            publishers.forEach(publisher -> {
+                JMenuItem menuItem = new JMenuItem(publisher.getName());
+                menuItem.addActionListener(ev -> {
+                    String selectedPublisherName = menuItem.getText();
+
+                    // Llamar al método en PublisherService con el nombre seleccionado
+                    Publisher selectedPublisher = publisherService.getPublisherByName(selectedPublisherName);
+
+                    // Obtener la lista de libros de esta editorial
+                    List<Book> booksByPublisher = bookService.getBooksByPublisher(selectedPublisher);
+
+                    // Crear un nuevo CategoryBooks Internal Frame con los libros obtenidos
+                    frmLibraryHome.clearDesltopPane();
+                    categoryBooksInternalFrm = new CategoryBooks("Editorial: " + selectedPublisher.getName(), bookService);
+                    categoryBooksInternalFrm.setSize(frmLibraryHome.getDesktopPane().getSize());
+
+                    // Agregar cada libro al JInternalFrame
+                    categoryBooksInternalFrm.addBooks(booksByPublisher);
+
+                    // Agregar el JInternalFrame al desktopPane de la ventana LibraryHome
+                    frmLibraryHome.addToDesktopPane(categoryBooksInternalFrm);
+
+                    // Mostrar los detalles de la editorial seleccionada
+                    System.out.println("Editorial seleccionada: " + selectedPublisher.getName());
+                });
+                popupMenu.add(menuItem);
+            });
+
+            // Mostrar el menu contextual en la posición del panel
+            popupMenu.show(frmLibraryHome.getPnlEditorial(), frmLibraryHome.getPnlEditorial().getWidth() / 2, frmLibraryHome.getPnlEditorial().getHeight() / 2);
+
+            // Cambiar el color del panel seleccionado
+            frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlEditorial());
+        } else if (e.getSource() == frmLibraryHome.getPnlCategory()) {
+            frmLibraryHome.uploadListMenu(categoryService.getCategories());
+            addListenerMenu();
+            frmLibraryHome.getMenuContextual().show(frmLibraryHome.getPnlCategory(), e.getX(), e.getY());
+            frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlCategory());
+        }  else if (e.getSource() == frmLibraryHome.getPnlShutdown()) {
             frmLibraryHome.close();
         }
     }
