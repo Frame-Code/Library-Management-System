@@ -81,7 +81,7 @@ public class HistoryLoansListener implements ActionListener, ListSelectionListen
         historyLoans.cleanTable();
         List<Loan> loansByStudent = loanService.getLoansByUser(student);
         if (!loansByStudent.isEmpty()) {
-            historyLoans.getTblLoans().setModel(getTableModelLoans(historyLoans.getColumnNames(),
+            historyLoans.getTblLoans().setModel(getTableModelLoansLibrarian(historyLoans.getColumnNames(),
                     loanService.getLoansByUser(student)));
             historyLoans.getTblLoans().setRowHeight(20);
             historyLoans.getTblLoans().getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

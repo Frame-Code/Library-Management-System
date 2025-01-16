@@ -12,7 +12,7 @@ import com.company.system.service.DevolutionService;
 import com.company.system.service.LoanService;
 import com.company.system.service.UserService;
 import com.company.system.view.RegisterDevolution;
-
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -34,6 +34,7 @@ public class RegisterDevolutionListener implements ActionListener {
         this.devolutionService = new DevolutionService();
         this.userService = userService;
         this.loanService = loanService;
+        this.loans = new LinkedList<>();
         addListeners();
     }
 
@@ -41,7 +42,6 @@ public class RegisterDevolutionListener implements ActionListener {
         registerDevolution.getBtnSearchIdCard().addActionListener(this);
         registerDevolution.getBtnRegisterDevolutio().addActionListener(this);
     }
-
 
     //Verifica la existencia y la validez del numero de cedula del estudiante buscado y lo agrega a la instancia student    
     private void searchIdCard() {
@@ -63,40 +63,49 @@ public class RegisterDevolutionListener implements ActionListener {
             registerDevolution.showMessage("Escribe un numero", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     private void uploadLoan() {
         loans = new LinkedList<>(loanService.getLoansByUser(student));
-        if(loans != null && loans.getLast().getDevolution() == null) {
-            registerDevolution.getTxtAreaInfoLoan().append(
-                    "Libro prestado: " + loans.getLast().getBook().getTitle() + "\n" +
-                    "ISBN: " + loans.getLast().getBook().getIsbn() + "\n" +
-                    "Fecha devolucion esperada: " + loans.getLast().getDevolutionDate() + "\n" +
-                    "Fecha de prestamo: " + loans.getLast().getRegistrationDate().toString() + "\n" +
-                    "Ha solicitado prorroga?: " + ((loans.getLast().getRegistrationDate() != null)? "No" : "Si") + "\n" +
-                    "Fecha de registro de prorroga: " + ((loans.getLast().getRegistrationDate() != null)? "----" : loans.getLast().getRegistrationUpdateDate().toString()) + "\n" +
-                    "Ha sido devuelto? " + ((loans.getLast().isReturned())? "Si" : "No")
-            );
-        } else {
+        try {
+            if (!loans.isEmpty() || loans == null && loans.getLast().getDevolution() == null) {
+                registerDevolution.getTxtAreaInfoLoan().append(
+                        "Libro prestado: " + loans.getLast().getBook().getTitle() + "\n"
+                        + "ISBN: " + loans.getLast().getBook().getIsbn() + "\n"
+                        + "Fecha devolucion esperada: " + loans.getLast().getDevolutionDate() + "\n"
+                        + "Fecha de prestamo: " + loans.getLast().getRegistrationDate().toString() + "\n"
+                        + "Ha solicitado prorroga?: " + ((loans.getLast().getRegistrationDate() != null) ? "No" : "Si") + "\n"
+                        + "Fecha de registro de prorroga: " + ((loans.getLast().getRegistrationDate() != null) ? "----" : loans.getLast().getRegistrationUpdateDate().toString()) + "\n"
+                        + "Ha sido devuelto? " + ((loans.getLast().isReturned()) ? "Si" : "No")
+                );
+            } else {
+                registerDevolution.getTxtAreaInfoLoan().setText("El estudiante no tiene un libro registrado disponible para devolucion");
+            }
+        } catch (NoSuchElementException e) {
             registerDevolution.getTxtAreaInfoLoan().setText("El estudiante no tiene un libro registrado disponible para devolucion");
         }
+
     }
-    
+
     private void registerDevolution() {
-        if (student != null && loans.getLast().getDevolution() == null) {
-            devolutionService.registerDevolution(loans.getLast(), librarian);
-            registerDevolution.showMessage("Devolucion registrada correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            registerDevolution.showMessage("No pueden haber campos vacios, o el usario ya registrado una devolucion del su ultimo libro", "Error",
-                    JOptionPane.ERROR_MESSAGE);
+        try {
+            if (!loans.isEmpty() && student != null && loans.getLast().getDevolution() == null) {
+                devolutionService.registerDevolution(loans.getLast(), librarian);
+                registerDevolution.showMessage("Devolucion registrada correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                registerDevolution.showMessage("No pueden haber campos vacios o bien el usuario ya no tienen devolucion que registrar", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NoSuchElementException e) {
+            registerDevolution.getTxtAreaInfoLoan().setText("El estudiante no tiene un libro registrado disponible para devolucion");
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == registerDevolution.getBtnSearchIdCard()) {
+        if (e.getSource() == registerDevolution.getBtnSearchIdCard()) {
             searchIdCard();
             uploadLoan();
-        } else if(e.getSource() == registerDevolution.getBtnRegisterDevolutio()) {
+        } else if (e.getSource() == registerDevolution.getBtnRegisterDevolutio()) {
             registerDevolution();
         }
     }

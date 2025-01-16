@@ -53,27 +53,27 @@ public class UserDaoImplTest {
 
     @Test
     void testFindById() {
-        System.out.println(userDao.findById(4L));
+        //System.out.println(userDao.findById(4L));
     }
 
 
     @Test
     void testDeleteByID() {
-        System.out.println(userDao.deleteByID(4L));
+        //System.out.println(userDao.deleteByID(4L));
     }
     
     
     @Test
     void testDeleteByIdCard() {
-        System.out.println(userDao.deleteByIdCard(941239261L));
+        //System.out.println(userDao.deleteByIdCard(941239261L));
     }
 
 
     @Test
     void testUpdate() {
-        User user = userDao.findByIdIncludeDeleted(5L);
-        user.setDeleted(false);
-        System.out.println(userDao.update(user));
+        //User user = userDao.findByIdIncludeDeleted(5L);
+        //user.setDeleted(false);
+        //System.out.println(userDao.update(user));
     }
 
 

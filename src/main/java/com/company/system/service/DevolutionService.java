@@ -52,7 +52,7 @@ public class DevolutionService {
         
         if(loan.getDevolutionDate().isAfter(LocalDate.now())) {
             Fine fine = new Fine(loan.getUser(), (LocalDate.now().plusDays(15)), "Multa por devolucion tardia", 
-                    LocalDate.now(), librarian.getFullNames() + " ci: " + String.valueOf(librarian.getIdCardUser()), 
+                    LocalDate.now(), librarian.getFullNames() + " CI: " + String.valueOf(librarian.getIdCardUser()), 
                     null, null, false);
             fineDao.create(fine);
         }

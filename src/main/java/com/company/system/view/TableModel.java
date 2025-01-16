@@ -68,13 +68,27 @@ public interface TableModel {
 
     }
 
-    default DefaultTableModel getTableModelLoans(String columnNames[], List<Loan> loans) {
+    default DefaultTableModel getTableModelLoansLibrarian(String columnNames[], List<Loan> loans) {
         DefaultTableModel tableModel = model();
         tableModel.setColumnIdentifiers(columnNames);
         loans.forEach(loan -> {
             Devolution devolution = loan.getDevolution();
             Object obj[] = {loan.getIdLoan(), loan.getRegistrationDate().toString(), (loan.isReturned()) ? "Si" : "No",
                 (devolution != null) ? devolution.getRegistrationDate().toString() : "----", loan.getBook().getTitle(), loan.getBook().getIsbn()};
+            tableModel.addRow(obj);
+        });
+
+        return tableModel;
+
+    }
+
+    default DefaultTableModel getTableModelLoansStudent(String columnNames[], List<Loan> loans) {
+        DefaultTableModel tableModel = model();
+        tableModel.setColumnIdentifiers(columnNames);
+        loans.forEach(loan -> {
+            Devolution devolution = loan.getDevolution();
+            Object obj[] = {loan.getBook().getTitle(), loan.getDevolutionDate().toString(), (loan.getDevolution() == null)? "No" : "Si",
+            loan.getRegistrationDate().toString(), (loan.getRegistrationUpdateDate() == null)? "No" : "Si" };
             tableModel.addRow(obj);
         });
 

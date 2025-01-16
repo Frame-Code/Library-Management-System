@@ -32,7 +32,7 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
         buttonGroup4 = new javax.swing.ButtonGroup();
-        contentPane = new BackgroundPanel("src/main/resources/images/Background_login.png");
+        contentPane = new BackgroundPanel("images/Background_login.png");
         pnlBackground = new RoundedPanelWithShadow(30, new Color(0, 0, 0, 100), 2);
         pnlWelcome = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         lblSelectTypeAccount = new javax.swing.JLabel();
@@ -118,7 +118,6 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         jLabel9.setText("IMAGEN DEL LIBRO xd");
 
         lblStock.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        lblStock.setForeground(new java.awt.Color(0, 0, 0));
         lblStock.setText(String.valueOf(book.getStockToLoan()));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -128,7 +127,7 @@ public class InfoLibroWindow extends javax.swing.JFrame {
         lblYearPublished.setText(book.getYearPublished().toString());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descripcion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Descripcion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         txtAreaDescription.setEditable(false);

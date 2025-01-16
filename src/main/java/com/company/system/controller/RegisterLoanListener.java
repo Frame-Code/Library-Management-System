@@ -10,9 +10,11 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 import com.company.system.model.Book;
+import com.company.system.model.Fine;
 import com.company.system.model.Loan;
 import com.company.system.model.User;
 import com.company.system.service.BookService;
+import com.company.system.service.FineService;
 import com.company.system.service.LoanService;
 import com.company.system.service.UserService;
 import com.company.system.view.RegisterLoan;
@@ -27,6 +29,7 @@ public class RegisterLoanListener implements ActionListener, MouseListener, Util
     private final BookService bookService;
     private final UserService userService;
     private final LoanService loanService;
+    private final FineService fineService;
     private final User librarian;
     private User student;
     private Book book;
@@ -38,6 +41,7 @@ public class RegisterLoanListener implements ActionListener, MouseListener, Util
         this.bookService = bookService;
         this.userService = userService;
         this.loanService = loanService;
+        this.fineService = new FineService();
         addListeners();
     }
 
@@ -131,14 +135,15 @@ public class RegisterLoanListener implements ActionListener, MouseListener, Util
                 if (isValidDate(day, (String) pnlRegisterLoan.getCmbMonth().getSelectedItem(), year)
                         && bookService.isAvailableToLoan(book)) {
                     LinkedList<Loan> userLoans = new LinkedList<>(loanService.getLoansByUser(student));
-                    if (userLoans.isEmpty() || userLoans.getLast().isReturned()) {
+                    LinkedList<Fine> userFines = new LinkedList<>(fineService.getFinesByStudent(student));
+                    if ((userLoans.isEmpty() || userLoans.getLast().isReturned()) && LocalDate.now().isAfter(userFines.getLast().getDeadline())) {
                         loanService.createLoan(student, book,
-                                getDate(day, (String) pnlRegisterLoan.getCmbMonth().getSelectedItem(), year),
-                                librarian.getNames() + " " + librarian.getSurNames() + " ci: " + librarian.getIdCardUser());
+                               getDate(day, (String) pnlRegisterLoan.getCmbMonth().getSelectedItem(), year),
+                                librarian.getFullNames() + " CI: " + String.valueOf(librarian.getIdCardUser()));
                         pnlRegisterLoan.showMessage("Prestamo creado correctamente", "Nuevo prestamo", JOptionPane.INFORMATION_MESSAGE);
                         cleanFields();
                     } else {
-                        pnlRegisterLoan.showMessage("No se puede registrar prestamo. El estudiante tiene un prestamo sin devolver", "Error", JOptionPane.ERROR_MESSAGE);
+                        pnlRegisterLoan.showMessage("No se puede registrar prestamo. El estudiante tiene un prestamo sin devolver O tiene una multa pendiente", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
                     pnlRegisterLoan.showMessage("Escribe un formato de fecha correcto", "Error", JOptionPane.ERROR_MESSAGE);

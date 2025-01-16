@@ -19,7 +19,14 @@ public class FileChooser extends JFileChooser{
     public String filePath() {
         if(userSelection == APPROVE_OPTION) {
             File fileToSave = getSelectedFile();
-            return fileToSave.getAbsolutePath();
+            String fileName = fileToSave.getAbsolutePath();
+            if(!fileName.toLowerCase().endsWith(".pdf")) {
+                fileName += ".pdf";
+            }
+            
+            File finalFile = new File(fileName);
+            
+            return finalFile.getAbsolutePath();
         } else {
             return null;
         }

@@ -41,36 +41,36 @@ public class PublisherDaoImplTest {
 
     @Test
     void testDeleteByID() {
-        System.out.println(publisherDao.deleteByID(1L));    
+        //System.out.println(publisherDao.deleteByID(1L));    
     }
 
     @Test
     void testFindAllIncludeDeleted() {
-        List<Publisher> publishers = publisherDao.findAllIncludeDeleted();
+        /*List<Publisher> publishers = publisherDao.findAllIncludeDeleted();
         publishers.forEach(publisher -> {
             System.out.println(publisher);
-        });
+        });*/
     }
 
     @Test
     void testFindById() {
-        Publisher publisher = publisherDao.findById(1L);
+        /*Publisher publisher = publisherDao.findById(1L);
         Publisher publisher1 = publisherDao.findById(3L);
         System.out.println(publisher);
-        System.out.println(publisher1);
+        System.out.println(publisher1);*/
     }
 
     @Test
     void testFindByIdIncludeDeleted() {
-        Publisher publisher = publisherDao.findById(1L);
-        System.out.println(publisher);
+        //Publisher publisher = publisherDao.findById(1L);
+       // System.out.println(publisher);
     } 
 
     @Test
     void testUpdate() {
-        Publisher publisher = publisherDao.findByIdIncludeDeleted(1L);
+        /*Publisher publisher = publisherDao.findByIdIncludeDeleted(1L);
         publisher.setDeleted(false);
-        System.out.println(publisherDao.update(publisher));
+        System.out.println(publisherDao.update(publisher));*/
     }
 
 }

@@ -31,7 +31,7 @@ public class InitialWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        contentPane = new BackgroundPanel("src/main/resources/images/Background_login.png");
+        contentPane = new BackgroundPanel("images/Background_login.png");
         pnlBackground = new RoundedPanelWithShadow(30, new Color(0, 0, 0, 100), 2);
         pnlWelcome = new RoundedPanelWithShadow(25, new Color(0, 0, 0, 100), 2);
         lblSelectTypeAccount = new javax.swing.JLabel();
@@ -123,7 +123,7 @@ public class InitialWindow extends javax.swing.JFrame {
                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(btnStudentLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackgroundLayout.createSequentialGroup()
                         .addComponent(btnLibrarianLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)

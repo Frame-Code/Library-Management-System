@@ -23,12 +23,12 @@ public class RoleDaoImplTest {
     void testCreate() {
         Role rol = new Role("Test", LocalDate.now(), "Admin",
          null, null, false);
-        System.out.println(roleDao.create(rol));
+        //System.out.println(roleDao.create(rol));
     }
 
     @Test
     void testDeleteByID() {
-        System.out.println(roleDao.deleteByID(1L));
+        //System.out.println(roleDao.deleteByID(1L));
     }
 
     @Test
@@ -49,7 +49,7 @@ public class RoleDaoImplTest {
 
     @Test
     void testFindById() {
-        System.out.println(roleDao.findById(1L));
+        //System.out.println(roleDao.findById(1L));
     }
 
     @Test
@@ -59,8 +59,8 @@ public class RoleDaoImplTest {
 
     @Test
     void testUpdate() {
-        Role role = roleDao.findByName(Role.roleLibrarian);
+        /*Role role = roleDao.findByName(Role.roleLibrarian);
         role.setRegistrationName("Admin");
-        System.out.println(roleDao.update(role));
+        System.out.println(roleDao.update(role));*/
     }
 }

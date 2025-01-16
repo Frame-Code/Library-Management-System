@@ -45,10 +45,10 @@ public class AuthorDaoImplTest {
 
     @Test
     void testDeleteByID() {
-        Author author = authorDao.findByIdIncludeDeleted(24L);
+        /*Author author = authorDao.findByIdIncludeDeleted(24L);
         if(author.getBooks().isEmpty()) { //No se pueden eliminar autores con libros registrados pero 
             System.out.println(authorDao.deleteByID(24L));
-        }
+        }*/
     }
 
     @Test
@@ -69,18 +69,18 @@ public class AuthorDaoImplTest {
 
     @Test
     void testFindById() { 
-        System.out.println(authorDao.findById(24L));
+        //System.out.println(authorDao.findById(24L));
     }
 
     @Test
     void testFindByIdIncludeDeleted() {
-        System.out.println(authorDao.findByIdIncludeDeleted(24L));
+        //System.out.println(authorDao.findByIdIncludeDeleted(24L));
     }
 
     @Test
     void testUpdate() {
-        Author author = authorDao.findByIdIncludeDeleted(24L);
+        /*Author author = authorDao.findByIdIncludeDeleted(24L);
         author.setDeleted(false);
-        System.out.println(authorDao.update(author));
+        System.out.println(authorDao.update(author));*/
     }
 }

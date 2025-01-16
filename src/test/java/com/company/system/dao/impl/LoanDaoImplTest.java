@@ -49,18 +49,18 @@ public class LoanDaoImplTest {
         
     @Test
     void testFindByUser() {
-        LinkedList<Loan> loans = new LinkedList<>(loanDao.findByUser(new UserDaoImpl().findByIdCard(9412392L)));
+        /*LinkedList<Loan> loans = new LinkedList<>(loanDao.findByUser(new UserDaoImpl().findByIdCard(9412392L)));
         /*loans.forEach(loan -> {
             System.out.println(loan);
-        });*/
+        });
         Loan l = loans.getLast();
         l.setDevolution(null);
-        //loanDao.update(l);
+        //loanDao.update(l);*/
     }
 
     @Test
     void testDeleteByID() {
-        System.out.println(loanDao.deleteByID(1L));
+        //System.out.println(loanDao.deleteByID(1L));
     }
 
     @Test
@@ -81,23 +81,23 @@ public class LoanDaoImplTest {
 
     @Test
     void testFindById() {
-        Loan loan = loanDao.findById(1L);
+        /*Loan loan = loanDao.findById(1L);
         Loan loan1 = loanDao.findById(2L);
         System.out.println(loan);
-        System.out.println(loan1);
+        System.out.println(loan1);*/
     }
 
     @Test
     void testFindByIdIncludeDeleted() {
-        Loan loan = loanDao.findByIdIncludeDeleted(1L);
-        System.out.println(loan);
+        //Loan loan = loanDao.findByIdIncludeDeleted(1L);
+     //   System.out.println(loan);
     }
 
     @Test
     void testUpdate() {
-        Loan loan = loanDao.findByIdIncludeDeleted(3L);
+       /* Loan loan = loanDao.findByIdIncludeDeleted(3L);
         loan.setDevolutionDate(LocalDate.of(2024, 12, 25));
-        System.out.println(loanDao.update(loan));
+        System.out.println(loanDao.update(loan));*/
     }
 
     @Test

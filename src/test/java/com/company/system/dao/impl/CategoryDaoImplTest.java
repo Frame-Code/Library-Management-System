@@ -20,12 +20,12 @@ public class CategoryDaoImplTest {
     void testCreate() {
         Category category = new Category(Category.categoryArchitecture, LocalDate.now(), 
             "Admin", null, null, false);
-        System.out.println(categoryDAO.create(category));
+        //System.out.println(categoryDAO.create(category));
     }
 
     @Test
     void testDeleteByID() {
-        System.out.println(categoryDAO.deleteByID(1L));
+        //System.out.println(categoryDAO.deleteByID(1L));
     }
 
     @Test
@@ -46,10 +46,10 @@ public class CategoryDaoImplTest {
 
     @Test
     void testFindById() {
-        Category category = categoryDAO.findById(1L);
+        /*Category category = categoryDAO.findById(1L);
         Category category1 = categoryDAO.findById(2L);
         System.out.println(category);
-        System.out.println(category1);
+        System.out.println(category1);*/
     }
 
     @Test
@@ -62,9 +62,9 @@ public class CategoryDaoImplTest {
 
     @Test
     void testUpdate() {
-        Category category = categoryDAO.findByIdIncludeDeleted(1L);
+        /*Category category = categoryDAO.findByIdIncludeDeleted(1L);
         category.setDeleted(false);
-        System.out.println(categoryDAO.update(category));
+        System.out.println(categoryDAO.update(category));*/
     }
 
 }

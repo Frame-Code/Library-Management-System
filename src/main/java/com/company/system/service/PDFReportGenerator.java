@@ -1,7 +1,6 @@
 package com.company.system.service;
 
 import com.company.system.model.Loan;
-import com.company.system.model.User;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
