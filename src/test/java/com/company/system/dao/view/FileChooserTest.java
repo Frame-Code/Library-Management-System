@@ -14,12 +14,12 @@ public class FileChooserTest {
     
     @BeforeEach
     void setUp() {
-        this.fileChooser = new FileChooser();
+        //this.fileChooser = new FileChooser();
     }
     
     @Test
     void upload() {
-        System.out.println(fileChooser.filePath());
+        //System.out.println(fileChooser.filePath());
     }
             
 

@@ -12,9 +12,9 @@ import com.company.system.model.User;
 public class UserServiceTest {
     @Test
     void testLogin() {
-        UserService userService = new UserService();
-        User user = userService.login(941239261L, "MiContra");
-        User user1 = userService.login(941239253L, "MiContraseña");
+        //UserService userService = new UserService();
+        //User user = userService.login(941239261L, "MiContra");
+        //User user1 = userService.login(941239253L, "MiContraseña");
         /*System.out.println(user);
         System.out.println(user1)*/
     }

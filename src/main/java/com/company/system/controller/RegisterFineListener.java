@@ -88,7 +88,7 @@ public class RegisterFineListener implements ActionListener, MouseListener, Util
 
         } else if (registerFine.getBtnRegisterLoan() == e.getSource()) {
             if (isAvailableToRegister() && isValidDate()) {
-                fineService.register(student, deadeline, registerFine.getAreaMessage().getText(), librarian.getFullNames());
+                fineService.register(student, deadeline, registerFine.getAreaMessage().getText(), librarian.getFullNames() + " " + "CI: " + String.valueOf(librarian.getIdCardUser()));
                 registerFine.showMessage("Multa registrada correctamente", "Multa registrada", JOptionPane.INFORMATION_MESSAGE);
                 cleanFields();
             } else {

@@ -33,11 +33,8 @@ public class LibraryHome extends javax.swing.JFrame {
     private ArrayList<JMenuItem> menuItems;
     private String columnNames[] = new String[] {"Titulo libro", "Fecha devolucion esperado", "Ha sido devuelto?", "fecha registro", "Ha soliticado prorroga?"};
     
-    public LibraryHome(User user) {
-        //this.user = user;
-        this.student = new User(); //Eliminar esta linea
-        this.student.setNames("ejemplo");  //Eliminar esta linea
-        this.student.setSurNames("ejemplo1"); //eliminar esta linea
+    public LibraryHome(User student) {
+        this.student = student;
         initComponents();
         setResizable(true);
         setLocationRelativeTo(null);
@@ -100,7 +97,7 @@ public class LibraryHome extends javax.swing.JFrame {
         lblUser.setBackground(new java.awt.Color(255, 255, 255));
         lblUser.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         lblUser.setForeground(new java.awt.Color(255, 255, 255));
-        lblUser.setText("User");
+        lblUser.setText(student.getFullNames());
 
         javax.swing.GroupLayout pnlWelcomeLayout = new javax.swing.GroupLayout(pnlWelcome);
         pnlWelcome.setLayout(pnlWelcomeLayout);
@@ -366,10 +363,10 @@ public class LibraryHome extends javax.swing.JFrame {
                 .addGroup(pnlWelcome1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlWelcome1Layout.createSequentialGroup()
                         .addComponent(lblCategory1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(246, Short.MAX_VALUE))
                     .addGroup(pnlWelcome1Layout.createSequentialGroup()
-                        .addComponent(txtPatternToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addComponent(txtPatternToSearch)
+                        .addGap(18, 18, 18)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32))))
         );
@@ -550,7 +547,10 @@ public class LibraryHome extends javax.swing.JFrame {
     public void setStudent(User student) {
         this.student = student;
     }
-    
+
+    public JLabel getLblUser() {
+        return lblUser;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;

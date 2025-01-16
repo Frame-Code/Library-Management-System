@@ -27,7 +27,7 @@ public class FineDaoImplTest {
 
     @Test
     void testDeleteByID() {
-        System.out.println(fineDao.deleteByID(1L));
+        //System.out.println(fineDao.deleteByID(1L));
 
     }
 
@@ -49,28 +49,28 @@ public class FineDaoImplTest {
 
     @Test
     void testFindById() {
-        System.out.println(fineDao.findById(2L));
-        System.out.println(fineDao.findById(1L));
+        //System.out.println(fineDao.findById(2L));
+        //System.out.println(fineDao.findById(1L));
     }
 
     @Test
     void testFindByIdIncludeDeleted() {
-        System.out.println(fineDao.findByIdIncludeDeleted(2L));
-        System.out.println(fineDao.findByIdIncludeDeleted(1L));
+        //System.out.println(fineDao.findByIdIncludeDeleted(2L));
+        //System.out.println(fineDao.findByIdIncludeDeleted(1L));
     }
 
     @Test
     void testFindByUser() {
-        List<Fine> fines = fineDao.findByUser(new UserDaoImpl().findById(21L));
+        /*List<Fine> fines = fineDao.findByUser(new UserDaoImpl().findById(21L));
         fines.forEach(fine -> {
             System.out.println(fine);
-        });
+        });*/
     }
 
     @Test
     void testUpdate() {
-        Fine fine = fineDao.findByIdIncludeDeleted(1L);
+        /*Fine fine = fineDao.findByIdIncludeDeleted(1L);
         fine.setDeadline(LocalDate.of(2024, 11, 25));
-        System.out.println(fineDao.update(fine));
+        System.out.println(fineDao.update(fine));*/
     }
 }

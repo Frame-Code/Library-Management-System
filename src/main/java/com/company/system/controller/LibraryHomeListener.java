@@ -173,12 +173,12 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == frmLibraryHome.getLblHistorialDePrestamos()) {
+        if (e.getSource() == frmLibraryHome.getLblHistorialDePrestamos() || e.getSource() == frmLibraryHome.getPnlLoanHistory()) {
             // Instanciar y crear la tabla para mostrar el historial de préstamos
             List<Loan> loanHistory = loanService.getLoansByUser(frmLibraryHome.getStudent());
 
             // Crear el modelo de la tabla
-            DefaultTableModel loanTableModel = getTableModelLoans(frmLibraryHome.getColumnNames(), loanHistory);
+            DefaultTableModel loanTableModel = getTableModelLoansStudent(frmLibraryHome.getColumnNames(), loanHistory);
 
             // Crear la tabla con el modelo
             JTable loanHistoryTable = new JTable(loanTableModel);
@@ -275,7 +275,8 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
             frmLibraryHome.clearDesltopPane();
             frmLibraryHome.addToDesktopPane(loanHistoryInternalFrame);
             loanHistoryInternalFrame.setVisible(true);
-        } else if (e.getSource() == frmLibraryHome.getLblRequest()) {
+            
+        } else if (e.getSource() == frmLibraryHome.getLblRequest() || e.getSource() == frmLibraryHome.getPnlRequest()) {
             // Obtener el usuario actual (suponiendo que tienes acceso al usuario en el contexto)
             User currentUser = frmLibraryHome.getStudent();
 
@@ -395,7 +396,7 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
 
             // Hacer visible la ventana interna.
             requestExtensionInternalFrame.setVisible(true);
-        } else   if (e.getSource() == frmLibraryHome.getPnlEditorial()) {
+        } else   if (e.getSource() == frmLibraryHome.getPnlEditorial() || e.getSource() == frmLibraryHome.getLblPublisher()) {
             // Obtener la lista de editoriales desde el servicio
             List<Publisher> publishers = publisherService.getPublishers();
 
@@ -434,12 +435,12 @@ public class LibraryHomeListener implements ActionListener, MouseListener, Compo
 
             // Cambiar el color del panel seleccionado
             frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlEditorial());
-        } else if (e.getSource() == frmLibraryHome.getPnlCategory()) {
+        } else if (e.getSource() == frmLibraryHome.getPnlCategory() || e.getSource() == frmLibraryHome.getLblCategory()) {
             frmLibraryHome.uploadListMenu(categoryService.getCategories());
             addListenerMenu();
             frmLibraryHome.getMenuContextual().show(frmLibraryHome.getPnlCategory(), e.getX(), e.getY());
             frmLibraryHome.changeColorPanel(Utils.pnlEntered, frmLibraryHome.getPnlCategory());
-        }  else if (e.getSource() == frmLibraryHome.getPnlShutdown()) {
+        }  else if (e.getSource() == frmLibraryHome.getPnlShutdown() || e.getSource() == frmLibraryHome.getLblShutdown()) {
             frmLibraryHome.close();
         }
     }
